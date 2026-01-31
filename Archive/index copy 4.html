@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashion Photographer Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 2rem 3rem;
+    }
+
+    nav.scrolled {
+      background: rgba(0, 0, 0, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 3rem;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      letter-spacing: 0.3em;
+      font-weight: 300;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .logo:hover {
+      opacity: 0.7;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #999;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #fff;
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #fff;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: zoomPulse 20s ease-in-out infinite alternate;
+    }
+
+    @keyframes zoomPulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.1); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3), rgba(0,0,0,0.9));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem;
+      opacity: 0;
+      animation: fadeInUp 1.2s ease-out 0.3s forwards;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .hero h1 .italic {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero p {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: #ccc;
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 2.5rem;
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+    }
+
+    .cta-btn:hover::before {
+      left: 0;
+    }
+
+    .cta-btn:hover {
+      color: #000;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-10px); }
+      60% { transform: translateX(-50%) translateY(-5px); }
+    }
+
+    /* Portfolio Carousel Section */
+    .portfolio-carousel {
+      padding: 8rem 0;
+      overflow: hidden;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+      padding: 0 3rem;
+    }
+
+    .section-header h2 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    .section-divider {
+      width: 100px;
+      height: 1px;
+      background: #fff;
+      margin: 0 auto;
+    }
+
+    .carousel-container {
+      position: relative;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    .carousel-wrapper {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 2rem;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-slide {
+      min-width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .carousel-image {
+      position: relative;
+      aspect-ratio: 3/4;
+      border-radius: 30px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .carousel-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .carousel-content {
+      padding: 2rem;
+    }
+
+    .carousel-category {
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      color: #666;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .carousel-title {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      line-height: 1.1;
+    }
+
+    .carousel-description {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #ccc;
+      margin-bottom: 3rem;
+    }
+
+    .carousel-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      border: 1px solid #fff;
+      background: transparent;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .carousel-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 4rem;
+    }
+
+    .carousel-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid #fff;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .carousel-dot.active {
+      background: #fff;
+      transform: scale(1.2);
+    }
+
+    .carousel-arrows {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .carousel-arrow {
+      width: 60px;
+      height: 60px;
+      border: 1px solid #fff;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      pointer-events: all;
+    }
+
+    .carousel-arrow:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* Editorial Page Styles */
+    .editorial-page {
+      display: none;
+      padding: 8rem 0 4rem;
+    }
+
+    .editorial-page.active {
+      display: block;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .editorial-header {
+      text-align: center;
+      padding: 0 3rem;
+      margin-bottom: 6rem;
+    }
+
+    .editorial-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #999;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      margin-bottom: 3rem;
+      transition: color 0.3s;
+    }
+
+    .editorial-back:hover {
+      color: #fff;
+    }
+
+    .editorial-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .editorial-subtitle {
+      font-size: 1.2rem;
+      color: #999;
+      letter-spacing: 0.1em;
+    }
+
+    .editorial-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+    }
+
+    .editorial-image {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .editorial-image.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .editorial-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .editorial-image.large {
+      max-width: 100%;
+    }
+
+    .editorial-image.medium {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+
+    .editorial-image.small {
+      max-width: 60%;
+      margin: 0 auto;
+    }
+
+    .editorial-text {
+      max-width: 800px;
+      margin: 4rem auto;
+      padding: 0 3rem;
+      text-align: center;
+    }
+
+    .editorial-text p {
+      font-size: 1.3rem;
+      line-height: 2;
+      color: #ccc;
+    }
+
+    /* About Section */
+    .about {
+      padding: 8rem 3rem;
+      background: #0a0a0a;
+    }
+
+    .about-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    .about-text p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #ccc;
+      margin-bottom: 1.5rem;
+    }
+
+    .stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: #999;
+      text-transform: uppercase;
+    }
+
+    .about-image {
+      height: 700px;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 8rem 3rem;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      margin-bottom: 2rem;
+    }
+
+    .contact p {
+      font-size: 1.3rem;
+      color: #ccc;
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+
+    .contact-link:hover {
+      color: #999;
+    }
+
+    .contact-btn {
+      padding: 1.5rem 3rem;
+      background: #fff;
+      color: #000;
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 5px;
+    }
+
+    .contact-btn:hover {
+      background: #ddd;
+      transform: translateY(-2px);
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid #222;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #666;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer a {
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .nav-links {
+        display: none;
+      }
+
+      .carousel-slide {
+        grid-template-columns: 1fr;
+      }
+
+      .carousel-content {
+        order: 2;
+      }
+
+      .carousel-image {
+        order: 1;
+      }
+
+      .about-container {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        height: 500px;
+      }
+
+      .stats {
+        justify-content: center;
+      }
+
+      .carousel-arrows {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-container">
+      <div class="logo" onclick="showHome()">STUDIO</div>
+      <ul class="nav-links">
+        <li><a href="#" onclick="showHome()">Home</a></li>
+        <li><a href="#about" onclick="scrollToSection('about')">About</a></li>
+        <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <div id="home-page">
+    <section id="hero" class="hero">
+      <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=1920&h=1080&fit=crop" alt="Hero" class="hero-bg">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>
+          CAPTURING<br>
+          <span class="italic">Moments</span>
+        </h1>
+        <p>Fashion & Portrait Photography That Tells Your Story</p>
+        <button class="cta-btn" onclick="document.querySelector('.portfolio-carousel').scrollIntoView({behavior: 'smooth'})">
+          VIEW WORK
+          <span>→</span>
+        </button>
+      </div>
+      <div class="scroll-indicator" onclick="document.querySelector('.portfolio-carousel').scrollIntoView({behavior: 'smooth'})">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </div>
+    </section>
+
+    <section class="portfolio-carousel">
+      <div class="section-header">
+        <h2>PORTFOLIO</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+          <div class="carousel-track" id="carousel-track">
+            
+            <!-- Slide 1: Fashion Editorial -->
+            <div class="carousel-slide">
+              <div class="carousel-image" onclick="showEditorial('fashion')">
+                <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1000&h=1400&fit=crop" alt="Fashion Editorial">
+              </div>
+              <div class="carousel-content">
+                <div class="carousel-category">Editorial</div>
+                <h3 class="carousel-title">Fashion<br>Editorial</h3>
+                <p class="carousel-description">High-fashion editorial shoots that push creative boundaries. Bold concepts, striking visuals, and avant-garde styling that define modern fashion photography.</p>
+                <button class="carousel-btn" onclick="showEditorial('fashion')">
+                  VIEW PROJECT
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Slide 2: Dance -->
+            <div class="carousel-slide">
+              <div class="carousel-image" onclick="showEditorial('dance')">
+                <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=1000&h=1400&fit=crop" alt="Dance">
+              </div>
+              <div class="carousel-content">
+                <div class="carousel-category">Movement</div>
+                <h3 class="carousel-title">Dance<br>Series</h3>
+                <p class="carousel-description">Capturing the grace, power, and emotion of movement. Every frame tells a story of expression, fluidity, and the beauty of the human form in motion.</p>
+                <button class="carousel-btn" onclick="showEditorial('dance')">
+                  VIEW PROJECT
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Slide 3: Desert -->
+            <div class="carousel-slide">
+              <div class="carousel-image" onclick="showEditorial('desert')">
+                <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=1000&h=1400&fit=crop" alt="Desert">
+              </div>
+              <div class="carousel-content">
+                <div class="carousel-category">Location</div>
+                <h3 class="carousel-title">Desert<br>Dreams</h3>
+                <p class="carousel-description">A stunning series shot in vast desert landscapes. Minimalist compositions meet dramatic natural lighting, creating ethereal and timeless imagery.</p>
+                <button class="carousel-btn" onclick="showEditorial('desert')">
+                  VIEW PROJECT
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Slide 4: Portrait -->
+            <div class="carousel-slide">
+              <div class="carousel-image" onclick="showEditorial('portrait')">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&h=1400&fit=crop" alt="Portrait">
+              </div>
+              <div class="carousel-content">
+                <div class="carousel-category">Intimate</div>
+                <h3 class="carousel-title">Portrait<br>Stories</h3>
+                <p class="carousel-description">Intimate portrait sessions that reveal authentic emotion and personality. Natural light, genuine moments, and connections that transcend the frame.</p>
+                <button class="carousel-btn" onclick="showEditorial('portrait')">
+                  VIEW PROJECT
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="carousel-arrows">
+          <button class="carousel-arrow" onclick="prevSlide()">‹</button>
+          <button class="carousel-arrow" onclick="nextSlide()">›</button>
+        </div>
+
+        <div class="carousel-nav" id="carousel-dots"></div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-container">
+        <div class="about-text">
+          <h2>ABOUT ME</h2>
+          <p>With over a decade of experience in fashion and portrait photography, I specialize in capturing the essence of individuality and style. My work has been featured in leading fashion magazines and exhibited internationally.</p>
+          <p>I believe every photograph tells a story, and my mission is to create images that are not just seen, but felt. Through careful composition, lighting, and connection with my subjects, I craft visual narratives that resonate.</p>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-number">10+</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Awards</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1200&fit=crop" alt="Photographer">
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>LET'S CREATE</h2>
+      <p>Ready to bring your vision to life? Get in touch to discuss your next project.</p>
+      <div class="contact-links">
+        <a href="mailto:studio@example.com" class="contact-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          studio@example.com
+        </a>
+        <a href="https://instagram.com" target="_blank" class="contact-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          @studio
+        </a>
+      </div>
+      <button class="contact-btn">GET IN TOUCH</button>
+    </section>
+
+    <footer>
+      <p>© 2024 Studio. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- EDITORIAL PAGES -->
+  <div id="fashion-page" class="editorial-page">
+    <div class="editorial-header">
+      <a href="#" class="editorial-back" onclick="showHome()">← BACK TO HOME</a>
+      <h1 class="editorial-title">FASHION EDITORIAL</h1>
+      <p class="editorial-subtitle">High Fashion | Editorial | 2024</p>
+    </div>
+
+    <div class="editorial-grid">
+      <div class="editorial-image large">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1200&h=1600&fit=crop" alt="Fashion 1">
+      </div>
+
+      <div class="editorial-text">
+        <p>A bold exploration of contemporary fashion through striking visuals and avant-garde styling. Each image pushes the boundaries of traditional editorial work.</p>
+      </div>
+
+      <div class="editorial-image medium">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1000&h=1400&fit=crop" alt="Fashion 2">
+      </div>
+
+      <div class="editorial-image large">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&h=800&fit=crop" alt="Fashion 3">
+      </div>
+
+      <div class="editorial-image small">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=1200&fit=crop" alt="Fashion 4">
+      </div>
+
+      <div class="editorial-image medium">
+        <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=1000&h=1400&fit=crop" alt="Fashion 5">
+      </div>
+    </div>
+  </div>
+
+  <div id="dance-page" class="editorial-page">
+    <div class="editorial-header">
+      <a href="#" class="editorial-back" onclick="showHome()">← BACK TO HOME</a>
+      <h1 class="editorial-title">DANCE SERIES</h1>
+      <p class="editorial-subtitle">Movement | Expression | 2024</p>
+    </div>
+
+    <div class="editorial-grid">
+      <div class="editorial-image large">
+        <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=1200&h=1600&fit=crop" alt="Dance 1">
+      </div>
+
+      <div class="editorial-text">
+        <p>Capturing the poetry of movement. Every gesture, every leap, frozen in time yet alive with energy and emotion.</p>
+      </div>
+
+      <div class="editorial-image medium">
+        <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=1000&

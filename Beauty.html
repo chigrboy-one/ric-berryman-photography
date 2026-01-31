@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Beauty — Ric Berryman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* =========================
+       BASE
+       ========================= */
+
+    body {
+      background: #E8DDD1;
+      color: #2E2621;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      padding-bottom: 5rem;
+    }
+
+    .shell-beauty {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .shell-beauty {
+        padding: 0 1.5rem;
+      }
+    }
+
+    .label-pill {
+      display: inline-block;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #FDF8F0;
+      background: rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(6px);
+    }
+
+    /* =========================
+       FULL-BLEED HERO
+       ========================= */
+
+    .beauty-hero {
+      position: relative;
+      height: 90vh;
+      min-height: 540px;
+      display: flex;
+      align-items: flex-end;
+      padding: 3.5rem 3rem;
+      overflow: hidden;
+      color: #FDF8F0;
+    }
+
+    @media (max-width: 768px) {
+      .beauty-hero {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+
+    .beauty-hero-media {
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/images/beauty-images/Hannah+Barr-16.jpg");
+      background-size: cover;
+      background-position: center 20%;
+      transform: scale(1.08);
+      transition: transform 0.6s ease-out, transform-origin 0.6s ease-out;
+      will-change: transform;
+    }
+
+    .beauty-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(0, 0, 0, 0.45), transparent 60%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.02));
+      pointer-events: none;
+    }
+
+    .beauty-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+    }
+
+    .beauty-hero-title {
+      font-size: clamp(3.2rem, 10vw, 5.2rem);
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin: 0.75rem 0 0.8rem;
+    }
+
+    .beauty-hero-sub {
+      font-size: 0.98rem;
+      line-height: 1.9;
+      max-width: 520px;
+      margin-bottom: 1.8rem;
+      opacity: 0.95;
+    }
+
+    .beauty-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.78rem;
+    }
+
+    .beauty-tags span {
+      padding: 0.22rem 0.78rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.28);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      background: rgba(0, 0, 0, 0.24);
+    }
+
+    .scroll-hint {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    .scroll-hint svg {
+      width: 16px;
+      height: 16px;
+      animation: bounceDown 1.5s infinite;
+    }
+
+    @keyframes bounceDown {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* =========================
+       INTRO TEXT
+       ========================= */
+
+    .beauty-intro {
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .beauty-intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .beauty-intro p {
+      font-size: 0.98rem;
+      line-height: 1.9;
+      opacity: 0.9;
+    }
+
+    .beauty-intro-note {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    @media (max-width: 900px) {
+      .beauty-intro-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+    }
+
+    /* =========================
+       BEAUTY GRID — 3-COL MASONRY
+       ========================= */
+
+    .beauty-grid-wrap {
+      margin-top: 3.2rem;
+      max-width: 1920px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 0.75rem;
+    }
+
+    .beauty-grid-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .beauty-grid-header h2 {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #4C2A1B;
+    }
+
+    .beauty-grid-header span {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.75;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 800px) {
+      .beauty-grid-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .beauty-grid {
+      column-count: 3;
+      column-gap: 1.2rem;
+    }
+
+    @media (max-width: 1100px) {
+      .beauty-grid {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .beauty-grid {
+        column-count: 1;
+      }
+    }
+
+    .beauty-item {
+      position: relative;
+      display: block;
+      width: 100%;
+      margin-bottom: 1.2rem;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #000;
+      cursor: zoom-in;
+      box-shadow: 0 18px 55px rgba(0,0,0,0.32);
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.35s ease,
+        opacity 0.6s ease;
+      break-inside: avoid;
+    }
+
+    .beauty-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transform: scale(1.03);
+      transform-origin: center;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .beauty-item.from-left {
+      transform: translate(-40px, 30px);
+    }
+
+    .beauty-item.from-right {
+      transform: translate(40px, 30px);
+    }
+
+    .beauty-item.in-view {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .beauty-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 26px 80px rgba(0,0,0,0.45);
+    }
+
+    .beauty-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* =========================
+       FULLSCREEN VIEWER (NO CROPPING)
+       ========================= */
+
+    .beauty-viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 6, 4, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .beauty-viewer.is-open {
+      display: flex;
+      animation: viewerFadeIn 0.25s ease-out;
+    }
+
+    @keyframes viewerFadeIn {
+      from { opacity: 0; transform: scale(1.01); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .beauty-viewer-inner {
+      position: relative;
+      width: min(1400px, 96vw);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: #FDF8F0;
+    }
+
+    /* Box that owns the vertical space for the image */
+    .beauty-viewer-img-wrap {
+      position: relative;
+      flex: 0 0 auto;
+      height: calc(100vh - 120px);
+      max-height: calc(100vh - 120px);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 28px 90px rgba(0,0,0,0.7);
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .beauty-viewer-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      position: relative;
+      z-index: 1;
+      transform: translateX(0);
+      opacity: 1;
+      transition:
+        transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+        opacity 0.7s ease-out;
+    }
+
+    .beauty-viewer-meta {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      opacity: 0.9;
+      padding: 0 0.25rem;
+    }
+
+    .beauty-viewer-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 0.3rem;
+      opacity: 0.85;
+    }
+
+    .beauty-viewer-count {
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.7;
+    }
+
+    .beauty-viewer-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      border-radius: 999px;
+      background: rgba(26, 20, 17, 0.9);
+      color: #FDF8F0;
+      border: 1px solid rgba(253,248,240,0.3);
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      z-index: 3;
+    }
+
+    .beauty-viewer-nav {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+      padding: 0 0.4rem;
+      z-index: 2;
+    }
+
+    .beauty-viewer-arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,248,240,0.25);
+      background: rgba(26, 20, 17, 0.9);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    .beauty-viewer-arrow span {
+      transform: translateY(1px);
+    }
+
+    @media (max-width: 768px) {
+      .beauty-viewer-arrow {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    /* =========================
+       SCROLL REVEAL (TEXT)
+       ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Shared nav mount -->
+  <div id="nav-mount"></div>
+
+  <main>
+    <!-- FULL-BLEED HERO -->
+    <section class="beauty-hero">
+      <div class="beauty-hero-media"></div>
+      <div class="beauty-hero-inner reveal">
+        <span class="label-pill">Series</span>
+        <h1 class="beauty-hero-title">Beauty</h1>
+        <p class="beauty-hero-sub">
+          Skin, light, and the in-between moments. Clean frames, quiet expressions,
+          and those small details that feel bigger than the room they were shot in.
+        </p>
+
+        <div class="beauty-tags">
+          <span>Clean Beauty</span>
+          <span>Editorial Portraits</span>
+          <span>Close-Up Details</span>
+          <span>California Light</span>
+        </div>
+
+        <div class="scroll-hint">
+          <span>Scroll to view work</span>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 4v14m0 0-5-5m5 5 5-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO COPY -->
+    <section class="beauty-intro shell-beauty">
+      <div class="beauty-intro-grid reveal">
+        <div>
+          <p>
+            This is the quiet side of the work. Less set, more face. Beauty tests,
+            clean studio portraits, and those “come a little closer” frames that
+            live somewhere between fashion shoot and character study.
+          </p>
+        </div>
+        <div>
+          <p class="beauty-intro-note">
+            Some images here live on their own. Others are pulled from larger
+            editorials, stripped of the wardrobe and production and treated like
+            stand-alone portraits.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BEAUTY GRID -->
+    <section class="beauty-grid-wrap">
+      <header class="beauty-grid-header reveal">
+        <h2>Selected Beauty Frames</h2>
+        <span>Tap to enter fullscreen viewer</span>
+      </header>
+
+      <div class="beauty-grid" id="beauty-grid">
+        <!-- JS injects items -->
+      </div>
+    </section>
+  </main>
+
+  <!-- FULLSCREEN VIEWER -->
+  <div class="beauty-viewer" id="beauty-viewer" aria-hidden="true">
+    <div class="beauty-viewer-inner">
+      <div class="beauty-viewer-img-wrap">
+        <div class="beauty-viewer-nav">
+          <button class="beauty-viewer-arrow" data-dir="prev" aria-label="Previous image">
+            <span>←</span>
+          </button>
+          <button class="beauty-viewer-arrow" data-dir="next" aria-label="Next image">
+            <span>→</span>
+          </button>
+        </div>
+        <img id="beauty-viewer-img" src="" alt="" />
+        <button class="beauty-viewer-close" id="beauty-viewer-close" aria-label="Close viewer">
+          ✕
+        </button>
+      </div>
+      <div class="beauty-viewer-meta">
+        <div class="beauty-viewer-title" id="beauty-viewer-title"></div>
+        <div id="beauty-viewer-caption"></div>
+        <div class="beauty-viewer-count" id="beauty-viewer-count"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared nav loader -->
+  <script src="assets/js/load-nav.js"></script>
+
+  <script>
+    /* =========
+       BEAUTY IMAGES
+       ========= */
+
+    const beautyImages = [
+      { src:"assets/images/beauty-images/Hannah+Barr-16.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/Hannah+Barr-2.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/Hannah+Barr-5.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2024-01-05+Vegas+-+Clare+Landis-18.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2024-01-05+Vegas+-+Clare+Landis-8.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2024-01-05+Vegas+-+Clare+Landis-17.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-22+Lainey+Floeck+-++Sheets-Goldstein+House-7.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-22+Lainey+Floeck+-++Sheets-Goldstein+House-18.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-22+Lainey+Floeck+-++Sheets-Goldstein+House-70+copy.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/023-19-23+Lannkin+Motel+Room+DRAFT-18.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-19-23+Lannkin+Motel+Room+DRAFT-8.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-19-23+Lannkin+Motel+Room+DRAFT-3.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-21+Dasha+Alexandria+-+Issue+Studio-6.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-21+Dasha+Alexandria+-+Issue+Studio-13.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-21+Dasha+Alexandria+-+Issue+Studio-10.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-20+Steph+Pink+Bunny+Shoot-4.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2024-02-17++Hannah+Barr+-+DTLA+Rooftop-59.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2024-06-09+Annet+Kamenskaya+-+Boat+Shoot-11.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2024-02-17++Hannah+Barr+-+DTLA+Rooftop-7.jpg", alt: "Beauty image" },
+     { src:"assets/images/beauty-images/2023-04-20+Steph+Pink+Bunny+Shoot-1.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-08-20+Dancers+at+City+Hall-120.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-07-23+Chaos+Leather+XXX-5.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-08-07+Chaos+Underwater+Shoot-45.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-08-07+Chaos+Underwater+Shoot-36.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-07-23+Chaos+Leather+XXX-1.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-08-07+Chaos+Underwater+Shoot-28.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-08-07+Chaos+Underwater+Shoot-71.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-21+Izabela+Izycka+-+Issue+Studio-3-2.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-21+Izabela+Izycka+-+Issue+Studio-14.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-21+Izabela+Izycka+-+Issue+Studio-1-2.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-03-20+Gels+and+Color-33.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-23+Day+3+JRW+-+Gas+Pump+Set+-+DRAFT-4.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-23+Day+3+JRW+-+Gas+Pump+Set+-+DRAFT-75.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-10-23+Day+3+JRW+-+Gas+Pump+Set+-+DRAFT-17.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/BRITTANY+YEVOLI+-+Beach-2.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/BRITTANY+YEVOLI+-+Beach-3.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/BRITTANY+YEVOLI+-+Beach-4.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/Wowza-2.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2024-06-09+Elena+Uolter+-+Boat+Shoot-17.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-05-01+Kelsie++Jean+Smeby+-+Chaos+%2855+of+58%29.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-09-18+Kelsie+DRAFT-47.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-09-18+Kelsie+DRAFT-10.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-09-18+Kelsie+DRAFT-20.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-09-25+Seeing+Red-30.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-08-07+Chaos+Underwater+Shoot-79.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-03-12+Nun+Chaos-42.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-02+THE+BIG+BIG+SHOOT+DRAFT-6.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-02+THE+BIG+BIG+SHOOT+DRAFT-32.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-02+THE+BIG+BIG+SHOOT+DRAFT-34.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-02+THE+BIG+BIG+SHOOT+DRAFT-35.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-02+THE+BIG+BIG+SHOOT+DRAFT-64.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-02+THE+BIG+BIG+SHOOT+DRAFT-65.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-02+THE+BIG+BIG+SHOOT+DRAFT-66.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-05-12+Dance+Studio+Shoot-117.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-15+Chaos+Joshua+Tree-2.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-05-12+Dance+Studio+Shoot-118.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-15+Chaos+Joshua+Tree-48.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-05-12+Dance+Studio+Shoot-119.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-04-15+Chaos+Joshua+Tree-63.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-05-01+Kelsie++Jean+Smeby+-+Chaos+%2826+of+58%29.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-06-04+Horses+and+Models+on+a+Beach+-+DRAFT-62.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-06-04+Horses+and+Models+on+a+Beach+-+DRAFT-76.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-02-25+Smoke+and+Mirrors-39.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-06-04+Horses+and+Models+on+a+Beach+-+DRAFT-82.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-06-04+Horses+and+Models+on+a+Beach+-+DRAFT-103.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-07-09+Chaos+Colors+Shoot-17.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-08-20+Dancers+at+City+Hall-4.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2023-08-20+Dancers+at+City+Hall-6.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/Allie+-+Horse-Beach+Shoot-26.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/Allie+-+Horse-Beach+Shoot-40.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/Allie+-+Horse-Beach+Shoot-62.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/untitled-1-2.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/untitled-1-7.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/untitled-11.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-03-20+Dark+Beauty+Shoot+%282+of+44%29.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-04-20+Glitter+Glam+Shoot+%2810+of+21%29.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-07-24+High-key+-47.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-07-24+High-key+-79.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-08-07+Chaos+Underwater+Shoot-3.jpg", alt: "Beauty image" },
+      { src:"assets/images/beauty-images/2022-08-07+Chaos+Underwater+Shoot-6.jpg", alt: "Beauty image" },
+    ];
+
+    (function () {
+      /* Scroll reveal (hero / intro / header) */
+      const revealEls = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      revealEls.forEach(el => revealObserver.observe(el));
+
+      /* Build grid from beautyImages[] */
+      const grid = document.getElementById("beauty-grid");
+      if (!grid) return;
+
+      beautyImages.forEach((img, index) => {
+        const fig = document.createElement("figure");
+        fig.className = "beauty-item";
+        fig.classList.add(index % 2 === 0 ? "from-left" : "from-right");
+        fig.dataset.index = index;
+
+        const imageEl = document.createElement("img");
+        imageEl.src = img.src;
+        imageEl.alt = img.alt || "";
+
+        fig.appendChild(imageEl);
+        grid.appendChild(fig);
+      });
+
+      /* Staggered reveal for tiles */
+      const tiles = document.querySelectorAll(".beauty-item");
+      const tileObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              el.classList.add("in-view");
+              tileObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.18 }
+      );
+      tiles.forEach(tile => tileObserver.observe(tile));
+
+      /* Fullscreen viewer logic */
+      const viewer = document.getElementById("beauty-viewer");
+      const viewerImg = document.getElementById("beauty-viewer-img");
+      const viewerTitle = document.getElementById("beauty-viewer-title");
+      const viewerCaption = document.getElementById("beauty-viewer-caption");
+      const viewerCount = document.getElementById("beauty-viewer-count");
+      const closeBtn = document.getElementById("beauty-viewer-close");
+      const arrows = viewer.querySelectorAll(".beauty-viewer-arrow");
+
+      let currentIndex = 0;
+
+      function setImage(index, direction) {
+        if (index < 0 || index >= beautyImages.length) return;
+
+        const { src, alt } = beautyImages[index];
+
+        // Reset transition so we can set starting position
+        viewerImg.style.transition = "none";
+        viewerImg.style.opacity = "0";
+
+        if (direction === 1) {
+          viewerImg.style.transform = "translateX(60px)";
+        } else if (direction === -1) {
+          viewerImg.style.transform = "translateX(-60px)";
+        } else {
+          viewerImg.style.transform = "translateX(0)";
+        }
+
+        // Force reflow so the transition takes
+        void viewerImg.offsetWidth;
+
+        viewerImg.style.transition =
+          "transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.7s ease-out";
+
+        viewerImg.src = src;
+        viewerImg.alt = alt || "Beauty image";
+        viewerTitle.textContent = "";
+        viewerCaption.textContent = "";
+        viewerCount.textContent = (index + 1) + " / " + beautyImages.length;
+
+        requestAnimationFrame(() => {
+          viewerImg.style.opacity = "1";
+          viewerImg.style.transform = "translateX(0)";
+        });
+      }
+
+      function openViewer(index) {
+        if (index < 0 || index >= beautyImages.length) return;
+        currentIndex = index;
+
+        viewer.classList.add("is-open");
+        viewer.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        setImage(currentIndex, 0);
+      }
+
+      function closeViewer() {
+        viewer.classList.remove("is-open");
+        viewer.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function stepViewer(delta) {
+        if (!beautyImages.length) return;
+        currentIndex = (currentIndex + delta + beautyImages.length) % beautyImages.length;
+        setImage(currentIndex, delta);
+      }
+
+      grid.addEventListener("click", (e) => {
+        const fig = e.target.closest(".beauty-item");
+        if (!fig) return;
+        const idx = parseInt(fig.dataset.index, 10);
+        if (!Number.isNaN(idx)) {
+          openViewer(idx);
+        }
+      });
+
+      closeBtn.addEventListener("click", closeViewer);
+
+      viewer.addEventListener("click", (e) => {
+        if (e.target === viewer) {
+          closeViewer();
+        }
+      });
+
+      arrows.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const dir = btn.dataset.dir === "next" ? 1 : -1;
+          stepViewer(dir);
+        });
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (!viewer.classList.contains("is-open")) return;
+        if (e.key === "Escape") closeViewer();
+        if (e.key === "ArrowRight") stepViewer(1);
+        if (e.key === "ArrowLeft") stepViewer(-1);
+      });
+
+      /* Hero parallax */
+      const hero = document.querySelector(".beauty-hero");
+      const heroMedia = document.querySelector(".beauty-hero-media");
+
+      function updateHeroParallax() {
+        if (!hero || !heroMedia) return;
+        const rect = hero.getBoundingClientRect();
+        const viewportH = window.innerHeight || document.documentElement.clientHeight;
+        const progress = Math.min(Math.max((0 - rect.top) / (viewportH * 1.1), 0), 1);
+        const scale = 1.08 + progress * 0.12;
+        const translateY = progress * 18;
+        heroMedia.style.transform = `translateY(${translateY}px) scale(${scale})`;
+      }
+
+      updateHeroParallax();
+      window.addEventListener("scroll", updateHeroParallax, { passive: true });
+      window.addEventListener("resize", updateHeroParallax);
+    })();
+  </script>
+ <!-- Site-wide JS (your “don’t steal my photos” etc) -->
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

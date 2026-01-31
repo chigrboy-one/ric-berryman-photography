@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Field Notes — Ric Berryman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    /* =========================
+       BASE
+       ========================= */
+    body {
+      background: #E8DDD1;
+      color: #2E2621;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    main { padding-bottom: 5rem; }
+
+    .shell {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+    @media (max-width: 900px) {
+      .shell { padding: 0 1.5rem; }
+    }
+
+    .label-pill {
+      display: inline-block;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #FDF8F0;
+      background: rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(6px);
+    }
+
+    /* =========================
+       FULL-BLEED HERO
+       ========================= */
+    .fn-hero {
+      position: relative;
+      height: 90vh;
+      min-height: 540px;
+      display: flex;
+      align-items: flex-end;
+      padding: 3.5rem 3rem;
+      overflow: hidden;
+      color: #FDF8F0;
+    }
+    @media (max-width: 768px) {
+      .fn-hero { padding: 2.5rem 1.5rem; }
+    }
+
+    .fn-hero-media {
+      position: absolute;
+      inset: 0;
+      background-image: url("../assets/images/field-notes/hero.jpg"); /* <-- set this */
+      background-size: cover;
+      background-position: center 20%;
+      transform: scale(1.10);
+      will-change: transform;
+    }
+
+    .fn-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(0, 0, 0, 0.45), transparent 60%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.02));
+      pointer-events: none;
+    }
+
+    .fn-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+
+    .fn-hero-title {
+      font-size: clamp(3.0rem, 10vw, 5.2rem);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin: 0.75rem 0 0.8rem;
+    }
+
+    .fn-hero-sub {
+      font-size: 0.98rem;
+      line-height: 1.9;
+      max-width: 560px;
+      margin-bottom: 1.8rem;
+      opacity: 0.95;
+    }
+
+    .fn-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.78rem;
+    }
+    .fn-tags span {
+      padding: 0.22rem 0.78rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.28);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      background: rgba(0, 0, 0, 0.24);
+    }
+
+    .scroll-hint {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+    .scroll-hint svg {
+      width: 16px;
+      height: 16px;
+      animation: bounceDown 1.5s infinite;
+    }
+    @keyframes bounceDown {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* =========================
+       INTRO TEXT
+       ========================= */
+    .fn-intro {
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .fn-intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .fn-intro p {
+      font-size: 0.98rem;
+      line-height: 1.9;
+      opacity: 0.9;
+    }
+
+    .fn-intro-note {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    @media (max-width: 900px) {
+      .fn-intro-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+    }
+
+    /* =========================
+       FIELD NOTES GRID (cards)
+       ========================= */
+    .fn-grid-wrap {
+      margin-top: 3.2rem;
+      max-width: 1920px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 0.75rem;
+    }
+
+    .fn-grid-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .fn-grid-header h2 {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #4C2A1B;
+    }
+
+    .fn-grid-header span {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.75;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 800px) {
+      .fn-grid-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .fn-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+
+    @media (max-width: 1100px) {
+      .fn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 640px) {
+      .fn-grid { grid-template-columns: 1fr; }
+    }
+
+    .fn-card {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.35);
+      box-shadow: 0 18px 55px rgba(0,0,0,0.18);
+      text-decoration: none;
+      color: inherit;
+      display: grid;
+      grid-template-rows: 220px 1fr;
+      min-height: 420px;
+
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.35s ease,
+        opacity 0.6s ease;
+    }
+
+    .fn-card.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fn-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 26px 80px rgba(0,0,0,0.26);
+    }
+
+    .fn-card-media {
+      position: relative;
+      background: #000;
+    }
+
+    .fn-card-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 35%;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fn-card:hover .fn-card-media img {
+      transform: scale(1.07);
+    }
+
+    .fn-card-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.10) 55%,
+        rgba(0,0,0,0.0)
+      );
+      opacity: 0.65;
+      pointer-events: none;
+    }
+
+    .fn-card-body {
+      padding: 1.2rem 1.25rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .fn-card-kicker {
+      font-size: 0.70rem;
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      opacity: 0.70;
+    }
+
+    .fn-card-title {
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    .fn-card-deck {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      opacity: 0.85;
+      margin: 0.2rem 0 0.6rem;
+      max-width: 52ch;
+    }
+
+    .fn-card-cta {
+      margin-top: auto;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      opacity: 0.78;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    /* =========================
+       REVEAL (shared)
+       ========================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared nav mount -->
+  <div id="nav-mount"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="fn-hero">
+      <div class="fn-hero-media"></div>
+      <div class="fn-hero-inner reveal">
+        <span class="label-pill">Field Notes</span>
+        <h1 class="fn-hero-title">Field Notes</h1>
+        <p class="fn-hero-sub">
+          Short dispatches from the places I end up: protests, desert towns, smoke, dust,
+          and the occasional perfect quiet. Not a blog — a cabinet of curiosities with dates.
+        </p>
+
+        <div class="fn-tags">
+          <span>Photo Essays</span>
+          <span>Process</span>
+          <span>Americana</span>
+          <span>Los Angeles</span>
+        </div>
+
+        <div class="scroll-hint">
+          <span>Scroll to read</span>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 4v14m0 0-5-5m5 5 5-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="fn-intro shell">
+      <div class="fn-intro-grid reveal">
+        <div>
+          <p>
+            Field Notes are the written side of the work — what it felt like to be there,
+            what I noticed, what I missed, and what I’m still thinking about.
+          </p>
+        </div>
+        <div>
+          <p class="fn-intro-note">
+            These are curated “articles” pulled from the old Squarespace blog—rewritten,
+            tightened, and given room to breathe.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="fn-grid-wrap">
+      <header class="fn-grid-header reveal">
+        <h2>Notes</h2>
+        <span>Click to open</span>
+      </header>
+
+      <div class="fn-grid" id="fn-grid">
+        <!-- JS injects cards -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared nav loader -->
+  <script src="../assets/js/load-nav.js"></script>
+
+  <script>
+    (function () {
+      /* Reveal (hero / intro / header) */
+      const revealEls = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      revealEls.forEach(el => revealObserver.observe(el));
+
+      /* Build cards from JSON */
+      const grid = document.getElementById("fn-grid");
+      if (!grid) return;
+
+      fetch("/assets/data/field_notes.json", { cache: "no-store" })
+        .then(r => r.json())
+        .then(posts => {
+          // newest first (expects YYYY-MM-DD)
+          posts.sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+
+          posts.forEach((p, index) => {
+            const a = document.createElement("a");
+            a.className = "fn-card";
+            a.href = `/field-notes/${p.slug}.html`;
+            a.dataset.index = index;
+
+            const imgHtml = p.thumb
+              ? `<img src="/${p.thumb}" alt="${p.title || "Field Note"}">`
+              : "";
+
+            const date = p.date ? new Date(p.date + "T00:00:00").toLocaleDateString("en-US", {
+              year: "numeric", month: "short", day: "2-digit"
+            }) : "";
+
+            a.innerHTML = `
+              <div class="fn-card-media">${imgHtml}</div>
+              <div class="fn-card-body">
+                <div class="fn-card-kicker">${date ? date + " · " : ""}Field Note</div>
+                <h3 class="fn-card-title">${p.title || ""}</h3>
+                <p class="fn-card-deck">${p.deck || ""}</p>
+                <div class="fn-card-cta">
+                  Read <span>→</span>
+                </div>
+              </div>
+            `;
+
+            grid.appendChild(a);
+          });
+
+          /* Staggered reveal for cards */
+          const cards = document.querySelectorAll(".fn-card");
+          const cardObserver = new IntersectionObserver(
+            entries => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("in-view");
+                  cardObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.18 }
+          );
+          cards.forEach(card => cardObserver.observe(card));
+        })
+        .catch(err => {
+          console.error("Failed to load field_notes.json", err);
+        });
+
+      /* Hero parallax */
+      const hero = document.querySelector(".fn-hero");
+      const heroMedia = document.querySelector(".fn-hero-media");
+
+      function updateHeroParallax() {
+        if (!hero || !heroMedia) return;
+        const rect = hero.getBoundingClientRect();
+        const viewportH = window.innerHeight || document.documentElement.clientHeight;
+        const progress = Math.min(Math.max((0 - rect.top) / (viewportH * 1.1), 0), 1);
+        const scale = 1.10 + progress * 0.16;
+        const translateY = progress * 40;
+        heroMedia.style.transform = `translateY(${translateY}px) scale(${scale})`;
+      }
+
+      updateHeroParallax();
+      window.addEventListener("scroll", updateHeroParallax, { passive: true });
+      window.addEventListener("resize", updateHeroParallax);
+    })();
+  </script>
+    /* =========================
+       Don't steal my photos - Assholes
+       ========================= */
+<script src="/assets/js/site.js"></script>
+  
+</body>
+</html>

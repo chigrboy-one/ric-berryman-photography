@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ICE — Field Notes by Ric Berryman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    /* =========================================================
+       FIELD NOTES — ICE
+       ========================================================= */
+
+    :root{
+      --bg: #E8DDD1;
+      --ink: #2E2621;
+
+      --edge: clamp(14px, 2.2vw, 32px);
+
+      /* prose width */
+      --prose: 1400px;
+
+      /* inline widths */
+      --inline-wide: 1380px;  /* most inline photos */
+      --inline-full: 1920px;  /* occasional “full-bleed-ish” */
+
+      --radius-img: 22px;
+      --shadow-soft: 0 18px 55px rgba(0,0,0,0.22);
+      --shadow: 0 22px 70px rgba(0,0,0,0.26);
+
+      /* Lightbox sizing */
+      --lb-w: min(2200px, 98vw);
+      --lb-h: calc(100vh - 64px);
+    }
+
+    /* Keep the wide-vs-full rhythm on laptop screens */
+    @media (max-width: 1200px){
+      :root{
+        --inline-wide: 480px;   /* smaller “wide” cap */
+        --prose: 1050px;        /* optional: keep text width in harmony */
+      }
+    }
+
+    @media (max-width: 768px){
+      :root{
+        --inline-wide: 92vw;    /* phones: let it breathe */
+        --prose: 92vw;
+      }
+    }
+
+    body{
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    #nav-mount{ position: relative; z-index: 5; }
+    main{ padding-bottom: 6rem; }
+
+    /* =========================================================
+       HERO — Beauty-style
+       ========================================================= */
+    .label-pill{
+      display: inline-block;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #FDF8F0;
+      background: rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(6px);
+    }
+
+    .ice-hero{
+      position: relative;
+      height: 90vh;
+      min-height: 540px;
+      display: flex;
+      align-items: flex-end;
+      padding: 3.5rem 3rem;
+      overflow: hidden;
+      color: #FDF8F0;
+
+      /* borderless */
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+    }
+
+    @media (max-width: 768px){
+      .ice-hero{ padding: 2.5rem 1.5rem; min-height: 480px; }
+    }
+
+    /* =========================================================
+       ICE HERO — Ken Burns + Parallax
+       ========================================================= */
+    .ice-hero-media{
+      position: absolute;
+      inset: 0;
+      background-image: url("../assets/images/field-notes/ice/hero.jpg");
+      background-size: cover;
+      background-position: center 45%;
+
+      /* base values */
+      --kb-x: 0%;
+      --kb-y: 0%;
+      --kb-scale: 1.12;
+
+      --p-y: 0px;
+      --p-scale: 1;
+
+      transform:
+        translate3d(var(--kb-x), var(--kb-y), 0)
+        translateY(var(--p-y))
+        scale(calc(var(--kb-scale) * var(--p-scale)));
+
+      will-change: transform;
+      animation: iceKenBurns 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes iceKenBurns{
+      0%{
+        --kb-x: -1.5%;
+        --kb-y: -1%;
+        --kb-scale: 1.12;
+      }
+      100%{
+        --kb-x: 1.5%;
+        --kb-y: 1%;
+        --kb-scale: 1.22;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .ice-hero-media{ animation: none !important; }
+    }
+
+    .ice-hero::before{
+      content:"";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(0, 0, 0, 0.50), transparent 60%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.02));
+      pointer-events: none;
+    }
+
+    .ice-hero-inner{
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .ice-hero-title{
+      font-size: clamp(3.0rem, 8.7vw, 5.0rem);
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin: 0.75rem 0 0.8rem;
+      line-height: 0.95;
+    }
+
+    .ice-hero-sub{
+      font-size: 0.98rem;
+      line-height: 1.9;
+      max-width: 58ch;
+      margin-bottom: 1.8rem;
+      opacity: 0.95;
+    }
+
+    .ice-tags{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.78rem;
+    }
+
+    .ice-tags span{
+      padding: 0.22rem 0.78rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.28);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      background: rgba(0, 0, 0, 0.24);
+    }
+
+    .scroll-hint{
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.78;
+    }
+
+    .scroll-hint svg{
+      width: 16px;
+      height: 16px;
+      animation: bounceDown 1.5s infinite;
+    }
+
+    @keyframes bounceDown{
+      0%{ transform: translateY(0); }
+      50%{ transform: translateY(5px); }
+      100%{ transform: translateY(0); }
+    }
+
+    /* =========================================================
+       ARTICLE / PROSE
+       ========================================================= */
+    .fn-article{ width: 100%; margin: 2.4rem auto 0; }
+
+    .fn-prose{
+      max-width: var(--prose);
+      margin: 0 auto;
+      padding: 0 var(--edge);
+      font-size: 1.3rem;
+      line-height: 1.95;
+      color: var(--ink);
+    }
+
+    .fn-prose p{
+      margin: 0 0 1.35rem;
+      opacity: 0.92;
+    }
+
+    .fn-rule{
+      max-width: var(--prose);
+      margin: 2.2rem auto;
+      height: 1px;
+      border: 0;
+      background: linear-gradient(to right, transparent, rgba(46,38,33,0.14), transparent);
+    }
+
+    /* =========================================================
+       INLINE “PHOTO” FIGURES (wide vs full-bleed)
+       ========================================================= */
+    .fn-figure{
+      width: min(var(--inline-wide), calc(100vw - (var(--edge) * 2)));
+      margin: 2.1rem auto;
+      position: relative;
+    }
+
+    .fn-figure.is-full{
+      width: min(var(--inline-full), calc(100vw - (var(--edge) * 1)));
+    }
+
+    .fn-figure .img-wrap{
+      position: relative; /* IMPORTANT: anchors caption */
+      border-radius: var(--radius-img);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #000;
+      cursor: zoom-in;
+    }
+
+    .fn-figure.is-full .img-wrap{
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .fn-figure img{
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: scale(1.01);
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fn-figure:hover img{ transform: scale(1.05); }
+
+    /* caption overlay (FIXED: stays with img-wrap, never floats under hero) */
+    .fn-cap{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 1.0rem 1.15rem;
+      color: rgba(253,248,240,0.95);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.55;
+      background: linear-gradient(to top, rgba(0,0,0,0.70), rgba(0,0,0,0.0));
+      pointer-events: none;
+    }
+
+    .fn-cap .cap-line{
+      display: inline-block;
+      padding-top: 0.25rem;
+      border-top: 1px solid rgba(253,248,240,0.22);
+      max-width: min(980px, 92%);
+    }
+
+    .fn-cap.is-empty{ display:none; }
+
+    /* =========================================================
+       GALLERY
+       ========================================================= */
+    .fn-gallery{
+      margin-top: 3.4rem;
+      width: 100%;
+    }
+
+    .fn-gallery-header{
+      max-width: var(--prose);
+      margin: 0 auto 1.4rem;
+      padding: 0 var(--edge);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .fn-gallery-header h2{
+      margin: 0;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-weight: 600;
+      color: rgba(76,42,27,0.92);
+    }
+
+    .fn-gallery-header span{
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(46,38,33,0.68);
+      white-space: nowrap;
+    }
+
+    /* =========================================================
+       GALLERY (NO “CAPTION BAR” BUG + NO MASONRY POP)
+       - Using columns layout, but IMPORTANT: tiles must be position:relative
+         so .tile-cap absolute does NOT attach to the page.
+       ========================================================= */
+    .fn-grid{
+      width: calc(100vw - (var(--edge) * 2));
+      margin: 0 auto;
+      column-count: 3;
+      column-gap: 2.2rem;
+    }
+    @media (max-width: 1100px){ .fn-grid{ column-count: 2; } }
+    @media (max-width: 680px){ .fn-grid{ column-count: 1; } }
+
+    .fn-tile{
+      display: inline-block;     /* required for columns */
+      width: 100%;
+      break-inside: avoid;
+      margin: 0 0 1.15rem;
+
+      position: relative;        /* FIX: anchors .tile-cap */
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow-soft);
+      cursor: zoom-in;
+
+      transform: translateY(18px);
+      opacity: 0;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+    }
+
+    .fn-tile.in{ transform: translateY(0); opacity: 1; }
+
+    .fn-tile img{
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fn-tile:hover img{ transform: scale(1.07); }
+
+    .tile-cap{
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 0.85rem 0.9rem;
+      color: rgba(253,248,240,0.95);
+      font-size: 0.72rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      line-height: 1.55;
+      background: linear-gradient(to top, rgba(0,0,0,0.70), rgba(0,0,0,0));
+      pointer-events: none;
+      display: none;
+    }
+    .fn-tile.has-cap .tile-cap{ display:block; }
+
+    /* =========================================================
+       LIGHTBOX
+       ========================================================= */
+    .lb{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 6, 4, 0.90);
+      backdrop-filter: blur(10px);
+    }
+
+    .lb.open{ display: flex; animation: lbFade 0.18s ease-out; }
+    @keyframes lbFade{ from{opacity:0} to{opacity:1} }
+
+    .lb-inner{
+      width: var(--lb-w);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: rgba(253,248,240,0.92);
+    }
+
+    .lb-stage{
+      position: relative;
+      height: var(--lb-h);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 30px 110px rgba(0,0,0,0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .lb-img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      opacity: 1;
+      transform: translateX(0);
+      transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease;
+    }
+
+    .lb-close{
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,248,240,0.28);
+      background: rgba(26, 20, 17, 0.88);
+      color: rgba(253,248,240,0.95);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      z-index: 3;
+    }
+
+    .lb-nav{
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.7rem;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .lb-btn{
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,248,240,0.22);
+      background: rgba(26, 20, 17, 0.88);
+      color: rgba(253,248,240,0.95);
+      cursor: pointer;
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      user-select: none;
+    }
+
+    @media (max-width: 768px){
+      .lb-btn{ width: 42px; height: 42px; font-size: 1.1rem; }
+      .lb-close{ width: 36px; height: 36px; }
+    }
+
+    .lb-meta{
+      width: 100%;
+      padding: 0 var(--edge);
+      color: rgba(253,248,240,0.88);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .lb-caption{
+      font-size: 0.82rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      line-height: 1.6;
+      opacity: 0.92;
+      max-width: min(1200px, 100%);
+      min-height: 1.2em;
+    }
+
+    .lb-count{
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared nav mount -->
+  <div id="nav-mount"></div>
+
+  <main>
+    <!-- HERO (Beauty-style) -->
+    <section class="ice-hero">
+      <div class="ice-hero-media"></div>
+      <div class="ice-hero-inner">
+        <span class="label-pill">Field Notes</span>
+        <h1 class="ice-hero-title">ICE</h1>
+        <p class="ice-hero-sub">
+          What I saw. What was shown. And the uncomfortable space between
+          documentation, media narrative, and truth.
+        </p>
+
+        <div class="ice-tags">
+          <span>Los Angeles</span>
+          <span>Protest</span>
+          <span>Media Narrative</span>
+          <span>Truth / Theater</span>
+        </div>
+
+        <div class="scroll-hint">
+          <span>Scroll to read</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4v14m0 0-5-5m5 5 5-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <article class="fn-article">
+      <section class="fn-prose">
+        <p><strong>Don't be a believer</strong></p>
+
+        <p>Man, I don’t know what to tell you. Don’t believe the media. Don’t believe the President of the United States, don’t believe in pictures or video, and don’t believe the preacher on the old-time gospel hour. All that’s left is to believe what’s right in front of your eyes, and that’s all we have, which isn’t always a reliable source either. And now, with the rise of AI, I’m not sure that “truth” will ever exist again.</p>
+
+        <p>I went to one of the first ICE protests in Los Angeles. You know, the one where the President said he saved Los Angeles by sending in the National Guard, otherwise the city would have burned to the ground (well, that already happened, didn’t it, but not due to protesters but rather, wildfires). Yup, I was there and I saw it with my own two eyes. Liar, liar pants on fire, the city would NOT have burned down, AND the National Guard was nowhere to be found. In fact, when I rolled up to the protest, there were a hell of a lot of LAPD forming blockades and lots of protesters chanting and holding signs. Not pitchforks, not torches…signs with slogans.</p>
+      </section>
+
+      <!-- PHOTO (wide) -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/field-notes/ice/ice_20.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_20.jpg" alt="ICE protest photograph" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_20.jpg">Caption goes here (ice_20)</span></div>
+        </div>
+      </figure>
+
+      <section class="fn-prose">
+        <p>And truth be told, I thought it was going to be a boring day of shooting. Which gets me to my next point: all media, including rank amateurs like myself HOPE for something to happen so we can get stunning, sometimes shocking or provocative images. The news outlets are no different, worse even, as they have an agenda to push and Tide detergent to sell, which is why, when I went home and watched the news that night, it looked like all of LA was actually raging and on fire. But the truth is, all of LA was not raging or on fire, or surrounded by the National Guard. No need for the Marines, believe me (what a joke. Total media move by Trump).</p>
+
+        <p>In fact, I’m pretty sure this was all a big made-for-TV special, and the cameras (and everyone outside that square mile or so of LA) ate it up. I got calls from all over the place to see if I was ok. I was, and I happened to be at ground zero (though I didn’t tell my Dad that when he called!).</p>
+      </section>
+
+      <hr class="fn-rule" />
+
+      <!-- PHOTO (wide) -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/field-notes/ice/ice_01.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_01.jpg" alt="ICE protest photograph 01" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_01.jpg">Caption goes here (ice_01)</span></div>
+        </div>
+      </figure>
+
+      <section class="fn-prose">
+        <p>I saw things that made me question if perhaps this whole thing may have been orchestrated. For example, I was there when the protestors decided to take to the 101 freeway. There were five police cars (with police) stationed at that on-ramp, but they didn’t stop anyone. At first, a few brave souls meandered down the on-ramp, testing the waters. The police didn’t say anything to anyone; they just let them pass and go straight on to the freeway.</p>
+
+        <p>So, shortly after, I went with them, thinking the whole time someone was going to hit me on the back of my head with a billy club, but the officers didn’t seem to care. Here’s a pic, shortly after the first few people walked down the on-ramp, and soon after, the crowd followed. Note the cops stationed at the top left.</p>
+      </section>
+
+      <!-- PHOTO (full-ish) -->
+      <figure class="fn-figure fn-photo is-full" data-src="../assets/images/field-notes/ice/ice_52.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_52.jpg" alt="ICE protest photograph 52" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_52.jpg">Caption goes here (ice_52)</span></div>
+        </div>
+      </figure>
+
+      <section class="fn-prose">
+        <p>I get that they were outnumbered and, probably for their own safety, did nothing…maybe. But in another instance, where a police car was being blocked by protestors on a surface street, a nearby blockade of police officers came rushing in, using their nightsticks and rubber bullets to get the protestors to clear the way for the vehicles, and they were outnumbered there too.</p>
+
+        <p>At this point, I was sure I was going to be shot because one police officer, who was wielding a night stick and engaging people with it near me, yelled “THAT ONE” to the cop with the rubber bullet gun who then turned and took aim right at me. I wasn’t obstructing anything, asshole!</p>
+      </section>
+
+      <!-- PHOTO (wide) -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/field-notes/ice/ice_39.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_39.jpg" alt="ICE protest photograph 39" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_39.jpg">Caption goes here (ice_39)</span></div>
+        </div>
+      </figure>
+
+      <!-- PHOTO (full-ish) -->
+      <figure class="fn-figure fn-photo is-full" data-src="../assets/images/field-notes/ice/ice_50.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_50.jpg" alt="ICE protest photograph 50" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_50.jpg">Caption goes here (ice_50)</span></div>
+        </div>
+      </figure>
+
+      <section class="fn-prose">
+        <p><strong>Sacrificial Lambs</strong></p>
+
+        <p>Nobody gives a shit about Waymo cars, at least not the police, and some of the protestors seemed to absolutly HATE them! I couldn’t help think, “What in the hell did Waymo do to the immigrants? ICE isn’t nabbing and throwing them in to Waymos to be taken to detention centers, are they?? Why are A FEW of these people beating up on these cars and setting them on fire??”</p>
+
+        <p>I was there seconds after the first Waymo was set ablaze. No cops. No fire dept. Just hoodlums beating on Waymos and setting them on fire. Why were 4 or 5 Waymos parked together on the street anyway? Meanwhile, a brigade of CHP officers in heavy riot gear was just a block away, down the street. Didn’t they care about the Waymos? The Fire? Oh, right, the media needed to have some fire to support the President’s claim of the city burning to the ground. The Waymos took it like sacrificial lambs.</p>
+      </section>
+
+      <!-- PHOTO (wide) -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/field-notes/ice/ice_19.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_19.jpg" alt="ICE protest photograph 19" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_19.jpg">Caption goes here (ice_19)</span></div>
+        </div>
+      </figure>
+
+      <!-- PHOTO (wide) -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/field-notes/ice/ice_18.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_18.jpg" alt="ICE protest photograph 18" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_18.jpg">Caption goes here (ice_18)</span></div>
+        </div>
+      </figure>
+
+      <section class="fn-prose">
+        <p><strong>No more tears</strong></p>
+
+        <p>Another thing that troubled me about this whole thing was what I saw later on the nightly news. I saw a reporter, reporting while on the freeway at the time when the police were finally moving in to disperse the crowd after what seemed to be an hour. They were using flash bangs and smoke to try and disperse the crowd. <strong>SMOKE, not tear gas.</strong></p>
+
+        <p>But the reporter, with some panic in her voice and while on camera, told her crew, “We gotta move now! They are using tear gas!!” It played well on TV. But I was there. I was right THERE. Honestly, at first I thought it was tear gas too, but it only took a second to realize it wasn’t. No gasping, no struggle to breathe, no…tears. Just plain ol’ smoke bombs.</p>
+
+        <p>I get why the reporter might have thought that it was tear gas in the moment, but that story should have never hit the airwaves or it should have been corrected. It wasn’t. More Tide detergent needed to be sold. It was good for TV but it’s not what went down that day.</p>
+      </section>
+
+      <!-- PHOTO (full) -->
+      <figure class="fn-figure fn-photo is-full" data-src="../assets/images/field-notes/ice/ice_11.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_11.jpg" alt="ICE protest photograph 11" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_11.jpg">Caption goes here (ice_11)</span></div>
+        </div>
+      </figure>
+
+      <!-- PHOTO (full) -->
+      <figure class="fn-figure fn-photo is-full" data-src="../assets/images/field-notes/ice/ice_12.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_12.jpg" alt="ICE protest photograph 12" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_12.jpg">Caption goes here (ice_12)</span></div>
+        </div>
+      </figure>
+
+      <section class="fn-prose">
+        <p><strong>Tide Detergent controls you</strong></p>
+
+        <p>Now, I’m no conspiracy theorist. Not by a long shot, but what I saw that day, didn't jive with what I saw on the news or with the lies the President of the United States was selling to the media.</p>
+
+        <p>I will say, though, if you look through my pics, it may support both those narratives. Why? Because I, too, was trying to get the most action-packed, shock-factor images. Yes, some bad things happened, some unnecessary and stupid things, but 95% of the protest was done as it should be, peacefully. But that won’t get me or anyone else a Pulitzer, make for interesting TV, or sell a single box of Tide.</p>
+      </section>
+
+      <!-- PHOTO (full) -->
+      <figure class="fn-figure fn-photo is-full" data-src="../assets/images/field-notes/ice/ice_30.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_30.jpg" alt="ICE protest photograph 30" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_30.jpg">Caption goes here (ice_30)</span></div>
+        </div>
+      </figure>
+
+      <!-- PHOTO (wide) -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/field-notes/ice/ice_17.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_17.jpg" alt="ICE protest photograph 17" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_17.jpg">Caption goes here (ice_17)</span></div>
+        </div>
+      </figure>
+
+      <!-- PHOTO (full) -->
+      <figure class="fn-figure fn-photo is-full" data-src="../assets/images/field-notes/ice/ice_38.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_38.jpg" alt="ICE protest photograph 38" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_38.jpg">Caption goes here (ice_38)</span></div>
+        </div>
+      </figure>
+
+      <!-- PHOTO (wide) -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/field-notes/ice/ice_59.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/ice/ice_59.jpg" alt="ICE protest photograph 59" />
+          <div class="fn-cap"><span class="cap-line" data-cap-for="ice_59.jpg">Caption goes here (ice_59)</span></div>
+        </div>
+      </figure>
+
+      <hr class="fn-rule" />
+
+      <!-- GALLERY -->
+      <section class="fn-gallery" aria-label="ICE photo gallery">
+        <div class="fn-gallery-header">
+          <h2>Gallery</h2>
+          <span>Click any image for lightbox</span>
+        </div>
+        <div class="fn-grid" id="ice-grid"></div>
+      </section>
+    </article>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lb" id="lb" aria-hidden="true">
+    <div class="lb-inner">
+      <div class="lb-stage">
+        <div class="lb-nav">
+          <button class="lb-btn" id="lb-prev" aria-label="Previous image">←</button>
+          <button class="lb-btn" id="lb-next" aria-label="Next image">→</button>
+        </div>
+        <img class="lb-img" id="lb-img" src="" alt="" />
+        <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+      </div>
+
+      <div class="lb-meta">
+        <div class="lb-caption" id="lb-caption"></div>
+        <div class="lb-count" id="lb-count"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared nav loader -->
+  <script src="../assets/js/load-nav.js"></script>
+
+  <script>
+    (function () {
+      /* ---------------------------------------------------------
+         ICE — Field Notes JS (FULL)
+         --------------------------------------------------------- */
+
+      const BASE = "../assets/images/field-notes/ice/";
+      const TOTAL = 59;
+
+      const PRIORITY = [
+        "ice_16.jpg",
+        "ice_24.jpg",
+        "ice_35.jpg",
+        "ice_37.jpg",
+        "ice_41.jpg",
+        "ice_51.jpg",
+        "ice_55.jpg",
+        "ice_57.jpg",
+        "ice_47.jpg"
+      ];
+
+      const CAPTIONS = {
+        "hero.jpg": "Waymo, on fire — the frame everyone wanted.",
+        "ice_39.jpg": "Protesters obstruct police cars before cops quickly move in with batons and non-lethal weapons",
+        "ice_50.jpg": "One second before the cop on the right turned his gun on me. The dude looking at the camera with his big mouth open is yelling, “That one!”. Total Dick.",
+        "ice_52.jpg": "It wasn’t a mad rush at first. Just a trickle of brave souls. The police did not interfere. Others then followed.",
+        "ice_19.jpg": "The first Waymo to be lit on fire",
+        "ice_18.jpg": "Police Officers in riot gear just one block away from the burning Waymos",
+        "ice_11.jpg": "A police officer enveloped by smoke on the 101 Freeway.",
+        "ice_12.jpg": "No tears in this crowd because tear gas wasn't deployed despite what some in the media claimed.",
+        "ice_30.jpg": "Multiple Waymo cars burn.",
+        "ice_38.jpg": "A woman paces in front of seated protestors",
+        "ice_59.jpg": "A seated protestor on the 101 Freeway"
+      };
+
+      const REST_MODE = "sequential";
+      const SHUFFLE_SEED = 1337;
+
+      const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+      const pad2 = (n) => String(n).padStart(2, "0");
+
+      function normalizeFilename(name) {
+        return (name || "")
+          .trim()
+          .replace(/^.*\//, "")
+          .toLowerCase();
+      }
+
+      function mulberry32(seed) {
+        let t = seed >>> 0;
+        return function () {
+          t += 0x6D2B79F5;
+          let r = Math.imul(t ^ (t >>> 15), 1 | t);
+          r ^= r + Math.imul(r ^ (r >>> 7), 61 | r);
+          return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+
+      function stableShuffle(arr, seed) {
+        const a = arr.slice();
+        const rnd = mulberry32(seed);
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(rnd() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      function buildAllFilenames(total) {
+        const files = [];
+        for (let i = 1; i <= total; i++) files.push(`ice_${pad2(i)}.jpg`);
+        return files;
+      }
+
+      function uniqPreserveOrder(list) {
+        const seen = new Set();
+        const out = [];
+        list.forEach(x => {
+          const k = normalizeFilename(x);
+          if (!k || seen.has(k)) return;
+          seen.add(k);
+          out.push(k);
+        });
+        return out;
+      }
+
+      const ALL_ICE = buildAllFilenames(TOTAL);
+      const priority = uniqPreserveOrder(PRIORITY);
+      const rest = ALL_ICE.filter(f => !priority.includes(f));
+
+      const restOrdered = (REST_MODE === "shuffle")
+        ? stableShuffle(rest, SHUFFLE_SEED)
+        : rest;
+
+      const GALLERY_ORDER = [...priority, ...restOrdered];
+
+      const LB_ITEMS = [
+        { filename: "hero.jpg", src: BASE + "hero.jpg", alt: "ICE — hero" },
+        ...GALLERY_ORDER.map((filename) => ({
+          filename,
+          src: BASE + filename,
+          alt: `ICE protest photograph ${filename.replace("ice_", "").replace(".jpg","")}`
+        }))
+      ];
+
+      const LB_INDEX_BY_FILENAME = new Map();
+      LB_ITEMS.forEach((it, idx) => LB_INDEX_BY_FILENAME.set(it.filename, idx));
+
+      /* Inline photos: captions + keep src aligned with data-src */
+      document.querySelectorAll(".fn-photo").forEach(fig => {
+        const src = fig.getAttribute("data-src") || "";
+        const filename = normalizeFilename(src);
+        const cap = (CAPTIONS[filename] || "").trim();
+
+        const img = fig.querySelector("img");
+        if (img && src && img.getAttribute("src") !== src) img.setAttribute("src", src);
+
+        const capWrap = fig.querySelector(".fn-cap");
+        const capLine = fig.querySelector(".cap-line");
+
+        if (capLine) capLine.textContent = cap;
+        if (!cap) capWrap && capWrap.classList.add("is-empty");
+        else capWrap && capWrap.classList.remove("is-empty");
+
+        if (capLine) capLine.setAttribute("data-cap-for", filename);
+      });
+
+      /* Gallery build */
+      const grid = document.getElementById("ice-grid");
+
+      const tileObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            tileObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      function createTile(filename) {
+        const src = BASE + filename;
+        const cap = (CAPTIONS[filename] || "").trim();
+        const lbIndex = LB_INDEX_BY_FILENAME.get(filename);
+
+        const tile = document.createElement("figure");
+        tile.className = "fn-tile" + (cap ? " has-cap" : "");
+        tile.dataset.index = String(lbIndex ?? -1);
+        tile.dataset.filename = filename;
+
+        tile.innerHTML = `
+          <img src="${src}" alt="ICE protest photograph ${filename.replace("ice_","").replace(".jpg","")}" loading="lazy" />
+          <div class="tile-cap"><span>${cap}</span></div>
+        `;
+
+        return { tile, src };
+      }
+
+      function appendTileWithAspectRatio(tile, src) {
+        const probe = new Image();
+        probe.onload = () => {
+          const w = probe.naturalWidth || 3;
+          const h = probe.naturalHeight || 2;
+          tile.style.aspectRatio = `${w} / ${h}`;
+          grid.appendChild(tile);
+          tileObserver.observe(tile);
+        };
+        probe.onerror = () => {
+          tile.style.aspectRatio = "3 / 2";
+          grid.appendChild(tile);
+          tileObserver.observe(tile);
+        };
+        probe.src = src;
+      }
+
+      if (grid) {
+        GALLERY_ORDER.forEach(filename => {
+          const { tile, src } = createTile(filename);
+          appendTileWithAspectRatio(tile, src);
+        });
+      }
+
+      /* Lightbox */
+      const lb = document.getElementById("lb");
+      const lbImg = document.getElementById("lb-img");
+      const lbCaption = document.getElementById("lb-caption");
+      const lbCount = document.getElementById("lb-count");
+      const btnClose = document.getElementById("lb-close");
+      const btnPrev = document.getElementById("lb-prev");
+      const btnNext = document.getElementById("lb-next");
+
+      let current = 0;
+
+      function openLB(index) {
+        if (!lb) return;
+        current = clamp(index, 0, LB_ITEMS.length - 1);
+        lb.classList.add("open");
+        lb.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        renderLB(0);
+      }
+
+      function closeLB() {
+        if (!lb) return;
+        lb.classList.remove("open");
+        lb.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function renderLB(direction) {
+        const item = LB_ITEMS[current];
+        if (!item || !lbImg) return;
+
+        lbImg.style.transition = "none";
+        lbImg.style.opacity = "0";
+
+        if (direction === 1) lbImg.style.transform = "translateX(70px)";
+        else if (direction === -1) lbImg.style.transform = "translateX(-70px)";
+        else lbImg.style.transform = "translateX(0)";
+
+        void lbImg.offsetWidth;
+
+        lbImg.style.transition =
+          "transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease";
+        lbImg.src = item.src;
+        lbImg.alt = item.alt || "";
+
+        const cap = (CAPTIONS[item.filename] || "").trim();
+        if (lbCaption) lbCaption.textContent = cap;
+        if (lbCount) lbCount.textContent = `${current + 1} / ${LB_ITEMS.length}`;
+
+        requestAnimationFrame(() => {
+          lbImg.style.opacity = "1";
+          lbImg.style.transform = "translateX(0)";
+        });
+      }
+
+      function step(delta) {
+        current = (current + delta + LB_ITEMS.length) % LB_ITEMS.length;
+        renderLB(delta);
+      }
+
+      document.querySelectorAll(".fn-photo img").forEach(img => {
+        img.addEventListener("click", () => {
+          const filename = normalizeFilename(img.getAttribute("src"));
+          const idx = LB_INDEX_BY_FILENAME.get(filename);
+          if (typeof idx === "number") openLB(idx);
+        });
+      });
+
+      if (grid) {
+        grid.addEventListener("click", (e) => {
+          const tile = e.target.closest(".fn-tile");
+          if (!tile) return;
+          const idx = parseInt(tile.dataset.index, 10);
+          if (!Number.isNaN(idx) && idx >= 0) openLB(idx);
+        });
+      }
+
+      if (btnClose) btnClose.addEventListener("click", closeLB);
+      if (btnPrev) btnPrev.addEventListener("click", (e) => { e.stopPropagation(); step(-1); });
+      if (btnNext) btnNext.addEventListener("click", (e) => { e.stopPropagation(); step(1); });
+
+      if (lb) lb.addEventListener("click", (e) => { if (e.target === lb) closeLB(); });
+
+      window.addEventListener("keydown", (e) => {
+        if (!lb || !lb.classList.contains("open")) return;
+        if (e.key === "Escape") closeLB();
+        if (e.key === "ArrowLeft") step(-1);
+        if (e.key === "ArrowRight") step(1);
+      });
+
+      /* Hero — smooth Ken Burns + scroll parallax */
+      const hero = document.querySelector(".ice-hero");
+      const heroMedia = document.querySelector(".ice-hero-media");
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const KB_DURATION_MS = 26000;
+      const KB_SCALE_MIN = 1.10;
+      const KB_SCALE_MAX = 1.22;
+      const KB_DRIFT_X_PCT = 2.2;
+      const KB_DRIFT_Y_PCT = 1.4;
+
+      const PARALLAX_Y_PX = 26;
+      const PARALLAX_SCALE_ADD = 0.06;
+
+      let startTime = performance.now();
+
+      function tick(now) {
+        if (!hero || !heroMedia) return;
+
+        const rect = hero.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const progress = clamp((0 - rect.top) / (vh * 1.1), 0, 1);
+
+        const parallaxY = progress * PARALLAX_Y_PX;
+        const parallaxScale = PARALLAX_SCALE_ADD * progress;
+
+        if (prefersReduced) {
+          heroMedia.style.transform = `translate3d(0, ${parallaxY}px, 0) scale(1.08)`;
+          requestAnimationFrame(tick);
+          return;
+        }
+
+        const t = (now - startTime) % KB_DURATION_MS;
+        const phase = (t / KB_DURATION_MS) * Math.PI * 2;
+
+        const w = 0.5 - 0.5 * Math.cos(phase);
+        const kbScale = KB_SCALE_MIN + (KB_SCALE_MAX - KB_SCALE_MIN) * w;
+
+        const kbX = Math.sin(phase * 0.9) * KB_DRIFT_X_PCT;
+        const kbY = Math.cos(phase * 0.7) * KB_DRIFT_Y_PCT;
+
+        heroMedia.style.transform =
+          `translate3d(${kbX}%, calc(${kbY}% + ${parallaxY}px), 0) ` +
+          `scale(${kbScale + parallaxScale})`;
+
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    })();
+  </script>
+
+  <!-- Site-wide JS (image protection, etc.) -->
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>

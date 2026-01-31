@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Richard Berryman | American Photographer</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gruppo&family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Global styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Shared nav mount -->
+  <div id="nav-mount"></div>
+
+  <main id="home-page">
+
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <img src="assets/images/hero.jpg" alt="Hero" class="hero-bg">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content hero-lockup">
+
+        <h1 class="hero-lockup-title">RICHARD BERRYMAN</h1>
+
+        <p class="hero-lockup-sub">AMERICAN PHOTOGRAPHER</p>
+
+        <button class="hero-lockup-btn" onclick="document.querySelector('#portfolio-section').scrollIntoView({ behavior: 'smooth' })">
+          VIEW WORK <span>→</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- STATEMENT -->
+    <section class="statement-section">
+      <div class="statement-content">
+        <h2 class="statement-line1 hero-animate hero-stagger-1">High fashion. Raw beauty.</h2>
+        <h1 class="statement-line2 hero-animate hero-stagger-2">UNAPOLOGETIC VISION.</h1>
+        <p class="statement-description hero-animate hero-stagger-3">
+          Editorial fashion meets forgotten landscapes. Where bold aesthetics collide with untamed spaces.
+        </p>
+      </div>
+    </section>
+
+<!-- SLIDER!! -->
+<section class="home-slider" aria-label="Featured work">
+  <div class="home-slider-viewport">
+    <div class="home-slider-track" id="homeSliderTrack">
+      <!-- Slide 1 -->
+      <a class="home-slide" href="/field-notes/eaton-fire.html">
+        <img src="assets/images/index-slider/slider-01.jpg" alt="Sam Fuller">
+        <div class="home-slide-overlay">
+          <div class="home-slide-kicker">Sam Fuller</div>
+          <div class="home-slide-title">Sweet Meat</div>
+        </div>
+      </a>
+
+      <!-- Slide 2 -->
+      <a class="home-slide" href="/field-notes/ice.html">
+        <img src="assets/images/index-slider/slider-02.jpg" alt="ICE — Field Notes">
+        <div class="home-slide-overlay">
+          <div class="home-slide-kicker">Field Notes</div>
+          <div class="home-slide-title">ICE</div>
+        </div>
+      </a>
+
+      <!-- Slide 3 -->
+      <a class="home-slide" href="/portfolio.html">
+        <img src="assets/images/index-slider/slider-03.jpg" alt="Editorial — Portfolio">
+        <div class="home-slide-overlay">
+          <div class="home-slide-kicker">Portfolio</div>
+          <div class="home-slide-title">Editorial</div>
+        </div>
+      </a>
+    </div>
+
+    <button class="home-slider-btn prev" type="button" aria-label="Previous" id="homeSliderPrev">←</button>
+    <button class="home-slider-btn next" type="button" aria-label="Next" id="homeSliderNext">→</button>
+
+    <div class="home-slider-dots" id="homeSliderDots" aria-hidden="true"></div>
+  </div>
+</section>
+
+    <!-- PARALLAX -->
+    <section
+      class="parallax-section"
+      style="background-image: url(assets/images/editorials/RachelPizzolato/RachelPizzolato_parallax3.jpg);"
+      aria-label="Parallax separator"
+    >
+      <div class="parallax-content">
+        <h2></h2>
+        <p>Unparalleled Beauty and Editorials</p>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO TEASER / CAROUSEL -->
+    <section class="portfolio-section" id="portfolio-section" aria-label="Portfolio highlights">
+      <div class="carousel-container">
+        <div class="carousel-card">
+
+          <!-- Slide 1 -->
+          <div class="carousel-slide active" data-slide="0">
+            <a class="slide-image" href="/portfolio.html#editorials" aria-label="View Fashion Editorial portfolio">
+              <img src="assets/images/dani.jpg" alt="Fashion Editorial">
+            </a>
+            <div class="slide-content">
+              <div class="slide-category">Editorial</div>
+              <h3 class="slide-title">
+                FASHION <span class="accent">Editorial</span>
+              </h3>
+              <p class="slide-description">
+                High-fashion editorial shoots that push creative boundaries. Bold concepts, striking visuals, and avant-garde styling.
+              </p>
+              <a class="slide-btn" href="/portfolio.html#editorials">
+                VIEW PROJECT <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-slide" data-slide="1">
+            <a class="slide-image" href="/portfolio.html#editorials" aria-label="View Dance portfolio">
+              <img src="assets/images/dance.jpg" alt="Dance">
+            </a>
+            <div class="slide-content">
+              <div class="slide-category">Movement</div>
+              <h3 class="slide-title">
+                DANCE <span class="accent">Series</span>
+              </h3>
+              <p class="slide-description">
+                Capturing the grace, power, and emotion of movement. Expression, fluidity, and the human form in motion.
+              </p>
+              <a class="slide-btn" href="/portfolio.html#editorials">
+                VIEW PROJECT <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-slide" data-slide="2">
+            <a class="slide-image" href="/portfolio.html#field-notes" aria-label="View Desert portfolio">
+              <img src="assets/images/desert.jpg" alt="Desert">
+            </a>
+            <div class="slide-content">
+              <div class="slide-category">Location</div>
+              <h3 class="slide-title">
+                DESERT <span class="accent">Dreams</span>
+              </h3>
+              <p class="slide-description">
+                Vast desert landscapes. Minimal compositions, dramatic natural light, and a quiet kind of cinematic.
+              </p>
+              <a class="slide-btn" href="/portfolio.html#field-notes">
+                VIEW PROJECT <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="carousel-slide" data-slide="3">
+            <a class="slide-image" href="/portfolio.html#editorials" aria-label="View Portrait portfolio">
+              <img src="assets/images/portraits.jpg" alt="Portrait">
+            </a>
+            <div class="slide-content">
+              <div class="slide-category">Intimate</div>
+              <h3 class="slide-title">
+                PORTRAIT <span class="accent">Stories</span>
+              </h3>
+              <p class="slide-description">
+                Honest portrait sessions that hold personality and mood. Natural light, real moments, no noise.
+              </p>
+              <a class="slide-btn" href="/portfolio.html#editorials">
+                VIEW PROJECT <span>→</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Manual Nav -->
+          <div class="carousel-nav" aria-label="Carousel navigation">
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous slide">←</button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next slide">→</button>
+          </div>
+
+          <div class="scroll-progress" aria-label="Carousel progress">
+            <button class="progress-dot active" data-dot="0" type="button" aria-label="Slide 1"></button>
+            <button class="progress-dot" data-dot="1" type="button" aria-label="Slide 2"></button>
+            <button class="progress-dot" data-dot="2" type="button" aria-label="Slide 3"></button>
+            <button class="progress-dot" data-dot="3" type="button" aria-label="Slide 4"></button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT (anchor target for nav.html) -->
+    <section id="about" class="about">
+      <div class="about-container">
+        <div class="about-text">
+          <h2>ABOUT</h2>
+          <p>
+            I photograph people, places, and the tension between polish and grit—editorial fashion, portraiture,
+            and the American landscape when it stops posing.
+          </p>
+          <p>
+            I’m drawn to strong concepts, strong light, and a little unease in the frame—the kind that makes a photo linger.
+          </p>
+
+          <!-- Keep or delete these stats if they’re placeholder-ish -->
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Years</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Awards</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-image">
+          <img src="assets/images/ric_berryman.jpeg" alt="Photographer Ric Berryman">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT (anchor target for nav.html) -->
+    <section id="contact" class="contact">
+      <div class="contact-container">
+        <div class="contact-header">
+          <h2>LET'S CREATE</h2>
+          <p>Ready to bring your vision to life? Get in touch to discuss your next project.</p>
+        </div>
+
+        <!-- Netlify form -->
+        <form
+          class="contact-form"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/thank-you.html"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+
+          <p style="display:none;">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your Name">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="project-type">Project Type</label>
+            <select id="project-type" name="project-type" required>
+              <option value="">Select a project type...</option>
+              <option value="fashion">Fashion Editorial</option>
+              <option value="portrait">Portrait Session</option>
+              <option value="dance">Dance Photography</option>
+              <option value="creative">Creative Collaboration</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project..."></textarea>
+          </div>
+
+          <button type="submit" class="contact-btn">SEND MESSAGE</button>
+        </form>
+
+        <div class="contact-info">
+          <a href="mailto:ricberrymanphoto@outlook.com" class="contact-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            ricberrymanphoto@outlook.com
+          </a>
+
+          <a href="https://instagram.com/whatshisfacedo" target="_blank" rel="noopener" class="contact-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            @whatshisfacedo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Richard Berryman. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="/portfolio.html#editorial-stories">Editorials</a>
+        <a href="/portfolio.html#beauty-portraits">Portrait</a>
+        <a href="/portfolio.html#places-atmosphere">Field Notes</a>
+        <a href="/portfolio.html#places-atmosphere">Desert</a>
+        
+      </div>
+    </footer>
+  </main>
+
+  <!-- Shared nav loader -->
+  <script src="assets/js/load-nav.js"></script>
+
+  <!-- Site-wide JS (your current file) -->
+  <script src="assets/js/site.js"></script>
+
+  <!-- Small page-specific JS (home only) -->
+  <script>
+    (function () {
+      // Smooth scroll CTA
+      const btn = document.getElementById("view-work-btn");
+      const portfolioSection = document.getElementById("portfolio-section");
+      if (btn && portfolioSection) {
+        btn.addEventListener("click", () => {
+          portfolioSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+
+      // Carousel behavior (simple + reliable)
+      const slides = Array.from(document.querySelectorAll(".carousel-slide"));
+      const dots = Array.from(document.querySelectorAll(".progress-dot"));
+      const prevBtn = document.querySelector(".carousel-prev");
+      const nextBtn = document.querySelector(".carousel-next");
+
+      let current = 0;
+
+      function setSlide(i) {
+        if (!slides.length) return;
+        current = Math.max(0, Math.min(i, slides.length - 1));
+        slides.forEach(s => s.classList.remove("active"));
+        dots.forEach(d => d.classList.remove("active"));
+        slides[current].classList.add("active");
+        if (dots[current]) dots[current].classList.add("active");
+
+        if (prevBtn) prevBtn.classList.toggle("disabled", current === 0);
+        if (nextBtn) nextBtn.classList.toggle("disabled", current === slides.length - 1);
+      }
+
+      if (prevBtn) prevBtn.addEventListener("click", () => setSlide(current - 1));
+      if (nextBtn) nextBtn.addEventListener("click", () => setSlide(current + 1));
+
+      dots.forEach((dot) => {
+        dot.addEventListener("click", () => {
+          const idx = parseInt(dot.getAttribute("data-dot"), 10);
+          if (!Number.isNaN(idx)) setSlide(idx);
+        });
+      });
+
+      setSlide(0);
+
+      // (Optional) Scroll-driven slide switching while user is in the carousel area
+      let scrollModeEnabled = true;
+
+      function onScroll() {
+        if (!scrollModeEnabled || !portfolioSection || !slides.length) return;
+
+        const rect = portfolioSection.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+
+        // Only drive slides when the section is mostly on screen
+        const inSection = rect.top < vh * 0.35 && rect.bottom > vh * 0.65;
+        if (!inSection) return;
+
+        const total = slides.length;
+        const progress = Math.min(1, Math.max(0, (vh * 0.35 - rect.top) / (rect.height - vh * 0.3)));
+        const idx = Math.min(total - 1, Math.floor(progress * total));
+        if (idx !== current) setSlide(idx);
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+
+      // If user clicks arrows/dots, stop scroll-driving (feels less “fighty”)
+      [prevBtn, nextBtn, ...dots].forEach(el => {
+        if (!el) return;
+        el.addEventListener("click", () => { scrollModeEnabled = false; }, { once: true });
+      });
+
+      // Keep your existing “hero-animate” observer behavior (if styles rely on it)
+      const animatedEls = document.querySelectorAll(".hero-animate");
+      if (animatedEls.length) {
+        const obs = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("show");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.25 });
+
+        animatedEls.forEach(el => obs.observe(el));
+      }
+    })();
+  </script>
+</body>
+</html>

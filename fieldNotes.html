@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Field Notes — Ric Berryman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* ==========================================
+       FIELD NOTES — LANDING (single-file)
+       ========================================== */
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root{
+      --bg: #E8DDD1;
+      --ink: #2E2621;
+      --muted: #6a5a52;
+      --warm: #8B3A2B;
+      --paper: rgba(253, 248, 240, 0.78);
+      --glass: rgba(0,0,0,0.28);
+      --ease: cubic-bezier(0.16,1,0.3,1);
+      --shadow: 0 26px 90px rgba(0,0,0,0.28);
+      --shadow2: 0 34px 110px rgba(0,0,0,0.36);
+      --radius: 22px;
+    }
+
+    body{
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      overflow-x: hidden;
+    }
+
+    main{ padding-bottom: 6rem; }
+
+    /* ==========================================
+       HERO — quiet, full-bleed
+       ========================================== */
+
+    .fn-hero{
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 4.75rem 3rem 3.75rem;
+      overflow: hidden;
+      color: #FDF8F0;
+      isolation: isolate;
+    }
+
+    .fn-hero-media{
+      position: absolute;
+      inset: 0;
+      /* Replace with your Field Notes hero image */
+      background-image: url("assets/images/field-notes/hero.jpg");
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.06);
+      will-change: transform;
+      z-index: -2;
+    }
+
+    .fn-hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at top left, rgba(0,0,0,0.46), transparent 55%),
+        linear-gradient(to top, rgba(0,0,0,0.74), rgba(0,0,0,0.12));
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .fn-hero-inner{
+      max-width: 780px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fn-kicker{
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      opacity: 0.92;
+    }
+
+    .fn-kicker::before{
+      content:"";
+      width: 18px;
+      height: 1px;
+      background: rgba(253,248,240,0.65);
+      display: inline-block;
+      transform: translateY(-1px);
+    }
+
+    .fn-title{
+      font-size: clamp(2.8rem, 7.8vw, 5rem);
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin: 0.85rem 0 1rem;
+      line-height: 0.95;
+    }
+
+    .fn-sub{
+      font-size: 1.02rem;
+      line-height: 1.9;
+      max-width: 560px;
+      opacity: 0.95;
+    }
+
+    .fn-scroll{
+      margin-top: 2.25rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.78;
+      user-select: none;
+    }
+
+    .fn-scroll svg{
+      width: 16px;
+      height: 16px;
+      animation: bounceDown 1.55s infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes bounceDown{
+      0%{ transform: translateY(0); }
+      50%{ transform: translateY(6px); }
+      100%{ transform: translateY(0); }
+    }
+
+    @media (max-width: 900px){
+      .fn-hero{ padding: 4.25rem 1.5rem 3rem; min-height: 78vh; }
+      .fn-title{ letter-spacing: 0.24em; }
+    }
+
+    /* ==========================================
+       SHELL
+       ========================================== */
+
+    .shell{
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+    @media (min-width: 1400px){
+      .shell{ padding: 0 2rem; }
+    }
+
+    /* ==========================================
+       INTRO BLOCK
+       ========================================== */
+
+    .fn-intro{
+      margin-top: 4.25rem;
+      margin-bottom: 3.25rem;
+    }
+
+    .fn-intro-grid{
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.1fr);
+      gap: 2.75rem;
+      align-items: start;
+    }
+
+    .fn-intro p{
+      font-size: 1.02rem;
+      line-height: 1.95;
+      color: rgba(46,38,33,0.90);
+    }
+
+    .fn-aside{
+      font-size: 0.82rem;
+      line-height: 1.75;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(46,38,33,0.70);
+      border-left: 1px solid rgba(46,38,33,0.18);
+      padding-left: 1.25rem;
+    }
+
+    @media (max-width: 900px){
+      .fn-intro{ margin-top: 3.25rem; }
+      .fn-intro-grid{ grid-template-columns: 1fr; gap: 1.75rem; }
+      .fn-aside{ border-left: none; padding-left: 0; border-top: 1px solid rgba(46,38,33,0.18); padding-top: 1.25rem; }
+    }
+
+    /* ==========================================
+       SECTION LABEL
+       ========================================== */
+
+    .fn-section-header{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-top: 3.75rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .fn-section-title{
+      font-size: 1.15rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: #3B2F29;
+    }
+
+    .fn-section-sub{
+      font-size: 0.9rem;
+      color: rgba(46,38,33,0.62);
+      max-width: 520px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px){
+      .fn-section-header{ flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ==========================================
+       PROJECT INDEX — big, asymmetric blocks
+       ========================================== */
+
+    .fn-projects{
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    .fn-project{
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+      gap: 1.9rem;
+      align-items: center;
+      padding: 0;
+    }
+
+    .fn-project:nth-child(even){
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr);
+    }
+
+    .fn-project a{
+      text-decoration: none;
+      color: inherit;
+      display: contents; /* allows entire block to be clickable while keeping grid */
+    }
+
+    .fn-media{
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: #000;
+      box-shadow: var(--shadow);
+      transform: translateY(0);
+      transition: transform 0.75s var(--ease), box-shadow 0.75s var(--ease);
+      min-height: 420px;
+    }
+
+    .fn-project:nth-child(odd) .fn-media{ justify-self: start; }
+    .fn-project:nth-child(even) .fn-media{ justify-self: end; }
+
+    .fn-media img{
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: transform 0.9s var(--ease), filter 0.9s var(--ease);
+    }
+
+    .fn-media::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.06));
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+    }
+
+    .fn-project:hover .fn-media{
+      transform: translateY(-8px);
+      box-shadow: var(--shadow2);
+    }
+
+    .fn-project:hover .fn-media img{
+      transform: scale(1.06);
+      filter: saturate(1.03) contrast(1.03);
+    }
+
+    .fn-project:hover .fn-media::after{ opacity: 1; }
+
+    .fn-text{
+      padding: 0.25rem 0.15rem;
+    }
+
+    .fn-project-title{
+      font-size: 1.05rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+      color: #2E2621;
+    }
+
+    .fn-project-desc{
+      font-size: 0.96rem;
+      line-height: 1.85;
+      color: rgba(46,38,33,0.78);
+      max-width: 42ch;
+    }
+
+    .fn-project-meta{
+      margin-top: 1.1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(46,38,33,0.56);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .fn-dot{
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(46,38,33,0.35);
+      display: inline-block;
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 1100px){
+      .fn-project, .fn-project:nth-child(even){
+        grid-template-columns: 1fr;
+      }
+      .fn-media{
+        min-height: 360px;
+      }
+      .fn-project:nth-child(even) .fn-media,
+      .fn-project:nth-child(odd) .fn-media{
+        justify-self: stretch;
+      }
+      .fn-project-desc{ max-width: 68ch; }
+    }
+
+    /* ==========================================
+       SINGLE FRAMES (optional, loose strip)
+       ========================================== */
+
+    .fn-frames{
+      margin-top: 4rem;
+    }
+
+    .fn-frames-grid{
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .fn-frame{
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 18px 60px rgba(0,0,0,0.22);
+      min-height: 240px;
+      position: relative;
+    }
+
+    .fn-frame img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 0.85s var(--ease);
+    }
+
+    .fn-frame:hover img{ transform: scale(1.06); }
+
+    /* A slightly irregular layout */
+    .span-6{ grid-column: span 6; }
+    .span-4{ grid-column: span 4; }
+    .span-8{ grid-column: span 8; }
+
+    @media (max-width: 1100px){
+      .fn-frames-grid{ grid-template-columns: repeat(6, minmax(0, 1fr)); }
+      .span-8{ grid-column: span 6; }
+      .span-6{ grid-column: span 6; }
+      .span-4{ grid-column: span 3; }
+    }
+
+    @media (max-width: 720px){
+      .fn-frames-grid{ grid-template-columns: 1fr; }
+      .span-8,.span-6,.span-4{ grid-column: span 1; }
+      .fn-frame{ min-height: 280px; }
+    }
+
+    /* ==========================================
+       OUTRO
+       ========================================== */
+
+    .fn-outro{
+      margin-top: 4.5rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(46,38,33,0.16);
+    }
+
+    .fn-outro p{
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(46,38,33,0.68);
+      max-width: 70ch;
+    }
+
+    /* ==========================================
+       REVEAL / MOTION
+       ========================================== */
+
+    .reveal{
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.9s ease, transform 0.9s var(--ease);
+      will-change: opacity, transform;
+    }
+    .reveal.visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* hero transitions (fade + subtle Ken Burns) */
+    .fn-hero-inner{
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 1.1s ease, transform 1.1s var(--ease);
+    }
+    .fn-hero.is-ready .fn-hero-inner{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes kenBurns{
+      from{ transform: scale(1.06); }
+      to{ transform: scale(1.10); }
+    }
+    .fn-hero.is-ready .fn-hero-media{
+      animation: kenBurns 22s ease-in-out both;
+    }
+
+    /* prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce){
+      * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+      .fn-hero-media{ transform: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared nav mount -->
+  <div id="nav-mount"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="fn-hero" id="fn-hero">
+      <div class="fn-hero-media" aria-hidden="true"></div>
+
+      <div class="fn-hero-inner">
+        <div class="fn-kicker">Personal work & observations</div>
+        <h1 class="fn-title">Field Notes</h1>
+        <p class="fn-sub">
+          Photographs made without an assignment. Desert towns, empty rooms, street noise,
+          and the small details that stick—sometimes for reasons I can’t explain.
+        </p>
+
+        <div class="fn-scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 4v14m0 0-5-5m5 5 5-5"
+                  fill="none" stroke="currentColor" stroke-width="1.4"
+                  stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="fn-intro shell">
+      <div class="fn-intro-grid">
+        <div class="reveal">
+          <p>
+            Field Notes is where the work slows down. These photographs come from time spent
+            driving, walking, waiting, and looking—often alone. Abandoned homes, desert towns,
+            protests, streets, objects that caught my attention for reasons I didn’t fully
+            understand at the time.
+            <br /><br />
+            Some of this work never becomes anything else. That’s the point.
+          </p>
+        </div>
+
+        <div class="fn-aside reveal">
+          Shot over years.<br />
+          Mostly personal.<br />
+          No brief. No client.<br />
+          California and beyond.
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="shell">
+      <header class="fn-section-header reveal">
+        <h2 class="fn-section-title">Projects</h2>
+        <p class="fn-section-sub">
+          A handful of ongoing threads. Fewer choices. More breathing room.
+        </p>
+      </header>
+
+      <div class="fn-projects">
+        <!-- Project 1 -->
+        <article class="fn-project reveal">
+          <a href="field-notes/abandoned-america.html" aria-label="Abandoned America">
+            <div class="fn-media">
+              <img src="assets/images/field-notes/abandoned-america/cover.jpg" alt="Abandoned America cover image">
+            </div>
+            <div class="fn-text">
+              <h3 class="fn-project-title">Abandoned America</h3>
+              <p class="fn-project-desc">
+                Desert towns, empty homes, and places left behind—quiet interiors and sun-bleached evidence.
+              </p>
+              <div class="fn-project-meta">
+                <span>California desert</span><span class="fn-dot"></span><span>Ongoing</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="fn-project reveal">
+          <a href="field-notes/desert-objects.html" aria-label="Desert Objects">
+            <div class="fn-media">
+              <img src="assets/images/field-notes/desert-objects/cover.jpg" alt="Desert Objects cover image">
+            </div>
+            <div class="fn-text">
+              <h3 class="fn-project-title">Desert Objects</h3>
+              <p class="fn-project-desc">
+                Odd artifacts. Roadside geometry. Things that look accidental until you stare long enough.
+              </p>
+              <div class="fn-project-meta">
+                <span>Found still lifes</span><span class="fn-dot"></span><span>Series</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="fn-project reveal">
+          <a href="field-notes/streets-voices.html" aria-label="Streets & Voices">
+            <div class="fn-media">
+              <img src="assets/images/field-notes/streets-voices/cover.jpg" alt="Streets & Voices cover image">
+            </div>
+            <div class="fn-text">
+              <h3 class="fn-project-title">Streets & Voices</h3>
+              <p class="fn-project-desc">
+                Urban fragments, movement, and the in-between moments where the city tells on itself.
+              </p>
+              <div class="fn-project-meta">
+                <span>Los Angeles</span><span class="fn-dot"></span><span>Street</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Project 4 -->
+        <article class="fn-project reveal">
+          <a href="field-notes/protest-los-angeles.html" aria-label="Protest, Los Angeles">
+            <div class="fn-media">
+              <img src="assets/images/field-notes/protest/cover.jpg" alt="Protest, Los Angeles cover image">
+            </div>
+            <div class="fn-text">
+              <h3 class="fn-project-title">Protest, Los Angeles</h3>
+              <p class="fn-project-desc">
+                Crowds, signs, tension, and solidarity—history happening at street level.
+              </p>
+              <div class="fn-project-meta">
+                <span>2017–2020+</span><span class="fn-dot"></span><span>Documentary</span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Project 5 -->
+        <article class="fn-project reveal">
+          <a href="field-notes/places-between.html" aria-label="Places Between">
+            <div class="fn-media">
+              <img src="assets/images/field-notes/places-between/cover.jpg" alt="Places Between cover image">
+            </div>
+            <div class="fn-text">
+              <h3 class="fn-project-title">Places Between</h3>
+              <p class="fn-project-desc">
+                Motels, highways, parking lots, and blue hour—where narrative shows up uninvited.
+              </p>
+              <div class="fn-project-meta">
+                <span>Road work</span><span class="fn-dot"></span><span>Atmosphere</span>
+              </div>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- SINGLE FRAMES (optional) -->
+    <section class="fn-frames shell">
+      <header class="fn-section-header reveal">
+        <h2 class="fn-section-title">Single frames</h2>
+        <p class="fn-section-sub">
+          A few images that don’t belong anywhere else. Yet.
+        </p>
+      </header>
+
+      <div class="fn-frames-grid">
+        <!-- Replace these with real images (or delete this whole section if you want it even quieter) -->
+        <figure class="fn-frame span-8 reveal">
+          <img src="assets/images/field-notes/singles/single_01.jpg" alt="Single frame 01">
+        </figure>
+
+        <figure class="fn-frame span-4 reveal">
+          <img src="assets/images/field-notes/singles/single_02.jpg" alt="Single frame 02">
+        </figure>
+
+        <figure class="fn-frame span-6 reveal">
+          <img src="assets/images/field-notes/singles/single_03.jpg" alt="Single frame 03">
+        </figure>
+
+        <figure class="fn-frame span-6 reveal">
+          <img src="assets/images/field-notes/singles/single_04.jpg" alt="Single frame 04">
+        </figure>
+      </div>
+    </section>
+
+    <!-- OUTRO -->
+    <section class="fn-outro shell">
+      <p class="reveal">
+        Some of this work overlaps with the editorial projects. Most of it doesn’t.
+        If Portfolio is the finished scene, Field Notes is the walk back to the car.
+      </p>
+    </section>
+  </main>
+
+  <!-- Shared nav loader -->
+  <script src="assets/js/load-nav.js"></script>
+
+  <script>
+    (function () {
+      // Mark hero ready for transitions + Ken Burns
+      const hero = document.getElementById("fn-hero");
+      if (hero) requestAnimationFrame(() => hero.classList.add("is-ready"));
+
+      // Scroll reveal (gentle)
+      const revealEls = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealEls.forEach(el => observer.observe(el));
+
+      // Subtle hero parallax (very light — Field Notes stays grounded)
+      const heroMedia = document.querySelector(".fn-hero-media");
+      function updateHeroParallax(){
+        if (!hero || !heroMedia) return;
+        const rect = hero.getBoundingClientRect();
+        const viewportH = window.innerHeight || document.documentElement.clientHeight;
+        const progress = Math.min(Math.max((0 - rect.top) / (viewportH * 1.2), 0), 1);
+        const translateY = progress * 14;        // subtle
+        heroMedia.style.transform = `translateY(${translateY}px) scale(1.06)`;
+      }
+
+      // Respect reduced motion
+      const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!reduce) {
+        updateHeroParallax();
+        window.addEventListener("scroll", updateHeroParallax, { passive: true });
+        window.addEventListener("resize", updateHeroParallax);
+      }
+    })();
+  </script>
+
+ 
+      /* =========================
+       Don't steal my photos - Assholes
+       ========================= */
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

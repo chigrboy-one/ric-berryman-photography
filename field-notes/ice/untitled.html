@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ICE — Field Notes by Ric Berryman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    :root{
+      --bg:#E8DDD1;
+      --paper:#F9F2E8;
+      --ink:#2E2621;
+      --muted:rgba(46,38,33,0.72);
+      --soft:rgba(46,38,33,0.18);
+      --accent:#C7653D;
+      --shadow:0 22px 70px rgba(0,0,0,0.20);
+      --shadow2:0 28px 90px rgba(0,0,0,0.28);
+      --radius:26px;
+    }
+
+    body{
+      background:var(--bg);
+      color:var(--ink);
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+
+    a{ color:inherit; text-decoration:none; }
+
+    .page{
+      min-height:100vh;
+      padding-bottom:5rem;
+    }
+
+    /* Top bar */
+    .top-bar{
+      padding:24px 32px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:0.14em;
+      color:rgba(46,38,33,0.75);
+    }
+
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 12px;
+      border-radius:999px;
+      border:1px solid rgba(46,38,33,0.25);
+      backdrop-filter:blur(10px);
+      background:rgba(248,238,226,0.9);
+      cursor:pointer;
+      transition:background .25s ease, transform .25s ease, box-shadow .25s ease;
+      white-space:nowrap;
+    }
+    .back-link span{ font-size:16px; }
+    .back-link:hover{
+      background:#fff;
+      transform:translateY(-1px);
+      box-shadow:0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .top-tag{
+      font-size:0.78rem;
+      text-transform:uppercase;
+      letter-spacing:0.2em;
+      opacity:0.7;
+      white-space:nowrap;
+    }
+
+    @media (max-width:720px){
+      .top-bar{ padding:18px 18px; flex-direction:column; align-items:flex-start; }
+      .top-tag{ white-space:normal; }
+    }
+
+    /* Hero */
+    .hero-shell{
+      width:100%;
+      max-width:1480px;
+      margin:0 auto;
+      padding:0 24px 26px;
+    }
+
+    .hero{
+      position:relative;
+      border-radius:34px;
+      overflow:hidden;
+      height:min(86vh, 820px);
+      box-shadow:var(--shadow2);
+      background:#0b0705;
+      isolation:isolate;
+    }
+
+    .hero-media{
+      position:absolute;
+      inset:0;
+      background-image:url("../assets/images/field-notes/ice/hero.jpg"); /* <-- swap */
+      background-size:cover;
+      background-position:center 35%;
+      transform:scale(1.08);
+      will-change:transform;
+      z-index:-2;
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at top left, rgba(0,0,0,0.45), transparent 55%),
+        linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.10));
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    .hero-label{
+      position:absolute;
+      top:20px;
+      left:20px;
+      padding:6px 14px;
+      border-radius:999px;
+      background:rgba(248,238,226,0.94);
+      border:1px solid rgba(46,38,33,0.25);
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:0.16em;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      color:var(--ink);
+    }
+    .hero-dot{ width:7px; height:7px; border-radius:50%; background:var(--accent); }
+
+    .hero-caption{
+      position:absolute;
+      left:32px;
+      right:32px;
+      bottom:28px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      align-items:flex-end;
+      justify-content:space-between;
+      color:#F9F2E8;
+    }
+
+    .hero-title{
+      font-family: "Cormorant Garamond", "Playfair Display", serif;
+      font-size:clamp(3.1rem, 6vw, 5.1rem);
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      line-height:1.06;
+      text-shadow:0 8px 20px rgba(0,0,0,0.45);
+      margin:0;
+    }
+
+    .hero-sub{
+      font-size:1.06rem;
+      line-height:1.85;
+      max-width:520px;
+      opacity:0.92;
+      text-shadow:0 6px 16px rgba(0,0,0,0.45);
+    }
+
+    @media (max-width:900px){
+      .hero-caption{ left:20px; right:20px; bottom:22px; flex-direction:column; align-items:flex-start; }
+      .hero{ border-radius:26px; height:min(84vh, 760px); }
+    }
+
+    /* Body layout */
+    .content-shell{
+      width:100%;
+      max-width:1360px;
+      margin:56px auto 0;
+      padding:0 24px;
+    }
+
+    .meta-shell{
+      display:grid;
+      grid-template-columns:minmax(0, 1.8fr) minmax(0, 1fr);
+      gap:34px;
+      align-items:flex-start;
+      margin-bottom:20px;
+    }
+
+    .lede{
+      font-size:1.10rem;
+      line-height:1.85;
+      color:rgba(46,38,33,0.90);
+    }
+    .lede em{ font-style:normal; color:var(--accent); }
+
+    .credits{
+      font-size:1.05rem;
+      line-height:1.75;
+      color:rgba(46,38,33,0.84);
+      padding:18px 18px 16px;
+      border-radius:20px;
+      background:rgba(249,242,232,0.55);
+      border:1px solid rgba(46,38,33,0.10);
+      box-shadow:0 14px 42px rgba(0,0,0,0.08);
+    }
+    .credits .row{ margin-bottom:10px; }
+    .credits strong{
+      color:var(--accent);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:0.14em;
+      font-size:0.66rem;
+      display:block;
+      margin-bottom:3px;
+      opacity:0.9;
+    }
+
+    @media (max-width:980px){
+      .meta-shell{ grid-template-columns:1fr; }
+      .credits{ order:-1; }
+    }
+
+    /* Article typography */
+    .article{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap:18px;
+    }
+
+    .h2{
+      font-size:0.78rem;
+      text-transform:uppercase;
+      letter-spacing:0.22em;
+      color:rgba(46,38,33,0.70);
+      margin-top:12px;
+    }
+
+    .p{
+      font-size:1.05rem;
+      line-height:1.9;
+      color:rgba(46,38,33,0.88);
+      max-width:78ch;
+    }
+
+    .pull{
+      max-width:80ch;
+      padding:20px 22px;
+      border-radius:22px;
+      background:rgba(0,0,0,0.04);
+      border:1px solid rgba(46,38,33,0.10);
+      box-shadow:0 14px 42px rgba(0,0,0,0.08);
+      font-size:1.06rem;
+      line-height:1.85;
+      color:rgba(46,38,33,0.86);
+    }
+    .pull span{ color:var(--accent); font-weight:600; }
+
+    /* Image layouts */
+    .frame{
+      margin:34px auto;
+      border-radius:26px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      background:#000;
+    }
+    .frame img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    .caption{
+      margin-top:10px;
+      font-size:0.82rem;
+      line-height:1.7;
+      letter-spacing:0.04em;
+      color:rgba(a;
+      color:rgba(46,38,33,0.70);
+      max-width:90ch;
+      padding:0 6px;
+    }
+
+    .diptych{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:22px;
+      align-items:flex-start;
+      margin:40px 0;
+    }
+    .diptych .tile{
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 18px 40px rgba(0,0,0,0.18);
+      background:#000;
+    }
+    .diptych img{ width:100%; height:auto; display:block; }
+    @media (max-width:900px){
+      .diptych{ grid-template-columns:1fr; }
+    }
+
+    /* Parallax break */
+    .parallax{
+      margin:52px 0;
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:var(--shadow2);
+      min-height:52vh;
+      background-size:cover;
+      background-position:center;
+      background-image:url("../assets/images/field-notes/ice/parallax-1.jpg"); /* <-- swap */
+      position:relative;
+    }
+    .parallax::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0.10) 55%, transparent);
+      pointer-events:none;
+    }
+    .parallax-copy{
+      position:absolute;
+      left:24px;
+      right:24px;
+      bottom:22px;
+      color:#F9F2E8;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+    }
+    .parallax-copy h3{
+      margin:0;
+      font-size:1.1rem;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      font-weight:500;
+    }
+    .parallax-copy p{
+      margin:0;
+      max-width:64ch;
+      opacity:0.90;
+      line-height:1.8;
+      font-size:0.95rem;
+    }
+
+    /* Footer back link */
+    .footer-nav{
+      text-align:center;
+      padding:44px 24px 30px;
+      font-size:0.8rem;
+      letter-spacing:0.16em;
+      text-transform:uppercase;
+      color:rgba(46,38,33,0.76);
+    }
+    .footer-nav a{
+      padding:8px 16px;
+      border-radius:999px;
+      border:1px solid rgba(46,38,33,0.2);
+      background:rgba(248,238,226,0.9);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:background .25s ease, transform .25s ease, box-shadow .25s ease;
+    }
+    .footer-nav a:hover{
+      background:#fff;
+      transform:translateY(-1px);
+      box-shadow:0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    /* Pager mount (uses your shared pager CSS if present) */
+    .editorial-pager{
+      margin: 36px auto 0;
+      padding: 0 24px;
+      max-width: 1480px;
+    }
+    .editorial-pager-inner{
+      display:flex;
+      gap: 24px;
+      justify-content:space-between;
+      align-items:stretch;
+    }
+
+    /* Reveal */
+    .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .8s ease-out, transform .8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal--visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared nav mount -->
+  <div id="nav-mount"></div>
+
+  <div class="page">
+
+    <header class="top-bar">
+      <a href="/field-notes/index.html" class="back-link"><span>←</span> Back to Field Notes</a>
+      <div class="top-tag">Field Note · Downtown Los Angeles</div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero-shell">
+      <div class="hero reveal">
+        <div class="hero-media"></div>
+
+        <div class="hero-label">
+          <span class="hero-dot"></span>
+          <span>DTLA · Street documentation</span>
+        </div>
+
+        <div class="hero-caption">
+          <div>
+            <h1 class="hero-title">ICE</h1>
+          </div>
+          <div class="hero-sub">
+            A night of chants, sirens, and the uneasy choreography of power.
+            Not spectacle — evidence. Not “content” — a record.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-shell">
+
+      <!-- META / CREDITS -->
+      <section class="meta-shell reveal">
+        <div class="lede">
+          Some nights feel like a long exposure: the city bright, the edges vibrating,
+          everything moving but nothing changing fast enough.
+          <br><br>
+          I brought a camera because I didn’t trust my memory to stay intact.
+          I wanted the frames that don’t scream — the ones that <em>prove</em> you were there.
+          Hands up. Faces lit by phone screens. A poster creased like it had already survived.
+          <br><br>
+          If these images feel uncomfortable, good. They should. Comfort is not the point.
+        </div>
+
+        <aside class="credits">
+          <div class="row">
+            <strong>Series</strong>
+            Field Notes
+          </div>
+          <div class="row">
+            <strong>Location</strong>
+            Downtown Los Angeles
+          </div>
+          <div class="row">
+            <strong>Year</strong>
+            (set this)
+          </div>
+          <div class="row">
+            <strong>Photography</strong>
+            Ric Berryman
+          </div>
+          <div class="row">
+            <strong>Intent</strong>
+            Documentation, not decoration
+          </div>
+        </aside>
+      </section>
+
+      <!-- BODY -->
+      <section class="article reveal">
+        <div class="h2">What I noticed</div>
+        <p class="p">
+          The loudest parts were easy: the chants, the cars, the megaphones. The quieter parts were
+          the ones that stayed: people checking on strangers, a hand on a shoulder, someone offering
+          water like it was a moral reflex.
+        </p>
+
+        <div class="pull">
+          Photography is a blunt instrument. You point it at something and you’re saying:
+          <span>this mattered enough to keep.</span>
+        </div>
+
+        <p class="p">
+          I’m not interested in turning protest into aesthetic. But I’m also not going to pretend
+          the city doesn’t have a visual language. It does. And on nights like this, it’s written
+          in hard light, shadows, and the way people hold their bodies when they’re ready to run.
+        </p>
+      </section>
+
+      <!-- IMAGES (swap filenames) -->
+      <div class="frame reveal">
+        <img src="../assets/images/field-notes/ice/ice_01.jpg" alt="Field Notes: ICE — image 01" />
+      </div>
+      <div class="caption reveal">Downtown Los Angeles · (caption optional)</div>
+
+      <div class="diptych reveal">
+        <div class="tile">
+          <img src="../assets/images/field-notes/ice/ice_02.jpg" alt="Field Notes: ICE — image 02" />
+        </div>
+        <div class="tile">
+          <img src="../assets/images/field-notes/ice/ice_03.jpg" alt="Field Notes: ICE — image 03" />
+        </div>
+      </div>
+
+      <!-- PARALLAX BREAK -->
+      <section class="parallax reveal" aria-hidden="true">
+        <div class="parallax-copy">
+          <h3>In the middle of it</h3>
+          <p>
+            The camera doesn’t protect you. It just gives your hands something to do
+            while your brain tries to understand what it’s seeing.
+          </p>
+        </div>
+      </section>
+
+      <div class="frame reveal">
+        <img src="../assets/images/field-notes/ice/ice_04.jpg" alt="Field Notes: ICE — image 04" />
+      </div>
+
+      <div class="diptych reveal">
+        <div class="tile">
+          <img src="../assets/images/field-notes/ice/ice_05.jpg" alt="Field Notes: ICE — image 05" />
+        </div>
+        <div class="tile">
+          <img src="../assets/images/field-notes/ice/ice_06.jpg" alt="Field Notes: ICE — image 06" />
+        </div>
+      </div>
+
+      <section class="article reveal">
+        <div class="h2">Why keep this</div>
+        <p class="p">
+          Because “I was there” turns into “I think I remember” turns into nothing.
+          These frames are a receipt. For anger. For hope. For the people who showed up
+          when it would’ve been easier not to.
+        </p>
+      </section>
+
+      <div class="footer-nav">
+        <a href="/field-notes/index.html"><span>←</span> Back to Field Notes</a>
+      </div>
+
+      <!-- Prev / Next (dynamic) -->
+      <section class="editorial-pager" aria-label="Field Notes navigation">
+        <div class="editorial-pager-inner" id="field-notes-pager"></div>
+      </section>
+
+    </section>
+  </div>
+
+  <!-- Shared nav loader -->
+  <script src="../assets/js/load-nav.js"></script>
+
+  <!-- Reveal -->
+  <script>
+    (function(){
+      const revealEls = document.querySelectorAll(".reveal");
+      const obs = new IntersectionObserver((entries, o) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add("reveal--visible");
+            o.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.16 });
+      revealEls.forEach(el => obs.observe(el));
+    })();
+  </script>
+
+  <!-- Hero parallax (a little extra) -->
+  <script>
+    (function(){
+      const hero = document.querySelector(".hero");
+      const media = document.querySelector(".hero-media");
+      if (!hero || !media) return;
+
+      function tick(){
+        const rect = hero.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const progress = Math.min(Math.max((0 - rect.top) / (vh * 1.15), 0), 1);
+        const scale = 1.08 + progress * 0.16;
+        const translateY = progress * 44;
+        media.style.transform = `translateY(${translateY}px) scale(${scale})`;
+      }
+      tick();
+      window.addEventListener("scroll", tick, { passive:true });
+      window.addEventListener("resize", tick);
+    })();
+  </script>
+
+  <!-- Field Notes Prev/Next -->
+  <script src="../assets/js/field-notes-pager.js"></script>
+</body>
+</html>

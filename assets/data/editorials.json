@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "madeline-houk",
+    "url": "/editorials/madeline-houk.html",
+    "title": "Subway Ballerina",
+    "sub": "Madeline Houk · Hollywood underground.",
+    "hero": "/assets/images/editorials/madeline-houk/madeline_hero.jpg"
+  },
+  {
+    "slug": "rachelPizzolato",
+    "url": "/editorials/rachelPizzolato.html",
+    "title": "Club James",
+    "sub": "Rachel Pizzolato · Neon, smoke, and velvet.",
+    "hero": "/assets/images/editorials/rachelPizzolato/RachelPizzolato_02.jpg"
+  },
+  {
+    "slug": "dani",
+    "url": "/editorials/dani.html",
+    "title": "Technicolor Dream",
+    "sub": "Dani · Saturated color and late-night film stills.",
+    "hero": "/assets/images/editorials/dani/Dani_hero.jpg"
+  },
+  {
+    "slug": "bella",
+    "url": "/editorials/bella.html",
+    "title": "Concrete Fever Dream",
+    "sub": "Bella Monroe · Sheats-Goldstein residence.",
+    "hero": "/assets/images/editorials/bellaMonroe/Bella_Monroe_Hero.jpg"
+  },
+  {
+    "slug": "weeses",
+    "url": "/editorials/weeses.html",
+    "title": "Water & Geometry",
+    "sub": "Two figures · Weeses Pieces outdoor studio.",
+    "hero": "/assets/images/editorials/weeses/weeses_09.jpg"
+  },
+  {
+    "slug": "dasha-1",
+    "url": "/editorials/dasha-1.html",
+    "title": "Villa Blanco",
+    "sub": "Dasha Alexandria · Desert minimalism, sharp quiet.",
+    "hero": "/assets/images/editorials/dasha-1/dasha_hero.jpg"
+  }
+]

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Abandoned America — Field Notes | Ric Berryman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #E8DDD1;
+      color: #2E2621;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      padding-bottom: 6rem;
+    }
+
+    /* =========================
+       PROJECT HERO
+       ========================= */
+
+    .fn-hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 4rem 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .fn-hero {
+        padding: 3rem 1.5rem;
+      }
+    }
+
+    .fn-hero-inner {
+      max-width: 680px;
+    }
+
+    .fn-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      margin-bottom: 0.6rem;
+    }
+
+    .fn-title {
+      font-size: clamp(2.8rem, 7vw, 4.4rem);
+      font-weight: 300;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .fn-sub {
+      font-size: 1rem;
+      line-height: 1.9;
+      max-width: 520px;
+      opacity: 0.9;
+    }
+
+    /* =========================
+       META STRIP
+       ========================= */
+
+    .fn-meta {
+      max-width: 1200px;
+      margin: 3.5rem auto 0;
+      padding: 0 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      font-size: 0.85rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    @media (max-width: 900px) {
+      .fn-meta {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+      }
+    }
+
+    /* =========================
+       IMAGE FLOW
+       ========================= */
+
+    .fn-images {
+      max-width: 1400px;
+      margin: 4.5rem auto 0;
+      padding: 0 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 4.5rem;
+    }
+
+    @media (max-width: 900px) {
+      .fn-images {
+        padding: 0 1.5rem;
+        gap: 3.2rem;
+      }
+    }
+
+    .fn-image-block {
+      max-width: 1000px;
+    }
+
+    .fn-image-block.center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .fn-image-block.right {
+      margin-left: auto;
+    }
+
+    .fn-image {
+      width: 100%;
+      display: block;
+      border-radius: 14px;
+    }
+
+    .fn-caption {
+      margin-top: 0.8rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.7;
+    }
+
+    /* =========================
+       TEXT BREAKS
+       ========================= */
+
+    .fn-text {
+      max-width: 620px;
+      font-size: 1rem;
+      line-height: 1.9;
+      opacity: 0.9;
+    }
+
+    /* =========================
+       END NOTE
+       ========================= */
+
+    .fn-end {
+      max-width: 720px;
+      margin: 6rem auto 0;
+      padding: 0 3rem;
+      font-size: 0.9rem;
+      line-height: 1.8;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 900px) {
+      .fn-end {
+        padding: 0 1.5rem;
+      }
+    }
+
+    .fn-back {
+      display: inline-block;
+      margin-top: 2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: inherit;
+      opacity: 0.6;
+    }
+
+    .fn-back:hover {
+      opacity: 1;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Shared nav -->
+  <div id="nav-mount"></div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="fn-hero">
+      <div class="fn-hero-inner">
+        <div class="fn-label">Field Notes</div>
+        <h1 class="fn-title">Abandoned America</h1>
+        <p class="fn-sub">
+          Photographs made over years of driving without a destination. Empty homes,
+          closed motels, desert towns slowly returning to dust. No timeline. No agenda.
+        </p>
+      </div>
+    </section>
+
+    <!-- META -->
+    <section class="fn-meta">
+      <div>California, Nevada</div>
+      <div>2018–Present</div>
+    </section>
+
+    <!-- IMAGES -->
+    <section class="fn-images">
+
+      <div class="fn-image-block center">
+        <img src="assets/images/field-notes/abandoned-01.jpg" alt="" class="fn-image" />
+        <div class="fn-caption">Barstow, CA</div>
+      </div>
+
+      <div class="fn-image-block">
+        <img src="assets/images/field-notes/abandoned-02.jpg" alt="" class="fn-image" />
+      </div>
+
+      <div class="fn-image-block right fn-text">
+        <p>
+          Sometimes the rooms are staged without meaning to be. A chair facing nothing.
+          Curtains still hung. The sense that someone left in a hurry, or simply stopped
+          coming back.
+        </p>
+      </div>
+
+      <div class="fn-image-block center">
+        <img src="assets/images/field-notes/abandoned-03.jpg" alt="" class="fn-image" />
+        <div class="fn-caption">Blythe, CA</div>
+      </div>
+
+      <div class="fn-image-block">
+        <img src="assets/images/field-notes/abandoned-04.jpg" alt="" class="fn-image" />
+      </div>
+
+    </section>
+
+    <!-- END NOTE -->
+    <section class="fn-end">
+      <p>
+        This work continues. Images are added slowly, sometimes years apart.
+      </p>
+
+      <a href="/field-notes.html" class="fn-back">← Back to Field Notes</a>
+    </section>
+
+  </main>
+
+  <script src="assets/js/load-nav.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Richard Berryman | Fashion & Editorial Photographer</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gruppo&family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #E8DDD1;
+      color: #2A1810;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 2rem 3rem;
+      background: transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(232, 221, 209, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 3rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      letter-spacing: 0.3em;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      color: #5C2E1F;
+    }
+
+    .logo:hover {
+      opacity: 0.7;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #5C2E1F;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      transition: all 0.3s;
+      position: relative;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #8B3A2B;
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: zoomPulse 20s ease-in-out infinite alternate;
+    }
+
+    /* HERO TEXT ANIMATION */
+.hero-animate {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+
+.hero-animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* optional: stagger control */
+.hero-stagger-1 {
+  transition-delay: 0.2s;
+}
+.hero-stagger-2 {
+  transition-delay: 0.45s;
+}
+.hero-stagger-3 {
+  transition-delay: 0.7s;
+}
+
+    @keyframes zoomPulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.3));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 2rem;
+      opacity: 0;
+      animation: fadeInUp 1.2s ease-out 0.3s forwards;
+      color: #E8DDD1;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', 'Oswald', 'Impact', sans-serif;
+      font-size: clamp(4rem, 12vw, 10rem);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      line-height: 0.9;
+      text-transform: uppercase;
+      text-shadow: 2px 2px 20px rgba(0,0,0,0.7);
+    }
+
+    .hero p {
+      font-family: 'Gruppo', sans-serif;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      color: #E8DDD1;
+      letter-spacing: 1px;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      text-shadow: 1px 1px 10px rgba(0,0,0,0.5);
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+
+    /* Statement Section */
+    .statement-section {
+      padding: 10rem 3rem;
+      background: linear-gradient(135deg, #5C2E1F, #8B3A2B);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .statement-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -10%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(232, 221, 209, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .statement-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .statement-content h2 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      line-height: 1.4;
+      color: #E8DDD1;
+      margin-bottom: 2rem;
+    }
+
+    .statement-content h2 .bold {
+      font-weight: 800;
+      display: block;
+      margin-top: 1rem;
+    }
+
+    .statement-content p {
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+      line-height: 1.8;
+      color: #E8DDD1;
+      opacity: 0.9;
+      font-style: italic;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 2.5rem;
+      border: 2px solid #E8DDD1;
+      background: transparent;
+      color: #E8DDD1;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: #E8DDD1;
+      transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: -1;
+    }
+
+    .cta-btn:hover::before {
+      left: 0;
+    }
+
+    .cta-btn:hover {
+      color: #5C2E1F;
+    }
+
+    /* Page Display Control */
+    .editorial-page,
+    .category-page,
+    .shoot-detail-page {
+      display: none;
+    }
+
+    .editorial-page.active,
+    .category-page.active,
+    .shoot-detail-page.active {
+      display: block;
+    }
+
+    #home-page {
+      display: block;
+    }
+
+    /* Scroll-Triggered Portfolio Carousel */
+    .portfolio-section {
+      height: 300vh; /* Reduced from 500vh for faster scrolling when going up. Adjust as needed for pacing. */
+      position: relative;
+      transition: height 0.6s ease-out;
+      background: linear-gradient(180deg, #E8DDD1 0%, #D4C4B0 100%);
+    }
+
+    .portfolio-section.static {
+      height: 100vh;
+    }
+
+    .carousel-container {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+    }
+
+    .carousel-card {
+      position: relative;
+      width: 100%;
+      max-width: 95vw;
+      height: 85vh; /* Reduced from 85vh for more rectangular look */
+      background: #fff;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
+                  0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .carousel-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2),
+                  0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .carousel-nav {
+      position: absolute;
+      bottom: 6rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 2rem;
+      z-index: 100;
+    }
+
+    .carousel-arrow {
+      width: 60px;
+      height: 60px;
+      border: 2px solid #E8DDD1;
+      background: rgba(92, 46, 31, 0.85);
+      backdrop-filter: blur(10px);
+      color: #E8DDD1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 1.5rem;
+      border-radius: 50%;
+      font-weight: 300;
+    }
+
+    .carousel-arrow:hover {
+      background: rgba(139, 58, 43, 0.95);
+      transform: scale(1.1);
+      border-color: #8B3A2B;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    .carousel-arrow:active {
+      transform: scale(0.95);
+    }
+
+    .carousel-arrow.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      opacity: 0;
+      filter: blur(20px); /* Starts blurry */
+      transform: scale(1.05); /* Slightly zoomed in */
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                  filter 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                  transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      top: 0;
+      left: 0;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+      filter: blur(0); /* Comes into focus */
+      transform: scale(1); /* Settles to normal size */
+      pointer-events: all;
+    }
+
+    .slide-image {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .slide-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .slide-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .slide-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 6rem;
+      background: #E8DDD1;
+    }
+
+    .slide-category {
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      color: #8B3A2B;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .slide-title {
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin-bottom: 2rem;
+      line-height: 0.9;
+      color: #5C2E1F;
+      text-transform: uppercase;
+    }
+
+    .slide-title .accent {
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      display: block;
+      color: #8B3A2B;
+    }
+
+    .slide-description {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #5C2E1F;
+      margin-bottom: 3rem;
+      opacity: 0.8;
+    }
+
+    .slide-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 2rem;
+      border: 2px solid #5C2E1F;
+      background: transparent;
+      color: #5C2E1F;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-decoration: none;
+      align-self: flex-start;
+    }
+
+    .slide-btn:hover {
+      background: #5C2E1F;
+      color: #E8DDD1;
+    }
+
+    .scroll-progress {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 1rem;
+      z-index: 100;
+    }
+
+    .progress-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid #5C2E1F;
+      background: transparent;
+      transition: all 0.3s;
+    }
+
+    .progress-dot.active {
+      background: #5C2E1F;
+      transform: scale(1.3);
+    }
+
+    /* Category Page Styles */
+    .category-page {
+      display: none;
+      padding: 8rem 0 4rem;
+      background: #E8DDD1;
+      min-height: 100vh;
+    }
+
+    .category-page.active {
+      display: block;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .category-header {
+      text-align: center;
+      padding: 0 3rem;
+      margin-bottom: 6rem;
+    }
+
+    .category-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #8B3A2B;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      margin-bottom: 3rem;
+      transition: color 0.3s;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .category-back:hover {
+      color: #5C2E1F;
+    }
+
+    .category-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      color: #5C2E1F;
+      text-transform: uppercase;
+    }
+
+    .category-subtitle {
+      font-size: 1.2rem;
+      color: #8B3A2B;
+      letter-spacing: 0.1em;
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .shoots-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 3rem;
+    }
+
+    .shoot-card {
+      position: relative;
+      aspect-ratio: 3/4;
+      border-radius: 30px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .shoot-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .shoot-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .shoot-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .shoot-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(92, 46, 31, 0.95), rgba(92, 46, 31, 0.4) 50%, transparent);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2.5rem;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .shoot-card:hover .shoot-card-overlay {
+      opacity: 1;
+    }
+
+    .shoot-card-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #E8DDD1;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .shoot-card-info {
+      font-size: 0.9rem;
+      color: #E8DDD1;
+      opacity: 0.8;
+      letter-spacing: 0.1em;
+    }
+
+    /* Individual Shoot Detail Page */
+    .shoot-detail-page {
+      display: none;
+      padding: 0;
+      background: #E8DDD1;
+      min-height: 250vh; /* Tall height for sticky scroll effect - similar to carousel */
+    }
+
+    .shoot-detail-page.active {
+      display: block;
+      animation: fadeIn 0.5s;
+    }
+
+    .shoot-detail-header {
+      text-align: center;
+      padding: 8rem 3rem 6rem;
+      margin-bottom: 0;
+      background: #E8DDD1;
+    }
+
+    .shoot-detail-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #8B3A2B;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 0.85rem;
+      margin-bottom: 3rem;
+      transition: color 0.3s;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .shoot-detail-back:hover {
+      color: #5C2E1F;
+    }
+
+    .shoot-detail-title {
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      color: #5C2E1F;
+      text-transform: uppercase;
+    }
+
+    .shoot-detail-subtitle {
+      font-size: 1.2rem;
+      color: #8B3A2B;
+      letter-spacing: 0.1em;
+      font-style: italic;
+    }
+
+    .shoot-detail-meta {
+      display: flex;
+      gap: 4rem;
+      margin-top: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid #D4C4B0;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .meta-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #8B3A2B;
+      font-weight: 600;
+    }
+
+    .meta-value {
+      font-size: 1.1rem;
+      color: #2A1810;
+      font-weight: 400;
+    }
+
+    .shoot-detail-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 3rem 8rem;
+      display: flex;
+      flex-direction: column;
+      gap: 8rem; /* Increased spacing for sticky scroll effect */
+    }
+
+    .shoot-detail-image {
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(100px) scale(0.95);
+      transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .shoot-detail-image.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .shoot-detail-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .shoot-detail-image.large {
+      max-width: 100%;
+    }
+
+    .shoot-detail-image.medium {
+      max-width: 80%;
+      margin: 0 auto;
+    }
+
+    .shoot-detail-image.small {
+      max-width: 60%;
+      margin: 0 auto;
+    }
+
+    .shoot-detail-text {
+      max-width: 800px;
+      margin: 6rem auto;
+      padding: 0 3rem;
+      text-align: center;
+    }
+
+    .shoot-detail-text h3 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      color: #5C2E1F;
+      text-transform: uppercase;
+    }
+
+    .shoot-detail-text p {
+      font-size: 1.3rem;
+      line-height: 2;
+      color: #5C2E1F;
+      opacity: 0.8;
+    }
+
+    /* About Section */
+    .about {
+      padding: 8rem 3rem;
+      background: #F5EFE7;
+    }
+
+    .about-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      color: #5C2E1F;
+      text-transform: uppercase;
+    }
+
+    .about-text p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #5C2E1F;
+      margin-bottom: 1.5rem;
+      opacity: 0.8;
+    }
+
+    .stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: #8B3A2B;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      color: #5C2E1F;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .about-image {
+      height: 700px;
+      border-radius: 30px;
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 8rem 3rem;
+      background: #E8DDD1;
+    }
+
+    .contact-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .contact h2 {
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      color: #5C2E1F;
+      text-transform: uppercase;
+    }
+
+    .contact p {
+      font-size: 1.2rem;
+      color: #5C2E1F;
+      opacity: 0.8;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      margin-bottom: 3rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #5C2E1F;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.85rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: 2px solid #D4C4B0;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: 'Montserrat', sans-serif;
+      background: #FDFCFB;
+      color: #2A1810;
+      transition: all 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #8B3A2B;
+      background: white;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%235C2E1F' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1.5rem center;
+      padding-right: 3rem;
+    }
+
+    .contact-btn {
+      width: 100%;
+      padding: 1.5rem 3rem;
+      background: #5C2E1F;
+      color: #E8DDD1;
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    .contact-btn:hover {
+      background: #8B3A2B;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(92, 46, 31, 0.3);
+    }
+
+    .contact-info {
+      display: flex;
+      gap: 3rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: #5C2E1F;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+
+    .contact-link:hover {
+      color: #8B3A2B;
+    }
+
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .contact-form {
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 2px solid #D4C4B0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #8B3A2B;
+      font-size: 0.9rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: #E8DDD1;
+    }
+
+    footer a {
+      color: #8B3A2B;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      color: #5C2E1F;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .nav-links {
+        display: none;
+      }
+
+      .carousel-container {
+        padding: 1.5rem;
+      }
+
+      .carousel-card {
+        border-radius: 20px;
+        height: 75vh; /* Reduced for more rectangular look on mobile */
+      }
+
+      .carousel-slide {
+        grid-template-columns: 1fr;
+      }
+
+      .slide-content {
+        padding: 3rem 2rem;
+      }
+
+      .slide-image {
+        height: 50vh;
+      }
+
+      .about-container {
+        grid-template-columns: 1fr;
+      }
+
+      .about-image {
+        height: 500px;
+      }
+
+      .stats {
+        justify-content: center;
+      }
+    }
+  
+    /* PARALLAX SECTION */
+    .parallax-section {
+      position: relative;
+      height: 90vh;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #E8DDD1;
+      text-align: center;
+      padding: 3rem;
+    }
+
+    .parallax-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35); /* dark mood overlay */
+    }
+
+    .parallax-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .parallax-content h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      letter-spacing: 0.05em;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .parallax-content p {
+      font-family: 'Gruppo', sans-serif;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      letter-spacing: 0.1em;
+    }
+
+</style>
+</head>
+<body>
+
+  <nav id="nav">
+    <div class="nav-container">
+      <ul class="nav-links">
+        <li><a href="#" onclick="showHome()" class="active">Home</a></li>
+        <li><a href="#" onclick="showCategory('fashion')">Fashion</a></li>
+        <li><a href="#" onclick="showCategory('dance')">Dance</a></li>
+        <li><a href="#" onclick="showCategory('desert')">Desert</a></li>
+        <li><a href="#" onclick="showCategory('portrait')">Portrait</a></li>
+        <li><a href="#about" onclick="scrollToSection('about')">About</a></li>
+        <li><a href="#contact" onclick="scrollToSection('contact')">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HOME PAGE -->
+  <div id="home-page">
+    <section id="hero" class="hero">
+      <img src="assets/images/hero.jpg" alt="Hero" class="hero-bg">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>RIC BERRYMAN</h1>
+        <p>Fashion & Editorial Photography</p>
+        <button class="cta-btn" onclick="document.querySelector('.statement-section').scrollIntoView({behavior: 'smooth'})">
+          VIEW WORK
+          <span>→</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="statement-section">
+      <div class="statement-content">
+        <h2>
+          High fashion. Raw beauty.
+          <span class="bold">UNAPOLOGETIC VISION.</span>
+        </h2>
+        <p>Editorial fashion meets forgotten landscapes. Where bold aesthetics collide with untamed spaces.</p>
+      </div>
+    </section>
+    <!-- PARALLAX SECTION -->
+    <section 
+      class="parallax-section" 
+      style="background-image: url('assets/images/desert.jpg');"
+    >
+      <div class="parallax-content">
+        <h2>DESERT VISION</h2>
+        <p>Where fashion meets the wild. Cinematic. Raw. Unfiltered.</p>
+      </div>
+    </section>
+
+
+    <section class="portfolio-section" id="portfolio-section">
+      <div class="carousel-container">
+        <div class="carousel-card">
+        
+        <!-- Slide 1: Fashion Editorial -->
+        <div class="carousel-slide active" data-slide="0">
+          <div class="slide-image" onclick="showCategory('fashion')">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1200&h=1600&fit=crop" alt="Fashion Editorial">
+          </div>
+          <div class="slide-content">
+            <div class="slide-category">Editorial</div>
+            <h3 class="slide-title">
+              FASHION
+              <span class="accent">Editorial</span>
+            </h3>
+            <p class="slide-description">High-fashion editorial shoots that push creative boundaries. Bold concepts, striking visuals, and avant-garde styling that define modern fashion photography.</p>
+            <button class="slide-btn" onclick="showCategory('fashion')">
+              VIEW PROJECT
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Slide 2: Dance -->
+        <div class="carousel-slide" data-slide="1">
+          <div class="slide-image" onclick="showCategory('dance')">
+            <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=1200&h=1600&fit=crop" alt="Dance">
+          </div>
+          <div class="slide-content">
+            <div class="slide-category">Movement</div>
+            <h3 class="slide-title">
+              DANCE
+              <span class="accent">Series</span>
+            </h3>
+            <p class="slide-description">Capturing the grace, power, and emotion of movement. Every frame tells a story of expression, fluidity, and the beauty of the human form in motion.</p>
+            <button class="slide-btn" onclick="showCategory('dance')">
+              VIEW PROJECT
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Slide 3: Desert -->
+        <div class="carousel-slide" data-slide="2">
+          <div class="slide-image" onclick="showCategory('desert')">
+            <img src="assets/images/desert.jpg" alt="Desert">
+          </div>
+          <div class="slide-content">
+            <div class="slide-category">Location</div>
+            <h3 class="slide-title">
+              DESERT
+              <span class="accent">Dreams</span>
+            </h3>
+            <p class="slide-description">A stunning series shot in vast desert landscapes. Minimalist compositions meet dramatic natural lighting, creating ethereal and timeless imagery.</p>
+            <button class="slide-btn" onclick="showCategory('desert')">
+              VIEW PROJECT
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Slide 4: Portrait -->
+        <div class="carousel-slide" data-slide="3">
+          <div class="slide-image" onclick="showCategory('portrait')">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&h=1600&fit=crop" alt="Portrait">
+          </div>
+          <div class="slide-content">
+            <div class="slide-category">Intimate</div>
+            <h3 class="slide-title">
+              PORTRAIT
+              <span class="accent">Stories</span>
+            </h3>
+            <p class="slide-description">Intimate portrait sessions that reveal authentic emotion and personality. Natural light, genuine moments, and connections that transcend the frame.</p>
+            <button class="slide-btn" onclick="showCategory('portrait')">
+              VIEW PROJECT
+              <span>→</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Manual Navigation Arrows -->
+        <div class="carousel-nav">
+          <div class="carousel-arrow carousel-prev" onclick="navigateCarousel(-1)">←</div>
+          <div class="carousel-arrow carousel-next" onclick="navigateCarousel(1)">→</div>
+        </div>
+
+        <div class="scroll-progress">
+          <div class="progress-dot active" data-dot="0"></div>
+          <div class="progress-dot" data-dot="1"></div>
+          <div class="progress-dot" data-dot="2"></div>
+          <div class="progress-dot" data-dot="3"></div>
+        </div>
+
+        </div> <!-- Close carousel-card -->
+      </div> <!-- Close carousel-container -->
+    </section>
+
+    <section id="about" class="about">
+      <div class="about-container">
+        <div class="about-text">
+          <h2>ABOUT ME</h2>
+          <p>With over a decade of experience in fashion and portrait photography, I specialize in capturing the essence of individuality and style. My work has been featured in leading fashion magazines and exhibited internationally.</p>
+          <p>I believe every photograph tells a story, and my mission is to create images that are not just seen, but felt. Through careful composition, lighting, and connection with my subjects, I craft visual narratives that resonate.</p>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-number">10+</div>
+              <div class="stat-label">Years</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Projects</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Awards</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=1200&fit=crop" alt="Photographer">
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="contact-container">
+        <div class="contact-header">
+          <h2>LET'S CREATE</h2>
+          <p>Ready to bring your vision to life? Get in touch to discuss your next project.</p>
+        </div>
+
+        <form class="contact-form" action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required placeholder="Your Name">
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="project-type">Project Type</label>
+            <select id="project-type" name="project-type" required>
+              <option value="">Select a project type...</option>
+              <option value="fashion">Fashion Editorial</option>
+              <option value="portrait">Portrait Session</option>
+              <option value="dance">Dance Photography</option>
+              <option value="creative">Creative Collaboration</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="6" required placeholder="Tell me about your project..."></textarea>
+          </div>
+
+          <button type="submit" class="contact-btn">SEND MESSAGE</button>
+        </form>
+
+        <div class="contact-info">
+          <a href="mailto:ricberrymanphoto@outlook.com" class="contact-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            ricberrymanphoto@outlook.com
+          </a>
+          <a href="https://instagram.com/whatshisfacedo" target="_blank" class="contact-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            @whatshisfacedo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>© 2025 Richard Berryman. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#" onclick="showCategory('fashion')">Fashion</a>
+        <a href="#" onclick="showCategory('dance')">Dance</a>
+        <a href="#" onclick="showCategory('desert')">Desert</a>
+        <a href="#" onclick="showCategory('portrait')">Portrait</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- CATEGORY PAGES -->
+  
+  <!-- Fashion Category -->
+  <div id="fashion-category" class="category-page">
+    <div class="category-header">
+      <div class="category-back" onclick="showHome()">← BACK TO HOME</div>
+      <h1 class="category-title">FASHION EDITORIAL</h1>
+      <p class="category-subtitle">High-fashion editorial shoots that push creative boundaries and define modern fashion photography.</p>
+    </div>
+
+    <div class="shoots-grid">
+      <div class="shoot-card" onclick="showShootDetail('urban-elegance')">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&h=1200&fit=crop" alt="Urban Elegance">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Urban Elegance</h3>
+          <p class="shoot-card-info">Spring 2024 | New York</p>
+        </div>
+      </div>
+
+      <div class="shoot-card" onclick="showShootDetail('avant-garde')">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=1200&fit=crop" alt="Avant Garde">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Avant Garde</h3>
+          <p class="shoot-card-info">Fall 2024 | London</p>
+        </div>
+      </div>
+
+      <div class="shoot-card" onclick="showShootDetail('monochrome')">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&h=1200&fit=crop" alt="Monochrome">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Monochrome</h3>
+          <p class="shoot-card-info">Summer 2024 | Paris</p>
+        </div>
+      </div>
+
+      <div class="shoot-card" onclick="showShootDetail('editorial-nights')">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=1200&fit=crop" alt="Editorial Nights">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Editorial Nights</h3>
+          <p class="shoot-card-info">Winter 2024 | Milan</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dance Category -->
+  <div id="dance-category" class="category-page">
+    <div class="category-header">
+      <div class="category-back" onclick="showHome()">← BACK TO HOME</div>
+      <h1 class="category-title">DANCE SERIES</h1>
+      <p class="category-subtitle">Capturing the grace, power, and emotion of movement in stunning visual narratives.</p>
+    </div>
+
+    <div class="shoots-grid">
+      <div class="shoot-card" onclick="showShootDetail('ballet-grace')">
+        <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&h=1200&fit=crop" alt="Ballet Grace">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Ballet Grace</h3>
+          <p class="shoot-card-info">Contemporary | Studio</p>
+        </div>
+      </div>
+
+      <div class="shoot-card" onclick="showShootDetail('urban-movement')">
+        <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=800&h=1200&fit=crop" alt="Urban Movement">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Urban Movement</h3>
+          <p class="shoot-card-info">Hip Hop | Street</p>
+        </div>
+      </div>
+
+      <div class="shoot-card" onclick="showShootDetail('fluid-motion')">
+        <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=800&h=1200&fit=crop" alt="Fluid Motion">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Fluid Motion</h3>
+          <p class="shoot-card-info">Modern | Outdoor</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Desert Category -->
+  <div id="desert-category" class="category-page">
+    <div class="category-header">
+      <div class="category-back" onclick="showHome()">← BACK TO HOME</div>
+      <h1 class="category-title">DESERT DREAMS</h1>
+      <p class="category-subtitle">Minimalist compositions meet dramatic natural lighting in vast desert landscapes.</p>
+    </div>
+
+    <div class="shoots-grid">
+      <div class="shoot-card" onclick="showShootDetail('golden-sands')">
+        <img src="assets/images/desert.jpg" alt="Golden Sands">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Golden Sands</h3>
+          <p class="shoot-card-info">Joshua Tree | California</p>
+        </div>
+      </div>
+
+      <div class="shoot-card" onclick="showShootDetail('desert-noir')">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=1200&fit=crop" alt="Desert Noir">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Desert Noir</h3>
+          <p class="shoot-card-info">Mojave | Nevada</p>
+        </div>
+      </div>
+
+      <div class="shoot-card" onclick="showShootDetail('ethereal-dunes')">
+        <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=800&h=1200&fit=crop" alt="Ethereal Dunes">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Ethereal Dunes</h3>
+          <p class="shoot-card-info">White Sands | New Mexico</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Portrait Category -->
+  <div id="portrait-category" class="category-page">
+    <div class="category-header">
+      <div class="category-back" onclick="showHome()">← BACK TO HOME</div>
+      <h1 class="category-title">PORTRAIT STORIES</h1>
+      <p class="category-subtitle">Intimate portrait sessions that reveal authentic emotion and personality.</p>
+    </div>
+
+    <div class="shoots-grid">
+      <div class="shoot-card" onclick="showShootDetail('natural-light')">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&h=1200&fit=crop" alt="Natural Light">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Natural Light</h3>
+          <p class="shoot-card-info">Golden Hour | Outdoor</p>
+        </div>
+      </div>
+
+      <div class="shoot-card" onclick="showShootDetail('studio-portraits')">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&h=1200&fit=crop" alt="Studio Portraits">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Studio Portraits</h3>
+          <p class="shoot-card-info">Contemporary | Studio</p>
+        </div>
+      </div>
+
+      <div class="shoot-card" onclick="showShootDetail('authentic-moments')">
+        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=800&h=1200&fit=crop" alt="Authentic Moments">
+        <div class="shoot-card-overlay">
+          <h3 class="shoot-card-title">Authentic Moments</h3>
+          <p class="shoot-card-info">Lifestyle | Documentary</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INDIVIDUAL SHOOT DETAIL PAGES -->
+  
+  <!-- Example: Urban Elegance Shoot Detail -->
+  <div id="fashion-page" class="editorial-page">
+    <div class="editorial-header">
+      <a href="#" class="editorial-back" onclick="showHome()">← BACK TO HOME</a>
+      <h1 class="editorial-title">FASHION EDITORIAL</h1>
+      <p class="editorial-subtitle">High Fashion | Editorial | 2024</p>
+    </div>
+
+    <div class="editorial-grid">
+      <div class="editorial-image large">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1200&h=1600&fit=crop" alt="Fashion 1">
+      </div>
+
+      <div class="editorial-text">
+        <p>A bold exploration of contemporary fashion through striking visuals and avant-garde styling. Each image pushes the boundaries of traditional editorial work.</p>
+      </div>
+
+      <div class="editorial-image medium">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1000&h=1400&fit=crop" alt="Fashion 2">
+      </div>
+
+      <div class="editorial-image large">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&h=800&fit=crop" alt="Fashion 3">
+      </div>
+
+      <div class="editorial-image small">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&h=1200&fit=crop" alt="Fashion 4">
+      </div>
+    </div>
+  </div>
+
+  <div id="dance-page" class="editorial-page">
+    <div class="editorial-header">
+      <a href="#" class="editorial-back" onclick="showHome()">← BACK TO HOME</a>
+      <h1 class="editorial-title">DANCE SERIES</h1>
+      <p class="editorial-subtitle">Movement | Expression | 2024</p>
+    </div>
+
+    <div class="editorial-grid">
+      <div class="editorial-image large">
+        <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=1200&h=1600&fit=crop" alt="Dance 1">
+      </div>
+
+      <div class="editorial-text">
+        <p>Capturing the poetry of movement. Every gesture, every leap, frozen in time yet alive with energy and emotion.</p>
+      </div>
+
+      <div class="editorial-image medium">
+        <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=1000&h=1400&fit=crop" alt="Dance 2">
+      </div>
+
+      <div class="editorial-image small">
+        <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=800&h=1200&fit=crop" alt="Dance 3">
+      </div>
+    </div>
+  </div>
+
+  <div id="desert-page" class="editorial-page">
+    <div class="editorial-header">
+      <a href="#" class="editorial-back" onclick="showHome()">← BACK TO HOME</a>
+      <h1 class="editorial-title">DESERT DREAMS</h1>
+      <p class="editorial-subtitle">Landscape | Fashion | 2024</p>
+    </div>
+
+    <div class="editorial-grid">
+      <div class="editorial-image large">
+        <img src="assets/images/desert.jpg" alt="Desert 1">
+      </div>
+
+      <div class="editorial-text">
+        <p>Minimalist beauty meets dramatic landscapes. Each frame captures the raw elegance of desert solitude.</p>
+      </div>
+
+      <div class="editorial-image medium">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1000&h=1400&fit=crop" alt="Desert 2">
+      </div>
+    </div>
+  </div>
+
+  <div id="portrait-page" class="editorial-page">
+    <div class="editorial-header">
+      <a href="#" class="editorial-back" onclick="showHome()">← BACK TO HOME</a>
+      <h1 class="editorial-title">PORTRAIT STORIES</h1>
+      <p class="editorial-subtitle">Intimate | Personal | 2024</p>
+    </div>
+
+    <div class="editorial-grid">
+      <div class="editorial-image large">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&h=1600&fit=crop" alt="Portrait 1">
+      </div>
+
+      <div class="editorial-text">
+        <p>Authentic moments that reveal the soul. Portrait photography that connects deeply with genuine emotion.</p>
+      </div>
+
+      <div class="editorial-image medium">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1000&h=1400&fit=crop" alt="Portrait 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOOT DETAIL PAGES -->
+  
+  <!-- Urban Elegance Detail -->
+  <div id="urban-elegance-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('fashion')">← BACK TO FASHION</div>
+      <h1 class="shoot-detail-title">Urban Elegance</h1>
+      <p class="shoot-detail-subtitle">Spring 2024 | New York City</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Client</span>
+          <span class="meta-value">Vogue Magazine</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">Manhattan, NYC</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Fashion Editorial</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1400&h=1800&fit=crop" alt="Urban Elegance 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>The Story</h3>
+        <p>A celebration of contemporary urban fashion against the iconic backdrop of New York City. This editorial explores the intersection of high fashion and metropolitan architecture, creating striking visual narratives that capture the essence of modern elegance.</p>
+      </div>
+
+      <div class="shoot-detail-image medium">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&h=1600&fit=crop" alt="Urban Elegance 2">
+      </div>
+
+      <div class="shoot-detail-image medium">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&h=800&fit=crop" alt="Urban Elegance 3">
+      </div>
+
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&h=1800&fit=crop" alt="Urban Elegance 4">
+      </div>
+    </div>
+  </div>
+
+  <!-- Avant Garde Detail -->
+  <div id="avant-garde-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('fashion')">← BACK TO FASHION</div>
+      <h1 class="shoot-detail-title">Avant Garde</h1>
+      <p class="shoot-detail-subtitle">Fall 2024 | London</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Client</span>
+          <span class="meta-value">Harper's Bazaar</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">East London Studios</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Avant-Garde Fashion</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1400&h=1800&fit=crop" alt="Avant Garde 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Concept</h3>
+        <p>Pushing the boundaries of contemporary fashion with bold, experimental designs and unconventional styling. This series challenges traditional aesthetics through dramatic compositions and cutting-edge creative direction.</p>
+      </div>
+
+      <div class="shoot-detail-image small">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1000&h=1400&fit=crop" alt="Avant Garde 2">
+      </div>
+
+      <div class="shoot-detail-image small">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1000&h=1400&fit=crop" alt="Avant Garde 3">
+      </div>
+    </div>
+  </div>
+
+  <!-- Monochrome Detail -->
+  <div id="monochrome-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('fashion')">← BACK TO FASHION</div>
+      <h1 class="shoot-detail-title">Monochrome</h1>
+      <p class="shoot-detail-subtitle">Summer 2024 | Paris</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Client</span>
+          <span class="meta-value">Elle France</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">Marais District, Paris</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Black & White Editorial</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1400&h=900&fit=crop" alt="Monochrome 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Vision</h3>
+        <p>A timeless exploration of form, light, and shadow captured in stunning black and white. This series celebrates the classic elegance of monochromatic photography while bringing a modern sensibility to editorial fashion.</p>
+      </div>
+
+      <div class="shoot-detail-image medium">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1200&h=1600&fit=crop" alt="Monochrome 2">
+      </div>
+
+      <div class="shoot-detail-image medium">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&h=1600&fit=crop" alt="Monochrome 3">
+      </div>
+    </div>
+  </div>
+
+  <!-- Editorial Nights Detail -->
+  <div id="editorial-nights-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('fashion')">← BACK TO FASHION</div>
+      <h1 class="shoot-detail-title">Editorial Nights</h1>
+      <p class="shoot-detail-subtitle">Winter 2024 | Milan</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Client</span>
+          <span class="meta-value">Vanity Fair Italy</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">Milan Fashion District</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Night Fashion</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&h=1800&fit=crop" alt="Editorial Nights 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Atmosphere</h3>
+        <p>Capturing the drama and sophistication of high fashion in the nocturnal urban landscape. Moody lighting and dramatic compositions create an intoxicating visual experience.</p>
+      </div>
+
+      <div class="shoot-detail-image small">
+        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1000&h=1400&fit=crop" alt="Editorial Nights 2">
+      </div>
+
+      <div class="shoot-detail-image small">
+        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=1000&h=1400&fit=crop" alt="Editorial Nights 3">
+      </div>
+    </div>
+  </div>
+
+  <!-- Ballet Grace Detail (Dance Category) -->
+  <div id="ballet-grace-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('dance')">← BACK TO DANCE</div>
+      <h1 class="shoot-detail-title">Ballet Grace</h1>
+      <p class="shoot-detail-subtitle">Classical Dance Series | 2024</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Dancer</span>
+          <span class="meta-value">New York Ballet Company</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">Lincoln Center</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Dance Photography</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=1400&h=1800&fit=crop" alt="Ballet Grace 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Movement</h3>
+        <p>An intimate exploration of classical ballet's timeless elegance. Each frame captures the precision, strength, and ethereal beauty of ballet at its finest.</p>
+      </div>
+
+      <div class="shoot-detail-image medium">
+        <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=1200&h=1600&fit=crop" alt="Ballet Grace 2">
+      </div>
+
+      <div class="shoot-detail-image small">
+        <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=1000&h=1400&fit=crop" alt="Ballet Grace 3">
+      </div>
+    </div>
+  </div>
+
+  <!-- Add more shoot detail pages for other shoots... -->
+
+  <!-- Urban Movement Detail (Dance) -->
+  <div id="urban-movement-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('dance')">← BACK TO DANCE</div>
+      <h1 class="shoot-detail-title">Urban Movement</h1>
+      <p class="shoot-detail-subtitle">Street Dance Series | 2024</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Collective</span>
+          <span class="meta-value">Urban Soul Crew</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">Brooklyn, NYC</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Hip Hop Dance</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=1400&h=1800&fit=crop" alt="Urban Movement 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Energy</h3>
+        <p>Raw energy meets urban sophistication in this explosive dance series. Capturing the power and artistry of street dance culture.</p>
+      </div>
+
+      <div class="shoot-detail-image medium">
+        <img src="https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=1200&h=1600&fit=crop" alt="Urban Movement 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Fluid Motion Detail (Dance) -->
+  <div id="fluid-motion-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('dance')">← BACK TO DANCE</div>
+      <h1 class="shoot-detail-title">Fluid Motion</h1>
+      <p class="shoot-detail-subtitle">Contemporary Dance | 2024</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">Alvin Ailey American Dance Theater</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">New York</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Contemporary Dance</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1547153760-18fc86324498?w=1400&h=1800&fit=crop" alt="Fluid Motion 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Expression</h3>
+        <p>A visual poetry of movement and emotion. Contemporary dance captured in its most expressive and fluid form.</p>
+      </div>
+
+      <div class="shoot-detail-image small">
+        <img src="https://images.unsplash.com/photo-1518834107812-67b0b7c58434?w=1000&h=1400&fit=crop" alt="Fluid Motion 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Golden Sands Detail (Desert) -->
+  <div id="golden-sands-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('desert')">← BACK TO DESERT</div>
+      <h1 class="shoot-detail-title">Golden Sands</h1>
+      <p class="shoot-detail-subtitle">Desert Fashion | 2024</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Publication</span>
+          <span class="meta-value">Architectural Digest</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">Sahara Desert, Morocco</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Location Fashion</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1509233725247-49e657c54213?w=1400&h=900&fit=crop" alt="Golden Sands 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Landscape</h3>
+        <p>Where fashion meets the timeless beauty of the desert. A stunning series celebrating minimalism against nature's most dramatic backdrop.</p>
+      </div>
+
+      <div class="shoot-detail-image medium">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=1600&fit=crop" alt="Golden Sands 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Desert Noir Detail (Desert) -->
+  <div id="desert-noir-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('desert')">← BACK TO DESERT</div>
+      <h1 class="shoot-detail-title">Desert Noir</h1>
+      <p class="shoot-detail-subtitle">Moody Desert Series | 2024</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Client</span>
+          <span class="meta-value">W Magazine</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">Joshua Tree, California</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Fine Art Fashion</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&h=1800&fit=crop" alt="Desert Noir 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Mystique</h3>
+        <p>Dark, moody, and mysterious. This series explores the darker side of desert beauty with dramatic lighting and brooding compositions.</p>
+      </div>
+
+      <div class="shoot-detail-image small">
+        <img src="https://images.unsplash.com/photo-1509233725247-49e657c54213?w=1000&h=1400&fit=crop" alt="Desert Noir 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Ethereal Dunes Detail (Desert) -->
+  <div id="ethereal-dunes-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('desert')">← BACK TO DESERT</div>
+      <h1 class="shoot-detail-title">Ethereal Dunes</h1>
+      <p class="shoot-detail-subtitle">Surreal Desert Landscapes | 2024</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Magazine</span>
+          <span class="meta-value">National Geographic Style</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">White Sands, New Mexico</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Artistic Fashion</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1509233725247-49e657c54213?w=1400&h=900&fit=crop" alt="Ethereal Dunes 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Dreamscape</h3>
+        <p>An otherworldly journey through pristine white sand dunes. Fashion photography that feels like walking through a dream.</p>
+      </div>
+
+      <div class="shoot-detail-image medium">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&h=1600&fit=crop" alt="Ethereal Dunes 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Natural Light Detail (Portrait) -->
+  <div id="natural-light-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('portrait')">← BACK TO PORTRAIT</div>
+      <h1 class="shoot-detail-title">Natural Light</h1>
+      <p class="shoot-detail-subtitle">Golden Hour Portraits | 2024</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Series</span>
+          <span class="meta-value">Intimate Portraits</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">California Coast</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Environmental Portrait</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1400&h=1800&fit=crop" alt="Natural Light 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Authenticity</h3>
+        <p>Pure, natural beauty captured in soft golden light. These portraits celebrate genuine moments and authentic emotion.</p>
+      </div>
+
+      <div class="shoot-detail-image medium">
+        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=1200&h=1600&fit=crop" alt="Natural Light 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Studio Portraits Detail (Portrait) -->
+  <div id="studio-portraits-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('portrait')">← BACK TO PORTRAIT</div>
+      <h1 class="shoot-detail-title">Studio Portraits</h1>
+      <p class="shoot-detail-subtitle">Contemporary Studio Work | 2024</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Type</span>
+          <span class="meta-value">Fashion Portrait</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">New York Studio</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Studio Portrait</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=1400&h=1800&fit=crop" alt="Studio Portraits 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Precision</h3>
+        <p>Clean, controlled lighting and meticulous attention to detail. Studio portraits that showcase contemporary elegance.</p>
+      </div>
+
+      <div class="shoot-detail-image small">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1000&h=1400&fit=crop" alt="Studio Portraits 2">
+      </div>
+    </div>
+  </div>
+
+  <!-- Authentic Moments Detail (Portrait) -->
+  <div id="authentic-moments-detail" class="shoot-detail-page">
+    <div class="shoot-detail-header">
+      <div class="shoot-detail-back" onclick="showCategory('portrait')">← BACK TO PORTRAIT</div>
+      <h1 class="shoot-detail-title">Authentic Moments</h1>
+      <p class="shoot-detail-subtitle">Lifestyle Documentary | 2024</p>
+      
+      <div class="shoot-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Style</span>
+          <span class="meta-value">Documentary Portrait</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">Various</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">Lifestyle Portrait</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="shoot-detail-grid">
+      <div class="shoot-detail-image large">
+        <img src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?w=1400&h=1800&fit=crop" alt="Authentic Moments 1">
+      </div>
+
+      <div class="shoot-detail-text">
+        <h3>Real Life</h3>
+        <p>Candid, unposed moments that reveal true character. Documentary-style portraits that tell authentic human stories.</p>
+      </div>
+
+      <div class="shoot-detail-image medium">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=1200&h=1600&fit=crop" alt="Authentic Moments 2">
+      </div>
+    </div>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    // Navigation scroll effect
+    const nav = document.getElementById('nav');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    // Scroll-triggered carousel
+    const portfolioSection = document.getElementById('portfolio-section');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const progressDots = document.querySelectorAll('.progress-dot');
+    const prevBtn = document.querySelector('.carousel-prev');
+    const nextBtn = document.querySelector('.carousel-next');
+    const totalSlides = slides.length;
+
+    let currentSlide = 0;
+    let lastScrollY = 0;
+    let isScrollingDown = true;
+    let carouselExperienced = false; // Track if user has left the carousel section
+    let hasEnteredCarousel = false; // Track if user has entered the carousel at least once
+
+    function updateCarousel(scrollProgress) {
+      // Calculate which slide should be active based on scroll
+      const slideIndex = Math.min(Math.floor(scrollProgress * totalSlides), totalSlides - 1);
+      
+      if (slideIndex !== currentSlide) {
+        // Remove active class from all slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        progressDots.forEach(dot => dot.classList.remove('active'));
+        
+        // Add active class to current slide
+        slides[slideIndex].classList.add('active');
+        progressDots[slideIndex].classList.add('active');
+        
+        currentSlide = slideIndex;
+        updateArrowButtons();
+      }
+    }
+
+    function setSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      
+      slides.forEach(slide => slide.classList.remove('active'));
+      progressDots.forEach(dot => dot.classList.remove('active'));
+      
+      slides[index].classList.add('active');
+      progressDots[index].classList.add('active');
+      
+      currentSlide = index;
+      updateArrowButtons();
+    }
+
+    function navigateCarousel(direction) {
+      const newSlide = currentSlide + direction;
+      if (newSlide >= 0 && newSlide < totalSlides) {
+        setSlide(newSlide);
+        
+        // Using manual navigation makes carousel static
+        if (!carouselExperienced) {
+          carouselExperienced = true;
+          portfolioSection.classList.add('static');
+          console.log('Manual navigation used - carousel now static');
+        }
+      }
+    }
+
+    function updateArrowButtons() {
+      if (prevBtn && nextBtn) {
+        prevBtn.classList.toggle('disabled', currentSlide === 0);
+        nextBtn.classList.toggle('disabled', currentSlide === totalSlides - 1);
+      }
+    }
+
+    // Handle scroll events
+    window.addEventListener('scroll', () => {
+      // Detect scroll direction
+      const currentScrollY = window.scrollY;
+      isScrollingDown = currentScrollY > lastScrollY;
+      lastScrollY = currentScrollY;
+
+      // Nav scroll effect
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+
+      // Carousel scroll effect - bidirectional while in section, static after leaving
+      const rect = portfolioSection.getBoundingClientRect();
+      const sectionHeight = portfolioSection.offsetHeight;
+      const windowHeight = window.innerHeight;
+      
+      // Check if user is currently IN the carousel section
+      const inCarouselSection = rect.top <= 0 && rect.bottom >= windowHeight;
+      
+      // Track when user enters carousel for the first time
+      if (inCarouselSection && !hasEnteredCarousel) {
+        hasEnteredCarousel = true;
+        console.log('Entered carousel section');
+      }
+      
+      // Check if user has LEFT the carousel (scrolled completely past or back up above it)
+      // ONLY check this AFTER they've entered it at least once
+      if (hasEnteredCarousel && !carouselExperienced) {
+        const hasScrolledPastBottom = rect.bottom < 0;
+        const hasScrolledBackUpAbove = rect.top > windowHeight;
+        
+        if (hasScrolledPastBottom || hasScrolledBackUpAbove) {
+          // User has left the carousel area - make it static
+          carouselExperienced = true;
+          portfolioSection.classList.add('static');
+          console.log('Left carousel area - now static and manual only');
+        }
+      }
+      
+      // While in carousel section and not yet experienced: scroll controls slides bidirectionally
+      if (inCarouselSection && !carouselExperienced) {
+        const scrollProgress = Math.abs(rect.top) / (sectionHeight - windowHeight);
+        updateCarousel(scrollProgress);
+      }
+
+      // Editorial images scroll animation
+      const editorialImages = document.querySelectorAll('.editorial-image');
+      editorialImages.forEach((img) => {
+        const imgRect = img.getBoundingClientRect();
+        if (imgRect.top < window.innerHeight - 100) {
+          img.classList.add('visible');
+        }
+      });
+
+      // Shoot cards scroll animation
+      const shootCards = document.querySelectorAll('.shoot-card');
+      shootCards.forEach((card, index) => {
+        const cardRect = card.getBoundingClientRect();
+        if (cardRect.top < window.innerHeight - 100) {
+          setTimeout(() => {
+            card.classList.add('visible');
+          }, index * 100);
+        }
+      });
+
+      // Shoot detail images scroll animation
+      const shootDetailImages = document.querySelectorAll('.shoot-detail-image');
+      shootDetailImages.forEach((img) => {
+        const imgRect = img.getBoundingClientRect();
+        if (imgRect.top < window.innerHeight - 100) {
+          img.classList.add('visible');
+        }
+      });
+    });
+
+    // Page navigation functions
+    function showHome() {
+      document.getElementById('home-page').style.display = 'block';
+      document.querySelectorAll('.category-page, .shoot-detail-page').forEach(page => {
+        page.classList.remove('active');
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      navLinks.forEach(link => link.classList.remove('active'));
+      navLinks[0].classList.add('active');
+    }
+
+    function showCategory(type) {
+      // Mark carousel as experienced since user is navigating away
+      if (!carouselExperienced) {
+        carouselExperienced = true;
+        portfolioSection.classList.add('static');
+      }
+      
+      document.getElementById('home-page').style.display = 'none';
+      document.querySelectorAll('.category-page, .shoot-detail-page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(type + '-category').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Trigger animation for shoot cards
+      setTimeout(() => {
+        window.dispatchEvent(new Event('scroll'));
+      }, 100);
+    }
+
+    function showShootDetail(shootId) {
+      document.querySelectorAll('.category-page, .shoot-detail-page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(shootId + '-detail').classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      
+      // Trigger animation for shoot detail images
+      setTimeout(() => {
+        window.dispatchEvent(new Event('scroll'));
+      }, 100);
+    }
+
+    function scrollToSection(id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Update active nav link on scroll
+    window.addEventListener('scroll', () => {
+      const sections = ['hero', 'about', 'contact'];
+      sections.forEach(section => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            navLinks.forEach(link => {
+              link.classList.remove('active');
+              if (link.getAttribute('href') === `#${section}` || 
+                  (section === 'hero' && link.textContent.toLowerCase() === 'home')) {
+                  link.classList.add('active');
+              }
+            });
+          }
+        }
+      });
+    });
+
+    // Initialize arrow button states
+    updateArrowButtons();
+  </script>
+</body>
+</html>

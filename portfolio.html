@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Portfolio — Ric Berryman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { height: 100%; }
+    body {
+      background: #E8DDD1;
+      color: #2E2621;
+      -webkit-font-smoothing: antialiased;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+      overflow-x: hidden;   /* prevents weird horizontal clipping */
+      overflow-y: auto;     /* guarantees scrolling */
+    }
+
+    main { padding-bottom: 5rem; }
+
+    /* =========================
+       HERO
+       ========================= */
+
+    .portfolio-hero {
+      position: relative;
+      min-height: 72vh;
+      display: flex;
+      align-items: flex-end;
+      padding: 4.5rem 3rem 3.5rem;
+      overflow: hidden;
+      color: #FDF8F0;
+      isolation: isolate;
+
+      /* Defaults for parallax variables (C: bold) */
+      --hero-media-y: 0px;
+      --hero-media-scale: 1.12; /* stronger base */
+      --hero-text-y: 0px;
+      --hero-text-opacity: 1;
+    }
+
+    .portfolio-hero-media {
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/images/editorials/camp-glam/campglam_01.jpg");
+      background-size: cover;
+      background-position: center;
+
+      /* Parallax driven by CSS variables */
+      transform: translateY(var(--hero-media-y)) scale(var(--hero-media-scale));
+      will-change: transform;
+      z-index: -2;
+    }
+
+    .portfolio-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(0,0,0,0.45), transparent 55%),
+        linear-gradient(to top, rgba(0,0,0,0.78), rgba(0,0,0,0.08));
+      z-index: -1;
+    }
+
+    /* Subtle editorial drift for the hero text (C: more noticeable) */
+    .portfolio-hero-inner {
+      max-width: 680px;
+      transform: translateY(var(--hero-text-y));
+      opacity: var(--hero-text-opacity);
+      will-change: transform, opacity;
+    }
+
+    .portfolio-hero-title {
+      font-size: clamp(3.2rem, 8.6vw, 5rem);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin: 0 0 0.8rem;
+    }
+
+    .portfolio-hero-sub {
+      font-size: 1.02rem;
+      line-height: 1.9;
+      max-width: 540px;
+      opacity: 0.95;
+    }
+
+    .portfolio-hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+      font-size: 0.78rem;
+    }
+
+    .portfolio-hero-tags span {
+      padding: 0.2rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.25);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    .scroll-hint {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    .scroll-hint svg {
+      width: 16px;
+      height: 16px;
+      animation: bounceDown 1.5s infinite;
+    }
+
+    @keyframes bounceDown {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(5px); }
+      100% { transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .portfolio-hero { padding: 4.5rem 1.5rem 3rem; }
+    }
+
+    /* =========================
+       LAYOUT SHELL (WIDER + CENTERED)
+       ========================= */
+
+    .shell {
+      max-width: 2400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    @media (min-width: 1800px) {
+      .shell { padding: 0 3rem; }
+    }
+
+    @media (max-width: 900px) {
+      .shell { padding: 0 1.25rem; }
+    }
+
+    /* =========================
+       SECTION HEADERS
+       ========================= */
+
+    .category-section {
+      margin-top: 4.8rem;
+      margin-bottom: 4.8rem;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.2rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .category-label {
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.75rem;
+      color: #8B3A2B;
+    }
+
+    .category-title {
+      font-size: 1.4rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 400;
+      color: #3B2F29;
+    }
+
+    .category-sub {
+      font-size: 0.9rem;
+      max-width: 430px;
+      color: #66534A;
+    }
+
+    @media (max-width: 768px) {
+      .category-header { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* =========================
+       BIG IMAGE-FIRST GRID
+       ========================= */
+
+    .thumb-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1.1rem;
+      align-items: stretch;
+    }
+
+    @media (max-width: 1700px) {
+      .thumb-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .thumb-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .thumb-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    .thumb-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #000;
+      color: #FDF8F0;
+      text-decoration: none;
+      cursor: pointer;
+
+      aspect-ratio: 2/3;
+
+      box-shadow: 0 24px 70px rgba(0,0,0,0.30);
+      transition:
+        transform 0.6s cubic-bezier(0.16,1,0.3,1),
+        box-shadow 0.6s ease,
+        opacity 0.6s ease;
+
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .thumb-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .thumb-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .thumb-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.38);
+    }
+
+    .thumb-item:hover .thumb-image {
+      transform: scale(1.09);
+    }
+
+    .thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.9) 0%,
+        rgba(0, 0, 0, 0.4) 40%,
+        transparent 100%
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      pointer-events: none;
+    }
+
+    .thumb-item:hover .thumb-overlay {
+      opacity: 1;
+    }
+
+    .thumb-content {
+      position: absolute;
+      inset: auto 1.6rem 1.5rem 1.6rem;
+      z-index: 1;
+    }
+
+    .thumb-title {
+      font-size: 1.02rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .thumb-caption {
+      font-size: 0.88rem;
+      opacity: 0.92;
+    }
+
+    .thumb-badge {
+      position: absolute;
+      top: 1.05rem;
+      left: 1.05rem;
+      padding: 0.28rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(232, 221, 209, 0.12);
+      border: 1px solid rgba(253, 248, 240, 0.32);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      z-index: 1;
+    }
+
+    .thumb-badge.coming-soon {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* =========================
+       REVEAL ANIMATIONS
+       ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.75s ease, transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Anchor jump offset (for fixed nav) */
+.category-section {
+  scroll-margin-top: 110px; /* adjust if needed */
+}
+  </style>
+</head>
+
+<body>
+  <!-- Shared nav mount -->
+  <div id="nav-mount"></div>
+
+  <main>
+    <!-- HERO -->
+    <section class="portfolio-hero">
+      <div class="portfolio-hero-media"></div>
+      <div class="portfolio-hero-inner reveal">
+        <h1 class="portfolio-hero-title">Portfolio</h1>
+        <p class="portfolio-hero-sub">
+          Editorial fashion, character-driven portraits, and the quiet hum of abandoned spaces.
+          Different worlds, same obsession: light, story, and the people who move through both.
+        </p>
+
+        <div class="portfolio-hero-tags">
+          <span>Editorial Stories</span>
+          <span>Beauty & Portraits</span>
+          <span>Abandoned Places</span>
+          <span>Field Notes</span>
+        </div>
+
+        <div class="scroll-hint">
+          <span>Scroll to view the work</span>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 4v14m0 0-5-5m5 5 5-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDITORIAL STORIES -->
+    <section class="category-section shell" id="editorials">
+      <div class="category-header reveal">
+        <div>
+          <div class="category-label">Editorial Stories</div>
+          <h2 class="category-title">Fashion & Narrative</h2>
+        </div>
+        <p class="category-sub">
+          Multi-image editorials shot like scenes from a movie—cast, location, and the occasional
+          dust storm included.
+        </p>
+      </div>
+
+      <div class="thumb-grid">
+        <!-- Camp Glam -->
+        <a href="/editorials/camp-glam.html" class="thumb-item">
+          <img src="assets/images/editorials/camp-glam/campglam_2x3.jpg" alt="Camp Glam" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Editorial</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Camp Glam</h3>
+            <p class="thumb-caption">Tina Grimm · Joshua Tree desert mischief.</p>
+          </div>
+        </a>
+
+        <!-- Madeline -->
+        <a href="/editorials/madeline-houk.html" class="thumb-item">
+          <img src="assets/images/editorials/madeline-houk/madeline_hero.jpg" alt="Madeline Houk at Hollywood Subway" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Editorial</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Subway Ballerina</h3>
+            <p class="thumb-caption">Madeline Houk · Hollywood underground.</p>
+          </div>
+        </a>
+
+        <!-- Club James / Rachel -->
+        <a href="/editorials/rachelPizzolato.html" class="thumb-item">
+          <img src="assets/images/editorials/rachelPizzolato/RachelPizzolato_02.jpg" alt="Rachel Pizzolato at Club James" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Editorial</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Club James</h3>
+            <p class="thumb-caption">Rachel Pizzolato · Neon, smoke, and velvet.</p>
+          </div>
+        </a>
+
+        <!-- Dani Technicolor -->
+        <a href="/editorials/dani.html" class="thumb-item">
+          <img src="assets/images/editorials/dani/Dani_Oliveira_08.jpg" alt="Dani Technicolor" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Editorial</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Technicolor Dream</h3>
+            <p class="thumb-caption">Dani · Saturated color and late-night film stills.</p>
+          </div>
+        </a>
+
+        <!-- Bella / Sheats-Goldstein -->
+        <a href="/editorials/bella.html" class="thumb-item">
+          <img src="assets/images/editorials/bellaMonroe/Bella_Monroe_Hero.jpg" alt="Bella Monroe at Sheats-Goldstein House" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Editorial</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Concrete Fever Dream</h3>
+            <p class="thumb-caption">Bella Monroe · Sheats-Goldstein residence.</p>
+          </div>
+        </a>
+
+        <!-- Dasha Studio -->
+        <a href="/editorials/dasha-1.html" class="thumb-item">
+          <img src="assets/images/editorials/dasha-1/dasha_hero.jpg" alt="Dasha in studio" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Editorial</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Studio Noir</h3>
+            <p class="thumb-caption">Dasha · Color gels, shadows, and attitude.</p>
+          </div>
+        </a>
+
+        <!-- Weeses -->
+        <a href="/editorials/weeses.html" class="thumb-item">
+          <img src="assets/images/editorials/weeses/weeses_09.jpg" alt="Weeses Pieces Studio" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Editorial</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Water & Geometry</h3>
+            <p class="thumb-caption">Two figures · Weeses Pieces outdoor studio.</p>
+          </div>
+        </a>
+
+        <!-- Lainey -->
+        <a href="/editorials/lainey-floeck.html" class="thumb-item">
+          <img src="assets/images/editorials/lainey-floeck/lainey_03.jpg" alt="Lainey Floeck" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Editorial</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Monochrome Lines</h3>
+            <p class="thumb-caption">Lainey Floeck · Graphic light, strong shapes.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- BEAUTY & PORTRAITS -->
+    <section class="category-section shell" id="beauty">
+      <div class="category-header reveal">
+        <div>
+          <div class="category-label">Beauty & Faces</div>
+          <h2 class="category-title">Beauty & Portraits</h2>
+        </div>
+        <p class="category-sub">
+          The “come closer” frames: skin, texture, small expressions, and beauty tests that
+          could live in a campaign or just on your wall.
+        </p>
+      </div>
+
+      <div class="thumb-grid">
+        <a href="/beauty.html" class="thumb-item">
+          <img src="https://images.squarespace-cdn.com/content/v1/60011b54b373037c2d7ccfb3/6be16234-8fb6-4fbc-ae8d-f05e209381eb/Hannah+Barr-2.jpg"
+               alt="Beauty series" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Series</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Beauty</h3>
+            <p class="thumb-caption">Clean skin, quiet frames, and close-up stories.</p>
+          </div>
+        </a>
+
+        <div class="thumb-item">
+          <img src="assets/images/editorials/dani/Dani_hero.jpg" alt="Portrait study" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge coming-soon">Coming Soon</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Studio Faces</h3>
+            <p class="thumb-caption">A rotating series of test shoots and character studies.</p>
+          </div>
+        </div>
+
+        <div class="thumb-item">
+          <img src="assets/images/editorials/bellaMonroe/Bella_Monroe_Hero.jpg" alt="Outdoor portrait study" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge coming-soon">Coming Soon</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Sun & Shadow</h3>
+            <p class="thumb-caption">Natural light portraits pulled from larger shoots.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLACES & ATMOSPHERE -->
+    <section class="category-section shell" id="field-notes">
+      <div class="category-header reveal">
+        <div>
+          <div class="category-label">Abandoned Places</div>
+          <h2 class="category-title">Field Notes</h2>
+        </div>
+        <p class="category-sub">
+          The rooms, motels, and stretches of desert that keep showing up in the work. Sometimes
+          with people, sometimes left to echo on their own.
+        </p>
+      </div>
+
+      <div class="thumb-grid">
+
+       <div class="thumb-item">
+         <a href="/abandoned.html" class="thumb-item">
+          <img src="assets/images/abandoned/abandoned-2.jpg" alt="Desert Motel" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge coming-soon">Gallery</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Abandoned</h3>
+            <p class="thumb-caption">Once upon a time</p>
+          </div>
+        </a>
+        </div>
+
+        <!-- FIELD NOTES -->
+        <a href="/field-notes/ice.html" class="thumb-item">
+          <img src="assets/images/field-notes/ice/hero.jpg" alt="Field Notes" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Field Notes</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Field Notes</h3>
+            <p class="thumb-caption">Articles + photo stories from the road and the street.</p>
+          </div>
+        </a>
+      
+       <a href="/field-notes/eaton-fire.html" class="thumb-item">
+          <img src="assets/images/field-notes/eaton-fire/eaton-fire-01.jpg" alt="Field Notes" class="thumb-image" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Field Notes</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">Field Notes</h3>
+            <p class="thumb-caption">Resilince Amid Distruction</p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared nav loader -->
+  <script src="assets/js/load-nav.js"></script>
+   <!-- Site-wide JS (“don’t steal my photos” etc) -->
+<script src="/assets/js/site.js"></script>
+
+  <script>
+    (function () {
+      // Reveal on scroll (hero text + section headers + cards)
+      const revealBlocks = document.querySelectorAll(".reveal");
+      const thumbItems = document.querySelectorAll(".thumb-item");
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.16 }
+      );
+
+      revealBlocks.forEach((el) => observer.observe(el));
+      thumbItems.forEach((el) => observer.observe(el));
+
+      // ==========================
+      // HERO PARALLAX — MODE C (over the top)
+      // ==========================
+      const hero = document.querySelector(".portfolio-hero");
+      if (!hero) return;
+
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Still reduce on small screens (but C keeps it spicy)
+      function getIntensity() {
+        return window.innerWidth < 768 ? 0.75 : 1;
+      }
+
+      let ticking = false;
+
+      function clamp(n, min, max) {
+        return Math.min(Math.max(n, min), max);
+      }
+
+      function updateHeroParallax() {
+        ticking = false;
+
+        if (reduceMotion) {
+          hero.style.setProperty("--hero-media-y", "0px");
+          hero.style.setProperty("--hero-media-scale", "1.12");
+          hero.style.setProperty("--hero-text-y", "0px");
+          hero.style.setProperty("--hero-text-opacity", "1");
+          return;
+        }
+
+        const rect = hero.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+
+        // Faster ramp: obvious immediately
+        const progress = clamp((0 - rect.top) / (vh * 0.75), 0, 1);
+        const intensity = getIntensity();
+
+        // IMAGE (C): big drift + big scale
+        // You will see this. No doubt.
+        const mediaY = (progress * 140 * intensity).toFixed(2);              // px drift
+        const mediaScale = (1.12 + progress * 0.20 * intensity).toFixed(4);  // scale to ~1.32
+
+        // TEXT (C): more drift + stronger fade
+        const textY = (-progress * 40 * intensity).toFixed(2);               // px drift opposite
+        const textOpacity = (1 - progress * 0.28 * intensity).toFixed(4);    // fades more
+
+        hero.style.setProperty("--hero-media-y", `${mediaY}px`);
+        hero.style.setProperty("--hero-media-scale", `${mediaScale}`);
+        hero.style.setProperty("--hero-text-y", `${textY}px`);
+        hero.style.setProperty("--hero-text-opacity", `${textOpacity}`);
+      }
+
+      function requestTick() {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(updateHeroParallax);
+        }
+      }
+
+      // Init
+      updateHeroParallax();
+
+      // Scroll/resize
+      window.addEventListener("scroll", requestTick, { passive: true });
+      window.addEventListener("resize", requestTick);
+    })();
+  </script>
+
+
+
+<script>
+  function scrollToHash(behavior = "auto") {
+    const id = (window.location.hash || "").replace("#", "");
+    if (!id) return;
+
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    const nav = document.getElementById("nav");
+    const navH = nav ? nav.getBoundingClientRect().height : 0;
+    const y = el.getBoundingClientRect().top + window.pageYOffset - (navH + 24);
+
+    window.scrollTo({ top: y, behavior });
+  }
+
+  function scrollToHashWhenReady() {
+    const wantsHash = !!window.location.hash;
+    if (!wantsHash) return;
+
+    let tries = 0;
+    const maxTries = 40; // ~2 seconds @ 50ms
+
+    const timer = setInterval(() => {
+      tries++;
+
+      // wait until nav exists (injected) AND layout is more stable
+      const navReady = !!document.getElementById("nav");
+      if (navReady || tries >= maxTries) {
+        clearInterval(timer);
+        scrollToHash("auto");
+      }
+    }, 50);
+  }
+
+  window.addEventListener("load", scrollToHashWhenReady);
+  window.addEventListener("hashchange", () => scrollToHash("smooth"));
+</script>
+  
+</body>
+</html>

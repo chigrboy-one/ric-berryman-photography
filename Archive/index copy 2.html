@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ric Berryman Photography</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --bg-strong: #e0d3c1;
+      --text: #161616;
+      --muted: #6b645b;
+      --accent: #ff4b4b;
+      --accent-soft: #ffd9cb;
+      --border-soft: rgba(0, 0, 0, 0.1);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.16);
+      --max-width: 1120px;
+      --transition-fast: 220ms ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HEADER */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(244, 239, 230, 0.88);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .logo-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .logo-circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid var(--text);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--text);
+      transition: width var(--transition-fast);
+    }
+
+    .nav a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--text);
+      padding: 6px 14px;
+      font-size: 12px;
+      background: var(--text);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-cta span {
+      font-size: 16px;
+    }
+
+    /* HERO */
+    .hero {
+      padding: 72px 0 70px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(40px, 5vw, 60px);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    .hero-highlight {
+      background: var(--accent-soft);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .hero-highlight-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-copy {
+      font-size: 14px;
+      max-width: 420px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      border-radius: var(--radius-pill);
+      background: var(--text);
+      color: #fff;
+      padding: 11px 22px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+      box-shadow: 0 16px 28px rgba(0, 0, 0, 0.24);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      background: #000;
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.32);
+    }
+
+    .btn-text {
+      font-size: 13px;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .hero-meta {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-meta-badge {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid var(--text);
+    }
+
+    .hero-img-wrap {
+      background: var(--bg-strong);
+      border-radius: var(--radius-xl);
+      padding: 14px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      border-radius: 18px;
+      background-size: cover;
+      background-position: center;
+      background-image: url("images/feature1/laurenMaenner_hero.jpg"); /* update path */
+      aspect-ratio: 3 / 4;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tag {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(0, 0, 0, 0.78);
+      color: #fff;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .hero-note {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      padding: 8px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(244, 239, 230, 0.92);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* SECTION SHELL */
+    .section {
+      padding: 56px 0;
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 26px;
+      gap: 16px;
+    }
+
+    .section-label {
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-sub {
+      max-width: 360px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* FEATURED EDITORIALS */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: #f9f4ea;
+      border-radius: var(--radius-lg);
+      padding: 14px 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+      background: #fff8f0;
+    }
+
+    .feature-img {
+      border-radius: 14px;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .feature-img--lautner {
+      background-image: url("images/feature1/laurenMaenner_01.jpg"); /* update */
+    }
+
+    .feature-img--campglam {
+      background-image: url("images/camp-glam/campglam_01.jpg"); /* placeholder */
+    }
+
+    .feature-img--trona {
+      background-image: url("images/trona/trona_01.jpg"); /* placeholder */
+    }
+
+    .feature-tag-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .feature-pill {
+      padding: 4px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(0, 0, 0, 0.18);
+      font-size: 10px;
+    }
+
+    .feature-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .feature-desc {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* GALLERY GRID */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .gallery-item {
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg-strong);
+      aspect-ratio: 4 / 5;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      cursor: pointer;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-soft);
+      filter: brightness(1.05);
+    }
+
+    .gallery-item:nth-child(1) { background-image: url("images/feature1/laurenMaenner_02.jpg"); }
+    .gallery-item:nth-child(2) { background-image: url("images/feature1/laurenMaenner_03.jpg"); }
+    .gallery-item:nth-child(3) { background-image: url("images/feature1/laurenMaenner_04.jpg"); }
+    .gallery-item:nth-child(4) { background-image: url("images/feature1/laurenMaenner_05.jpg"); }
+    .gallery-item:nth-child(5) { background-image: url("images/camp-glam/campglam_02.jpg"); }
+    .gallery-item:nth-child(6) { background-image: url("images/trona/trona_02.jpg"); }
+    .gallery-item:nth-child(7) { background-image: url("images/random/random_01.jpg"); }
+    .gallery-item:nth-child(8) { background-image: url("images/random/random_02.jpg"); }
+
+    .gallery-caption {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.72);
+      color: #fff;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    /* PLAYGROUND STRIP */
+    .playground-row {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
+    }
+
+    .play-card {
+      flex: 0 0 160px;
+      border-radius: 18px;
+      background: #151515;
+      color: #f9f4ea;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .play-tag {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #a8a8a8;
+    }
+
+    .play-title {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .play-count {
+      font-size: 11px;
+      color: #a8a8a8;
+      margin-top: auto;
+    }
+
+    /* ABOUT */
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 30px;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 520px;
+    }
+
+    .about-highlight {
+      margin-top: 18px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: #fff7e9;
+      font-size: 12px;
+      border: 1px dashed rgba(0, 0, 0, 0.16);
+    }
+
+    .about-card {
+      border-radius: 18px;
+      background: #111;
+      color: #f4efe6;
+      padding: 18px 18px 16px;
+      display: grid;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .about-card-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #a5a5a5;
+    }
+
+    .about-card-main {
+      font-size: 13px;
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 30px;
+      align-items: flex-start;
+    }
+
+    .contact-form {
+      background: #fff;
+      border-radius: var(--radius-xl);
+      padding: 20px 22px 22px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field {
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+    }
+
+    .field label {
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 10px;
+      color: var(--muted);
+    }
+
+    .field input,
+    .field textarea {
+      border-radius: 999px;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      padding: 9px 12px;
+      font-size: 13px;
+      outline: none;
+      background: #f9f6f0;
+      transition: border var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
+    }
+
+    .field textarea {
+      border-radius: 18px;
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: #000;
+      background: #fffdf7;
+      box-shadow: 0 0 0 1px #000;
+    }
+
+    .contact-note {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 360px;
+    }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 26px 0 30px;
+      border-top: 1px solid var(--border-soft);
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* SCROLL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 420ms ease-out, transform 420ms ease-out;
+    }
+
+    .reveal--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero-inner,
+      .about-layout,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-inner {
+        gap: 28px;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .hero-img-wrap {
+        order: -1;
+      }
+
+      .feature-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrapper {
+        padding: 0 16px;
+      }
+
+      .feature-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .contact-form {
+        padding: 18px 16px 18px;
+      }
+
+      .field-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="#top" class="logo-mark">
+          <span class="logo-circle">RB</span>
+          <span>Ric Berryman</span>
+        </a>
+        <nav class="nav">
+          <a href="#work">Work</a>
+          <a href="#playground">Playground</a>
+          <a href="#about">About</a>
+          <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            Let’s shoot <span>↗</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main id="top">
+      <section class="hero">
+        <div class="wrapper">
+          <div class="hero-inner reveal">
+            <div>
+              <div class="eyebrow">Los Angeles · Editorial & Portrait</div>
+              <h1 class="hero-title">
+                Bold, cinematic<br />
+                photography for real humans.
+              </h1>
+              <div class="hero-highlight">
+                <span class="hero-highlight-dot"></span>
+                <span>Fashion, portrait, and slightly-feral desert adventures.</span>
+              </div>
+              <p class="hero-copy">
+                I create images that feel like stills from the movie you swear you remember,
+                but never actually saw. Fashion, editorial, and portraits with a side of dust,
+                neon, and bad decisions.
+              </p>
+              <div class="hero-actions">
+                <button class="btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
+                  View portfolio <span>↳</span>
+                </button>
+                <button class="btn-text" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                  Book a shoot
+                </button>
+              </div>
+              <div class="hero-meta">
+                <span><span class="hero-meta-badge"></span> Based in Los Angeles</span>
+                <span>Available for travel</span>
+                <span>Digital & film</span>
+              </div>
+            </div>
+
+            <div class="hero-img-wrap">
+              <div class="hero-img">
+                <div class="hero-tag">Feature · Editorial</div>
+                <div class="hero-note">John Lautner House · Lauren Maenner</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED EDITORIALS -->
+      <section id="work" class="section">
+        <div class="wrapper">
+          <div class="section-header reveal">
+            <div>
+              <div class="section-label">Featured Editorials</div>
+              <h2 class="section-title">Stories that actually go somewhere.</h2>
+            </div>
+            <p class="section-sub">
+              A rotating selection of shoots I can’t shut up about. Each one has its own
+              mood, location, and little narrative thread running through it.
+            </p>
+          </div>
+
+          <div class="feature-grid reveal">
+            <!-- Card 1 -->
+            <article class="feature-card">
+              <div class="feature-img feature-img--lautner"></div>
+              <div class="feature-tag-row">
+                <span class="feature-pill">John Lautner House · LA</span>
+                <span>Editorial</span>
+              </div>
+              <div class="feature-title">
+                Lauren Maenner — Concrete, glass, and soft chaos.
+              </div>
+              <p class="feature-desc">
+                Mid-century geometry meets sharp tailoring and late afternoon light in the home
+                where Marilyn once took acting lessons.
+              </p>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="feature-card">
+              <div class="feature-img feature-img--campglam"></div>
+              <div class="feature-tag-row">
+                <span class="feature-pill">Mojave Desert</span>
+                <span>Editorial</span>
+              </div>
+              <div class="feature-title">
+                Camp Glam — Tina Grimm vs. the wilderness.
+              </div>
+              <p class="feature-desc">
+                Sequins, fire pits, and survival energy. A love letter to people who pack both
+                hiking boots and eyeliner.
+              </p>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="feature-card">
+              <div class="feature-img feature-img--trona"></div>
+              <div class="feature-tag-row">
+                <span class="feature-pill">Trona Pinnacles</span>
+                <span>Series</span>
+              </div>
+              <div class="feature-title">
+                Night Signals — Comets, rocks, and that blue hour high.
+              </div>
+              <p class="feature-desc">
+                Strange spires, long exposures, and the feeling that you might’ve driven off
+                the map a little too far.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY -->
+      <section class="section">
+        <div class="wrapper">
+          <div class="section-header reveal">
+            <div>
+              <div class="section-label">Selected Frames</div>
+              <h2 class="section-title">Little obsessions, frozen.</h2>
+            </div>
+            <p class="section-sub">
+              A mix of editorial, portraits, and personal work. Click into a story above to see
+              full series and context.
+            </p>
+          </div>
+
+          <div class="gallery-grid reveal">
+            <div class="gallery-item"><div class="gallery-caption">Lautner · series</div></div>
+            <div class="gallery-item"><div class="gallery-caption">Camp Glam</div></div>
+            <div class="gallery-item"><div class="gallery-caption">Desert Portrait</div></div>
+            <div class="gallery-item"><div class="gallery-caption">Night Study</div></div>
+            <div class="gallery-item"><div class="gallery-caption">Trona</div></div>
+            <div class="gallery-item"><div class="gallery-caption">Motion Blur</div></div>
+            <div class="gallery-item"><div class="gallery-caption">Film Scan</div></div>
+            <div class="gallery-item"><div class="gallery-caption">Field Notes</div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PLAYGROUND -->
+      <section id="playground" class="section">
+        <div class="wrapper">
+          <div class="section-header reveal">
+            <div>
+              <div class="section-label">Playground</div>
+              <h2 class="section-title">Experiments, mistakes, and happy accidents.</h2>
+            </div>
+            <p class="section-sub">
+              The overflowing junk drawer: lens tests, film mishaps, strange lighting setups,
+              and ideas that may or may not become real projects.
+            </p>
+          </div>
+
+          <div class="playground-row reveal">
+            <article class="play-card">
+              <div class="play-tag">Test Roll</div>
+              <div class="play-title">Expired film in a strip mall parking lot.</div>
+              <div class="play-count">12 frames</div>
+            </article>
+            <article class="play-card">
+              <div class="play-tag">Studio Notes</div>
+              <div class="play-title">One softbox, one bare bulb, zero plan.</div>
+              <div class="play-count">9 frames</div>
+            </article>
+            <article class="play-card">
+              <div class="play-tag">Night Drive</div>
+              <div class="play-title">Gas stations as accidental light installations.</div>
+              <div class="play-count">18 frames</div>
+            </article>
+            <article class="play-card">
+              <div class="play-tag">Field Notes</div>
+              <div class="play-title">Faces in rocks, literally.</div>
+              <div class="play-count">6 frames</div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="section">
+        <div class="wrapper">
+          <div class="section-header reveal">
+            <div>
+              <div class="section-label">About Ric</div>
+              <h2 class="section-title">If we’re going to make pictures, we should probably vibe.</h2>
+            </div>
+          </div>
+
+          <div class="about-layout reveal">
+            <div class="about-text">
+              <p>
+                I’m Ric — photographer, desert enthusiast, and person who will absolutely pull
+                the car over if the light looks interesting.
+              </p>
+              <br />
+              <p>
+                My work lives somewhere between fashion and field notes: clean compositions
+                with a little dust on them, people who look like themselves (just slightly
+                more iconic), and locations that feel like characters.
+              </p>
+              <br />
+              <p>
+                I’m based in Los Angeles but happily chase good light to the edges of California
+                and beyond. If you like the idea of your shoot feeling more like a weird little
+                adventure than a chore, we’ll get along fine.
+              </p>
+
+              <div class="about-highlight">
+                Currently into: Trona Pinnacles at blue hour, film scans that aren’t “perfect,”
+                and portraits that look like a scene you want to pause and stare at.
+              </div>
+            </div>
+
+            <aside class="about-card">
+              <div>
+                <div class="about-card-label">Services</div>
+                <div class="about-card-main">
+                  Editorial & lookbooks · Portrait sessions · Branding campaigns · On-location
+                  shoots · Select video work with collaborators
+                </div>
+              </div>
+              <div>
+                <div class="about-card-label">Clients & collaborators</div>
+                <div class="about-card-main">
+                  Independent designers, production companies, agencies, and people doing cool
+                  things who need images that keep up.
+                </div>
+              </div>
+              <div>
+                <div class="about-card-label">Working style</div>
+                <div class="about-card-main">
+                  Relaxed sets, clear direction, good playlists, and enough planning that we
+                  can improvise without panic.
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section">
+        <div class="wrapper">
+          <div class="section-header reveal">
+            <div>
+              <div class="section-label">Let’s Shoot</div>
+              <h2 class="section-title">Tell me what you want to make.</h2>
+            </div>
+            <p class="section-sub contact-note">
+              Whether you have a fully storyboarded concept or just “I want something in the
+              desert at night,” hit me up. I’ll get back to you faster than your last text
+              thread did.
+            </p>
+          </div>
+
+          <div class="contact-grid reveal">
+            <form class="contact-form">
+              <div class="field-row">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" type="text" name="name" placeholder="Who are you?" />
+                </div>
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" type="email" name="email" placeholder="Where do I reply?" />
+                </div>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="project-type">Project Type</label>
+                  <input id="project-type" type="text" name="project-type" placeholder="Editorial, portrait, brand..." />
+                </div>
+                <div class="field">
+                  <label for="location">Location</label>
+                  <input id="location" type="text" name="location" placeholder="LA, desert, somewhere else?" />
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="message">What are you thinking?</label>
+                <textarea id="message" name="message" placeholder="Give me the rough idea, the vibe, the deadline."></textarea>
+              </div>
+
+              <button type="submit" class="btn-primary" style="margin-top:8px;">
+                Send inquiry <span>✉</span>
+              </button>
+            </form>
+
+            <div class="contact-note">
+              Prefer to skip the form?
+              <br /><br />
+              <strong>Email:</strong> <a href="mailto:hello@ricberrymanphoto.com">hello@ricberrymanphoto.com</a><br />
+              <strong>Instagram:</strong> @whatshisfacedo
+              <br /><br />
+              I’m usually editing evenings and answering messages between shoots.
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="wrapper">
+        <div class="footer-inner">
+          <div>© <span id="year"></span> Ric Berryman. All rights reserved.</div>
+          <div class="footer-links">
+            <a href="#top">Back to top</a>
+            <a href="#work">View work</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll(".reveal");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("reveal--visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+:root {
+      --bg: #E8DDD1;
+      --paper: #F9F2E8;
+      --ink: #2E2621;
+      --accent: #C7653D;
+    }
+
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "DM Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    /* HEADER / BACK LINK */
+    .top-bar {
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(46, 38, 33, 0.75);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(46, 38, 33, 0.25);
+      backdrop-filter: blur(10px);
+      background: rgba(248, 238, 226, 0.9);
+      cursor: pointer;
+      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .back-link span {
+      font-size: 16px;
+    }
+
+    .back-link:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .top-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      opacity: 0.7;
+    }
+
+    /* HERO */
+    .hero-shell {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 24px 32px;
+    }
+
+    .hero-image {
+      position: relative;
+      border-radius: 34px;
+      overflow: hidden;
+      height: min(82vh, 780px);
+      background-size: cover;
+      background-position: center;
+      background-image: url("images/camp-glam/campglam_01.jpg");
+      box-shadow: 0 28px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .hero-gradient {
+      position: absolute;
+      inset: 40% 0 0 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, 0.35) 55%,
+        rgba(0, 0, 0, 0.55) 100%
+      );
+    }
+
+    .hero-label {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(248, 238, 226, 0.94);
+      border: 1px solid rgba(46, 38, 33, 0.25);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+    }
+
+    .hero-label-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-caption-block {
+      position: absolute;
+      left: 32px;
+      right: 32px;
+      bottom: 26px;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: flex-end;
+      justify-content: space-between;
+      color: #F9F2E8;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(3.4rem, 6vw, 5rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.07;
+      text-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      max-width: 400px;
+      opacity: 0.9;
+      text-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    /* META + CREDITS */
+    .meta-shell {
+      width: 100%;
+      max-width: 1360px;
+      margin: 56px auto 18px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: 32px;
+    }
+
+    .meta-lede {
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: rgba(46, 38, 33, 0.9);
+      margin-bottom: 32px;
+    }
+
+    .meta-lede em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .credits-block {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: rgba(46, 38, 33, 0.85);
+    }
+
+    .credits-block strong {
+      color: #C7653D;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.7rem;
+      display: block;
+      margin-bottom: 2px;
+      opacity: 0.9;
+    }
+
+    .credits-group {
+      margin-bottom: 10px;
+    }
+
+    /* IMAGE LAYOUTS */
+    .content {
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 10px 24px 90px;
+    }
+
+    /* Single-image frame that adapts based on orientation */
+    .frame-auto {
+      margin: 34px auto;
+      max-width: 100%;
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .frame-auto img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 26px;
+    }
+
+    .frame-auto--portrait {
+      max-width: 48%;
+    }
+
+    .frame-auto--landscape {
+      max-width: 100%;
+    }
+
+    /* Diptych: 2-column grid */
+    .diptych {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      align-items: flex-start;
+      margin: 40px 0;
+    }
+
+    .diptych img {
+      width: 100%;
+      height: auto;
+      border-radius: 22px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+      display: block;
+    }
+
+    .note {
+      font-size: 1.10rem;
+      line-height: 1.7;
+      color: rgba(46, 38, 33, 0.86);
+      max-width: 640px;
+      margin: 40px auto 0;
+      text-align: center;
+    }
+
+    .note span {
+      color: var(--accent);
+    }
+
+    /* FOOT BACK LINK */
+    .footer-nav {
+      text-align: center;
+      padding: 40px 24px 60px;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(46, 38, 33, 0.76);
+    }
+
+    .footer-nav a {
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(46, 38, 33, 0.2);
+      background: rgba(248, 238, 226, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .footer-nav a:hover {
+      background: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    /* SIMPLE FADE-IN SCROLL ANIMATIONS */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .reveal--visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .hero-shell {
+        padding-inline: 18px;
+      }
+
+      .hero-caption-block {
+        left: 20px;
+        right: 20px;
+        bottom: 22px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .meta-shell {
+        grid-template-columns: minmax(0, 1fr);
+        margin-top: 44px;
+      }
+
+      .diptych {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .frame-auto,
+      .frame-auto--portrait,
+      .frame-auto--landscape {
+        max-width: 100%;
+      }
+    }
+    /* === CAMP GLAM HERO FIX ===================== */
+/* === CAMP GLAM HERO FIX ===================== */
+
+.cg-hero {
+  position: relative;
+  padding-top: 120px;        /* clears fixed nav */
+}
+
+.cg-hero-inner {
+  position: relative;
+  min-height: 75vh;
+  border-radius: 32px;
+  overflow: hidden;
+  background: #d6c7b5;       /* fallback tone */
+}
+
+.cg-hero-image-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.cg-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 1;                /* make sure it’s visible */
+}
+
+.cg-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.55) 0%,
+    rgba(0,0,0,0.15) 45%,
+    transparent 75%
+  );
+  z-index: 1;
+}
+
+.cg-hero-copy {
+  position: relative;
+  z-index: 2;
+}
+
+
+
+
+
+    @media (max-width: 600px) {
+      .top-bar {
+        padding-inline: 18px;
+      }
+
+      .hero-image {
+        border-radius: 26px;
+        height: 75vh;
+      }
+
+      .content {
+        padding-inline: 18px;
+      }
+    }
