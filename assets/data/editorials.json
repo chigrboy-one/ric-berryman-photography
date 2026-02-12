@@ -8,14 +8,21 @@
   },
   {
     "slug": "rachelPizzolato",
-    "url": "/editorials/rachelPizzolato.html",
+    "url": "/editorials/RachelPizzolato.html",
     "title": "Club James",
     "sub": "Rachel Pizzolato · Neon, smoke, and velvet.",
     "hero": "/assets/images/editorials/rachelPizzolato/RachelPizzolato_02.jpg"
   },
   {
+    "slug": "camp-glam",
+    "url": "/editorials/camp-glam.html",
+    "title": "Camp Glam",
+    "sub": "Tina Grimm · Sequins, survival energy, and campfire couture.",
+    "hero": "/assets/images/editorials/camp-glam/campglam_hero.jpg"
+  },
+  {
     "slug": "dani",
-    "url": "/editorials/dani.html",
+    "url": "/editorials/Dani.html",
     "title": "Technicolor Dream",
     "sub": "Dani · Saturated color and late-night film stills.",
     "hero": "/assets/images/editorials/dani/Dani_hero.jpg"
@@ -25,7 +32,14 @@
     "url": "/editorials/bella.html",
     "title": "Concrete Fever Dream",
     "sub": "Bella Monroe · Sheats-Goldstein residence.",
-    "hero": "/assets/images/editorials/bellaMonroe/Bella_Monroe_Hero.jpg"
+    "hero": "/assets/images/editorials/bellaMonroe/Bella_Monroe_hero.jpg"
+  },
+  {
+    "slug": "BellaMonroe-ModWest",
+    "url": "/editorials/BellaMonroe-ModWest.html",
+    "title": "Mod West Ranch",
+    "sub": "Bella Monroe · Desert minimalism meets wide-open silence.",
+    "hero": "/assets/images/editorials/bellaMonroe/Bella_Monroe_hero.jpg"
   },
   {
     "slug": "weeses",
@@ -33,6 +47,13 @@
     "title": "Water & Geometry",
     "sub": "Two figures · Weeses Pieces outdoor studio.",
     "hero": "/assets/images/editorials/weeses/weeses_09.jpg"
+  },
+  {
+    "slug": "lainey-floeck",
+    "url": "/editorials/lainey-floeck.html",
+    "title": "Grayscale Gravity",
+    "sub": "Lainey Floeck · Light, shadow, and nothing to hide behind.",
+    "hero": "/assets/images/editorials/lainey-floeck/lainey_hero.jpg"
   },
   {
     "slug": "dasha-1",
