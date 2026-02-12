@@ -36,6 +36,8 @@
 
     /* HEADER / BACK LINK */
     .top-bar {
+      position: relative;
+      z-index: 1001;
       padding: 24px 32px;
       display: flex;
       justify-content: space-between;
