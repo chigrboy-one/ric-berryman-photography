@@ -109,20 +109,7 @@
     }
 
     .hero-label {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      padding: 6px 14px;
-      border-radius: 999px;
-      background: rgba(248, 238, 226, 0.94);
-      border: 1px solid rgba(46, 38, 33, 0.25);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--ink);
+      display: none;
     }
 
     .hero-label-dot {
