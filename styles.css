@@ -342,6 +342,7 @@
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
+  text-decoration: none;
 
   padding: 0.85rem 1.2rem;
   border-radius: 999px;
