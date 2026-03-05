@@ -596,3 +596,15 @@
     border-radius: 16px;
   }
 }
+
+/* Mobile: fix top-bar overlapping with hamburger nav */
+@media (max-width: 968px) {
+  .top-bar {
+    padding: 16px 16px;
+    padding-right: 70px;
+  }
+
+  .top-tag {
+    display: none;
+  }
+}
