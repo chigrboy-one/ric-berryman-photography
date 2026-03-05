@@ -1849,3 +1849,342 @@
   background: #5C2E1F;
   color: #E8DDD1;
 }
+
+
+/* =======================================
+   MOBILE — COMPREHENSIVE FIXES
+   ======================================= */
+
+/* --- HAMBURGER BUTTON (hidden on desktop) --- */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  z-index: 1010;
+}
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+nav.scrolled .hamburger-line {
+  background: #5C2E1F;
+}
+
+/* Animate to X when open */
+nav.nav-open .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+nav.nav-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+nav.nav-open .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 968px) {
+  /* Show hamburger, position nav-container */
+  .nav-container {
+    justify-content: flex-end;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  /* Mobile drawer */
+  .nav-links {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
+    background: rgba(42, 24, 16, 0.97);
+    backdrop-filter: blur(20px);
+    padding: 6rem 2rem 2rem;
+    gap: 0;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1005;
+  }
+
+  .nav-links li {
+    border-bottom: 1px solid rgba(232, 221, 209, 0.1);
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 1.1rem 0;
+    font-size: 0.95rem !important;
+    color: #E8DDD1 !important;
+    letter-spacing: 0.15em;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: #D4A574 !important;
+  }
+
+  nav.nav-open .nav-links {
+    transform: translateX(0);
+  }
+
+  /* Ensure hamburger lines stay visible when menu is open */
+  nav.nav-open .hamburger-line {
+    background: #E8DDD1;
+  }
+}
+
+
+/* --- HERO IMAGE — reposition on mobile so model isn't cropped --- */
+@media (max-width: 768px) {
+  .hero-bg {
+    object-position: 20% 35%;
+  }
+}
+
+
+/* --- STATEMENT SECTION — prevent overflow --- */
+@media (max-width: 768px) {
+  .statement-section {
+    padding: 5rem 1.5rem;
+  }
+
+  .statement-line2 {
+    font-size: clamp(2rem, 9vw, 3.5rem);
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .statement-line1 {
+    font-size: clamp(1.5rem, 5.5vw, 2.5rem);
+  }
+
+  .statement-content p {
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+  }
+}
+
+
+/* --- HOME SLIDER — mobile polish --- */
+@media (max-width: 768px) {
+  .home-slider-viewport {
+    height: clamp(480px, 75vh, 720px);
+  }
+
+  .home-slide-title {
+    font-size: clamp(1.5rem, 5vw, 2.4rem);
+  }
+
+  .home-slider-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .home-slider-btn.prev { left: 10px; }
+  .home-slider-btn.next { right: 10px; }
+}
+
+
+/* --- PARALLAX SECTION — disable fixed on mobile (iOS fix) --- */
+@media (max-width: 768px) {
+  .parallax-section {
+    background-attachment: scroll;
+    height: 60vh;
+  }
+}
+
+
+/* --- PORTFOLIO CAROUSEL — fix everything on mobile --- */
+@media (max-width: 968px) {
+  .portfolio-section {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .carousel-container {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    padding: 1rem;
+  }
+
+  .carousel-card {
+    height: auto;
+    min-height: 85vh;
+    border-radius: 18px;
+  }
+
+  .carousel-slide {
+    grid-template-columns: 1fr;
+    grid-template-rows: 50% 1fr;
+    position: absolute;
+    inset: 0;
+  }
+
+  .slide-image {
+    height: 100%;
+    min-height: 0;
+  }
+
+  .slide-content {
+    padding: 1.5rem 1.5rem 5rem;
+    overflow: hidden;
+  }
+
+  .slide-category {
+    font-size: 0.65rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .slide-title {
+    font-size: clamp(1.8rem, 7vw, 2.8rem) !important;
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.06em;
+  }
+
+  .slide-description {
+    font-size: 0.85rem;
+    line-height: 1.55;
+    margin-bottom: 1.2rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .slide-btn {
+    font-size: 0.7rem;
+    padding: 0.7rem 1.2rem;
+  }
+
+  /* Nav arrows — reposition below content */
+  .carousel-nav {
+    bottom: 3.5rem;
+    gap: 1rem;
+  }
+
+  .carousel-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 1.2rem;
+  }
+
+  .scroll-progress {
+    bottom: 1.2rem;
+    gap: 0.6rem;
+  }
+
+  .progress-dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+
+/* --- ABOUT SECTION — fix overflow and stacking --- */
+@media (max-width: 968px) {
+  .about {
+    padding: 4rem 1.5rem;
+  }
+
+  .about-container {
+    gap: 2.5rem;
+  }
+
+  .about-text h2 {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .stats {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-number {
+    font-size: 2.2rem;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+  }
+
+  .about-image {
+    height: 400px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about {
+    padding: 3rem 1.2rem;
+  }
+
+  .about-image {
+    height: 320px;
+  }
+}
+
+
+/* --- CONTACT SECTION — mobile refinements --- */
+@media (max-width: 768px) {
+  .contact {
+    padding: 4rem 1.2rem;
+  }
+
+  .contact h2 {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .contact-link {
+    font-size: 0.85rem;
+  }
+}
+
+
+/* --- FOOTER — stack on mobile --- */
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+
+/* --- GLOBAL MOBILE OVERFLOW PREVENTION --- */
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+}

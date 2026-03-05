@@ -21,6 +21,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
       onScroll(); // run once on load
       window.addEventListener("scroll", onScroll);
+
+      // Mobile hamburger menu
+      const hamburger = nav.querySelector(".nav-hamburger");
+      const navLinks = nav.querySelector(".nav-links");
+      if (hamburger && navLinks) {
+        hamburger.addEventListener("click", () => {
+          const isOpen = nav.classList.toggle("nav-open");
+          hamburger.setAttribute("aria-expanded", isOpen);
+        });
+
+        // Close menu when a link is tapped
+        navLinks.querySelectorAll("a").forEach(link => {
+          link.addEventListener("click", () => {
+            nav.classList.remove("nav-open");
+            hamburger.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
     })
     .catch(err => console.error("Failed to load nav:", err));
 });
