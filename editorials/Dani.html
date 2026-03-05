@@ -12,9 +12,8 @@
 
   <!-- Page-specific overrides -->
   <style>
-    /* Override hero title + label color JUST for this editorial */
-    .hero-title,
-    .hero-label span:last-child {
+    /* Override hero title color JUST for this editorial */
+    .hero-title {
       color: #E8DDD1 !important; /* soft warm white over hero image */
     }
 
@@ -30,6 +29,12 @@
 
     .ig-link:hover img {
       opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .hero-image {
+        background-position: 10% top !important;
+      }
     }
   </style>
 </head>

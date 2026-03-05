@@ -2030,7 +2030,7 @@ nav.nav-open .hamburger-line:nth-child(3) {
 
   .carousel-slide {
     grid-template-columns: 1fr;
-    grid-template-rows: 50% 1fr;
+    grid-template-rows: 55% 1fr;
     position: absolute;
     inset: 0;
   }
@@ -2038,6 +2038,10 @@ nav.nav-open .hamburger-line:nth-child(3) {
   .slide-image {
     height: 100%;
     min-height: 0;
+  }
+
+  .slide-image img {
+    object-position: center top;
   }
 
   .slide-content {
