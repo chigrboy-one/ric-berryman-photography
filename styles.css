@@ -1692,8 +1692,7 @@
   position:absolute;
   inset:0;
   background:
-    radial-gradient(circle at 20% 20%, rgba(0,0,0,.35), transparent 55%),
-    linear-gradient(to top, rgba(0,0,0,.75), rgba(0,0,0,.05));
+    linear-gradient(to top, rgba(0,0,0,.3), rgba(0,0,0,.02) 50%);
   pointer-events:none;
 }
 
