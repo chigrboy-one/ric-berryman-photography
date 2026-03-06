@@ -2005,6 +2005,14 @@ nav.nav-open .hamburger-line:nth-child(3) {
     background-attachment: scroll;
     height: 60vh;
   }
+
+  .parallax-content p {
+    display: none;
+  }
+
+  .parallax-content h2 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+  }
 }
 
 
