@@ -338,8 +338,8 @@
     .beauty-viewer-img-wrap {
       position: relative;
       flex: 0 0 auto;
-      height: calc(100vh - 120px);
-      max-height: calc(100vh - 120px);
+      height: calc(100vh - 200px);
+      max-height: calc(100vh - 200px);
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 28px 90px rgba(0,0,0,0.7);
@@ -439,6 +439,66 @@
       .beauty-viewer-arrow {
         width: 38px;
         height: 38px;
+      }
+    }
+
+    /* =========================
+       FILMSTRIP THUMBNAILS
+       ========================= */
+
+    .filmstrip {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 8px 0;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .filmstrip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filmstrip-thumb {
+      flex: 0 0 64px;
+      height: 48px;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.4;
+      transition: opacity 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      background: #000;
+    }
+
+    .filmstrip-thumb.active {
+      opacity: 1;
+      border-color: rgba(253, 248, 240, 0.85);
+      transform: scale(1.08);
+    }
+
+    .filmstrip-thumb:hover {
+      opacity: 0.75;
+    }
+
+    .filmstrip-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .filmstrip-thumb {
+        flex: 0 0 52px;
+        height: 40px;
+      }
+
+      .beauty-viewer-img-wrap {
+        height: calc(100vh - 180px);
+        max-height: calc(100vh - 180px);
       }
     }
 
@@ -546,6 +606,9 @@
         <button class="beauty-viewer-close" id="beauty-viewer-close" aria-label="Close viewer">
           ✕
         </button>
+      </div>
+      <div class="filmstrip" id="beauty-filmstrip">
+        <!-- JS injects thumbnails -->
       </div>
       <div class="beauty-viewer-meta">
         <div class="beauty-viewer-title" id="beauty-viewer-title"></div>
@@ -704,8 +767,53 @@
       const viewerCount = document.getElementById("beauty-viewer-count");
       const closeBtn = document.getElementById("beauty-viewer-close");
       const arrows = viewer.querySelectorAll(".beauty-viewer-arrow");
+      const filmstrip = document.getElementById("beauty-filmstrip");
+
+      /* Build filmstrip thumbnails */
+      const thumbEls = [];
+      beautyImages.forEach((img, i) => {
+        const btn = document.createElement("button");
+        btn.className = "filmstrip-thumb";
+        btn.setAttribute("aria-label", `View image ${i + 1}`);
+        btn.dataset.index = i;
+        const thumbImg = document.createElement("img");
+        thumbImg.src = img.src;
+        thumbImg.alt = "";
+        thumbImg.loading = "lazy";
+        btn.appendChild(thumbImg);
+        filmstrip.appendChild(btn);
+        thumbEls.push(btn);
+      });
+
+      filmstrip.addEventListener("click", (e) => {
+        const btn = e.target.closest(".filmstrip-thumb");
+        if (!btn) return;
+        const idx = parseInt(btn.dataset.index, 10);
+        if (!Number.isNaN(idx)) {
+          const dir = idx > currentIndex ? 1 : idx < currentIndex ? -1 : 0;
+          currentIndex = idx;
+          setImage(idx, dir);
+        }
+      });
 
       let currentIndex = 0;
+
+      function updateFilmstrip(index) {
+        thumbEls.forEach((el, i) => {
+          el.classList.toggle("active", i === index);
+        });
+        /* Auto-scroll filmstrip to center the active thumb */
+        const activeThumb = thumbEls[index];
+        if (activeThumb && filmstrip) {
+          const stripRect = filmstrip.getBoundingClientRect();
+          const thumbRect = activeThumb.getBoundingClientRect();
+          const scrollLeft = filmstrip.scrollLeft
+            + (thumbRect.left - stripRect.left)
+            - (stripRect.width / 2)
+            + (thumbRect.width / 2);
+          filmstrip.scrollTo({ left: scrollLeft, behavior: "smooth" });
+        }
+      }
 
       function setImage(index, direction) {
         if (index < 0 || index >= beautyImages.length) return;
@@ -735,6 +843,8 @@
         viewerTitle.textContent = "";
         viewerCaption.textContent = "";
         viewerCount.textContent = (index + 1) + " / " + beautyImages.length;
+
+        updateFilmstrip(index);
 
         requestAnimationFrame(() => {
           viewerImg.style.opacity = "1";
