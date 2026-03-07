@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>MEGA — Field Notes by Ric Berryman</title>
+  <title>MAGA — Field Notes by Ric Berryman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Shared site styles -->
@@ -10,7 +10,7 @@
 
   <style>
     /* =========================================================
-       FIELD NOTES — MEGA
+       FIELD NOTES — MAGA
        ========================================================= */
 
     :root{
@@ -534,15 +534,15 @@
       <div class="mega-hero-media"></div>
       <div class="mega-hero-inner">
         <span class="label-pill">Field Notes</span>
-        <h1 class="mega-hero-title">MEGA</h1>
+        <h1 class="mega-hero-title">MAGA</h1>
         <p class="mega-hero-sub">
-          A day at the MEGA festival in Huntington Beach — sun, surf, and street culture.
+          You can't always get what you want. But if you try sometimes, you get what you need.
         </p>
 
         <div class="mega-tags">
           <span>Huntington Beach</span>
-          <span>Festival</span>
-          <span>Street Culture</span>
+          <span>Pacific Air Show</span>
+          <span>Street Photography</span>
           <span>October 2024</span>
         </div>
 
@@ -562,12 +562,39 @@
 
     <article class="fn-article">
       <section class="fn-prose">
-        <p>MEGA — Huntington Beach, October 2024.</p>
+        <p><strong>But if you try sometimes…</strong></p>
+
+        <p>I went out recently to shoot planes at the Pacific Air Show in Huntington Beach, CA. It's been an annual tradition for several years despite the show not changing much from year-to-year. Heck, I even bought tickets this year so I could be closer to a bathroom and food. Maybe in that order, maybe not. But it was a gloriously warm and sunny day when I left home in the Pasadena area, but by the time I got to the beach, the coast was foggier than a preacher's glasses in a whorehouse. Visibility? Gone. Planes? Nada.</p>
       </section>
+
+      <figure class="fn-figure fn-photo" data-src="../assets/images/field-notes/mega/2024-10-05+MEGA+Huntington+Beach-26.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/mega/2024-10-05+MEGA+Huntington+Beach-26.jpg" alt="MAGA rally photograph" />
+          <div class="fn-cap is-empty"><span class="cap-line" data-cap-for="2024-10-05+MEGA+Huntington+Beach-26.jpg"></span></div>
+        </div>
+      </figure>
+
+      <hr class="fn-rule" />
+
+      <section class="fn-prose">
+        <p>Now, this isn't a political website, and I won't air my politics here (well, maybe a little), but people are a little nuts in Huntington Beach. Nuts for Trump, that is. I think it was actually an "Asians for Trump" rally—most of whom seemed to be of Vietnamese descent as far as I could tell, with a sprinkling of some crazy white folk. One white guy was yelling, "No voodoo in America! Look it up! They're eating our dogs and cats! No voodoo in America!"—all while choking down what appeared to be a hot dog. Now I'd say that's as goddamned American in the year 2024 as any F-22 Raptor!</p>
+      </section>
+
+      <figure class="fn-figure fn-photo is-full" data-src="../assets/images/field-notes/mega/2024-10-05+MEGA+Huntington+Beach-50.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/mega/2024-10-05+MEGA+Huntington+Beach-50.jpg" alt="MAGA rally photograph" />
+          <div class="fn-cap is-empty"><span class="cap-line" data-cap-for="2024-10-05+MEGA+Huntington+Beach-50.jpg"></span></div>
+        </div>
+      </figure>
+
+      <section class="fn-prose">
+        <p>As I stood there, trying to make sense of the scene, I realized: sometimes you go out looking for American military muscle but end up with a front-row seat to the circus instead. Not exactly what I came for, but hey, sometimes, you get what you need.</p>
+      </section>
+
       <hr class="fn-rule" />
 
       <!-- GALLERY -->
-      <section class="fn-gallery" aria-label="MEGA photo gallery">
+      <section class="fn-gallery" aria-label="MAGA photo gallery">
         <div class="fn-gallery-header">
           <h2>Gallery</h2>
           <span>Click any image for lightbox</span>
@@ -602,7 +629,7 @@
   <script>
     (function () {
       /* ---------------------------------------------------------
-         MEGA — Field Notes JS (FULL)
+         MAGA — Field Notes JS (FULL)
          --------------------------------------------------------- */
 
       const BASE = "../assets/images/field-notes/mega/";
@@ -644,11 +671,11 @@
       const HERO_FILENAME = "2024-10-05+MEGA+Huntington+Beach-4.jpg";
 
       const LB_ITEMS = [
-        { filename: HERO_FILENAME, src: BASE + HERO_FILENAME, alt: "MEGA — hero" },
+        { filename: HERO_FILENAME, src: BASE + HERO_FILENAME, alt: "MAGA — hero" },
         ...GALLERY_ORDER.map((filename) => ({
           filename,
           src: BASE + filename,
-          alt: `MEGA photograph — ${filename.replace(/\.jpg$/i, "").replace(/\+/g, " ")}`
+          alt: `MAGA photograph — ${filename.replace(/\.jpg$/i, "").replace(/\+/g, " ")}`
         }))
       ];
 
@@ -678,7 +705,7 @@
         tile.dataset.filename = filename;
 
         tile.innerHTML = `
-          <img src="${src}" alt="MEGA photograph — ${filename.replace(/\.jpg$/i, "").replace(/\+/g, " ")}" loading="lazy" />
+          <img src="${src}" alt="MAGA photograph — ${filename.replace(/\.jpg$/i, "").replace(/\+/g, " ")}" loading="lazy" />
           <div class="tile-cap"><span>${cap}</span></div>
         `;
 
