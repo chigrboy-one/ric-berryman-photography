@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fire!!! — Field Notes by Ric Berryman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    /* =========================================================
+       FIELD NOTES — FIRE DANCERS
+       ========================================================= */
+
+    :root{
+      --bg: #E8DDD1;
+      --ink: #2E2621;
+
+      --edge: clamp(14px, 2.2vw, 32px);
+
+      /* prose width */
+      --prose: 1400px;
+
+      /* inline widths */
+      --inline-wide: 1380px;  /* most inline photos */
+      --inline-full: 1920px;  /* occasional "full-bleed-ish" */
+
+      --radius-img: 22px;
+      --shadow-soft: 0 18px 55px rgba(0,0,0,0.22);
+      --shadow: 0 22px 70px rgba(0,0,0,0.26);
+
+      /* Lightbox sizing */
+      --lb-w: min(2200px, 98vw);
+      --lb-h: calc(100vh - 64px);
+    }
+
+    /* Keep the wide-vs-full rhythm on laptop screens */
+    @media (max-width: 1200px){
+      :root{
+        --inline-wide: 480px;   /* smaller "wide" cap */
+        --prose: 1050px;        /* optional: keep text width in harmony */
+      }
+    }
+
+    @media (max-width: 768px){
+      :root{
+        --inline-wide: 92vw;    /* phones: let it breathe */
+        --prose: 92vw;
+      }
+    }
+
+    body{
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    #nav-mount{ position: relative; z-index: 5; }
+    main{ padding-bottom: 6rem; }
+
+    /* =========================================================
+       HERO — Beauty-style
+       ========================================================= */
+    .label-pill{
+      display: inline-block;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #FDF8F0;
+      background: rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(6px);
+    }
+
+    .fire-hero{
+      position: relative;
+      height: 90vh;
+      min-height: 540px;
+      display: flex;
+      align-items: flex-end;
+      padding: 3.5rem 3rem;
+      overflow: hidden;
+      color: #FDF8F0;
+
+      /* borderless */
+      border-radius: 0;
+      box-shadow: none;
+      margin: 0;
+    }
+
+    @media (max-width: 768px){
+      .fire-hero{ padding: 2.5rem 1.5rem; min-height: 480px; }
+    }
+
+    /* =========================================================
+       FIRE HERO — Ken Burns + Parallax
+       ========================================================= */
+    .fire-hero-media{
+      position: absolute;
+      inset: 0;
+      background-image: url("../assets/images/field-notes/fire-dancers/24-12-10+Bombay+Beach+-+bottled.fire-28.jpg");
+      background-size: cover;
+      background-position: center 35%;
+
+      /* base values */
+      --kb-x: 0%;
+      --kb-y: 0%;
+      --kb-scale: 1.12;
+
+      --p-y: 0px;
+      --p-scale: 1;
+
+      transform:
+        translate3d(var(--kb-x), var(--kb-y), 0)
+        translateY(var(--p-y))
+        scale(calc(var(--kb-scale) * var(--p-scale)));
+
+      will-change: transform;
+      animation: fireKenBurns 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes fireKenBurns{
+      0%{
+        --kb-x: -1.5%;
+        --kb-y: -1%;
+        --kb-scale: 1.12;
+      }
+      100%{
+        --kb-x: 1.5%;
+        --kb-y: 1%;
+        --kb-scale: 1.22;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .fire-hero-media{ animation: none !important; }
+    }
+
+    .fire-hero::before{
+      content:"";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(0, 0, 0, 0.50), transparent 60%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.02));
+      pointer-events: none;
+    }
+
+    .fire-hero-inner{
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+    }
+
+    .fire-hero-title{
+      font-size: clamp(3.0rem, 8.7vw, 5.0rem);
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin: 0.75rem 0 0.8rem;
+      line-height: 0.95;
+    }
+
+    .fire-hero-sub{
+      font-size: 0.98rem;
+      line-height: 1.9;
+      max-width: 58ch;
+      margin-bottom: 1.8rem;
+      opacity: 0.95;
+    }
+
+    .fire-tags{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.78rem;
+    }
+
+    .fire-tags span{
+      padding: 0.22rem 0.78rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.28);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      background: rgba(0, 0, 0, 0.24);
+    }
+
+    .scroll-hint{
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.78;
+    }
+
+    .scroll-hint svg{
+      width: 16px;
+      height: 16px;
+      animation: bounceDown 1.5s infinite;
+    }
+
+    @keyframes bounceDown{
+      0%{ transform: translateY(0); }
+      50%{ transform: translateY(5px); }
+      100%{ transform: translateY(0); }
+    }
+
+    /* =========================================================
+       ARTICLE / PROSE
+       ========================================================= */
+    .fn-article{ width: 100%; margin: 2.4rem auto 0; }
+
+    .fn-prose{
+      max-width: var(--prose);
+      margin: 0 auto;
+      padding: 0 var(--edge);
+      font-size: 1.3rem;
+      line-height: 1.95;
+      color: var(--ink);
+    }
+
+    .fn-prose p{
+      margin: 0 0 1.35rem;
+      opacity: 0.92;
+    }
+
+    .fn-rule{
+      max-width: var(--prose);
+      margin: 2.2rem auto;
+      height: 1px;
+      border: 0;
+      background: linear-gradient(to right, transparent, rgba(46,38,33,0.14), transparent);
+    }
+
+    /* =========================================================
+       INLINE "PHOTO" FIGURES (wide vs full-bleed)
+       ========================================================= */
+    .fn-figure{
+      width: min(var(--inline-wide), calc(100vw - (var(--edge) * 2)));
+      margin: 2.1rem auto;
+      position: relative;
+    }
+
+    .fn-figure.is-full{
+      width: min(var(--inline-full), calc(100vw - (var(--edge) * 1)));
+    }
+
+    .fn-figure .img-wrap{
+      position: relative; /* IMPORTANT: anchors caption */
+      border-radius: var(--radius-img);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #000;
+      cursor: zoom-in;
+    }
+
+    .fn-figure.is-full .img-wrap{
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .fn-figure img{
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: scale(1.01);
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fn-figure:hover img{ transform: scale(1.05); }
+
+    /* caption overlay (FIXED: stays with img-wrap, never floats under hero) */
+    .fn-cap{
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 1.0rem 1.15rem;
+      color: rgba(253,248,240,0.95);
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.55;
+      background: linear-gradient(to top, rgba(0,0,0,0.70), rgba(0,0,0,0.0));
+      pointer-events: none;
+    }
+
+    .fn-cap .cap-line{
+      display: inline-block;
+      padding-top: 0.25rem;
+      border-top: 1px solid rgba(253,248,240,0.22);
+      max-width: min(980px, 92%);
+    }
+
+    .fn-cap.is-empty{ display:none; }
+
+    /* =========================================================
+       GALLERY
+       ========================================================= */
+    .fn-gallery{
+      margin-top: 3.4rem;
+      width: 100%;
+    }
+
+    .fn-gallery-header{
+      max-width: var(--prose);
+      margin: 0 auto 1.4rem;
+      padding: 0 var(--edge);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .fn-gallery-header h2{
+      margin: 0;
+      font-size: 1.05rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-weight: 600;
+      color: rgba(76,42,27,0.92);
+    }
+
+    .fn-gallery-header span{
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(46,38,33,0.68);
+      white-space: nowrap;
+    }
+
+    /* =========================================================
+       GALLERY (NO "CAPTION BAR" BUG + NO MASONRY POP)
+       - Using columns layout, but IMPORTANT: tiles must be position:relative
+         so .tile-cap absolute does NOT attach to the page.
+       ========================================================= */
+    .fn-grid{
+      width: calc(100vw - (var(--edge) * 2));
+      margin: 0 auto;
+      column-count: 3;
+      column-gap: 2.2rem;
+    }
+    @media (max-width: 1100px){ .fn-grid{ column-count: 2; } }
+    @media (max-width: 680px){ .fn-grid{ column-count: 1; } }
+
+    .fn-tile{
+      display: inline-block;     /* required for columns */
+      width: 100%;
+      break-inside: avoid;
+      margin: 0 0 1.15rem;
+
+      position: relative;        /* FIX: anchors .tile-cap */
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: var(--shadow-soft);
+      cursor: zoom-in;
+
+      transform: translateY(18px);
+      opacity: 0;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.7s ease;
+    }
+
+    .fn-tile.in{ transform: translateY(0); opacity: 1; }
+
+    .fn-tile img{
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: scale(1.02);
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fn-tile:hover img{ transform: scale(1.07); }
+
+    .tile-cap{
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 0.85rem 0.9rem;
+      color: rgba(253,248,240,0.95);
+      font-size: 0.72rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      line-height: 1.55;
+      background: linear-gradient(to top, rgba(0,0,0,0.70), rgba(0,0,0,0));
+      pointer-events: none;
+      display: none;
+    }
+    .fn-tile.has-cap .tile-cap{ display:block; }
+
+    /* =========================================================
+       LIGHTBOX
+       ========================================================= */
+    .lb{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 6, 4, 0.90);
+      backdrop-filter: blur(10px);
+    }
+
+    .lb.open{ display: flex; animation: lbFade 0.18s ease-out; }
+    @keyframes lbFade{ from{opacity:0} to{opacity:1} }
+
+    .lb-inner{
+      width: var(--lb-w);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: rgba(253,248,240,0.92);
+    }
+
+    .lb-stage{
+      position: relative;
+      height: var(--lb-h);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 30px 110px rgba(0,0,0,0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .lb-img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      opacity: 1;
+      transform: translateX(0);
+      transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease;
+    }
+
+    .lb-close{
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,248,240,0.28);
+      background: rgba(26, 20, 17, 0.88);
+      color: rgba(253,248,240,0.95);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      z-index: 3;
+    }
+
+    .lb-nav{
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.7rem;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .lb-btn{
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,248,240,0.22);
+      background: rgba(26, 20, 17, 0.88);
+      color: rgba(253,248,240,0.95);
+      cursor: pointer;
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      user-select: none;
+    }
+
+    @media (max-width: 768px){
+      .lb-btn{ width: 42px; height: 42px; font-size: 1.1rem; }
+      .lb-close{ width: 36px; height: 36px; }
+    }
+
+    .lb-meta{
+      width: 100%;
+      padding: 0 var(--edge);
+      color: rgba(253,248,240,0.88);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .lb-caption{
+      font-size: 0.82rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      line-height: 1.6;
+      opacity: 0.92;
+      max-width: min(1200px, 100%);
+      min-height: 1.2em;
+    }
+
+    .lb-count{
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared nav mount -->
+  <div id="nav-mount"></div>
+
+  <main>
+    <!-- HERO (Beauty-style) -->
+    <section class="fire-hero">
+      <div class="fire-hero-media"></div>
+      <div class="fire-hero-inner">
+        <span class="label-pill">Field Notes</span>
+        <h1 class="fire-hero-title">FIRE!!!</h1>
+        <p class="fire-hero-sub">
+          Fire performers, post-apocalyptic landscapes, and the Salton Sea's strangest night.
+        </p>
+
+        <div class="fire-tags">
+          <span>Bombay Beach</span>
+          <span>Salton Sea</span>
+          <span>Fire Performers</span>
+          <span>December 2024</span>
+        </div>
+
+        <div class="scroll-hint">
+          <span>Scroll to read</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 4v14m0 0-5-5m5 5 5-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <article class="fn-article">
+      <section class="fn-prose">
+        <p><strong>Recently, I found myself in a group shoot at Bombay Beach on the infamous Salton Sea.</strong> For the unacquainted, the Salton Sea is California's largest accidental lake. In its prime, it was as swanky as a flamingo in a tuxedo—a place where you could go water skiing with Frank Sinatra and catch a fish with your teeth, all while keeping your cocktail dry. Or so I've heard. But fast forward to today, and it's devolved into a charming post-apocalyptic paradise, where the beaches aren't made of sand but the delicate crunch of bleached fish bones and shattered dreams. True story.</p>
+      </section>
+
+      <!-- PHOTO (wide) -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/field-notes/fire-dancers/24-12-10+Bombay+Beach+-+Kayla+Kirti-3.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/fire-dancers/24-12-10+Bombay+Beach+-+Kayla+Kirti-3.jpg" alt="Kayla Kirti fire performer" />
+          <div class="fn-cap"><span class="cap-line">Kayla Kirti</span></div>
+        </div>
+      </figure>
+
+      <hr class="fn-rule" />
+
+      <section class="fn-prose">
+        <p>The mastermind behind this photographic circus was none other than a man known only by his initials: PJ. PJ's real name is shrouded in mystery—perhaps it's Philbert Johnson, or maybe Paradox Jones. Nobody knows, I certainly don't. What I do know is that his two-letter alias only adds to his James-Bond-meets-Banksy aura. PJ isn't just a fine photographer; he's got the uncanny ability to herd creatives with the efficiency of a Swiss watch and the patience of a yoga instructor who's too Zen to care.</p>
+      </section>
+
+      <!-- PHOTO (full-bleed) -->
+      <figure class="fn-figure fn-photo is-full" data-src="../assets/images/field-notes/fire-dancers/24-12-10+Bombay+Beach+-+Malibu+Mermaid-11.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/fire-dancers/24-12-10+Bombay+Beach+-+Malibu+Mermaid-11.jpg" alt="Malibu Mermaid fire performer" />
+          <div class="fn-cap"><span class="cap-line">Malibu Mermaid</span></div>
+        </div>
+      </figure>
+
+      <section class="fn-prose">
+        <p>Lately, PJ's been entranced by fire performers, who are essentially the love children of flamethrowers and interpretive dancers. Naturally, he managed to corral a troupe of these fiery daredevils, along with a gaggle of photographers (myself included), for a rendezvous at Bombay Beach. The combination of creative types, burning things, and a crumbling wasteland? It was either going to be an artistic epiphany or a spectacular insurance claim waiting to happen. Not that anyone would notice if you burned the place to the ground, as it would only add to the apocalyptic ambiance and might even raise property values of Bombay Beach.</p>
+      </section>
+
+      <!-- PHOTO (wide) -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/field-notes/fire-dancers/24-12-10+Bombay+Beach+-+sp3ktral_phyre-21.jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/field-notes/fire-dancers/24-12-10+Bombay+Beach+-+sp3ktral_phyre-21.jpg" alt="sp3ktral_phyre fire performer" />
+          <div class="fn-cap"><span class="cap-line">sp3ktral_phyre</span></div>
+        </div>
+      </figure>
+
+      <hr class="fn-rule" />
+
+      <section class="fn-prose">
+        <p><strong>The Cast</strong></p>
+
+        <p>Organizer: PJ</p>
+
+        <p><strong>Performers:</strong> Kayla Kirti, Madie Coryell, Natalie, Bottled.Fire, Jorge Fuentes, Malibu Mermaid, sp3ktral_Phyre</p>
+
+        <p><strong>Photographers:</strong> PJ, Alex, Gerard, Steve</p>
+
+        <p>All photos shown are mine. Copyright 2024 All Rights Reserved.</p>
+      </section>
+
+      <hr class="fn-rule" />
+
+      <!-- GALLERY -->
+      <section class="fn-gallery" aria-label="Fire Dancers photo gallery">
+        <div class="fn-gallery-header">
+          <h2>Gallery</h2>
+          <span>Click any image for lightbox</span>
+        </div>
+        <div class="fn-grid" id="fire-grid"></div>
+      </section>
+    </article>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div class="lb" id="lb" aria-hidden="true">
+    <div class="lb-inner">
+      <div class="lb-stage">
+        <div class="lb-nav">
+          <button class="lb-btn" id="lb-prev" aria-label="Previous image">&larr;</button>
+          <button class="lb-btn" id="lb-next" aria-label="Next image">&rarr;</button>
+        </div>
+        <img class="lb-img" id="lb-img" src="" alt="" />
+        <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="lb-meta">
+        <div class="lb-caption" id="lb-caption"></div>
+        <div class="lb-count" id="lb-count"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared nav loader -->
+  <script src="../assets/js/load-nav.js"></script>
+
+  <script>
+    (function () {
+      /* ---------------------------------------------------------
+         FIRE DANCERS — Field Notes JS (FULL)
+         --------------------------------------------------------- */
+
+      const BASE = "../assets/images/field-notes/fire-dancers/";
+
+      const GALLERY_ORDER = [
+        "24-12-10+Bombay+Beach+-+Jose+Fuentes+jjfPro-1.jpg",
+        "24-12-10+Bombay+Beach+-+Jose+Fuentes+jjfPro-13.jpg",
+        "24-12-10+Bombay+Beach+-+Jose+Fuentes+jjfPro-18.jpg",
+        "24-12-10+Bombay+Beach+-+Jose+Fuentes+jjfPro-7.jpg",
+        "24-12-10+Bombay+Beach+-+Kayla+Kirti-26.jpg",
+        "24-12-10+Bombay+Beach+-+Kayla+Kirti-3.jpg",
+        "24-12-10+Bombay+Beach+-+Madie+Coryell+madiefirefly-18.jpg",
+        "24-12-10+Bombay+Beach+-+Madie+Coryell+madiefirefly-2.jpg",
+        "24-12-10+Bombay+Beach+-+Madie+Coryell+madiefirefly-5.jpg",
+        "24-12-10+Bombay+Beach+-+Madie+Coryell+madiefirefly-7.jpg",
+        "24-12-10+Bombay+Beach+-+Madie+Coryell+madiefirefly-8.jpg",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-11.jpg",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-16.jpg",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-2.jpg",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-22.jpg",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-23.jpg",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-34.jpg",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-38.jpg",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-9.jpg",
+        "24-12-10+Bombay+Beach+-+Natalie-+nata_dont_liemadiefirefly-11.jpg",
+        "24-12-10+Bombay+Beach+-+Natalie-+nata_dont_liemadiefirefly-13.jpg",
+        "24-12-10+Bombay+Beach+-+Natalie-+nata_dont_liemadiefirefly-16.jpg",
+        "24-12-10+Bombay+Beach+-+Natalie-+nata_dont_liemadiefirefly-4.jpg",
+        "24-12-10+Bombay+Beach+-+bottled.fire-18.jpg",
+        "24-12-10+Bombay+Beach+-+bottled.fire-19.jpg",
+        "24-12-10+Bombay+Beach+-+bottled.fire-20.jpg",
+        "24-12-10+Bombay+Beach+-+bottled.fire-22.jpg",
+        "24-12-10+Bombay+Beach+-+bottled.fire-25.jpg",
+        "24-12-10+Bombay+Beach+-+bottled.fire-28.jpg",
+        "24-12-10+Bombay+Beach+-+bottled.fire-32.jpg",
+        "24-12-10+Bombay+Beach+-+bottled.fire-37.jpg",
+        "24-12-10+Bombay+Beach+-+bottled.fire-43.jpg",
+        "24-12-10+Bombay+Beach+-+sp3ktral_phyre-10.jpg",
+        "24-12-10+Bombay+Beach+-+sp3ktral_phyre-12.jpg",
+        "24-12-10+Bombay+Beach+-+sp3ktral_phyre-15.jpg",
+        "24-12-10+Bombay+Beach+-+sp3ktral_phyre-17.jpg",
+        "24-12-10+Bombay+Beach+-+sp3ktral_phyre-21.jpg"
+      ];
+
+      const CAPTIONS = {
+        "24-12-10+Bombay+Beach+-+Jose+Fuentes+jjfPro-1.jpg": "Jose Fuentes",
+        "24-12-10+Bombay+Beach+-+Jose+Fuentes+jjfPro-13.jpg": "Jose Fuentes",
+        "24-12-10+Bombay+Beach+-+Jose+Fuentes+jjfPro-18.jpg": "Jose Fuentes",
+        "24-12-10+Bombay+Beach+-+Jose+Fuentes+jjfPro-7.jpg": "Jose Fuentes",
+        "24-12-10+Bombay+Beach+-+Kayla+Kirti-26.jpg": "Kayla Kirti",
+        "24-12-10+Bombay+Beach+-+Kayla+Kirti-3.jpg": "Kayla Kirti",
+        "24-12-10+Bombay+Beach+-+Madie+Coryell+madiefirefly-18.jpg": "Madie Coryell",
+        "24-12-10+Bombay+Beach+-+Madie+Coryell+madiefirefly-2.jpg": "Madie Coryell",
+        "24-12-10+Bombay+Beach+-+Madie+Coryell+madiefirefly-5.jpg": "Madie Coryell",
+        "24-12-10+Bombay+Beach+-+Madie+Coryell+madiefirefly-7.jpg": "Madie Coryell",
+        "24-12-10+Bombay+Beach+-+Madie+Coryell+madiefirefly-8.jpg": "Madie Coryell",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-11.jpg": "Malibu Mermaid",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-16.jpg": "Malibu Mermaid",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-2.jpg": "Malibu Mermaid",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-22.jpg": "Malibu Mermaid",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-23.jpg": "Malibu Mermaid",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-34.jpg": "Malibu Mermaid",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-38.jpg": "Malibu Mermaid",
+        "24-12-10+Bombay+Beach+-+Malibu+Mermaid-9.jpg": "Malibu Mermaid",
+        "24-12-10+Bombay+Beach+-+Natalie-+nata_dont_liemadiefirefly-11.jpg": "Natalie",
+        "24-12-10+Bombay+Beach+-+Natalie-+nata_dont_liemadiefirefly-13.jpg": "Natalie",
+        "24-12-10+Bombay+Beach+-+Natalie-+nata_dont_liemadiefirefly-16.jpg": "Natalie",
+        "24-12-10+Bombay+Beach+-+Natalie-+nata_dont_liemadiefirefly-4.jpg": "Natalie",
+        "24-12-10+Bombay+Beach+-+bottled.fire-18.jpg": "Bottled.Fire",
+        "24-12-10+Bombay+Beach+-+bottled.fire-19.jpg": "Bottled.Fire",
+        "24-12-10+Bombay+Beach+-+bottled.fire-20.jpg": "Bottled.Fire",
+        "24-12-10+Bombay+Beach+-+bottled.fire-22.jpg": "Bottled.Fire",
+        "24-12-10+Bombay+Beach+-+bottled.fire-25.jpg": "Bottled.Fire",
+        "24-12-10+Bombay+Beach+-+bottled.fire-28.jpg": "Bottled.Fire",
+        "24-12-10+Bombay+Beach+-+bottled.fire-32.jpg": "Bottled.Fire",
+        "24-12-10+Bombay+Beach+-+bottled.fire-37.jpg": "Bottled.Fire",
+        "24-12-10+Bombay+Beach+-+bottled.fire-43.jpg": "Bottled.Fire",
+        "24-12-10+Bombay+Beach+-+sp3ktral_phyre-10.jpg": "sp3ktral_phyre",
+        "24-12-10+Bombay+Beach+-+sp3ktral_phyre-12.jpg": "sp3ktral_phyre",
+        "24-12-10+Bombay+Beach+-+sp3ktral_phyre-15.jpg": "sp3ktral_phyre",
+        "24-12-10+Bombay+Beach+-+sp3ktral_phyre-17.jpg": "sp3ktral_phyre",
+        "24-12-10+Bombay+Beach+-+sp3ktral_phyre-21.jpg": "sp3ktral_phyre"
+      };
+
+      const HERO_FILENAME = "24-12-10+Bombay+Beach+-+bottled.fire-28.jpg";
+
+      const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+
+      function normalizeFilename(name) {
+        return (name || "")
+          .trim()
+          .replace(/^.*\//, "");
+      }
+
+      const LB_ITEMS = [
+        { filename: HERO_FILENAME, src: BASE + HERO_FILENAME, alt: "Fire Dancers — hero" },
+        ...GALLERY_ORDER.map((filename) => ({
+          filename,
+          src: BASE + filename,
+          alt: `Fire Dancers photograph — ${CAPTIONS[filename] || filename}`
+        }))
+      ];
+
+      const LB_INDEX_BY_FILENAME = new Map();
+      LB_ITEMS.forEach((it, idx) => LB_INDEX_BY_FILENAME.set(it.filename, idx));
+
+      /* Inline photos: captions + keep src aligned with data-src */
+      document.querySelectorAll(".fn-photo").forEach(fig => {
+        const src = fig.getAttribute("data-src") || "";
+        const filename = normalizeFilename(src);
+        const cap = (CAPTIONS[filename] || "").trim();
+
+        const img = fig.querySelector("img");
+        if (img && src && img.getAttribute("src") !== src) img.setAttribute("src", src);
+
+        const capWrap = fig.querySelector(".fn-cap");
+        const capLine = fig.querySelector(".cap-line");
+
+        if (capLine) capLine.textContent = cap;
+        if (!cap) capWrap && capWrap.classList.add("is-empty");
+        else capWrap && capWrap.classList.remove("is-empty");
+      });
+
+      /* Gallery build */
+      const grid = document.getElementById("fire-grid");
+
+      const tileObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            tileObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      function createTile(filename) {
+        const src = BASE + filename;
+        const cap = (CAPTIONS[filename] || "").trim();
+        const lbIndex = LB_INDEX_BY_FILENAME.get(filename);
+
+        const tile = document.createElement("figure");
+        tile.className = "fn-tile" + (cap ? " has-cap" : "");
+        tile.dataset.index = String(lbIndex ?? -1);
+        tile.dataset.filename = filename;
+
+        tile.innerHTML = `
+          <img src="${src}" alt="Fire Dancers photograph — ${cap || filename}" loading="lazy" />
+          <div class="tile-cap"><span>${cap}</span></div>
+        `;
+
+        return { tile, src };
+      }
+
+      function appendTileWithAspectRatio(tile, src) {
+        const probe = new Image();
+        probe.onload = () => {
+          const w = probe.naturalWidth || 3;
+          const h = probe.naturalHeight || 2;
+          tile.style.aspectRatio = `${w} / ${h}`;
+          grid.appendChild(tile);
+          tileObserver.observe(tile);
+        };
+        probe.onerror = () => {
+          tile.style.aspectRatio = "3 / 2";
+          grid.appendChild(tile);
+          tileObserver.observe(tile);
+        };
+        probe.src = src;
+      }
+
+      if (grid) {
+        GALLERY_ORDER.forEach(filename => {
+          const { tile, src } = createTile(filename);
+          appendTileWithAspectRatio(tile, src);
+        });
+      }
+
+      /* Lightbox */
+      const lb = document.getElementById("lb");
+      const lbImg = document.getElementById("lb-img");
+      const lbCaption = document.getElementById("lb-caption");
+      const lbCount = document.getElementById("lb-count");
+      const btnClose = document.getElementById("lb-close");
+      const btnPrev = document.getElementById("lb-prev");
+      const btnNext = document.getElementById("lb-next");
+
+      let current = 0;
+
+      function openLB(index) {
+        if (!lb) return;
+        current = clamp(index, 0, LB_ITEMS.length - 1);
+        lb.classList.add("open");
+        lb.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        renderLB(0);
+      }
+
+      function closeLB() {
+        if (!lb) return;
+        lb.classList.remove("open");
+        lb.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function renderLB(direction) {
+        const item = LB_ITEMS[current];
+        if (!item || !lbImg) return;
+
+        lbImg.style.transition = "none";
+        lbImg.style.opacity = "0";
+
+        if (direction === 1) lbImg.style.transform = "translateX(70px)";
+        else if (direction === -1) lbImg.style.transform = "translateX(-70px)";
+        else lbImg.style.transform = "translateX(0)";
+
+        void lbImg.offsetWidth;
+
+        lbImg.style.transition =
+          "transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease";
+        lbImg.src = item.src;
+        lbImg.alt = item.alt || "";
+
+        const cap = (CAPTIONS[item.filename] || "").trim();
+        if (lbCaption) lbCaption.textContent = cap;
+        if (lbCount) lbCount.textContent = `${current + 1} / ${LB_ITEMS.length}`;
+
+        requestAnimationFrame(() => {
+          lbImg.style.opacity = "1";
+          lbImg.style.transform = "translateX(0)";
+        });
+      }
+
+      function step(delta) {
+        current = (current + delta + LB_ITEMS.length) % LB_ITEMS.length;
+        renderLB(delta);
+      }
+
+      document.querySelectorAll(".fn-photo img").forEach(img => {
+        img.addEventListener("click", () => {
+          const filename = normalizeFilename(img.getAttribute("src"));
+          const idx = LB_INDEX_BY_FILENAME.get(filename);
+          if (typeof idx === "number") openLB(idx);
+        });
+      });
+
+      if (grid) {
+        grid.addEventListener("click", (e) => {
+          const tile = e.target.closest(".fn-tile");
+          if (!tile) return;
+          const idx = parseInt(tile.dataset.index, 10);
+          if (!Number.isNaN(idx) && idx >= 0) openLB(idx);
+        });
+      }
+
+      if (btnClose) btnClose.addEventListener("click", closeLB);
+      if (btnPrev) btnPrev.addEventListener("click", (e) => { e.stopPropagation(); step(-1); });
+      if (btnNext) btnNext.addEventListener("click", (e) => { e.stopPropagation(); step(1); });
+
+      if (lb) lb.addEventListener("click", (e) => { if (e.target === lb) closeLB(); });
+
+      window.addEventListener("keydown", (e) => {
+        if (!lb || !lb.classList.contains("open")) return;
+        if (e.key === "Escape") closeLB();
+        if (e.key === "ArrowLeft") step(-1);
+        if (e.key === "ArrowRight") step(1);
+      });
+
+      /* Hero — smooth Ken Burns + scroll parallax */
+      const hero = document.querySelector(".fire-hero");
+      const heroMedia = document.querySelector(".fire-hero-media");
+      const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      const KB_DURATION_MS = 26000;
+      const KB_SCALE_MIN = 1.10;
+      const KB_SCALE_MAX = 1.22;
+      const KB_DRIFT_X_PCT = 2.2;
+      const KB_DRIFT_Y_PCT = 1.4;
+
+      const PARALLAX_Y_PX = 26;
+      const PARALLAX_SCALE_ADD = 0.06;
+
+      let startTime = performance.now();
+
+      function tick(now) {
+        if (!hero || !heroMedia) return;
+
+        const rect = hero.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const progress = clamp((0 - rect.top) / (vh * 1.1), 0, 1);
+
+        const parallaxY = progress * PARALLAX_Y_PX;
+        const parallaxScale = PARALLAX_SCALE_ADD * progress;
+
+        if (prefersReduced) {
+          heroMedia.style.transform = `translate3d(0, ${parallaxY}px, 0) scale(1.08)`;
+          requestAnimationFrame(tick);
+          return;
+        }
+
+        const t = (now - startTime) % KB_DURATION_MS;
+        const phase = (t / KB_DURATION_MS) * Math.PI * 2;
+
+        const w = 0.5 - 0.5 * Math.cos(phase);
+        const kbScale = KB_SCALE_MIN + (KB_SCALE_MAX - KB_SCALE_MIN) * w;
+
+        const kbX = Math.sin(phase * 0.9) * KB_DRIFT_X_PCT;
+        const kbY = Math.cos(phase * 0.7) * KB_DRIFT_Y_PCT;
+
+        heroMedia.style.transform =
+          `translate3d(${kbX}%, calc(${kbY}% + ${parallaxY}px), 0) ` +
+          `scale(${kbScale + parallaxScale})`;
+
+        requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+    })();
+  </script>
+
+  <!-- Site-wide JS (image protection, etc.) -->
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>
