@@ -577,6 +577,133 @@
       .film-progress { padding: 0 1.25rem; }
     }
 
+    /* =====================
+       FILMSTRIP LIGHTBOX
+       ===================== */
+    .film-frame{ cursor: pointer; }
+
+    .lb{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 6, 4, 0.90);
+      backdrop-filter: blur(10px);
+    }
+
+    .lb.open{ display: flex; animation: lbFade 0.18s ease-out; }
+    @keyframes lbFade{ from{opacity:0} to{opacity:1} }
+
+    .lb-inner{
+      width: min(2200px, 98vw);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: rgba(253,248,240,0.92);
+    }
+
+    .lb-stage{
+      position: relative;
+      height: calc(100vh - 64px);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 30px 110px rgba(0,0,0,0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .lb-img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      opacity: 1;
+      transform: translateX(0);
+      transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease;
+    }
+
+    .lb-close{
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,248,240,0.28);
+      background: rgba(26, 20, 17, 0.88);
+      color: rgba(253,248,240,0.95);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      z-index: 3;
+    }
+
+    .lb-nav{
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.7rem;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .lb-btn{
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,248,240,0.22);
+      background: rgba(26, 20, 17, 0.88);
+      color: rgba(253,248,240,0.95);
+      cursor: pointer;
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      user-select: none;
+    }
+
+    @media (max-width: 768px){
+      .lb-btn{ width: 42px; height: 42px; font-size: 1.1rem; }
+      .lb-close{ width: 36px; height: 36px; }
+    }
+
+    .lb-meta{
+      width: 100%;
+      padding: 0 clamp(14px, 2.2vw, 32px);
+      color: rgba(253,248,240,0.88);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .lb-caption{
+      font-size: 0.82rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      line-height: 1.6;
+      opacity: 0.92;
+      max-width: min(1200px, 100%);
+      min-height: 1.2em;
+    }
+
+    .lb-count{
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+
   </style>
 </head>
 
@@ -597,7 +724,7 @@
 
         <div class="portfolio-hero-tags">
           <span>Editorial Stories</span>
-          <span>Beauty & Portraits</span>
+          <span>Editorial Portraits</span>
           <span>Abandoned Places</span>
           <span>Field Notes</span>
         </div>
@@ -730,9 +857,9 @@
         <div class="film-header">
           <div>
             <div class="category-label">Collections & Explorations</div>
-            <h2 class="film-title">Beauty</h2>
+            <h2 class="film-title">Editorial Portraits</h2>
           </div>
-          <p class="film-tagline">Clean skin, quiet frames, and close-up stories.</p>
+          <p class="film-tagline">Styled shoots, studio light, and intentional frames.</p>
         </div>
 
         <div class="film-strip-wrap">
@@ -905,6 +1032,16 @@
           <div class="thumb-content">
             <h3 class="thumb-title">Comet Tsunchinshan</h3>
             <p class="thumb-caption">Chasing a comet through Anza Borrego's desert sculptures.</p>
+          </div>
+        </a>
+
+        <a href="/field-notes/george-floyd.html" class="thumb-item">
+          <img src="assets/images/george-floyd/Black+Lives+Matter+Crowd+(1+of+1).jpg" alt="George Floyd Protests — Field Notes" class="thumb-image" loading="lazy" />
+          <div class="thumb-overlay"></div>
+          <span class="thumb-badge">Field Notes</span>
+          <div class="thumb-content">
+            <h3 class="thumb-title">George Floyd</h3>
+            <p class="thumb-caption">Los Angeles, May &ndash; June 2020.</p>
           </div>
         </a>
 
@@ -1111,6 +1248,144 @@
   window.addEventListener("load", scrollToHashWhenReady);
   window.addEventListener("hashchange", () => scrollToHash("smooth"));
 </script>
-  
+
+  <!-- Filmstrip Lightbox -->
+  <div class="lb" id="lb" aria-hidden="true">
+    <div class="lb-inner">
+      <div class="lb-stage">
+        <div class="lb-nav">
+          <button class="lb-btn" id="lb-prev" aria-label="Previous image">&#8592;</button>
+          <button class="lb-btn" id="lb-next" aria-label="Next image">&#8594;</button>
+        </div>
+        <img class="lb-img" id="lb-img" src="" alt="" />
+        <button class="lb-close" id="lb-close" aria-label="Close">&#10005;</button>
+      </div>
+      <div class="lb-meta">
+        <div class="lb-caption" id="lb-caption"></div>
+        <div class="lb-count" id="lb-count"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  // =============================
+  // FILMSTRIP LIGHTBOX
+  // =============================
+  (function () {
+    var lb      = document.getElementById('lb');
+    var lbImg   = document.getElementById('lb-img');
+    var lbCaption = document.getElementById('lb-caption');
+    var lbCount = document.getElementById('lb-count');
+    var btnPrev = document.getElementById('lb-prev');
+    var btnNext = document.getElementById('lb-next');
+    var btnClose = document.getElementById('lb-close');
+
+    if (!lb || !lbImg) return;
+
+    // Build per-filmstrip items arrays
+    var galleries = [];  // array of { items: [{src, alt}], frames: NodeList }
+
+    document.querySelectorAll('.film-section').forEach(function (section) {
+      var frames = section.querySelectorAll('.film-frame');
+      var items = [];
+      frames.forEach(function (frame) {
+        var img = frame.querySelector('img');
+        if (img) {
+          items.push({ src: img.src, alt: img.alt || '' });
+        }
+      });
+      if (items.length) {
+        galleries.push({ items: items, frames: frames });
+      }
+    });
+
+    var activeGallery = null;
+    var current = 0;
+
+    function clamp(val, min, max) {
+      return Math.max(min, Math.min(max, val));
+    }
+
+    function openLB(gallery, index) {
+      activeGallery = gallery;
+      current = clamp(index, 0, gallery.items.length - 1);
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      renderLB(0);
+    }
+
+    function closeLB() {
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      activeGallery = null;
+    }
+
+    function renderLB(direction) {
+      if (!activeGallery) return;
+      var item = activeGallery.items[current];
+
+      // Direction-based slide animation
+      lbImg.style.transition = 'none';
+      lbImg.style.opacity = '0';
+
+      if (direction === 1)       lbImg.style.transform = 'translateX(70px)';
+      else if (direction === -1) lbImg.style.transform = 'translateX(-70px)';
+      else                       lbImg.style.transform = 'translateX(0)';
+
+      void lbImg.offsetWidth; // force reflow
+
+      lbImg.style.transition =
+        'transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease';
+      lbImg.src = item.src;
+      lbImg.alt = item.alt;
+
+      if (lbCaption) lbCaption.textContent = item.alt;
+      if (lbCount)   lbCount.textContent = (current + 1) + ' / ' + activeGallery.items.length;
+
+      requestAnimationFrame(function () {
+        lbImg.style.opacity = '1';
+        lbImg.style.transform = 'translateX(0)';
+      });
+    }
+
+    function step(delta) {
+      if (!activeGallery) return;
+      current = (current + delta + activeGallery.items.length) % activeGallery.items.length;
+      renderLB(delta);
+    }
+
+    // Click handler on film frames — coordinate with drag
+    galleries.forEach(function (gallery) {
+      gallery.frames.forEach(function (frame, idx) {
+        frame.addEventListener('click', function (e) {
+          // The existing drag IIFE's capture-phase handler calls
+          // e.preventDefault() when dragged > 5px. We double-check by
+          // looking at whether defaultPrevented is set.
+          if (e.defaultPrevented) return;
+          openLB(gallery, idx);
+        });
+      });
+    });
+
+    // Navigation buttons
+    if (btnPrev) btnPrev.addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
+    if (btnNext) btnNext.addEventListener('click', function (e) { e.stopPropagation(); step(1); });
+
+    // Close
+    if (btnClose) btnClose.addEventListener('click', closeLB);
+    lb.addEventListener('click', function (e) { if (e.target === lb) closeLB(); });
+
+    // Keyboard
+    window.addEventListener('keydown', function (e) {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLB();
+      if (e.key === 'ArrowLeft')  step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+  })();
+  </script>
+
 </body>
 </html>
