@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>George Floyd Protests — Field Notes by Ric Berryman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="../styles.css" />
+
+  <style>
+    /* =========================================================
+       FIELD NOTES — GEORGE FLOYD PROTESTS
+       ========================================================= */
+
+    :root{
+      --bg: #E8DDD1;
+      --ink: #2E2621;
+
+      --edge: clamp(14px, 2.2vw, 32px);
+
+      /* prose width */
+      --prose: 1400px;
+
+      /* inline widths */
+      --inline-wide: 1380px;  /* most inline photos */
+      --inline-full: 1920px;  /* occasional "full-bleed-ish" */
+
+      --radius-img: 22px;
+      --shadow-soft: 0 18px 55px rgba(0,0,0,0.22);
+      --shadow: 0 22px 70px rgba(0,0,0,0.26);
+
+      /* Lightbox sizing */
+      --lb-w: min(2200px, 98vw);
+      --lb-h: calc(100vh - 64px);
+    }
+
+    /* Keep the wide-vs-full rhythm on laptop screens */
+    @media (max-width: 1200px){
+      :root{
+        --inline-wide: 480px;   /* smaller "wide" cap */
+        --prose: 1050px;        /* optional: keep text width in harmony */
+      }
+    }
+
+    @media (max-width: 768px){
+      :root{
+        --inline-wide: 92vw;    /* phones: let it breathe */
+        --prose: 92vw;
+      }
+    }
+
+    body{
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    #nav-mount{ position: relative; z-index: 5; }
+
+    /* ---- HERO ---- */
+    .fn-hero{
+      position: relative;
+      width: 100%;
+      height: clamp(460px, 78vh, 960px);
+      overflow: hidden;
+    }
+    .fn-hero-img{
+      position: absolute;
+      inset: -6% 0;
+      width: 100%;
+      height: 112%;
+      object-fit: cover;
+      object-position: center 30%;
+      will-change: transform;
+    }
+    .fn-hero-overlay{
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.10) 0%,
+        rgba(0,0,0,0.04) 40%,
+        rgba(0,0,0,0.50) 100%
+      );
+    }
+    .fn-hero-text{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--edge);
+      padding-bottom: clamp(22px, 3vw, 48px);
+      color: #FDF8F0;
+    }
+    .fn-hero-title{
+      font-family: "Bebas Neue", "Impact", sans-serif;
+      font-size: clamp(2.6rem, 7.5vw, 4.6rem);
+      line-height: 0.92;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+    }
+    .fn-hero-sub{
+      margin-top: 0.55rem;
+      font-family: "Gruppo", "Didact Gothic", sans-serif;
+      font-size: clamp(0.82rem, 1.4vw, 1.05rem);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      opacity: 0.88;
+    }
+
+    /* ---- CONTENT SHELL ---- */
+    .fn-content{
+      max-width: var(--prose);
+      margin: 0 auto;
+      padding: 0 var(--edge);
+    }
+
+    /* ---- PROSE ---- */
+    .fn-prose{
+      max-width: min(820px, 100%);
+      margin: 2.8rem auto;
+      font-size: clamp(1.00rem, 1.15vw, 1.15rem);
+      line-height: 1.85;
+      color: var(--ink);
+    }
+    .fn-prose p + p{ margin-top: 1.3em; }
+
+    /* ---- INLINE FIGURES ---- */
+    .fn-figure{
+      width: min(var(--inline-wide), calc(100vw - (var(--edge) * 2)));
+      margin: 2.1rem auto;
+    }
+    .fn-figure .img-wrap{
+      position: relative;
+      border-radius: var(--radius-img);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: #000;
+      cursor: zoom-in;
+    }
+    .fn-figure img{
+      width: 100%;
+      display: block;
+      transform: scale(1.01);
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fn-figure .img-wrap:hover img{ transform: scale(1.05); }
+    .fn-figure figcaption{
+      margin-top: 0.7rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.62;
+      text-align: center;
+    }
+
+    /* ---- QUOTE OVERLAY ---- */
+    .fn-figure--quote .img-wrap{
+      position: relative;
+    }
+    .fn-figure--quote .quote-overlay{
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(1.5rem, 5vw, 4rem);
+      background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.25) 0%,
+        rgba(0,0,0,0.50) 50%,
+        rgba(0,0,0,0.25) 100%
+      );
+      pointer-events: none;
+    }
+    .fn-figure--quote .quote-text{
+      font-family: "Gruppo", "Didact Gothic", sans-serif;
+      font-size: clamp(1.4rem, 3.2vw, 2.6rem);
+      line-height: 1.35;
+      letter-spacing: 0.08em;
+      color: #FDF8F0;
+      text-align: center;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+      max-width: 680px;
+    }
+    .fn-figure--quote .quote-attr{
+      display: block;
+      margin-top: 0.6em;
+      font-size: 0.55em;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* ---- HORIZONTAL RULE ---- */
+    .fn-rule{
+      border: none;
+      border-top: 1px solid rgba(46,38,33,0.15);
+      margin: 3rem auto;
+      width: min(720px, 80%);
+    }
+
+    /* ---- TAGS ---- */
+    .fn-tags{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      padding: 0 var(--edge);
+      margin: 1.2rem 0 2.2rem;
+    }
+    .fn-tag{
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 0.35em 1.1em;
+      border: 1px solid rgba(46,38,33,0.22);
+      border-radius: 999px;
+      color: var(--ink);
+      opacity: 0.72;
+    }
+
+    /* ---- GALLERY (Masonry) ---- */
+    .fn-gallery-heading{
+      font-family: "Bebas Neue", "Impact", sans-serif;
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      letter-spacing: 0.30em;
+      text-transform: uppercase;
+      text-align: left;
+      margin: 3.5rem 0 1.2rem;
+      padding: 0 var(--edge);
+    }
+    .fn-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding: 0 var(--edge);
+      margin-bottom: 4rem;
+    }
+    @media (max-width: 680px){ .fn-grid{ grid-template-columns: 1fr; } }
+
+    .fn-tile{
+      break-inside: avoid;
+      margin-bottom: 14px;
+      border-radius: var(--radius-img);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      cursor: zoom-in;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fn-tile.visible{
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fn-tile img{
+      width: 100%;
+      display: block;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .fn-tile:hover img{ transform: scale(1.04); }
+
+    /* ---- LIGHTBOX ---- */
+    .lb{
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 6, 4, 0.90);
+      backdrop-filter: blur(10px);
+    }
+
+    .lb.open{ display: flex; animation: lbFade 0.18s ease-out; }
+    @keyframes lbFade{ from{opacity:0} to{opacity:1} }
+
+    .lb-inner{
+      width: var(--lb-w);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: rgba(253,248,240,0.92);
+    }
+
+    .lb-stage{
+      position: relative;
+      height: var(--lb-h);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 30px 110px rgba(0,0,0,0.72);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+
+    .lb-img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      opacity: 1;
+      transform: translateX(0);
+      transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease;
+    }
+
+    .lb-close{
+      position: absolute;
+      top: 0.85rem;
+      right: 0.85rem;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,248,240,0.28);
+      background: rgba(26, 20, 17, 0.88);
+      color: rgba(253,248,240,0.95);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      z-index: 3;
+    }
+
+    .lb-nav{
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.7rem;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .lb-btn{
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,248,240,0.22);
+      background: rgba(26, 20, 17, 0.88);
+      color: rgba(253,248,240,0.95);
+      cursor: pointer;
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      user-select: none;
+    }
+
+    @media (max-width: 768px){
+      .lb-btn{ width: 42px; height: 42px; font-size: 1.1rem; }
+      .lb-close{ width: 36px; height: 36px; }
+    }
+
+    .lb-meta{
+      width: 100%;
+      padding: 0 var(--edge);
+      color: rgba(253,248,240,0.88);
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .lb-caption{
+      font-size: 0.82rem;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      line-height: 1.6;
+      opacity: 0.92;
+      max-width: min(1200px, 100%);
+      min-height: 1.2em;
+    }
+
+    .lb-count{
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.65;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Shared nav mount -->
+  <div id="nav-mount"></div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="fn-hero">
+      <img
+        class="fn-hero-img"
+        src="../assets/images/george-floyd/Hands+up+don't+shoot+(1+of+1).jpg"
+        alt="Hands up don't shoot — George Floyd protests, Los Angeles"
+      />
+      <div class="fn-hero-overlay"></div>
+      <div class="fn-hero-text">
+        <h1 class="fn-hero-title">George Floyd</h1>
+        <p class="fn-hero-sub">Los Angeles &bull; May &ndash; June 2020</p>
+      </div>
+    </section>
+
+    <!-- BODY -->
+    <div class="fn-content">
+
+      <section class="fn-prose">
+        <p>Four days after George Floyd was murdered under the knee of a Minneapolis police officer, Los Angeles erupted. Tens of thousands poured into the streets of downtown — first outside LAPD headquarters, then City Hall, then everywhere. I grabbed my camera and went.</p>
+        <p>These images span four days of protests across downtown LA, from the raw fury of May 28th through the massive marches that followed. The National Guard posted up on the steps of City Hall. Riot police formed lines on Spring Street. And in between, ordinary people held cardboard signs, raised their fists, and demanded to be heard.</p>
+      </section>
+
+      <!-- Inline 1 — BLM crowd facing riot police + MLK quote -->
+      <figure class="fn-figure fn-figure--quote fn-photo" data-src="../assets/images/george-floyd/Black+Lives+Matter+Crowd+(1+of+1).jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/george-floyd/Black+Lives+Matter+Crowd+(1+of+1).jpg" alt="Black Lives Matter crowd facing riot police" />
+          <div class="quote-overlay">
+            <blockquote class="quote-text">
+              Injustice anywhere is a threat to justice everywhere.
+              <span class="quote-attr">&mdash; Martin Luther King Jr.</span>
+            </blockquote>
+          </div>
+        </div>
+      </figure>
+
+      <section class="fn-prose">
+        <p>What struck me most wasn't the anger — it was the clarity. People knew exactly why they were there. The signs said it all: "Can U Hear Us Now?" "No Justice No Peace." "The Time Is Always Right to Do What's Right." This wasn't chaos. This was a city finally saying what it had been holding in for years.</p>
+      </section>
+
+      <!-- Inline 2 — Silence is Murder at City Hall -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/george-floyd/2020-05-31+LA+Protest+-+George+Floyd+(184+of+269).jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/george-floyd/2020-05-31+LA+Protest+-+George+Floyd+(184+of+269).jpg" alt="Silence is Murder — protest sign at LA City Hall" />
+        </div>
+      </figure>
+
+      <section class="fn-prose">
+        <p>I kept shooting. Through the tear gas and the chants, through the standoffs and the solidarity. Some moments were defiant, some were tender, and some were just surreal — a pig's head on a stick held up in front of a line of cops, a woman screaming into the void between police and protesters, two kids on bikes with matching signs. All of it real. All of it necessary.</p>
+      </section>
+
+      <!-- Inline 3 — The time is always right -->
+      <figure class="fn-figure fn-photo" data-src="../assets/images/george-floyd/The+time+is+always+right+(1+of+1).jpg">
+        <div class="img-wrap">
+          <img src="../assets/images/george-floyd/The+time+is+always+right+(1+of+1).jpg" alt="The time is always right to do what's right — MLK quote sign with LA skyline" />
+        </div>
+      </figure>
+
+      <hr class="fn-rule" />
+
+      <div class="fn-tags">
+        <span class="fn-tag">Black Lives Matter</span>
+        <span class="fn-tag">George Floyd</span>
+        <span class="fn-tag">Los Angeles</span>
+        <span class="fn-tag">Street Photography</span>
+        <span class="fn-tag">Protest</span>
+      </div>
+
+      <hr class="fn-rule" />
+
+      <!-- GALLERY -->
+      <h2 class="fn-gallery-heading">Gallery</h2>
+
+      <div class="fn-grid" id="gallery"></div>
+
+    </div><!-- .fn-content -->
+
+    <!-- LIGHTBOX -->
+    <div class="lb" id="lb" aria-hidden="true">
+      <div class="lb-inner">
+        <div class="lb-stage">
+          <div class="lb-nav">
+            <button class="lb-btn" id="lb-prev" aria-label="Previous image">&#8592;</button>
+            <button class="lb-btn" id="lb-next" aria-label="Next image">&#8594;</button>
+          </div>
+          <img class="lb-img" id="lb-img" src="" alt="" />
+          <button class="lb-close" id="lb-close" aria-label="Close">&#10005;</button>
+        </div>
+        <div class="lb-meta">
+          <div class="lb-caption" id="lb-caption"></div>
+          <div class="lb-count" id="lb-count"></div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Shared nav JS -->
+  <script src="../nav.js" defer></script>
+
+  <script>
+    /* =========================================================
+       GALLERY + LIGHTBOX
+       ========================================================= */
+    (function () {
+      "use strict";
+
+      const BASE = "../assets/images/george-floyd/";
+
+      /* ---------- gallery image order (original Squarespace book layout) ---------- */
+      const GALLERY_ORDER = [
+        "2020-06-06+LA+PROTESTS+BLM+(17+of+150).jpg",
+        "2020-06-06+LA+PROTESTS+BLM+(45+of+150).jpg",
+        "2020-06-06+LA+PROTESTS+BLM+(135+of+150).jpg",
+        "2020-05-29+George+Floyd+Protests+(20+of+34).jpg",
+        "2020-06-06+LA+PROTESTS+BLM+(44+of+150).jpg",
+        "2020-06-06+LA+PROTESTS+BLM+(136+of+150).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(108+of+269).jpg",
+        "2020-06-06+LA+PROTESTS+BLM+(130+of+150).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(222+of+269).jpg",
+        "2020-05-29+George+Floyd+Protests+(26+of+34).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(101+of+269).jpg",
+        "Black+Lives+Matter+Crowd+(1+of+1).jpg",
+        "2020-05-29+George+Floyd+Protests+(8+of+34).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(266+of+269).jpg",
+        "The+Finger+(1+of+1).jpg",
+        "2020-06-06+LA+PROTESTS+BLM+(14+of+150).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(74+of+269).jpg",
+        "2020-05-28+George+Floyd+Protest+-+DTLA+(57+of+116).jpg",
+        "2020-05-28+George+Floyd+Protest+-+DTLA+(72+of+116).jpg",
+        "Fuck+12+(1+of+1).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(41+of+269).jpg",
+        "Pigs+head+on+a+Stick+(1+of+1).jpg",
+        "2020-05-28+George+Floyd+Protest+-+DTLA+(80+of+116).jpg",
+        "2020-05-29+George+Floyd+Protests+(5+of+34).jpg",
+        "The+time+is+always+right+(1+of+1).jpg",
+        "2020-05-29+George+Floyd+Protests+(9+of+34).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(247+of+269).jpg",
+        "2020-05-29+George+Floyd+Protests+(34+of+34).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(198+of+269).jpg",
+        "2020-06-06+LA+PROTESTS+BLM+(65+of+150).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(53+of+269).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(202+of+269).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(51+of+269).jpg",
+        "Hands+up+don\u0027t+shoot+(1+of+1).jpg",
+        "2020-05-28+George+Floyd+Protest+-+DTLA+(35+of+116).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(133+of+269).jpg",
+        "Hope+(1+of+1).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(116+of+269).jpg",
+        "Can+you+hear+us+now+(1+of+1).jpg",
+        "Tell+your+story+(1+of+1).jpg",
+        "2020-05-28+George+Floyd+Protest+-+DTLA+(10+of+116).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(184+of+269).jpg",
+        "2020-05-28+George+Floyd+Protest+-+DTLA+(42+of+116).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(258+of+269).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(260+of+269).jpg",
+        "Without+a+badge+(1+of+1).jpg",
+        "2020-06-06+LA+PROTESTS+BLM+(70+of+150).jpg",
+        "Bike+Guy+(1+of+1).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(121+of+269).jpg",
+        "2020-06-06+LA+PROTESTS+BLM+(148+of+150).jpg"
+      ];
+
+      /* ---------- captions ---------- */
+      const CAPTIONS = {
+        "Hope+(1+of+1).jpg": "Hope",
+        "Black+Lives+Matter+Crowd+(1+of+1).jpg": "Black Lives Matter",
+        "Can+you+hear+us+now+(1+of+1).jpg": "Can U Hear Us Now?",
+        "Fuck+12+(1+of+1).jpg": "Fuck 12",
+        "Hands+up+don\u0027t+shoot+(1+of+1).jpg": "Hands Up Don\u2019t Shoot",
+        "Pigs+head+on+a+Stick+(1+of+1).jpg": "Pig\u2019s Head on a Stick",
+        "Tell+your+story+(1+of+1).jpg": "Tell Your Story",
+        "The+Finger+(1+of+1).jpg": "The Finger",
+        "The+time+is+always+right+(1+of+1).jpg": "The Time Is Always Right",
+        "Without+a+badge+(1+of+1).jpg": "Without a Badge",
+        "Bike+Guy+(1+of+1).jpg": "Bike Guy"
+      };
+
+      /* Hero + inline photos also in lightbox */
+      const HERO_FILE = "Hands+up+don\u0027t+shoot+(1+of+1).jpg";
+      const INLINE_FILES = [
+        "Black+Lives+Matter+Crowd+(1+of+1).jpg",
+        "2020-05-31+LA+Protest+-+George+Floyd+(184+of+269).jpg",
+        "The+time+is+always+right+(1+of+1).jpg"
+      ];
+
+      /* Build combined lightbox items: hero, inlines, then gallery */
+      const LB_ITEMS = [
+        { filename: HERO_FILE, src: BASE + HERO_FILE, alt: "George Floyd protests \u2014 hero" },
+        ...INLINE_FILES.map(f => ({
+          filename: f,
+          src: BASE + f,
+          alt: CAPTIONS[f] || f.replace(/\.jpg$/i, "").replace(/\+/g, " ")
+        })),
+        ...GALLERY_ORDER.map(f => ({
+          filename: f,
+          src: BASE + f,
+          alt: CAPTIONS[f] || f.replace(/\.jpg$/i, "").replace(/\+/g, " ")
+        }))
+      ];
+
+      const LB_INDEX_BY_FILENAME = new Map();
+      LB_ITEMS.forEach((it, idx) => LB_INDEX_BY_FILENAME.set(it.filename, idx));
+
+      /* ---------- build gallery tiles (synchronous for exact book order) ---------- */
+      const grid = document.getElementById("gallery");
+
+      /* IntersectionObserver reveal */
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
+        },
+        { rootMargin: "0px 0px 120px 0px", threshold: 0.05 }
+      );
+
+      GALLERY_ORDER.forEach((filename) => {
+        const lbIdx = LB_INDEX_BY_FILENAME.get(filename);
+
+        const tile = document.createElement("div");
+        tile.className = "fn-tile";
+        tile.dataset.index = lbIdx !== undefined ? lbIdx : 0;
+
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.alt = CAPTIONS[filename] || "George Floyd protest photograph";
+        img.src = BASE + filename;
+        tile.appendChild(img);
+
+        grid.appendChild(tile);
+        io.observe(tile);
+      });
+
+      /* ---------- lightbox ---------- */
+      const lb      = document.getElementById("lb");
+      const lbImg   = document.getElementById("lb-img");
+      const lbCaption = document.getElementById("lb-caption");
+      const lbCount = document.getElementById("lb-count");
+      const btnPrev = document.getElementById("lb-prev");
+      const btnNext = document.getElementById("lb-next");
+      const btnClose = document.getElementById("lb-close");
+
+      let current = 0;
+
+      function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+      function openLB(index) {
+        current = clamp(index, 0, LB_ITEMS.length - 1);
+        lb.classList.add("open");
+        lb.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        renderLB(0);
+      }
+
+      function closeLB() {
+        lb.classList.remove("open");
+        lb.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function renderLB(direction) {
+        const item = LB_ITEMS[current];
+
+        lbImg.style.transition = "none";
+        lbImg.style.opacity = "0";
+
+        if (direction === 1)       lbImg.style.transform = "translateX(70px)";
+        else if (direction === -1) lbImg.style.transform = "translateX(-70px)";
+        else                       lbImg.style.transform = "translateX(0)";
+
+        void lbImg.offsetWidth;
+
+        lbImg.style.transition =
+          "transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.6s ease";
+        lbImg.src = item.src;
+        lbImg.alt = item.alt || "";
+
+        const cap = (CAPTIONS[item.filename] || "").trim();
+        if (lbCaption) lbCaption.textContent = cap;
+        if (lbCount) lbCount.textContent = (current + 1) + " / " + LB_ITEMS.length;
+
+        requestAnimationFrame(() => {
+          lbImg.style.opacity = "1";
+          lbImg.style.transform = "translateX(0)";
+        });
+      }
+
+      function step(delta) {
+        current = (current + delta + LB_ITEMS.length) % LB_ITEMS.length;
+        renderLB(delta);
+      }
+
+      /* Click: gallery tiles */
+      if (grid) {
+        grid.addEventListener("click", (e) => {
+          const tile = e.target.closest(".fn-tile");
+          if (!tile) return;
+          const idx = parseInt(tile.dataset.index, 10);
+          if (!Number.isNaN(idx) && idx >= 0) openLB(idx);
+        });
+      }
+
+      /* Click: hero + inline photos */
+      document.querySelectorAll(".fn-photo").forEach(fig => {
+        fig.addEventListener("click", () => {
+          const src = fig.dataset.src || "";
+          const filename = src.split("/").pop();
+          const idx = LB_INDEX_BY_FILENAME.get(filename);
+          if (idx !== undefined) openLB(idx);
+        });
+      });
+
+      /* Hero click */
+      const heroSection = document.querySelector(".fn-hero");
+      if (heroSection) {
+        heroSection.style.cursor = "zoom-in";
+        heroSection.addEventListener("click", () => {
+          const idx = LB_INDEX_BY_FILENAME.get(HERO_FILE);
+          if (idx !== undefined) openLB(idx);
+        });
+      }
+
+      /* Nav buttons */
+      if (btnPrev) btnPrev.addEventListener("click", (e) => { e.stopPropagation(); step(-1); });
+      if (btnNext) btnNext.addEventListener("click", (e) => { e.stopPropagation(); step(1); });
+
+      /* Close */
+      if (btnClose) btnClose.addEventListener("click", closeLB);
+      if (lb) lb.addEventListener("click", (e) => { if (e.target === lb) closeLB(); });
+
+      /* Keyboard */
+      window.addEventListener("keydown", (e) => {
+        if (!lb || !lb.classList.contains("open")) return;
+        if (e.key === "Escape") closeLB();
+        if (e.key === "ArrowLeft") step(-1);
+        if (e.key === "ArrowRight") step(1);
+      });
+
+      /* ---------- hero parallax ---------- */
+      const heroImg = document.querySelector(".fn-hero-img");
+      if (heroImg && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        let ticking = false;
+        window.addEventListener("scroll", () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              const rect = document.querySelector(".fn-hero").getBoundingClientRect();
+              const progress = -rect.top / (rect.height + window.innerHeight);
+              const y = (progress - 0.3) * 80;
+              heroImg.style.transform = "translateY(" + y + "px) scale(1.08)";
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
+    })();
+  </script>
+</body>
+</html>
