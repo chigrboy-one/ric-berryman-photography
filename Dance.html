@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dance — Ric Berryman</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* =========================
+       BASE
+       ========================= */
+
+    body {
+      background: #E8DDD1;
+      color: #2E2621;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      padding-bottom: 5rem;
+    }
+
+    .shell-dance {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .shell-dance {
+        padding: 0 1.5rem;
+      }
+    }
+
+    .label-pill {
+      display: inline-block;
+      padding: 0.25rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #FDF8F0;
+      background: rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(6px);
+    }
+
+    /* =========================
+       FULL-BLEED HERO
+       ========================= */
+
+    .dance-hero {
+      position: relative;
+      height: 90vh;
+      min-height: 540px;
+      display: flex;
+      align-items: flex-end;
+      padding: 3.5rem 3rem;
+      overflow: hidden;
+      color: #FDF8F0;
+    }
+
+    @media (max-width: 768px) {
+      .dance-hero {
+        padding: 2.5rem 1.5rem;
+      }
+    }
+
+    .dance-hero-media {
+      position: absolute;
+      inset: 0;
+      background-image: url("assets/images/dance/2023-08-20%20Dancers%20at%20City%20Hall-13.jpg");
+      background-size: cover;
+      background-position: center 20%;
+      transform: scale(1.08);
+      transition: transform 0.6s ease-out, transform-origin 0.6s ease-out;
+      will-change: transform;
+    }
+
+    .dance-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(0, 0, 0, 0.45), transparent 60%),
+        linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.02));
+      pointer-events: none;
+    }
+
+    .dance-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+    }
+
+    .dance-hero-title {
+      font-size: clamp(3.2rem, 10vw, 5.2rem);
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      font-weight: 300;
+      margin: 0.75rem 0 0.8rem;
+    }
+
+    .dance-hero-sub {
+      font-size: 0.98rem;
+      line-height: 1.9;
+      max-width: 520px;
+      margin-bottom: 1.8rem;
+      opacity: 0.95;
+    }
+
+    .dance-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 1.8rem;
+      font-size: 0.78rem;
+    }
+
+    .dance-tags span {
+      padding: 0.22rem 0.78rem;
+      border-radius: 999px;
+      border: 1px solid rgba(253, 248, 240, 0.28);
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      background: rgba(0, 0, 0, 0.24);
+    }
+
+    .scroll-hint {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    }
+
+    .scroll-hint svg {
+      width: 16px;
+      height: 16px;
+      animation: bounceDown 1.5s infinite;
+    }
+
+    @keyframes bounceDown {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* =========================
+       INTRO TEXT
+       ========================= */
+
+    .dance-intro {
+      margin-top: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .dance-intro-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .dance-intro p {
+      font-size: 0.98rem;
+      line-height: 1.9;
+      opacity: 0.9;
+    }
+
+    .dance-intro-note {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    @media (max-width: 900px) {
+      .dance-intro-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+      }
+    }
+
+    /* =========================
+       DANCE GRID — 3-COL MASONRY
+       ========================= */
+
+    .dance-grid-wrap {
+      margin-top: 3.2rem;
+      max-width: 1920px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 0.75rem;
+    }
+
+    .dance-grid-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .dance-grid-header h2 {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #4C2A1B;
+    }
+
+    .dance-grid-header span {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      opacity: 0.75;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 800px) {
+      .dance-grid-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .dance-grid {
+      column-count: 3;
+      column-gap: 1.2rem;
+    }
+
+    @media (max-width: 1100px) {
+      .dance-grid {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .dance-grid {
+        column-count: 1;
+      }
+    }
+
+    .dance-item {
+      position: relative;
+      display: block;
+      width: 100%;
+      margin-bottom: 1.2rem;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #000;
+      cursor: zoom-in;
+      box-shadow: 0 18px 55px rgba(0,0,0,0.32);
+      opacity: 0;
+      transform: translateY(30px);
+      transition:
+        transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.35s ease,
+        opacity 0.6s ease;
+      break-inside: avoid;
+    }
+
+    .dance-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      transform: scale(1.03);
+      transform-origin: center;
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .dance-item.from-left {
+      transform: translate(-40px, 30px);
+    }
+
+    .dance-item.from-right {
+      transform: translate(40px, 30px);
+    }
+
+    .dance-item.in-view {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+
+    .dance-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 26px 80px rgba(0,0,0,0.45);
+    }
+
+    .dance-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* =========================
+       FULLSCREEN VIEWER (NO CROPPING)
+       ========================= */
+
+    .dance-viewer {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 6, 4, 0.9);
+      backdrop-filter: blur(10px);
+    }
+
+    .dance-viewer.is-open {
+      display: flex;
+      animation: viewerFadeIn 0.25s ease-out;
+    }
+
+    @keyframes viewerFadeIn {
+      from { opacity: 0; transform: scale(1.01); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .dance-viewer-inner {
+      position: relative;
+      width: min(1400px, 96vw);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: #FDF8F0;
+    }
+
+    .dance-viewer-img-wrap {
+      position: relative;
+      flex: 0 0 auto;
+      height: calc(100vh - 200px);
+      max-height: calc(100vh - 200px);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 28px 90px rgba(0,0,0,0.7);
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dance-viewer-img-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      position: relative;
+      z-index: 1;
+      transform: translateX(0);
+      opacity: 1;
+      transition:
+        transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+        opacity 0.7s ease-out;
+    }
+
+    .dance-viewer-meta {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      opacity: 0.9;
+      padding: 0 0.25rem;
+    }
+
+    .dance-viewer-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 0.3rem;
+      opacity: 0.85;
+    }
+
+    .dance-viewer-count {
+      margin-top: 0.5rem;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      opacity: 0.7;
+    }
+
+    .dance-viewer-close {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.8rem;
+      border-radius: 999px;
+      background: rgba(26, 20, 17, 0.9);
+      color: #FDF8F0;
+      border: 1px solid rgba(253,248,240,0.3);
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      z-index: 3;
+    }
+
+    .dance-viewer-nav {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      pointer-events: none;
+      padding: 0 0.4rem;
+      z-index: 2;
+    }
+
+    .dance-viewer-arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid rgba(253,248,240,0.25);
+      background: rgba(26, 20, 17, 0.9);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    .dance-viewer-arrow span {
+      transform: translateY(1px);
+    }
+
+    @media (max-width: 768px) {
+      .dance-viewer-arrow {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    /* =========================
+       FILMSTRIP THUMBNAILS
+       ========================= */
+
+    .filmstrip {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 8px 0;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .filmstrip::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filmstrip-thumb {
+      flex: 0 0 64px;
+      height: 48px;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.4;
+      transition: opacity 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+      background: #000;
+    }
+
+    .filmstrip-thumb.active {
+      opacity: 1;
+      border-color: rgba(253, 248, 240, 0.85);
+      transform: scale(1.08);
+    }
+
+    .filmstrip-thumb:hover {
+      opacity: 0.75;
+    }
+
+    .filmstrip-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .filmstrip-thumb {
+        flex: 0 0 52px;
+        height: 40px;
+      }
+
+      .dance-viewer-img-wrap {
+        height: calc(100vh - 180px);
+        max-height: calc(100vh - 180px);
+      }
+    }
+
+    /* =========================
+       SCROLL REVEAL (TEXT)
+       ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Shared nav mount -->
+  <div id="nav-mount"></div>
+
+  <main>
+    <!-- FULL-BLEED HERO -->
+    <section class="dance-hero">
+      <div class="dance-hero-media"></div>
+      <div class="dance-hero-inner reveal">
+        <span class="label-pill">Gallery</span>
+        <h1 class="dance-hero-title">Dance</h1>
+        <p class="dance-hero-sub">
+          Bodies in motion against architecture, desert, rain, and open sky.
+          Ballet, contemporary, and everything in between — captured in the
+          spaces where movement meets the world.
+        </p>
+
+        <div class="dance-tags">
+          <span>Ballet</span>
+          <span>Contemporary</span>
+          <span>Urban</span>
+          <span>On Location</span>
+        </div>
+
+        <div class="scroll-hint">
+          <span>Scroll to view work</span>
+          <svg viewBox="0 0 24 24">
+            <path d="M12 4v14m0 0-5-5m5 5 5-5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRO COPY -->
+    <section class="dance-intro shell-dance">
+      <div class="dance-intro-grid reveal">
+        <div>
+          <p>
+            Dance photography lives in the half-second between intention and
+            release. These images span three years of work with dancers across
+            Los Angeles — from subway platforms and rooftops to Joshua Tree
+            boulders and underwater studios. Every location becomes a stage.
+          </p>
+        </div>
+        <div>
+          <p class="dance-intro-note">
+            Featuring collaborations with ballet and contemporary dancers
+            in studio, on location, and everywhere the light does something
+            worth chasing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DANCE GRID -->
+    <section class="dance-grid-wrap">
+      <header class="dance-grid-header reveal">
+        <h2>Selected Work</h2>
+        <span>Tap to enter fullscreen viewer</span>
+      </header>
+
+      <div class="dance-grid" id="dance-grid">
+        <!-- JS injects items -->
+      </div>
+    </section>
+  </main>
+
+  <!-- FULLSCREEN VIEWER -->
+  <div class="dance-viewer" id="dance-viewer" aria-hidden="true">
+    <div class="dance-viewer-inner">
+      <div class="dance-viewer-img-wrap">
+        <div class="dance-viewer-nav">
+          <button class="dance-viewer-arrow" data-dir="prev" aria-label="Previous image">
+            <span>&#8592;</span>
+          </button>
+          <button class="dance-viewer-arrow" data-dir="next" aria-label="Next image">
+            <span>&#8594;</span>
+          </button>
+        </div>
+        <img id="dance-viewer-img" src="" alt="" />
+        <button class="dance-viewer-close" id="dance-viewer-close" aria-label="Close viewer">
+          &#10005;
+        </button>
+      </div>
+      <div class="filmstrip" id="dance-filmstrip">
+        <!-- JS injects thumbnails -->
+      </div>
+      <div class="dance-viewer-meta">
+        <div class="dance-viewer-title" id="dance-viewer-title"></div>
+        <div id="dance-viewer-caption"></div>
+        <div class="dance-viewer-count" id="dance-viewer-count"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared nav loader -->
+  <script src="assets/js/load-nav.js"></script>
+
+  <script>
+    /* =========
+       DANCE IMAGES
+       ========= */
+
+    const danceImages = [
+      { src: "assets/images/dance/2023-08-20 Dancers at City Hall-13.jpg", alt: "Dancer at Pasadena City Hall" },
+      { src: "assets/images/dance/2023-08-20 Dancers at City Hall-65.jpg", alt: "Dancer at Pasadena City Hall" },
+      { src: "assets/images/dance/2023-08-20 Dancers at City Hall-130.jpg", alt: "Dancer at Pasadena City Hall" },
+      { src: "assets/images/dance/2024-04-20 Quincey in Bloom-4.jpg", alt: "Quincey in Bloom powder shoot" },
+      { src: "assets/images/dance/2024-04-20 Quincey in Bloom-6.jpg", alt: "Quincey in Bloom powder shoot" },
+      { src: "assets/images/dance/2024-04-20 Quincey in Bloom-9.jpg", alt: "Quincey in Bloom powder shoot" },
+      { src: "assets/images/dance/2024-04-20 Quincey in Bloom-12.jpg", alt: "Quincey in Bloom powder shoot" },
+      { src: "assets/images/dance/2024-03-09 Underwater Ballet DRAFT-7.jpg", alt: "Underwater ballet" },
+      { src: "assets/images/dance/2024-03-09 Underwater Ballet DRAFT-13.jpg", alt: "Underwater ballet" },
+      { src: "assets/images/dance/2024-03-09 Underwater Ballet DRAFT-25.jpg", alt: "Underwater ballet" },
+      { src: "assets/images/dance/2024-03-09 Underwater Ballet DRAFT-61.jpg", alt: "Underwater ballet" },
+      { src: "assets/images/dance/2025-07-26 Hannah Barr - Venice-32.jpg", alt: "Hannah Barr dancing in Venice" },
+      { src: "assets/images/dance/2025-07-26 Hannah Barr - Venice-48.jpg", alt: "Hannah Barr dancing in Venice" },
+      { src: "assets/images/dance/2025-07-26 Hannah Barr - Venice-88.jpg", alt: "Hannah Barr dancing in Venice" },
+      { src: "assets/images/dance/2023-05-29 Carmen and the Nifty 50s-1.jpg", alt: "Carmen and the Nifty 50s" },
+      { src: "assets/images/dance/2023-05-29 Carmen and the Nifty 50s-24.jpg", alt: "Carmen and the Nifty 50s" },
+      { src: "assets/images/dance/2023-05-29 Carmen and the Nifty 50s-64.jpg", alt: "Carmen and the Nifty 50s" },
+      { src: "assets/images/dance/2024-11-10 - Dance at Barnsdale Park-30.jpg", alt: "Dance at Barnsdale Park" },
+      { src: "assets/images/dance/2024-11-10 - Dance at Barnsdale Park-45.jpg", alt: "Dance at Barnsdale Park" },
+      { src: "assets/images/dance/2024-11-10 - Dance at Barnsdale Park-90.jpg", alt: "Dance at Barnsdale Park" },
+      { src: "assets/images/dance/2025-05-04 Hannah Barr - Subway-40.jpg", alt: "Hannah Barr in the subway" },
+      { src: "assets/images/dance/2025-05-04 Hannah Barr - Subway-55.jpg", alt: "Hannah Barr in the subway" },
+      { src: "assets/images/dance/2024-01-28 Maddy Chinatown DRAFT-22.jpg", alt: "Maddy dancing in Chinatown" },
+      { src: "assets/images/dance/2024-01-28 Maddy Chinatown DRAFT-40.jpg", alt: "Maddy dancing in Chinatown" },
+      { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-1.jpg", alt: "Rooftop dance session" },
+      { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-60.jpg", alt: "Rooftop dance session" },
+      { src: "assets/images/dance/2024-02-17  Hannah Barr - DTLA Rooftop-60.jpg", alt: "Hannah Barr on DTLA rooftop" },
+      { src: "assets/images/dance/2024-02-17  Hannah Barr - DTLA Rooftop-75.jpg", alt: "Hannah Barr on DTLA rooftop" },
+      { src: "assets/images/dance/2024-11-02 Hannah Barr - Walking Bridge-1.jpg", alt: "Hannah Barr on walking bridge" },
+      { src: "assets/images/dance/2024-11-02 Hannah Barr - Walking Bridge-16.jpg", alt: "Hannah Barr on walking bridge" },
+      { src: "assets/images/dance/2024-05-19 Madeline Houk - Peterson Museum-10.jpg", alt: "Madeline Houk at Peterson Museum" },
+      { src: "assets/images/dance/2024-05-19 Madeline Houk - Peterson Museum-79.jpg", alt: "Madeline Houk at Peterson Museum" },
+      { src: "assets/images/dance/2024-03-23 Hannah Barr-12.jpg", alt: "Hannah Barr flowing dress" },
+      { src: "assets/images/dance/2024-03-23 Hannah Barr-30.jpg", alt: "Hannah Barr flowing dress" },
+      { src: "assets/images/dance/2023-03-25 Dance Vasquez Rocks-30.jpg", alt: "Dance at Vasquez Rocks" },
+      { src: "assets/images/dance/2023-03-25 Dance Vasquez Rocks-95.jpg", alt: "Dance at Vasquez Rocks" },
+      { src: "assets/images/dance/2025-07-27 Hollywood Dances with the Stars-15.jpg", alt: "Hollywood Dances with the Stars" },
+      { src: "assets/images/dance/2025-07-27 Hollywood Dances with the Stars-75.jpg", alt: "Hollywood Dances with the Stars" },
+      { src: "assets/images/dance/2023-09-17 Dancing in the Rain - DRAFT-1.jpg", alt: "Dancing in the rain" },
+      { src: "assets/images/dance/2023-09-17 Dancing in the Rain - DRAFT-15.jpg", alt: "Dancing in the rain" },
+      { src: "assets/images/dance/2024-02-25 Briana - Fresno - Draft-40.jpg", alt: "Briana dancing in Fresno" },
+      { src: "assets/images/dance/2023-05-12 Dance Studio Shoot-1.jpg", alt: "Dance studio session" },
+      { src: "assets/images/dance/2023-07-08 Britt on the Beach-52.jpg", alt: "Britt dancing on the beach" },
+    ];
+
+    (function () {
+      /* Scroll reveal (hero / intro / header) */
+      const revealEls = document.querySelectorAll(".reveal");
+      const revealObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      revealEls.forEach(el => revealObserver.observe(el));
+
+      /* Build grid from danceImages[] */
+      const grid = document.getElementById("dance-grid");
+      if (!grid) return;
+
+      danceImages.forEach((img, index) => {
+        const fig = document.createElement("figure");
+        fig.className = "dance-item";
+        fig.classList.add(index % 2 === 0 ? "from-left" : "from-right");
+        fig.dataset.index = index;
+
+        const imageEl = document.createElement("img");
+        imageEl.src = img.src;
+        imageEl.alt = img.alt || "";
+
+        fig.appendChild(imageEl);
+        grid.appendChild(fig);
+      });
+
+      /* Staggered reveal for tiles */
+      const tiles = document.querySelectorAll(".dance-item");
+      const tileObserver = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const el = entry.target;
+              el.classList.add("in-view");
+              tileObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.18 }
+      );
+      tiles.forEach(tile => tileObserver.observe(tile));
+
+      /* Fullscreen viewer logic */
+      const viewer = document.getElementById("dance-viewer");
+      const viewerImg = document.getElementById("dance-viewer-img");
+      const viewerTitle = document.getElementById("dance-viewer-title");
+      const viewerCaption = document.getElementById("dance-viewer-caption");
+      const viewerCount = document.getElementById("dance-viewer-count");
+      const closeBtn = document.getElementById("dance-viewer-close");
+      const arrows = viewer.querySelectorAll(".dance-viewer-arrow");
+      const filmstrip = document.getElementById("dance-filmstrip");
+
+      /* Build filmstrip thumbnails */
+      const thumbEls = [];
+      danceImages.forEach((img, i) => {
+        const btn = document.createElement("button");
+        btn.className = "filmstrip-thumb";
+        btn.setAttribute("aria-label", `View image ${i + 1}`);
+        btn.dataset.index = i;
+        const thumbImg = document.createElement("img");
+        thumbImg.src = img.src;
+        thumbImg.alt = "";
+        thumbImg.loading = "lazy";
+        btn.appendChild(thumbImg);
+        filmstrip.appendChild(btn);
+        thumbEls.push(btn);
+      });
+
+      filmstrip.addEventListener("click", (e) => {
+        const btn = e.target.closest(".filmstrip-thumb");
+        if (!btn) return;
+        const idx = parseInt(btn.dataset.index, 10);
+        if (!Number.isNaN(idx)) {
+          const dir = idx > currentIndex ? 1 : idx < currentIndex ? -1 : 0;
+          currentIndex = idx;
+          setImage(idx, dir);
+        }
+      });
+
+      let currentIndex = 0;
+
+      function updateFilmstrip(index) {
+        thumbEls.forEach((el, i) => {
+          el.classList.toggle("active", i === index);
+        });
+        const activeThumb = thumbEls[index];
+        if (activeThumb && filmstrip) {
+          const stripRect = filmstrip.getBoundingClientRect();
+          const thumbRect = activeThumb.getBoundingClientRect();
+          const scrollLeft = filmstrip.scrollLeft
+            + (thumbRect.left - stripRect.left)
+            - (stripRect.width / 2)
+            + (thumbRect.width / 2);
+          filmstrip.scrollTo({ left: scrollLeft, behavior: "smooth" });
+        }
+      }
+
+      function setImage(index, direction) {
+        if (index < 0 || index >= danceImages.length) return;
+
+        const { src, alt } = danceImages[index];
+
+        viewerImg.style.transition = "none";
+        viewerImg.style.opacity = "0";
+
+        if (direction === 1) {
+          viewerImg.style.transform = "translateX(60px)";
+        } else if (direction === -1) {
+          viewerImg.style.transform = "translateX(-60px)";
+        } else {
+          viewerImg.style.transform = "translateX(0)";
+        }
+
+        void viewerImg.offsetWidth;
+
+        viewerImg.style.transition =
+          "transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.7s ease-out";
+
+        viewerImg.src = src;
+        viewerImg.alt = alt || "Dance image";
+        viewerTitle.textContent = "";
+        viewerCaption.textContent = "";
+        viewerCount.textContent = (index + 1) + " / " + danceImages.length;
+
+        updateFilmstrip(index);
+
+        requestAnimationFrame(() => {
+          viewerImg.style.opacity = "1";
+          viewerImg.style.transform = "translateX(0)";
+        });
+      }
+
+      function openViewer(index) {
+        if (index < 0 || index >= danceImages.length) return;
+        currentIndex = index;
+
+        viewer.classList.add("is-open");
+        viewer.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+
+        setImage(currentIndex, 0);
+      }
+
+      function closeViewer() {
+        viewer.classList.remove("is-open");
+        viewer.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function stepViewer(delta) {
+        if (!danceImages.length) return;
+        currentIndex = (currentIndex + delta + danceImages.length) % danceImages.length;
+        setImage(currentIndex, delta);
+      }
+
+      grid.addEventListener("click", (e) => {
+        const fig = e.target.closest(".dance-item");
+        if (!fig) return;
+        const idx = parseInt(fig.dataset.index, 10);
+        if (!Number.isNaN(idx)) {
+          openViewer(idx);
+        }
+      });
+
+      closeBtn.addEventListener("click", closeViewer);
+
+      viewer.addEventListener("click", (e) => {
+        if (e.target === viewer) {
+          closeViewer();
+        }
+      });
+
+      arrows.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const dir = btn.dataset.dir === "next" ? 1 : -1;
+          stepViewer(dir);
+        });
+      });
+
+      window.addEventListener("keydown", (e) => {
+        if (!viewer.classList.contains("is-open")) return;
+        if (e.key === "Escape") closeViewer();
+        if (e.key === "ArrowRight") stepViewer(1);
+        if (e.key === "ArrowLeft") stepViewer(-1);
+      });
+
+      /* Hero parallax */
+      const hero = document.querySelector(".dance-hero");
+      const heroMedia = document.querySelector(".dance-hero-media");
+
+      function updateHeroParallax() {
+        if (!hero || !heroMedia) return;
+        const rect = hero.getBoundingClientRect();
+        const viewportH = window.innerHeight || document.documentElement.clientHeight;
+        const progress = Math.min(Math.max((0 - rect.top) / (viewportH * 1.1), 0), 1);
+        const scale = 1.08 + progress * 0.12;
+        const translateY = progress * 18;
+        heroMedia.style.transform = `translateY(${translateY}px) scale(${scale})`;
+      }
+
+      updateHeroParallax();
+      window.addEventListener("scroll", updateHeroParallax, { passive: true });
+      window.addEventListener("resize", updateHeroParallax);
+    })();
+  </script>
+  <!-- Site-wide JS -->
+  <script src="/assets/js/site.js"></script>
+</body>
+</html>
