@@ -2107,16 +2107,21 @@ nav.nav-open .hamburger-line:nth-child(3) {
     padding: 0.7rem 1.2rem;
   }
 
-  /* Nav arrows — reposition below content */
+  /* Nav arrows — float to the right edge at the image/content seam so they
+     don't overlap the VIEW PROJECT button down in the content area. */
   .carousel-nav {
-    bottom: 3.5rem;
-    gap: 1rem;
+    top: calc(55% - 22px);
+    bottom: auto;
+    left: auto;
+    right: 0.75rem;
+    transform: none;
+    gap: 0.6rem;
   }
 
   .carousel-arrow {
-    width: 44px;
-    height: 44px;
-    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
   }
 
   .scroll-progress {

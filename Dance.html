@@ -248,6 +248,15 @@
         column-count: 1;
       }
 
+      /* The dance hero image is bright (overcast sky background), so on
+         mobile the light hero text needs a darker scrim under it for
+         readability. */
+      .dance-hero::before {
+        background:
+          radial-gradient(circle at top left, rgba(0, 0, 0, 0.5), transparent 60%),
+          linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.6) 30%, rgba(0, 0, 0, 0.15) 70%);
+      }
+
       /* Keep the hero title from overflowing mobile screens. */
       .dance-hero-title {
         font-size: clamp(2.4rem, 11vw, 4rem);
