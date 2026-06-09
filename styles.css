@@ -1659,9 +1659,10 @@
   /* BIG. HERO. ENERGY. — locked to a cinematic 16:9 so the slider height grows
      proportionally with width. Keeps cropping minimal on large screens; uses
      min-height as a mobile/short-viewport floor and max-height so the slider
-     never exceeds the visible viewport. */
+     never exceeds the visible viewport. min() ensures landscape phones don't
+     get a slider taller than the screen. */
   aspect-ratio: 16 / 9;
-  min-height: 560px;
+  min-height: min(560px, 100vh);
   max-height: 100vh;
   overflow: hidden;
   border-radius: 0;

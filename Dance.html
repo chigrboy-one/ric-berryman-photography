@@ -247,6 +247,25 @@
       .dance-grid {
         column-count: 1;
       }
+
+      /* Keep the hero title from overflowing mobile screens. */
+      .dance-hero-title {
+        font-size: clamp(2.4rem, 11vw, 4rem);
+        letter-spacing: 0.22em;
+      }
+
+      .dance-tags {
+        font-size: 0.68rem;
+      }
+
+      /* Damp the slide-in offsets so items don't push past the right edge. */
+      .dance-item.from-right {
+        transform: translate(20px, 20px);
+      }
+
+      .dance-item.from-left {
+        transform: translate(-20px, 20px);
+      }
     }
 
     .dance-item {

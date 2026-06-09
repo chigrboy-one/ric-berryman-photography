@@ -247,6 +247,28 @@
       .beauty-grid {
         column-count: 1;
       }
+
+      /* Keep the hero title from overflowing mobile screens — tighter
+         letter-spacing and a smaller min font size make "EDITORIAL PORTRAITS"
+         fit in 375px viewports. */
+      .beauty-hero-title {
+        font-size: clamp(1.9rem, 9vw, 3.4rem);
+        letter-spacing: 0.18em;
+      }
+
+      .beauty-tags {
+        font-size: 0.68rem;
+      }
+
+      /* Damp the slide-in offsets so they don't push items off the right
+         edge on small viewports. */
+      .beauty-item.from-right {
+        transform: translate(20px, 20px);
+      }
+
+      .beauty-item.from-left {
+        transform: translate(-20px, 20px);
+      }
     }
 
     .beauty-item {
