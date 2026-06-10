@@ -1,1 +1,5 @@
 .DS_Store
+
+# Local working folder for raw source images being staged for the site.
+# Resized copies live under assets/images/index-slider/ etc. and are tracked.
+assets/images/home-candidates/

@@ -1656,8 +1656,15 @@
 .home-slider-viewport{
   position: relative;
   width: 100%;
-    /* BIG. HERO. ENERGY. */
-  height: clamp(720px, 100vh, 1200px);  overflow: hidden;
+  /* BIG. HERO. ENERGY. — locked to a cinematic 16:9 so the slider height grows
+     proportionally with width. Keeps cropping minimal on large screens; uses
+     min-height as a mobile/short-viewport floor and max-height so the slider
+     never exceeds the visible viewport. min() ensures landscape phones don't
+     get a slider taller than the screen. */
+  aspect-ratio: 16 / 9;
+  min-height: min(560px, 100vh);
+  max-height: 100vh;
+  overflow: hidden;
   border-radius: 0;
   background: #000;
 }
@@ -1683,9 +1690,26 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Bias the crop upward so heads stay in frame when the container is wider
+     than the image's 3:2 aspect (i.e. always on landscape monitors). */
+  object-position: center 30%;
   display: block;
   transform: scale(1.02);
 }
+
+/* Portrait / square slide images: show the full frame instead of cropping the
+   subject. Viewport background (#000) acts as letterbox on the sides. */
+.home-slide img.is-contain{
+  object-fit: contain;
+  transform: none;
+  background: #000;
+}
+
+/* Per-slide crop overrides. Default is center 30% (biased upward to keep
+   heads in frame). Use these when the subject sits lower in the composition. */
+.home-slide img.focus-mid    { object-position: center 50%; }
+.home-slide img.focus-low    { object-position: center 65%; }
+.home-slide img.focus-bottom { object-position: center 80%; }
 
 .home-slide::after{
   content:"";
@@ -2083,16 +2107,21 @@ nav.nav-open .hamburger-line:nth-child(3) {
     padding: 0.7rem 1.2rem;
   }
 
-  /* Nav arrows — reposition below content */
+  /* Nav arrows — float to the right edge at the image/content seam so they
+     don't overlap the VIEW PROJECT button down in the content area. */
   .carousel-nav {
-    bottom: 3.5rem;
-    gap: 1rem;
+    top: calc(55% - 22px);
+    bottom: auto;
+    left: auto;
+    right: 0.75rem;
+    transform: none;
+    gap: 0.6rem;
   }
 
   .carousel-arrow {
-    width: 44px;
-    height: 44px;
-    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
   }
 
   .scroll-progress {
