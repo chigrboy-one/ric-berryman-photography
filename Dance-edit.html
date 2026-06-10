@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="noai, noimageai">
+  <title>Dance Gallery Editor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #1a1a1a;
+      color: #fff;
+      font-family: system-ui, -apple-system, sans-serif;
+      padding: 1rem;
+    }
+
+    .toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #111;
+      border-bottom: 1px solid #333;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+    }
+
+    .toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .toolbar h1 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .stats {
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    .stats .cut-count { color: #ff6b6b; }
+    .stats .keep-count { color: #69db7c; }
+
+    .btn {
+      padding: 0.6rem 1.4rem;
+      border-radius: 8px;
+      border: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.2s;
+    }
+
+    .btn-save {
+      background: #69db7c;
+      color: #1a1a1a;
+    }
+
+    .btn-save:hover { background: #51cf66; }
+
+    .btn-reset {
+      background: #333;
+      color: #ccc;
+    }
+
+    .btn-reset:hover { background: #444; }
+
+    .instructions {
+      background: #222;
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+      line-height: 1.7;
+      color: #aaa;
+    }
+
+    .instructions strong { color: #fff; }
+
+    /* Grid */
+    .edit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .edit-item {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+      cursor: grab;
+      transition: opacity 0.3s, transform 0.2s, box-shadow 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .edit-item:hover {
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.2);
+    }
+
+    .edit-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: opacity 0.3s;
+    }
+
+    /* Cut state */
+    .edit-item.cut {
+      opacity: 0.25;
+      border-color: #ff6b6b;
+    }
+
+    .edit-item.cut img {
+      filter: grayscale(1);
+    }
+
+    /* X button */
+    .cut-btn {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      z-index: 2;
+    }
+
+    .cut-btn:hover {
+      background: #ff6b6b;
+      transform: scale(1.15);
+    }
+
+    .edit-item.cut .cut-btn {
+      background: #ff6b6b;
+    }
+
+    /* Number badge */
+    .num-badge {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      min-width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+      z-index: 2;
+    }
+
+    /* Filename label */
+    .file-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 6px 8px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      font-size: 0.65rem;
+      color: #ccc;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Drag states */
+    .edit-item.dragging {
+      opacity: 0.4;
+      transform: scale(0.95);
+    }
+
+    .edit-item.drag-over {
+      border-color: #69db7c;
+      box-shadow: 0 0 0 2px #69db7c;
+    }
+
+    /* Output modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: #222;
+      border-radius: 16px;
+      padding: 2rem;
+      max-width: 700px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .modal h2 {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .modal textarea {
+      width: 100%;
+      height: 300px;
+      background: #111;
+      color: #69db7c;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      resize: vertical;
+    }
+
+    .modal .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .modal .btn-copy {
+      background: #69db7c;
+      color: #1a1a1a;
+    }
+
+    .modal .btn-close {
+      background: #444;
+      color: #fff;
+    }
+
+    .copied-toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #69db7c;
+      color: #1a1a1a;
+      padding: 0.75rem 2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      z-index: 1000;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="toolbar-left">
+    <h1>Dance Gallery Editor</h1>
+    <div class="stats">
+      <span class="keep-count" id="keep-count">114 keep</span> &nbsp;/&nbsp;
+      <span class="cut-count" id="cut-count">0 cut</span>
+    </div>
+  </div>
+  <div style="display:flex;gap:0.5rem;">
+    <button class="btn btn-reset" onclick="resetAll()">Reset</button>
+    <button class="btn btn-save" onclick="saveEdits()">Save Edits</button>
+  </div>
+</div>
+
+<div class="instructions">
+  <strong>Click the X</strong> on any image to mark it for removal (click again to restore).
+  <strong>Drag and drop</strong> images to reorder them.
+  When you're done, hit <strong>Save Edits</strong> and paste the result back to me.
+</div>
+
+<div class="edit-grid" id="edit-grid"></div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <h2>Your final gallery order</h2>
+    <p style="font-size:0.85rem;color:#aaa;margin-bottom:1rem;">Copy this and paste it back to me. I'll update Dance.html with your choices.</p>
+    <textarea id="output" readonly></textarea>
+    <div class="btn-row">
+      <button class="btn btn-copy" onclick="copyOutput()">Copy to Clipboard</button>
+      <button class="btn btn-close" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="copied-toast" id="toast">Copied!</div>
+
+<script>
+const danceImages = [
+  { src: "assets/images/dance/2024-02-17  Hannah Barr - DTLA Rooftop-7.jpg", alt: "Hannah Barr - DTLA Rooftop" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-4.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2024-04-20 Quincey in Bloom-1.jpg", alt: "Quincey in Bloom" },
+  { src: "assets/images/dance/2024-01-28 Maddy Chinatown DRAFT-4.jpg", alt: "Maddy Chinatown" },
+  { src: "assets/images/dance/2025-02-08 Quincey Smith -  Union Station-32.jpg", alt: "Quincey Smith - Union Station" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-1.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2025-02-08 Duet -  Union Station-14.jpg", alt: "Duet - Union Station" },
+  { src: "assets/images/dance/2023-09-17 Dancing in the Rain - DRAFT-1-2.jpg", alt: "Dancing in the Rain" },
+  { src: "assets/images/dance/2025-02-08 Holley Johnson -  Union Station-2.jpg", alt: "Holley Johnson - Union Station" },
+  { src: "assets/images/dance/2023-11-05 Madeline Houk - Hollywood-6.jpg", alt: "Madeline Houk - Hollywood" },
+  { src: "assets/images/dance/2024-02-25 Briana - Fresno - Draft-3.jpg", alt: "Briana - Fresno" },
+  { src: "assets/images/dance/2024-03-09 Underwater Ballet DRAFT-61.jpg", alt: "Underwater Ballet" },
+  { src: "assets/images/dance/2023-05-12 Dance Studio Shoot-1.jpg", alt: "Dance Studio Shoot" },
+  { src: "assets/images/dance/2024-11-17 Alej Torres at Distopian-42.jpg", alt: "Alej Torres at Distopian" },
+  { src: "assets/images/dance/2024-03-23 Hannah Barr-12.jpg", alt: "Hannah Barr" },
+  { src: "assets/images/dance/2025-06-18 Lena - Pasadena Bridge-27.jpg", alt: "Lena - Pasadena Bridge" },
+  { src: "assets/images/dance/2024-11-02 Hannah Barr - Walking Bridge-10.jpg", alt: "Hannah Barr - Walking Bridge" },
+  { src: "assets/images/dance/2025-07-27 Hollywood Dances with the Stars-85.jpg", alt: "Hollywood Dances with the Stars" },
+  { src: "assets/images/dance/c.jpg", alt: "Dance" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-23.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-5.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2024-05-19 Madeline Houk - Peterson Museum-15.jpg", alt: "Madeline Houk - Peterson Museum" },
+  { src: "assets/images/dance/2025-02-08 Duet -  Union Station-19.jpg", alt: "Duet - Union Station" },
+  { src: "assets/images/dance/2024-01-28 Maddy Chinatown DRAFT-12.jpg", alt: "Maddy Chinatown" },
+  { src: "assets/images/dance/2023-09-17 Dancing in the Rain - DRAFT-15.jpg", alt: "Dancing in the Rain" },
+  { src: "assets/images/dance/2024-02-17  Hannah Barr - DTLA Rooftop-60.jpg", alt: "Hannah Barr - DTLA Rooftop" },
+  { src: "assets/images/dance/2025-02-08 Holley Johnson -  Union Station-14.jpg", alt: "Holley Johnson - Union Station" },
+  { src: "assets/images/dance/2024-04-20 Quincey in Bloom-6.jpg", alt: "Quincey in Bloom" },
+  { src: "assets/images/dance/2023-11-05 Madeline Houk - Hollywood-28.jpg", alt: "Madeline Houk - Hollywood" },
+  { src: "assets/images/dance/2024-02-25 Briana - Fresno - Draft-9.jpg", alt: "Briana - Fresno" },
+  { src: "assets/images/dance/2023-05-12 Dance Studio Shoot-15.jpg", alt: "Dance Studio Shoot" },
+  { src: "assets/images/dance/2025-02-08 Quincey Smith -  Union Station-38.jpg", alt: "Quincey Smith - Union Station" },
+  { src: "assets/images/dance/2024-11-17 Alej Torres at Distopian-46.jpg", alt: "Alej Torres at Distopian" },
+  { src: "assets/images/dance/2024-03-23 Hannah Barr-16.jpg", alt: "Hannah Barr" },
+  { src: "assets/images/dance/2025-06-18 Lena - Pasadena Bridge-39.jpg", alt: "Lena - Pasadena Bridge" },
+  { src: "assets/images/dance/2024-11-02 Hannah Barr - Walking Bridge-12.jpg", alt: "Hannah Barr - Walking Bridge" },
+  { src: "assets/images/dance/2025-07-27 Hollywood Dances with the Stars-98.jpg", alt: "Hollywood Dances with the Stars" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-5.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2024-05-19 Madeline Houk - Peterson Museum-18.jpg", alt: "Madeline Houk - Peterson Museum" },
+  { src: "assets/images/dance/2025-02-08 Duet -  Union Station-20.jpg", alt: "Duet - Union Station" },
+  { src: "assets/images/dance/2024-01-28 Maddy Chinatown DRAFT-2-2.jpg", alt: "Maddy Chinatown" },
+  { src: "assets/images/dance/2023-09-17 Dancing in the Rain - DRAFT-85.jpg", alt: "Dancing in the Rain" },
+  { src: "assets/images/dance/2024-02-17  Hannah Barr - DTLA Rooftop-1-4.jpg", alt: "Hannah Barr - DTLA Rooftop" },
+  { src: "assets/images/dance/2023-03-25 Dance Vasquez Rocks-74.jpg", alt: "Dance Vasquez Rocks" },
+  { src: "assets/images/dance/2025-02-08 Holley Johnson -  Union Station-30.jpg", alt: "Holley Johnson - Union Station" },
+  { src: "assets/images/dance/2024-04-20 Quincey in Bloom-9.jpg", alt: "Quincey in Bloom" },
+  { src: "assets/images/dance/2023-11-05 Madeline Houk - Hollywood-38.jpg", alt: "Madeline Houk - Hollywood" },
+  { src: "assets/images/dance/2024-02-25 Briana - Fresno - Draft-18.jpg", alt: "Briana - Fresno" },
+  { src: "assets/images/dance/2023-08-20 BW Dancers at City Hall-119 copy.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-05-12 Dance Studio Shoot-23.jpg", alt: "Dance Studio Shoot" },
+  { src: "assets/images/dance/2024-11-17 Alej Torres at Distopian-53.jpg", alt: "Alej Torres at Distopian" },
+  { src: "assets/images/dance/2024-11-02 Hannah Barr - Walking Bridge-23.jpg", alt: "Hannah Barr - Walking Bridge" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-12.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-33.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2024-05-19 Madeline Houk - Peterson Museum-24.jpg", alt: "Madeline Houk - Peterson Museum" },
+  { src: "assets/images/dance/2025-02-08 Duet -  Union Station-29.jpg", alt: "Duet - Union Station" },
+  { src: "assets/images/dance/2024-01-28 Maddy Chinatown DRAFT-23.jpg", alt: "Maddy Chinatown" },
+  { src: "assets/images/dance/2023-09-17 Dancing in the Rain - DRAFT-87.jpg", alt: "Dancing in the Rain" },
+  { src: "assets/images/dance/2024-02-17  Hannah Barr - DTLA Rooftop-71.jpg", alt: "Hannah Barr - DTLA Rooftop" },
+  { src: "assets/images/dance/2025-02-08 Holley Johnson -  Union Station-36.jpg", alt: "Holley Johnson - Union Station" },
+  { src: "assets/images/dance/2024-04-20 Quincey in Bloom-13.jpg", alt: "Quincey in Bloom" },
+  { src: "assets/images/dance/2023-11-05 Madeline Houk - Hollywood-39.jpg", alt: "Madeline Houk - Hollywood" },
+  { src: "assets/images/dance/2024-02-25 Briana - Fresno - Draft-26.jpg", alt: "Briana - Fresno" },
+  { src: "assets/images/dance/2023-05-12 Dance Studio Shoot-118.jpg", alt: "Dance Studio Shoot" },
+  { src: "assets/images/dance/2024-11-17 Alej Torres at Distopian-61.jpg", alt: "Alej Torres at Distopian" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-28.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-43.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2025-02-08 Duet -  Union Station-34.jpg", alt: "Duet - Union Station" },
+  { src: "assets/images/dance/2024-01-28 Maddy Chinatown DRAFT-30.jpg", alt: "Maddy Chinatown" },
+  { src: "assets/images/dance/2023-09-17 Dancing in the Rain - DRAFT-96.jpg", alt: "Dancing in the Rain" },
+  { src: "assets/images/dance/2024-02-17  Hannah Barr - DTLA Rooftop-75.jpg", alt: "Hannah Barr - DTLA Rooftop" },
+  { src: "assets/images/dance/2025-02-08 Holley Johnson -  Union Station-44.jpg", alt: "Holley Johnson - Union Station" },
+  { src: "assets/images/dance/2023-11-05 Madeline Houk - Hollywood-42.jpg", alt: "Madeline Houk - Hollywood" },
+  { src: "assets/images/dance/2024-02-25 Briana - Fresno - Draft-1-6.jpg", alt: "Briana - Fresno" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-36.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-45.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2024-05-19 Madeline Houk - Peterson Museum-34.jpg", alt: "Madeline Houk - Peterson Museum" },
+  { src: "assets/images/dance/2025-02-08 Duet -  Union Station-38.jpg", alt: "Duet - Union Station" },
+  { src: "assets/images/dance/2024-01-28 Maddy Chinatown DRAFT-34.jpg", alt: "Maddy Chinatown" },
+  { src: "assets/images/dance/2024-02-17  Hannah Barr - DTLA Rooftop-78.jpg", alt: "Hannah Barr - DTLA Rooftop" },
+  { src: "assets/images/dance/2025-02-08 Holley Johnson -  Union Station-48.jpg", alt: "Holley Johnson - Union Station" },
+  { src: "assets/images/dance/2024-05-19 Madeline Houk - Peterson Museum-77.jpg", alt: "Madeline Houk - Peterson Museum" },
+  { src: "assets/images/dance/2025-02-08 Duet -  Union Station-57.jpg", alt: "Duet - Union Station" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-58.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-56.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-61.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-68.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-65.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-69.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-93.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-85.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-96.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-89.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-112.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-94.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-114.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-144.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-119.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-146.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-08-20 Dancers at City Hall-150.jpg", alt: "Dancers at City Hall" },
+  { src: "assets/images/dance/2023-11-19 Rooftop Dance - DRAFT-125.jpg", alt: "Rooftop Dance" },
+  { src: "assets/images/dance/2025-02-08 Duet -  Union Station-16.jpg", alt: "Duet - Union Station" },
+];
+
+const grid = document.getElementById('edit-grid');
+const cutSet = new Set();
+let dragSrcIndex = null;
+
+function getFilename(src) {
+  return src.split('/').pop();
+}
+
+function buildGrid() {
+  grid.innerHTML = '';
+  danceImages.forEach((img, i) => {
+    const div = document.createElement('div');
+    div.className = 'edit-item' + (cutSet.has(i) ? ' cut' : '');
+    div.draggable = true;
+    div.dataset.index = i;
+
+    div.innerHTML = `
+      <span class="num-badge">${i + 1}</span>
+      <button class="cut-btn" title="Toggle cut">&times;</button>
+      <img src="${img.src}" alt="${img.alt}" loading="lazy" />
+      <div class="file-label">${getFilename(img.src)}</div>
+    `;
+
+    // Cut toggle
+    div.querySelector('.cut-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (cutSet.has(i)) {
+        cutSet.delete(i);
+        div.classList.remove('cut');
+      } else {
+        cutSet.add(i);
+        div.classList.add('cut');
+      }
+      updateStats();
+    });
+
+    // Drag events
+    div.addEventListener('dragstart', (e) => {
+      dragSrcIndex = i;
+      div.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    div.addEventListener('dragend', () => {
+      div.classList.remove('dragging');
+      document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    });
+
+    div.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      div.classList.add('drag-over');
+    });
+
+    div.addEventListener('dragleave', () => {
+      div.classList.remove('drag-over');
+    });
+
+    div.addEventListener('drop', (e) => {
+      e.preventDefault();
+      div.classList.remove('drag-over');
+      const targetIndex = i;
+      if (dragSrcIndex === null || dragSrcIndex === targetIndex) return;
+
+      // Move the image in the array
+      const moved = danceImages.splice(dragSrcIndex, 1)[0];
+      danceImages.splice(targetIndex, 0, moved);
+
+      // Update cut set indices
+      const newCutSet = new Set();
+      // This is complex — just rebuild. Track by src instead.
+      const cutSrcs = new Set();
+      cutSet.forEach(idx => {
+        // We need to map old indices... simpler to track by src
+      });
+
+      // Actually let's track cuts by src
+      rebuildCutsBySrc();
+      buildGrid();
+    });
+
+    grid.appendChild(div);
+  });
+  updateNumbers();
+}
+
+// Track cuts by src for drag stability
+const cutSrcs = new Set();
+
+function rebuildCutsBySrc() {
+  cutSet.clear();
+  danceImages.forEach((img, i) => {
+    if (cutSrcs.has(img.src)) cutSet.add(i);
+  });
+}
+
+// Override cut toggle to also track by src
+grid.addEventListener('click', () => {}); // handled per button
+
+// Patch: override the cut button logic to use srcs
+function patchCutLogic() {
+  const origBuild = buildGrid;
+}
+
+// Simpler approach: rebuild using src-based tracking
+function buildGridV2() {
+  grid.innerHTML = '';
+  danceImages.forEach((img, i) => {
+    const isCut = cutSrcs.has(img.src);
+    const div = document.createElement('div');
+    div.className = 'edit-item' + (isCut ? ' cut' : '');
+    div.draggable = true;
+    div.dataset.index = i;
+
+    div.innerHTML = `
+      <span class="num-badge">${i + 1}</span>
+      <button class="cut-btn" title="Toggle cut">&times;</button>
+      <img src="${img.src}" alt="${img.alt}" loading="lazy" />
+      <div class="file-label">${getFilename(img.src)}</div>
+    `;
+
+    div.querySelector('.cut-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (cutSrcs.has(img.src)) {
+        cutSrcs.delete(img.src);
+        div.classList.remove('cut');
+      } else {
+        cutSrcs.add(img.src);
+        div.classList.add('cut');
+      }
+      updateStats();
+    });
+
+    div.addEventListener('dragstart', (e) => {
+      dragSrcIndex = i;
+      div.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    div.addEventListener('dragend', () => {
+      div.classList.remove('dragging');
+      document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+    });
+
+    div.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      div.classList.add('drag-over');
+    });
+
+    div.addEventListener('dragleave', () => {
+      div.classList.remove('drag-over');
+    });
+
+    div.addEventListener('drop', (e) => {
+      e.preventDefault();
+      div.classList.remove('drag-over');
+      if (dragSrcIndex === null || dragSrcIndex === i) return;
+      const moved = danceImages.splice(dragSrcIndex, 1)[0];
+      danceImages.splice(i, 0, moved);
+      buildGridV2();
+    });
+
+    grid.appendChild(div);
+  });
+}
+
+function updateNumbers() {
+  document.querySelectorAll('.num-badge').forEach((badge, i) => {
+    badge.textContent = i + 1;
+  });
+}
+
+function updateStats() {
+  const total = danceImages.length;
+  const cuts = cutSrcs.size;
+  document.getElementById('keep-count').textContent = (total - cuts) + ' keep';
+  document.getElementById('cut-count').textContent = cuts + ' cut';
+}
+
+function resetAll() {
+  cutSrcs.clear();
+  buildGridV2();
+  updateStats();
+}
+
+function saveEdits() {
+  const kept = danceImages.filter(img => !cutSrcs.has(img.src));
+  const lines = kept.map(img =>
+    `      { src: "${img.src}", alt: "${img.alt}" },`
+  );
+  const output = `DANCE_GALLERY_ORDER:\n${lines.join('\n')}`;
+  document.getElementById('output').value = output;
+  document.getElementById('modal').classList.add('active');
+}
+
+function copyOutput() {
+  const textarea = document.getElementById('output');
+  textarea.select();
+  document.execCommand('copy');
+  const toast = document.getElementById('toast');
+  toast.style.display = 'block';
+  setTimeout(() => { toast.style.display = 'none'; }, 1500);
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+
+// Init
+buildGridV2();
+updateStats();
+</script>
+</body>
+</html>
