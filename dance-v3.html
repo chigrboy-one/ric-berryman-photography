@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, noai, noimageai">
-  <title>Weeses Pieces — Ric Berryman (V3 Editorial Concept)</title>
+  <title>Dance — Ric Berryman (V3 Concept)</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -98,6 +98,7 @@
       transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
     }
     .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-links a.is-active::after { transform: scaleX(1); }
     @media (max-width: 700px) {
       .nav { padding: 1.1rem 1.25rem; }
       .nav-mark { font-size: 1.05rem; white-space: nowrap; }
@@ -126,7 +127,7 @@
     }
     .e-hero-title {
       font-family: var(--bebas); text-transform: uppercase;
-      font-size: clamp(4rem, 13vw, 14rem); line-height: 0.85;
+      font-size: clamp(3.6rem, 12vw, 13rem); line-height: 0.85;
       color: var(--bone);
     }
     .e-hero-title .line { display: block; overflow: hidden; }
@@ -184,31 +185,16 @@
       letter-spacing: 0.35em; text-transform: uppercase; color: var(--grey);
     }
     .figure--narrow .figure-inner { max-width: 1100px; }
-    /* edge-to-edge variant to break the contained rhythm */
     .figure--bleed { padding-left: 0; padding-right: 0; }
     .figure--bleed .figure-inner { max-width: none; }
     .figure--bleed .figure-label { padding: 0 2.5rem; }
-    @media (max-width: 820px) { .figure--bleed .figure-label { padding: 0 1.25rem; } }
-    .figure--offset .figure-inner { max-width: 1500px; display: grid; grid-template-columns: 7fr 5fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: end; }
-    .figure--offset .fig-side {
-      font-family: var(--mont); font-weight: 300;
-      font-size: clamp(1rem, 1.4vw, 1.25rem); line-height: 1.6;
-      color: rgba(232,228,221,0.8);
-      padding-bottom: 2.2rem; max-width: 34ch;
-    }
-    .diptych-inner {
-      max-width: 1500px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 3rem);
-      align-items: start;
-    }
     @media (max-width: 820px) {
       .figure { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .figure--offset .figure-inner { grid-template-columns: 1fr; }
-      .figure--offset .fig-side { padding-bottom: 0; padding-top: 1rem; }
-      .diptych-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .figure--bleed { padding-left: 0; padding-right: 0; }
+      .figure--bleed .figure-label { padding: 0 1.25rem; }
     }
 
-    /* ============ PARALLAX BREAKS ============ */
+    /* ============ CHAPTER BREAKS ============ */
     .break {
       position: relative; height: 92vh; overflow: hidden;
       display: flex; align-items: flex-end;
@@ -228,18 +214,21 @@
     .break-caption {
       position: relative; z-index: 3;
       padding: 0 2.5rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+      width: 100%;
       font-family: var(--oswald); font-weight: 300;
       font-size: clamp(0.72rem, 1vw, 0.85rem);
       letter-spacing: 0.35em; text-transform: uppercase;
       color: rgba(232,228,221,0.9);
       text-shadow: 0 1px 14px rgba(10,10,10,0.7);
     }
+    .break-caption .ch { color: var(--accent); }
     @media (max-width: 700px) {
       .break { height: 64vh; }
-      .break-caption { padding: 0 1.25rem 1.5rem; }
+      .break-caption { padding: 0 1.25rem 1.5rem; flex-direction: column; gap: 0.4rem; }
     }
 
-    /* ============ NEXT ============ */
+    /* ============ ARCHIVE BAND ============ */
     .next-band {
       position: relative; display: block;
       height: 76vh; overflow: hidden;
@@ -298,7 +287,7 @@
     <div class="loader-panel top"></div>
     <div class="loader-panel bottom"></div>
     <div class="loader-center">
-      <div class="loader-name">Weeses Pieces — Editorial</div>
+      <div class="loader-name">Dance — An Ongoing Study</div>
     </div>
   </div>
 
@@ -311,7 +300,7 @@
     <a class="nav-mark" href="/index-v3.html">RIC BERRYMAN</a>
     <ul class="nav-links">
       <li><a href="/portfolio-v3.html">Portfolio</a></li>
-      <li><a href="/dance-v3.html">Dance</a></li>
+      <li><a href="/dance-v3.html" class="is-active">Dance</a></li>
       <li><a href="/field-notes/index.html">Field Notes</a></li>
       <li><a href="/index-v3.html#v3Form">Contact</a></li>
     </ul>
@@ -319,18 +308,18 @@
 
   <!-- HERO -->
   <header class="e-hero">
-    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/editorials/weeses/weeses_hero.jpg" alt="Weeses Pieces — Linet Tezare and Ivy Rose"></div>
+    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/movement-rain.jpg" alt="Dancer mid-pose under studio rain"></div>
     <div class="e-hero-scrim"></div>
     <div class="e-hero-ui">
-      <div class="e-hero-kicker">Editorial — Two Models, One Set</div>
+      <div class="e-hero-kicker">Dance — An Ongoing Study</div>
       <h1 class="e-hero-title" id="eHeroTitle">
-        <span class="line"><span>WEESES</span></span>
-        <span class="line"><span class="outline">PIECES</span></span>
+        <span class="line"><span>BODIES VS</span></span>
+        <span class="line"><span class="outline">GRAVITY</span></span>
       </h1>
       <div class="e-hero-meta">
-        <span class="scramble" data-text="Linet Tezare / Ivy Rose">Linet Tezare / Ivy Rose</span>
-        <span class="scramble" data-text="Weeses Pieces Studio">Weeses Pieces Studio</span>
-        <span class="scramble" data-text="Photography — Ric Berryman">Photography — Ric Berryman</span>
+        <span class="scramble" data-text="90+ Frames">90+ Frames</span>
+        <span class="scramble" data-text="Ballet / Contemporary / Street">Ballet / Contemporary / Street</span>
+        <span class="scramble" data-text="Los Angeles &amp; Beyond">Los Angeles &amp; Beyond</span>
       </div>
     </div>
   </header>
@@ -339,135 +328,121 @@
   <section class="lede">
     <div class="lede-copy reveal-up">
       <p>
-        Weeses Pieces Studio is one of those places that feels like a sketchbook turned
-        inside out — angles, color, water, and structure all laid out in full volume.
-        Nothing is subtle. Every surface wants to be photographed.
+        Bodies in motion against architecture, desert, rain, and open sky.
+        Ballet, contemporary, and everything in between — captured in the
+        spaces where <em>movement meets the world</em>.
       </p>
       <p>
-        Bringing <em>Linet Tezare</em> and <em>Ivy Rose</em> into that environment turned it
-        into a moving puzzle. Different rhythms, different ways of staring down the lens —
-        never quite matching, but always in conversation.
+        No stages, no seamless. Every frame is a negotiation between a
+        dancer and a place that wasn't built for dancing.
       </p>
     </div>
     <aside class="credits reveal-up">
-      <div class="credits-group"><div class="k">Model</div><div class="v">Linet Tezare</div></div>
-      <div class="credits-group"><div class="k">Model</div><div class="v">Ivy Rose</div></div>
-      <div class="credits-group"><div class="k">Location</div><div class="v">Weeses Pieces Studio</div></div>
+      <div class="credits-group"><div class="k">Discipline</div><div class="v">Ballet / Contemporary</div></div>
+      <div class="credits-group"><div class="k">Locations</div><div class="v">Architecture to Open Water</div></div>
+      <div class="credits-group"><div class="k">Status</div><div class="v">Ongoing — 2023 to Now</div></div>
       <div class="credits-group"><div class="k">Photography</div><div class="v">Ric Berryman</div></div>
     </aside>
   </section>
 
-  <!-- FIG 01 -->
-  <section class="figure">
-    <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/weeses/weeses_14.jpg" alt="Linet and Ivy together in the outdoor water feature" loading="lazy"></div>
-      <div class="figure-label"><span>01 / 10</span><span>The duet</span></div>
-    </div>
-  </section>
-
-  <!-- BREAK 1 -->
+  <!-- CH 1: CONCRETE -->
   <section class="break">
-    <div class="break-img" data-parallax><img src="assets/images/editorials/weeses/weeses_parallax1.jpg" alt="Body half-submerged in rippling blue water"></div>
-    <div class="break-word" data-drift>SURFACE TENSION&nbsp;&nbsp;SURFACE TENSION</div>
-    <div class="break-caption">Where the light breaks, the body follows.</div>
+    <div class="break-img" data-parallax><img src="assets/images/portfolio-v3/band-dance.jpg" alt="Dancers at Pasadena City Hall"></div>
+    <div class="break-word" data-drift>CONCRETE&nbsp;&nbsp;CONCRETE&nbsp;&nbsp;CONCRETE</div>
+    <div class="break-caption"><span class="ch">Chapter 01</span><span>Architecture as a dance partner.</span></div>
   </section>
 
-  <!-- DIPTYCH -->
-  <section class="figure">
-    <div class="diptych-inner">
-      <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/weeses/weeses_06.jpg" alt="Linet leaning into the light along a concrete wall" loading="lazy"></div>
-        <div class="figure-label"><span>02 / 10</span><span>Concrete</span></div>
-      </div>
-      <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/weeses/weeses_05.jpg" alt="Ivy walking the edge of the reflecting pool" loading="lazy"></div>
-        <div class="figure-label"><span>03 / 10</span><span>Water line</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FIG WIDE -->
   <section class="figure">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/weeses/weeses_07.jpg" alt="Wide frame near the desert structure" loading="lazy"></div>
-      <div class="figure-label"><span>04 / 10</span><span>Full volume</span></div>
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/concrete-subway.jpg" alt="Hannah Barr in the subway" loading="lazy"></div>
+      <div class="figure-label"><span>01 / 09</span><span>Underground</span></div>
     </div>
   </section>
 
-  <!-- BREAK 2 -->
-  <section class="break">
-    <div class="break-img" data-parallax><img src="assets/images/editorials/weeses/weeses_parallax2.jpg" alt="Magenta dress sweeping across a white wall"></div>
-    <div class="break-word" data-drift>FULL SAIL&nbsp;&nbsp;FULL SAIL&nbsp;&nbsp;FULL SAIL</div>
-    <div class="break-caption">One gust, one dress, one frame.</div>
-  </section>
-
-  <!-- OFFSET -->
-  <section class="figure figure--offset">
-    <div class="figure-inner">
-      <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/weeses/weeses_09.jpg" alt="Both models inside the graphic architecture" loading="lazy"></div>
-        <div class="figure-label"><span>05 / 10</span><span>The pivot</span></div>
-      </div>
-      <div class="fig-side reveal-up">
-        The best part of two models is the in-between — shared glances, tiny negotiations
-        of space, a pose that becomes a reply instead of a statement.
-      </div>
-    </div>
-  </section>
-
-  <!-- FIG -->
   <section class="figure figure--narrow">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/weeses/weeses_02.jpg" alt="Geometry and color at the studio" loading="lazy"></div>
-      <div class="figure-label"><span>06 / 10</span><span>Echo</span></div>
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/concrete-rooftop.jpg" alt="Rooftop dance at dusk" loading="lazy"></div>
+      <div class="figure-label"><span>02 / 09</span><span>Rooftop</span></div>
     </div>
   </section>
 
-  <!-- FIG CINEMATIC -->
-  <section class="figure">
-    <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/weeses/weeses_13.jpg" alt="Cinematic wide of the set" loading="lazy"></div>
-      <div class="figure-label"><span>07 / 10</span><span>Widescreen</span></div>
-    </div>
-  </section>
-
-  <!-- BREAK 3 -->
-  <section class="break">
-    <div class="break-img" data-parallax><img src="assets/images/editorials/weeses/weeses_parallax3.jpg" alt="Black and white recline at the waterline"></div>
-    <div class="break-word" data-drift>WITHOUT COLOR&nbsp;&nbsp;WITHOUT COLOR</div>
-    <div class="break-caption">Strip everything else away and what's left is the look.</div>
-  </section>
-
-  <!-- FIG 08 -->
-  <section class="figure">
-    <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/weeses/weeses_17.jpg" alt="Late light across the set" loading="lazy"></div>
-      <div class="figure-label"><span>08 / 10</span><span>Last light</span></div>
-    </div>
-  </section>
-
-  <!-- FIG 09 — full bleed -->
   <section class="figure figure--bleed">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/weeses/weeses_18.jpg" alt="Final frame of the duet" loading="lazy"></div>
-      <div class="figure-label"><span>09 / 10</span><span>Conversation</span></div>
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/concrete-cityhall.jpg" alt="Dancer at City Hall colonnade" loading="lazy"></div>
+      <div class="figure-label"><span>03 / 09</span><span>Colonnade</span></div>
+    </div>
+  </section>
+
+  <!-- CH 2: DESERT -->
+  <section class="break">
+    <div class="break-img" data-parallax><img src="assets/images/dance-v3/desert-break.jpg" alt="Arabesque at Vasquez Rocks in golden light"></div>
+    <div class="break-word" data-drift>DESERT&nbsp;&nbsp;DESERT&nbsp;&nbsp;DESERT</div>
+    <div class="break-caption"><span class="ch">Chapter 02</span><span>Rock, dust, and last light.</span></div>
+  </section>
+
+  <section class="figure">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/desert-rocks.jpg" alt="Dancer on the Vasquez Rocks formations" loading="lazy"></div>
+      <div class="figure-label"><span>04 / 09</span><span>Vasquez</span></div>
+    </div>
+  </section>
+
+  <section class="figure figure--narrow">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/desert-fresno.jpg" alt="Briana mid-leap, Fresno" loading="lazy"></div>
+      <div class="figure-label"><span>05 / 09</span><span>Flight</span></div>
+    </div>
+  </section>
+
+  <!-- CH 3: WATER -->
+  <section class="break">
+    <div class="break-img" data-parallax><img src="assets/images/dance-v3/water-break.jpg" alt="Underwater ballet"></div>
+    <div class="break-word" data-drift>WATER&nbsp;&nbsp;WATER&nbsp;&nbsp;WATER</div>
+    <div class="break-caption"><span class="ch">Chapter 03</span><span>Choreography against buoyancy.</span></div>
+  </section>
+
+  <section class="figure">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/water-ballet.jpg" alt="Underwater ballet, suspended" loading="lazy"></div>
+      <div class="figure-label"><span>06 / 09</span><span>Suspension</span></div>
+    </div>
+  </section>
+
+  <section class="figure figure--bleed">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/water-beach.jpg" alt="Britt on the beach" loading="lazy"></div>
+      <div class="figure-label"><span>07 / 09</span><span>Shoreline</span></div>
+    </div>
+  </section>
+
+  <!-- CH 4: GOLD -->
+  <section class="break">
+    <div class="break-img" data-parallax><img src="assets/images/dance-v3/gold-break.jpg" alt="Ballet duet at Union Station"></div>
+    <div class="break-word" data-drift>GOLD&nbsp;&nbsp;GOLD&nbsp;&nbsp;GOLD&nbsp;&nbsp;GOLD</div>
+    <div class="break-caption"><span class="ch">Chapter 04</span><span>Marble, brass, and pointe shoes.</span></div>
+  </section>
+
+  <section class="figure figure--narrow">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/gold-holley.jpg" alt="Holley Johnson at Union Station" loading="lazy"></div>
+      <div class="figure-label"><span>08 / 09</span><span>Union Station</span></div>
     </div>
   </section>
 
   <section class="figure">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/weeses/weeses_15.jpg" alt="Closing wide frame" loading="lazy"></div>
-      <div class="figure-label"><span>10 / 10</span><span>Fin</span></div>
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/gold-museum.jpg" alt="Madeline Houk at the Petersen Museum" loading="lazy"></div>
+      <div class="figure-label"><span>09 / 09</span><span>Museum</span></div>
     </div>
   </section>
 
-  <!-- NEXT -->
-  <a class="next-band" href="/editorials/RachelPizzolato.html" data-cursor="view">
-    <div class="next-img"><img src="assets/images/portfolio-v3/key-rachel.jpg" alt="Rachel Pizzolato — Club James"></div>
+  <!-- FULL ARCHIVE -->
+  <a class="next-band" href="/Dance.html" data-cursor="view">
+    <div class="next-img"><img src="assets/images/movement-cityhall.jpg" alt="Dance archive — City Hall dancer"></div>
     <div class="next-content">
-      <div class="next-kicker">Next Editorial</div>
-      <div class="next-title">Club James</div>
-      <div class="next-arrow">→</div>
+      <div class="next-kicker">Keep Going</div>
+      <div class="next-title">Full Archive</div>
+      <div class="next-arrow">90+ frames →</div>
     </div>
   </a>
 
@@ -572,7 +547,6 @@
 
     /* ---------- Image reveals (stranding-proof IO) ---------- */
     if (!reduced && 'IntersectionObserver' in window) {
-      // photos: clip up from the bottom + settle the scale
       gsap.set('[data-reveal]', { clipPath: 'inset(14% 4% 14% 4%)' });
       var figIO = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
@@ -584,7 +558,6 @@
       }, { threshold: 0.22 });
       document.querySelectorAll('[data-reveal]').forEach(function (f) { figIO.observe(f); });
 
-      // text blocks: simple rise
       gsap.set('.reveal-up', { opacity: 0, y: 36 });
       var upIO = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
