@@ -566,11 +566,6 @@
     </a>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee" id="marquee">
-    <div class="marquee-track" id="marqueeTrack"></div>
-  </div>
-
   <!-- OUTRO -->
   <section class="outro">
     <div class="outro-label">Have a concept in mind</div>
@@ -914,22 +909,6 @@
       });
     });
 
-    /* ---------- Marquee ---------- */
-    var chunkHTML =
-      '<div class="marquee-chunk">' +
-      '<span class="solid">Fashion</span><span class="dot">●</span>' +
-      '<span class="outline">Editorial</span><span class="dot">●</span>' +
-      '<span class="solid">Portrait</span><span class="dot">●</span>' +
-      '<span class="outline">Movement</span><span class="dot">●</span>' +
-      '<span class="solid">Field Notes</span><span class="dot">●</span>' +
-      '</div>';
-    var mTrack = document.getElementById('marqueeTrack');
-    mTrack.innerHTML = chunkHTML + chunkHTML + chunkHTML;
-    var mTween = gsap.to(mTrack, { xPercent: -33.333, duration: 24, ease: 'none', repeat: -1 });
-    ScrollTrigger.create({
-      trigger: '#marquee', start: 'top bottom', end: 'bottom top',
-      onUpdate: function (self) { mTween.timeScale(1 + Math.min(Math.abs(self.getVelocity()) / 900, 3)); }
-    });
 
     /* ---------- Magnetic ---------- */
     if (fine && !reduced) {
