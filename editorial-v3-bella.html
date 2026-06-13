@@ -291,7 +291,7 @@
     }
   </style>
 </head>
-<body class="no-cursor">
+<body class="no-cursor" data-slots="editorial-bella" data-slots-dir="assets/images/editorials/bellaMonroe">
 
   <!-- PRELOADER -->
   <div class="loader" id="loader">
@@ -319,7 +319,7 @@
 
   <!-- HERO -->
   <header class="e-hero">
-    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/editorials/bellaMonroe/Bella_Monroe_hero.jpg" alt="Bella Monroe on a Harley against the American flag"></div>
+    <div class="e-hero-img" id="eHeroImg"><img data-slot="hero" src="assets/images/editorials/bellaMonroe/Bella_Monroe_hero.jpg" alt="Bella Monroe on a Harley against the American flag"></div>
     <div class="e-hero-scrim"></div>
     <div class="e-hero-ui">
       <div class="e-hero-kicker">Editorial — Flags, Chrome &amp; Dust</div>
@@ -356,11 +356,11 @@
   <section class="figure">
     <div class="diptych-inner">
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/bellaMonroe/bellaMonroe_01.jpg" alt="Bella Monroe with the Harley and flag" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-1" src="assets/images/editorials/bellaMonroe/bellaMonroe_01.jpg" alt="Bella Monroe with the Harley and flag" loading="lazy"></div>
         <div class="figure-label"><span>01 / 07</span><span>Stars &amp; chrome</span></div>
       </div>
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/bellaMonroe/bellaMonroe_02.jpg" alt="Bella Monroe on the vintage car" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-2" src="assets/images/editorials/bellaMonroe/bellaMonroe_02.jpg" alt="Bella Monroe on the vintage car" loading="lazy"></div>
         <div class="figure-label"><span>02 / 07</span><span>Sunstruck</span></div>
       </div>
     </div>
@@ -375,11 +375,11 @@
   <section class="figure">
     <div class="diptych-inner">
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/bellaMonroe/bellaMonroe_03.jpg" alt="Bella Monroe at the old school bus" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-3" src="assets/images/editorials/bellaMonroe/bellaMonroe_03.jpg" alt="Bella Monroe at the old school bus" loading="lazy"></div>
         <div class="figure-label"><span>03 / 07</span><span>Roadside</span></div>
       </div>
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/bellaMonroe/bellaMonroe_05.jpg" alt="Bella Monroe in the doorway of the saloon" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-4" src="assets/images/editorials/bellaMonroe/bellaMonroe_05.jpg" alt="Bella Monroe in the doorway of the saloon" loading="lazy"></div>
         <div class="figure-label"><span>04 / 07</span><span>Wanted</span></div>
       </div>
     </div>
@@ -387,7 +387,7 @@
 
   <section class="figure figure--narrow">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/bellaMonroe/bellaMonroe_08.jpg" alt="Bella Monroe against the hay bales" loading="lazy"></div>
+      <div class="figure-frame" data-reveal><img data-slot="fig-5" src="assets/images/editorials/bellaMonroe/bellaMonroe_08.jpg" alt="Bella Monroe against the hay bales" loading="lazy"></div>
       <div class="figure-label"><span>05 / 07</span><span>Golden</span></div>
     </div>
   </section>
@@ -401,11 +401,11 @@
   <section class="figure">
     <div class="diptych-inner">
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/bellaMonroe/bellaMonroe_09.jpg" alt="Bella Monroe at dusk" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-6" src="assets/images/editorials/bellaMonroe/bellaMonroe_09.jpg" alt="Bella Monroe at dusk" loading="lazy"></div>
         <div class="figure-label"><span>06 / 07</span><span>Last heat</span></div>
       </div>
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/bellaMonroe/bellaMonroe_10.jpg" alt="Closing frame of Bella Monroe" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-7" src="assets/images/editorials/bellaMonroe/bellaMonroe_10.jpg" alt="Closing frame of Bella Monroe" loading="lazy"></div>
         <div class="figure-label"><span>07 / 07</span><span>Americana</span></div>
       </div>
     </div>
@@ -563,5 +563,7 @@
     });
   })();
   </script>
+  <script src="/assets/js/gallery-render.js"></script>
+  <script src="/assets/js/gallery-edit.js"></script>
 </body>
 </html>

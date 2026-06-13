@@ -291,7 +291,7 @@
     }
   </style>
 </head>
-<body class="no-cursor">
+<body class="no-cursor" data-slots="editorial-dani" data-slots-dir="assets/images/editorials/dani">
 
   <!-- PRELOADER -->
   <div class="loader" id="loader">
@@ -319,7 +319,7 @@
 
   <!-- HERO -->
   <header class="e-hero">
-    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/editorials/dani/Dani_hero.jpg" alt="Dani Oliveira at Mod West Ranch, Joshua Tree"></div>
+    <div class="e-hero-img" id="eHeroImg"><img data-slot="hero" src="assets/images/editorials/dani/Dani_hero.jpg" alt="Dani Oliveira at Mod West Ranch, Joshua Tree"></div>
     <div class="e-hero-scrim"></div>
     <div class="e-hero-ui">
       <div class="e-hero-kicker">Editorial — Technicolor Film Stills</div>
@@ -356,11 +356,11 @@
   <section class="figure">
     <div class="diptych-inner">
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/dani/Dani_Oliveira_01.jpg" alt="Portrait of Dani Oliveira at Mod West Ranch" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-1" src="assets/images/editorials/dani/Dani_Oliveira_01.jpg" alt="Portrait of Dani Oliveira at Mod West Ranch" loading="lazy"></div>
         <div class="figure-label"><span>01 / 07</span><span>The storm</span></div>
       </div>
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/dani/Dani_Oliveira_02.jpg" alt="Dani Oliveira against the desert architecture" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-2" src="assets/images/editorials/dani/Dani_Oliveira_02.jpg" alt="Dani Oliveira against the desert architecture" loading="lazy"></div>
         <div class="figure-label"><span>02 / 07</span><span>Structure</span></div>
       </div>
     </div>
@@ -375,11 +375,11 @@
   <section class="figure">
     <div class="diptych-inner">
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/dani/Dani_Oliveira_04.jpg" alt="Dani Oliveira in saturated color" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-3" src="assets/images/editorials/dani/Dani_Oliveira_04.jpg" alt="Dani Oliveira in saturated color" loading="lazy"></div>
         <div class="figure-label"><span>03 / 07</span><span>Technicolor</span></div>
       </div>
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/dani/Dani_Oliveira_05.jpg" alt="Dani Oliveira framed by the ranch" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-4" src="assets/images/editorials/dani/Dani_Oliveira_05.jpg" alt="Dani Oliveira framed by the ranch" loading="lazy"></div>
         <div class="figure-label"><span>04 / 07</span><span>Film still</span></div>
       </div>
     </div>
@@ -387,7 +387,7 @@
 
   <section class="figure figure--narrow">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/dani/Dani_Oliveira_06.jpg" alt="Full-body view of Dani Oliveira in the Joshua Tree landscape" loading="lazy"></div>
+      <div class="figure-frame" data-reveal><img data-slot="fig-5" src="assets/images/editorials/dani/Dani_Oliveira_06.jpg" alt="Full-body view of Dani Oliveira in the Joshua Tree landscape" loading="lazy"></div>
       <div class="figure-label"><span>05 / 07</span><span>Horizon</span></div>
     </div>
   </section>
@@ -401,11 +401,11 @@
   <section class="figure">
     <div class="diptych-inner">
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/dani/Dani_Oliveira_07.jpg" alt="Dani Oliveira at dusk" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-6" src="assets/images/editorials/dani/Dani_Oliveira_07.jpg" alt="Dani Oliveira at dusk" loading="lazy"></div>
         <div class="figure-label"><span>06 / 07</span><span>Late light</span></div>
       </div>
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/dani/Dani_Oliveira_08.jpg" alt="Closing frame of Dani Oliveira" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-7" src="assets/images/editorials/dani/Dani_Oliveira_08.jpg" alt="Closing frame of Dani Oliveira" loading="lazy"></div>
         <div class="figure-label"><span>07 / 07</span><span>Fin</span></div>
       </div>
     </div>
@@ -563,5 +563,7 @@
     });
   })();
   </script>
+  <script src="/assets/js/gallery-render.js"></script>
+  <script src="/assets/js/gallery-edit.js"></script>
 </body>
 </html>

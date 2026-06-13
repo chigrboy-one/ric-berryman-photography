@@ -291,7 +291,7 @@
     }
   </style>
 </head>
-<body class="no-cursor">
+<body class="no-cursor" data-slots="editorial-madeline" data-slots-dir="assets/images/editorials/madeline-houk">
 
   <!-- PRELOADER -->
   <div class="loader" id="loader">
@@ -319,7 +319,7 @@
 
   <!-- HERO -->
   <header class="e-hero">
-    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/editorials/madeline-houk/madeline_hero.jpg" alt="Madeline Houk en pointe in the Hollywood subway"></div>
+    <div class="e-hero-img" id="eHeroImg"><img data-slot="hero" src="assets/images/editorials/madeline-houk/madeline_hero.jpg" alt="Madeline Houk en pointe in the Hollywood subway"></div>
     <div class="e-hero-scrim"></div>
     <div class="e-hero-ui">
       <div class="e-hero-kicker">Editorial — Hollywood Underground</div>
@@ -355,11 +355,11 @@
   <section class="figure">
     <div class="diptych-inner">
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/madeline-houk/madeline_01.jpg" alt="Madeline Houk in tulle against subway tile" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-1" src="assets/images/editorials/madeline-houk/madeline_01.jpg" alt="Madeline Houk in tulle against subway tile" loading="lazy"></div>
         <div class="figure-label"><span>01 / 04</span><span>Tulle &amp; tile</span></div>
       </div>
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/madeline-houk/madeline_02.jpg" alt="Madeline Houk holding a line on the platform" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-2" src="assets/images/editorials/madeline-houk/madeline_02.jpg" alt="Madeline Houk holding a line on the platform" loading="lazy"></div>
         <div class="figure-label"><span>02 / 04</span><span>Turnout</span></div>
       </div>
     </div>
@@ -373,7 +373,7 @@
 
   <section class="figure">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/madeline-houk/madeline_03.jpg" alt="Madeline Houk mid-shape on the platform" loading="lazy"></div>
+      <div class="figure-frame" data-reveal><img data-slot="fig-3" src="assets/images/editorials/madeline-houk/madeline_03.jpg" alt="Madeline Houk mid-shape on the platform" loading="lazy"></div>
       <div class="figure-label"><span>03 / 04</span><span>Between trains</span></div>
     </div>
   </section>
@@ -386,7 +386,7 @@
 
   <section class="figure figure--bleed">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/madeline-houk/madeline_04.jpg" alt="Wide frame of Madeline Houk in the tunnel" loading="lazy"></div>
+      <div class="figure-frame" data-reveal><img data-slot="fig-4" src="assets/images/editorials/madeline-houk/madeline_04.jpg" alt="Wide frame of Madeline Houk in the tunnel" loading="lazy"></div>
       <div class="figure-label"><span>04 / 04</span><span>Holding court</span></div>
     </div>
   </section>
@@ -543,5 +543,7 @@
     });
   })();
   </script>
+  <script src="/assets/js/gallery-render.js"></script>
+  <script src="/assets/js/gallery-edit.js"></script>
 </body>
 </html>

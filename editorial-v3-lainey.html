@@ -291,7 +291,7 @@
     }
   </style>
 </head>
-<body class="no-cursor">
+<body class="no-cursor" data-slots="editorial-lainey" data-slots-dir="assets/images/editorials/lainey-floeck">
 
   <!-- PRELOADER -->
   <div class="loader" id="loader">
@@ -319,7 +319,7 @@
 
   <!-- HERO -->
   <header class="e-hero">
-    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/editorials/lainey-floeck/lainey_hero.jpg" alt="Lainey Floeck in black and white"></div>
+    <div class="e-hero-img" id="eHeroImg"><img data-slot="hero" src="assets/images/editorials/lainey-floeck/lainey_hero.jpg" alt="Lainey Floeck in black and white"></div>
     <div class="e-hero-scrim"></div>
     <div class="e-hero-ui">
       <div class="e-hero-kicker">Editorial — Graphic Light</div>
@@ -354,7 +354,7 @@
 
   <section class="figure">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/lainey-floeck/lainey_01.jpg" alt="Lainey Floeck in graphic light" loading="lazy"></div>
+      <div class="figure-frame" data-reveal><img data-slot="fig-1" src="assets/images/editorials/lainey-floeck/lainey_01.jpg" alt="Lainey Floeck in graphic light" loading="lazy"></div>
       <div class="figure-label"><span>01 / 04</span><span>Structure</span></div>
     </div>
   </section>
@@ -368,11 +368,11 @@
   <section class="figure">
     <div class="diptych-inner">
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/lainey-floeck/lainey_02.jpg" alt="Portrait of Lainey Floeck, hard side light" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-2" src="assets/images/editorials/lainey-floeck/lainey_02.jpg" alt="Portrait of Lainey Floeck, hard side light" loading="lazy"></div>
         <div class="figure-label"><span>02 / 04</span><span>Bone &amp; light</span></div>
       </div>
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/lainey-floeck/lainey_03.jpg" alt="Lainey Floeck holding the lens" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-3" src="assets/images/editorials/lainey-floeck/lainey_03.jpg" alt="Lainey Floeck holding the lens" loading="lazy"></div>
         <div class="figure-label"><span>03 / 04</span><span>The gaze</span></div>
       </div>
     </div>
@@ -386,7 +386,7 @@
 
   <section class="figure figure--bleed">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/lainey-floeck/lainey_04.jpg" alt="Closing wide frame of Lainey Floeck" loading="lazy"></div>
+      <div class="figure-frame" data-reveal><img data-slot="fig-4" src="assets/images/editorials/lainey-floeck/lainey_04.jpg" alt="Closing wide frame of Lainey Floeck" loading="lazy"></div>
       <div class="figure-label"><span>04 / 04</span><span>Honest</span></div>
     </div>
   </section>
@@ -543,5 +543,7 @@
     });
   })();
   </script>
+  <script src="/assets/js/gallery-render.js"></script>
+  <script src="/assets/js/gallery-edit.js"></script>
 </body>
 </html>

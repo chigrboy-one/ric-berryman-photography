@@ -291,7 +291,7 @@
     }
   </style>
 </head>
-<body class="no-cursor">
+<body class="no-cursor" data-slots="editorial-campglam" data-slots-dir="assets/images/editorials/camp-glam">
 
   <!-- PRELOADER -->
   <div class="loader" id="loader">
@@ -319,7 +319,7 @@
 
   <!-- HERO -->
   <header class="e-hero">
-    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/editorials/camp-glam/campglam_01.jpg" alt="Tina Grimm — Camp Glam in the California wilderness"></div>
+    <div class="e-hero-img" id="eHeroImg"><img data-slot="hero" src="assets/images/editorials/camp-glam/campglam_01.jpg" alt="Tina Grimm — Camp Glam in the California wilderness"></div>
     <div class="e-hero-scrim"></div>
     <div class="e-hero-ui">
       <div class="e-hero-kicker">Editorial — Desert Mischief</div>
@@ -357,11 +357,11 @@
   <section class="figure">
     <div class="diptych-inner">
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/camp-glam/campglam_02.jpg" alt="Tina Grimm in sequins against the pines" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-1" src="assets/images/editorials/camp-glam/campglam_02.jpg" alt="Tina Grimm in sequins against the pines" loading="lazy"></div>
         <div class="figure-label"><span>01 / 05</span><span>Sequins</span></div>
       </div>
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/camp-glam/campglam_03.jpg" alt="Tina Grimm by the campfire" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-2" src="assets/images/editorials/camp-glam/campglam_03.jpg" alt="Tina Grimm by the campfire" loading="lazy"></div>
         <div class="figure-label"><span>02 / 05</span><span>Firelight</span></div>
       </div>
     </div>
@@ -375,7 +375,7 @@
 
   <section class="figure figure--bleed">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img src="assets/images/editorials/camp-glam/campglam_04.jpg" alt="Wide frame of the Camp Glam set" loading="lazy"></div>
+      <div class="figure-frame" data-reveal><img data-slot="fig-3" src="assets/images/editorials/camp-glam/campglam_04.jpg" alt="Wide frame of the Camp Glam set" loading="lazy"></div>
       <div class="figure-label"><span>03 / 05</span><span>Base camp</span></div>
     </div>
   </section>
@@ -383,11 +383,11 @@
   <section class="figure">
     <div class="diptych-inner">
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/camp-glam/campglam_05.jpg" alt="Tina Grimm portrait at dusk" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-4" src="assets/images/editorials/camp-glam/campglam_05.jpg" alt="Tina Grimm portrait at dusk" loading="lazy"></div>
         <div class="figure-label"><span>04 / 05</span><span>Dusk</span></div>
       </div>
       <div>
-        <div class="figure-frame" data-reveal><img src="assets/images/editorials/camp-glam/campglam_06.jpg" alt="Tina Grimm in the wild after dark" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img data-slot="fig-5" src="assets/images/editorials/camp-glam/campglam_06.jpg" alt="Tina Grimm in the wild after dark" loading="lazy"></div>
         <div class="figure-label"><span>05 / 05</span><span>After dark</span></div>
       </div>
     </div>
@@ -545,5 +545,7 @@
     });
   })();
   </script>
+  <script src="/assets/js/gallery-render.js"></script>
+  <script src="/assets/js/gallery-edit.js"></script>
 </body>
 </html>
