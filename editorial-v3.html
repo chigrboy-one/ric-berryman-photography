@@ -394,7 +394,7 @@
   <!-- BREAK 1 -->
   <section class="break">
     <div class="break-img" data-parallax><img src="assets/images/editorials/weeses/weeses_parallax1.jpg" alt="Body half-submerged in rippling blue water"></div>
-    <div class="break-word" data-drift>SURFACE TENSION&nbsp;&nbsp;SURFACE TENSION</div>
+    <div class="break-word" data-drift>SURFACE TENSION&nbsp;&nbsp;SURFACE TENSION&nbsp;&nbsp;SURFACE TENSION&nbsp;&nbsp;SURFACE TENSION&nbsp;&nbsp;SURFACE TENSION&nbsp;&nbsp;SURFACE TENSION</div>
     <div class="break-caption">Where the light breaks, the body follows.</div>
   </section>
 
@@ -423,7 +423,7 @@
   <!-- BREAK 2 -->
   <section class="break">
     <div class="break-img" data-parallax><img src="assets/images/editorials/weeses/weeses_parallax2.jpg" alt="Magenta dress sweeping across a white wall"></div>
-    <div class="break-word" data-drift>FULL SAIL&nbsp;&nbsp;FULL SAIL&nbsp;&nbsp;FULL SAIL</div>
+    <div class="break-word" data-drift>FULL SAIL&nbsp;&nbsp;FULL SAIL&nbsp;&nbsp;FULL SAIL&nbsp;&nbsp;FULL SAIL&nbsp;&nbsp;FULL SAIL&nbsp;&nbsp;FULL SAIL</div>
     <div class="break-caption">One gust, one dress, one frame.</div>
   </section>
 
@@ -460,7 +460,7 @@
   <!-- BREAK 3 -->
   <section class="break">
     <div class="break-img" data-parallax><img src="assets/images/editorials/weeses/weeses_parallax3.jpg" alt="Black and white recline at the waterline"></div>
-    <div class="break-word" data-drift>WITHOUT COLOR&nbsp;&nbsp;WITHOUT COLOR</div>
+    <div class="break-word" data-drift>WITHOUT COLOR&nbsp;&nbsp;WITHOUT COLOR&nbsp;&nbsp;WITHOUT COLOR&nbsp;&nbsp;WITHOUT COLOR&nbsp;&nbsp;WITHOUT COLOR&nbsp;&nbsp;WITHOUT COLOR</div>
     <div class="break-caption">Strip everything else away and what's left is the look.</div>
   </section>
 
@@ -632,8 +632,8 @@
       });
     });
     document.querySelectorAll('[data-drift]').forEach(function (el) {
-      gsap.fromTo(el, { xPercent: 3 }, {
-        xPercent: -28, ease: 'none',
+      gsap.fromTo(el, { xPercent: 0 }, {
+        xPercent: -30, ease: 'none',
         scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });

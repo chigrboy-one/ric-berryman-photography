@@ -601,8 +601,8 @@
       });
     });
     document.querySelectorAll('[data-drift]').forEach(function (el) {
-      gsap.fromTo(el, { xPercent: 3 }, {
-        xPercent: -28, ease: 'none',
+      gsap.fromTo(el, { xPercent: 0 }, {
+        xPercent: -30, ease: 'none',
         scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
