@@ -1012,13 +1012,16 @@
     if (!isMobile && !reduced) {
       var track = document.getElementById('workTrack');
       var getDist = function () { return track.scrollWidth - innerWidth; };
+      // pin budget is shorter than the horizontal travel (0.6x): all cards
+      // still scroll past, but the section traps far less vertical scroll —
+      // so getting back up past it isn't a slog
       gsap.to(track, {
         x: function () { return -getDist(); },
         ease: 'none',
         scrollTrigger: {
           trigger: '#work', start: 'top top',
-          end: function () { return '+=' + getDist(); },
-          pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1
+          end: function () { return '+=' + (getDist() * 0.6); },
+          pin: true, scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1
         }
       });
     }
