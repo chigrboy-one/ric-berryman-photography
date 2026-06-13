@@ -206,6 +206,61 @@
   var dirty = false;
   function markDirty() { dirty = true; setStatus('Unsaved changes', 'warn'); }
 
+  /* ---------- slot swap (fixed single images: heroes, figures, cards…) ---------- */
+  var slotsDir = (document.body.getAttribute('data-slots-dir') || 'assets/images');
+  var slotsPage = document.body.getAttribute('data-slots');
+
+  function replaceSlot(img, file) {
+    if (!/^image\//.test(file.type)) return;
+    var name = file.name.replace(/[^\w.\-]+/g, '-');
+    var src = slotsDir + '/' + name;
+    pendingFiles[src] = file;
+    img.dataset.newsrc = src;
+    img.src = URL.createObjectURL(file);
+    img.classList.add('ge-slot-changed');
+    markDirty();
+  }
+
+  function initSlots() {
+    document.querySelectorAll('[data-slot]').forEach(function (img) {
+      if (img.__geSlot) return;
+      img.__geSlot = true;
+      img.classList.add('ge-slot');
+      var wrap = img.parentElement || img;
+      wrap.classList.add('ge-slot-wrap');
+      if (getComputedStyle(wrap).position === 'static') wrap.style.position = 'relative';
+      var badge = document.createElement('span');
+      badge.className = 'ge-slot-badge'; badge.textContent = 'REPLACE';
+      wrap.appendChild(badge);
+      img.setAttribute('draggable', 'false');
+      function over(e) { e.preventDefault(); e.stopPropagation(); img.classList.add('ge-slot-over'); }
+      function leave() { img.classList.remove('ge-slot-over'); }
+      img.addEventListener('dragover', over);
+      img.addEventListener('dragenter', over);
+      img.addEventListener('dragleave', leave);
+      img.addEventListener('drop', function (e) {
+        e.preventDefault(); e.stopPropagation(); leave();
+        var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        if (f) replaceSlot(img, f);
+      });
+      badge.addEventListener('click', function (e) {
+        e.preventDefault(); e.stopPropagation();
+        var inp = document.createElement('input');
+        inp.type = 'file'; inp.accept = 'image/*';
+        inp.onchange = function () { if (inp.files[0]) replaceSlot(img, inp.files[0]); };
+        inp.click();
+      });
+    });
+  }
+
+  function serializeSlots() {
+    var map = {};
+    document.querySelectorAll('[data-slot]').forEach(function (img) {
+      map[img.getAttribute('data-slot')] = img.dataset.newsrc || img.getAttribute('src');
+    });
+    return map;
+  }
+
   async function saveAll() {
     if (!FS_OK) { setStatus('This browser can’t save to disk — use Chrome or Edge.', 'err'); return; }
     try {
@@ -229,6 +284,20 @@
         }
         var gdir = await dirFromPath(root, 'data/galleries');
         await writeFile(gdir, c.__geId + '.json', new Blob([JSON.stringify(manifest, null, 1)], { type: 'application/json' }));
+      }
+      // slot swaps for this page
+      if (slotsPage && document.querySelector('[data-slot]')) {
+        var map = serializeSlots();
+        for (var k in map) {
+          if (pendingFiles[map[k]]) {
+            var p = map[k];
+            var dd = await dirFromPath(root, p.slice(0, p.lastIndexOf('/')));
+            await writeFile(dd, p.slice(p.lastIndexOf('/') + 1), pendingFiles[p]);
+            delete pendingFiles[p];
+          }
+        }
+        var sdir = await dirFromPath(root, 'data/slots');
+        await writeFile(sdir, slotsPage + '.json', new Blob([JSON.stringify(map, null, 1)], { type: 'application/json' }));
       }
       dirty = false;
       setStatus('Saved ✓  — commit & push to publish', 'ok');
@@ -259,9 +328,11 @@
     document.body.classList.add('ge-editing');
     buildToolbar();
     document.querySelectorAll('[data-gallery]').forEach(initGallery);
+    initSlots();
   }
   // re-init a gallery if the renderer rebuilds it from a manifest after we loaded
   document.addEventListener('gallery:rendered', function (e) { if (document.body.classList.contains('ge-editing')) initGallery(e.detail.container); });
+  document.addEventListener('slots:applied', function () { if (document.body.classList.contains('ge-editing')) initSlots(); });
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();

@@ -46,3 +46,20 @@
 
 /* whole-grid drop target highlight while dragging files in */
 .ge-editing [data-gallery].ge-filedrop { outline: 2px dashed #d9013c; outline-offset: 8px; }
+
+/* slot swap: fixed single images become drop targets */
+.ge-editing .ge-slot { position: relative; outline: 1px solid transparent; transition: outline-color 0.2s ease; }
+.ge-editing [data-slot] { position: relative; }
+.ge-editing .ge-slot:hover { outline-color: rgba(232,228,221,0.5); }
+.ge-editing .ge-slot-over { outline: 2px dashed #d9013c !important; }
+.ge-editing .ge-slot-changed { outline: 2px solid #d9013c; }
+.ge-slot-badge {
+  position: absolute; top: 8px; left: 8px; z-index: 6; cursor: pointer;
+  font-family: 'Oswald', sans-serif; font-size: 0.55rem; letter-spacing: 0.25em;
+  text-transform: uppercase; color: #e8e4dd; background: rgba(10,10,10,0.72);
+  padding: 0.4rem 0.7rem; opacity: 0; transition: opacity 0.2s ease, background 0.2s ease;
+  pointer-events: auto;
+}
+body:not(.ge-editing) .ge-slot-badge { display: none; }
+.ge-editing .ge-slot-wrap:hover .ge-slot-badge { opacity: 1; }
+.ge-slot-badge:hover { background: #d9013c; }

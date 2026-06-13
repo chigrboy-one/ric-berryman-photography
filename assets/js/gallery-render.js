@@ -36,4 +36,20 @@
   }
 
   document.querySelectorAll('[data-gallery]').forEach(load);
+
+  /* ---- slot overrides: swap individual fixed images (heroes, figures…) ---- */
+  var pageId = document.body && document.body.getAttribute('data-slots');
+  if (pageId) {
+    fetch('/data/slots/' + pageId + '.json', { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (map) {
+        if (!map) return;
+        document.querySelectorAll('[data-slot]').forEach(function (img) {
+          var k = img.getAttribute('data-slot');
+          if (map[k]) img.src = map[k];
+        });
+        document.dispatchEvent(new CustomEvent('slots:applied'));
+      })
+      .catch(function () {});
+  }
 })();
