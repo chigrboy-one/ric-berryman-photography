@@ -631,9 +631,12 @@
         scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
-    document.querySelectorAll('[data-drift]').forEach(function (el) {
-      gsap.fromTo(el, { xPercent: 0 }, {
-        xPercent: -30, ease: 'none',
+    document.querySelectorAll('[data-drift]').forEach(function (el, i) {
+      // alternate direction so consecutive break marquees counter-drift
+      var from = i % 2 ? -30 : 0;
+      var to = i % 2 ? 0 : -30;
+      gsap.fromTo(el, { xPercent: from }, {
+        xPercent: to, ease: 'none',
         scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
