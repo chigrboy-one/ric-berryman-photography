@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, noai, noimageai">
-  <title>Field Notes — Ric Berryman (V3 Concept)</title>
+  <title>MAGA — Field Notes by Ric Berryman (V3)</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -298,7 +298,7 @@
     <div class="loader-panel top"></div>
     <div class="loader-panel bottom"></div>
     <div class="loader-center">
-      <div class="loader-name">Field Notes — Documentary</div>
+      <div class="loader-name">MAGA — Field Notes</div>
     </div>
   </div>
 
@@ -318,150 +318,127 @@
   </nav>
 
   <!-- HERO -->
+
+  <style>
+    .fn-essay {
+      max-width: 720px; margin: 0 auto;
+      padding: clamp(4rem, 10vh, 7rem) 2.5rem clamp(2rem, 5vh, 3rem);
+    }
+    .fn-essay p {
+      font-family: var(--mont); font-weight: 300;
+      font-size: clamp(1.05rem, 1.5vw, 1.32rem); line-height: 1.7;
+      color: rgba(232,228,221,0.9);
+    }
+    .fn-essay p + p { margin-top: 1.5rem; }
+    .fn-essay p.lead {
+      font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.4;
+      color: var(--bone); font-weight: 300;
+    }
+    .fn-essay p.lead em, .fn-essay p em { font-style: italic; color: var(--accent); }
+    .fn-plate { padding: clamp(2rem, 5vh, 3.5rem) 2.5rem; }
+    .fn-plate-inner { max-width: 1400px; margin: 0 auto; overflow: hidden; }
+    .fn-plate img { width: 100%; height: auto; display: block; transform: scale(1.04); }
+    .fn-plate--bleed { padding-left: 0; padding-right: 0; }
+    .fn-plate--bleed .fn-plate-inner { max-width: none; }
+    .fulltake-head {
+      max-width: 1700px; margin: clamp(3rem,8vh,5rem) auto 0; padding: 0 2.5rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+      border-top: 1px solid rgba(232,228,221,0.14); padding-top: 2rem;
+    }
+    .fulltake-head h2 {
+      font-family: var(--bebas); text-transform: uppercase;
+      font-size: clamp(1.8rem,4vw,3rem); color: var(--bone); line-height: 1;
+    }
+    .fulltake-head span {
+      font-family: var(--oswald); font-weight: 300; font-size: 0.66rem;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--grey);
+    }
+    .arch-grid {
+      columns: 3 360px; column-gap: clamp(0.8rem,1.5vw,1.4rem);
+      padding: clamp(1rem,3vh,2rem) 2.5rem clamp(3rem,8vh,5rem);
+      max-width: 1700px; margin: 0 auto;
+    }
+    .arch-item { break-inside: avoid; margin-bottom: clamp(0.8rem,1.5vw,1.4rem); overflow: hidden; display: block; }
+    .arch-item img { width: 100%; height: auto; display: block; transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); }
+    .arch-item:hover img { transform: scale(1.03); }
+    @media (max-width: 820px) {
+      .fn-essay, .fn-plate { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .fn-plate--bleed { padding-left: 0; padding-right: 0; }
+      .arch-grid { columns: 2 150px; padding-left: 1.25rem; padding-right: 1.25rem; }
+      .fulltake-head { padding-left: 1.25rem; padding-right: 1.25rem; }
+    }
+    .lbx { position: fixed; inset: 0; z-index: 300; background: rgba(10,10,10,0.97); display: flex; align-items: center; justify-content: center; }
+    .lbx[hidden] { display: none; }
+    .lbx img { max-width: 92vw; max-height: 86vh; width: auto; height: auto; }
+    .lbx-count { position: absolute; bottom: 1.6rem; left: 50%; transform: translateX(-50%); font-family: var(--oswald); font-weight: 300; font-size: 0.7rem; letter-spacing: 0.35em; color: var(--grey); font-variant-numeric: tabular-nums; }
+    .lbx-btn { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: 0; cursor: pointer; padding: 1.4rem; font-family: var(--oswald); font-size: 1.6rem; color: var(--bone); opacity: 0.7; transition: opacity 0.3s, color 0.3s; }
+    .lbx-btn:hover { opacity: 1; color: var(--accent); }
+    .lbx-prev { left: 0.8rem; } .lbx-next { right: 0.8rem; }
+    .lbx-close { position: absolute; top: 1.2rem; right: 1.6rem; background: none; border: 0; cursor: pointer; font-family: var(--oswald); font-weight: 300; font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--bone); opacity: 0.7; transition: opacity 0.3s, color 0.3s; padding: 0.6rem; }
+    .lbx-close:hover { opacity: 1; color: var(--accent); }
+  </style>
+
   <header class="e-hero">
-    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/field-notes/eaton-fire/eaton-fire-01.jpg" alt="Aftermath of the Eaton Fire, Altadena"></div>
+    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-13.jpg" alt="MAGA rally, Huntington Beach"></div>
     <div class="e-hero-scrim"></div>
     <div class="e-hero-ui">
-      <div class="e-hero-kicker">Documentary — America, Unposed</div>
+      <div class="e-hero-kicker">Field Note — Huntington Beach · 2024</div>
       <h1 class="e-hero-title" id="eHeroTitle">
-        <span class="line"><span>FIELD</span></span>
-        <span class="line"><span class="outline">NOTES</span></span>
+        <span class="line"><span>MAGA</span></span>
+        <span class="line"><span class="outline">HUNTINGTON</span></span>
       </h1>
       <div class="e-hero-meta">
-        <span class="scramble" data-text="07 Stories">07 Stories</span>
-        <span class="scramble" data-text="Southern California">Southern California</span>
+        <span class="scramble" data-text="Huntington Beach · 2024">Huntington Beach · 2024</span>
+        <span class="scramble" data-text="Documentary">Documentary</span>
         <span class="scramble" data-text="Photography — Ric Berryman">Photography — Ric Berryman</span>
       </div>
     </div>
   </header>
 
-  <!-- LEDE -->
-  <section class="lede">
-    <div class="lede-copy reveal-up">
-      <p>
-        Not every story is styled. Field Notes is the documentary side of the work — fires, protests, comets, and the last days of places that mattered. Shot fast, edited honest.
-      </p>
-      <p>
-        When something happens in Southern California, the cameras go in the truck. These are the notes that came back.
-      </p>
-    </div>
-    <aside class="credits reveal-up">
-      <div class="credits-group"><div class="k">Discipline</div><div class="v">Documentary</div></div>
-      <div class="credits-group"><div class="k">Range</div><div class="v">Southern California</div></div>
-      <div class="credits-group"><div class="k">Status</div><div class="v">Ongoing</div></div>
-      <div class="credits-group"><div class="k">Photography</div><div class="v">Ric Berryman</div></div>
-    </aside>
-  </section>
+    <div class="fn-essay"><p class="lead">You can&#x27;t always get what you want. But if you try sometimes, you get what you need.</p></div>
+    <div class="fn-essay"><p>I went out recently to shoot planes at the Pacific Air Show in Huntington Beach, CA. It&#x27;s been an annual tradition for several years despite the show not changing much from year-to-year. Heck, I even bought tickets this year so I could be closer to a bathroom and food. Maybe in that order, maybe not. But it was a gloriously warm and sunny day when I left home in the Pasadena area, but by the time I got to the beach, the coast was foggier than a preacher&#x27;s glasses in a whorehouse. Visibility? Gone. Planes? Nada.</p></div>
+    <figure class="fn-plate"><div class="fn-plate-inner"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-18.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
+    <div class="fn-essay"><p>Now, this isn&#x27;t a political website, and I won&#x27;t air my politics here (well, maybe a little), but people are a little nuts in Huntington Beach. Nuts for Trump, that is. I think it was actually an &quot;Asians for Trump&quot; rally—most of whom seemed to be of Vietnamese descent as far as I could tell, with a sprinkling of some crazy white folk. One white guy was yelling, &quot;No voodoo in America! Look it up! They&#x27;re eating our dogs and cats! No voodoo in America!&quot;—all while choking down what appeared to be a hot dog. Now I&#x27;d say that&#x27;s as goddamned American in the year 2024 as any F-22 Raptor!</p></div>
+    <div class="fn-essay"><p>As I stood there, trying to make sense of the scene, I realized: sometimes you go out looking for American military muscle but end up with a front-row seat to the circus instead. Not exactly what I came for, but hey, sometimes, you get what you need.</p></div>
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-22.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
 
-  <style>
-    .fn-list { border-top: 1px solid rgba(232,228,221,0.14); margin-top: clamp(1rem, 4vh, 3rem); }
-    .fn-row {
-      display: flex; align-items: center; gap: clamp(1rem, 2.5vw, 2.5rem);
-      padding: clamp(1.2rem, 3vh, 2rem) 2.5rem;
-      border-bottom: 1px solid rgba(232,228,221,0.14);
-    }
-    .fn-num {
-      font-family: var(--oswald); font-weight: 300; font-size: 0.78rem;
-      letter-spacing: 0.2em; color: var(--grey); width: 2.4rem; flex-shrink: 0;
-      font-variant-numeric: tabular-nums;
-    }
-    .fn-thumb {
-      width: clamp(120px, 14vw, 220px); height: clamp(76px, 9vw, 140px);
-      object-fit: cover; flex-shrink: 0;
-      filter: grayscale(1) contrast(1.05);
-      transition: filter 0.6s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .fn-row:hover .fn-thumb { filter: grayscale(0) contrast(1); transform: scale(1.04); }
-    .fn-title {
-      font-family: var(--bebas); text-transform: uppercase;
-      font-size: clamp(1.9rem, 4.6vw, 4.4rem); line-height: 0.95; color: var(--bone);
-      transition: color 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .fn-row:hover .fn-title { color: var(--accent); transform: translateX(12px); }
-    .fn-meta {
-      margin-left: auto; text-align: right; flex-shrink: 0;
-      font-family: var(--oswald); font-weight: 300; font-size: 0.66rem;
-      letter-spacing: 0.3em; text-transform: uppercase; color: var(--grey);
-      transition: color 0.35s ease;
-    }
-    .fn-row:hover .fn-meta { color: var(--bone); }
-    .fn-arrow {
-      width: 2rem; text-align: center; flex-shrink: 0;
-      font-family: var(--oswald); font-weight: 300; font-size: 1.1rem; color: var(--grey);
-      opacity: 0; transform: translateX(-8px);
-      transition: opacity 0.4s ease, transform 0.4s ease, color 0.4s ease;
-    }
-    .fn-row:hover .fn-arrow { opacity: 1; transform: none; color: var(--accent); }
-    @media (max-width: 820px) {
-      .fn-row { padding: 1.1rem 1.25rem; gap: 0.9rem; flex-wrap: wrap; }
-      .fn-num { display: none; }
-      .fn-thumb { width: 92px; height: 64px; }
-      .fn-meta { display: none; }
-      .fn-arrow { opacity: 1; transform: none; margin-left: auto; }
-    }
-  </style>
-
-  <div class="fn-list">
-      <a class="fn-row reveal-up" href="/fn-ice-v3.html">
-        <span class="fn-num">01</span>
-        <img class="fn-thumb" src="assets/images/field-notes/ice/ice_20.jpg" alt="ICE" loading="lazy">
-        <span class="fn-title">ICE</span>
-        <span class="fn-meta">Downtown LA · 2025</span>
-        <span class="fn-arrow">&rarr;</span>
-      </a>
-      <a class="fn-row reveal-up" href="/fn-eaton-fire-v3.html">
-        <span class="fn-num">02</span>
-        <img class="fn-thumb" src="assets/images/field-notes/eaton-fire/eaton-fire-01.jpg" alt="Eaton Fire" loading="lazy">
-        <span class="fn-title">Eaton Fire</span>
-        <span class="fn-meta">Altadena · 2025</span>
-        <span class="fn-arrow">&rarr;</span>
-      </a>
-      <a class="fn-row reveal-up" href="/fn-irwindale-v3.html">
-        <span class="fn-num">03</span>
-        <img class="fn-thumb" src="assets/images/field-notes/irwindale/2024-12-07+Irwindale+Speedway+MoonEyes+Classix-5.jpg" alt="Irwindale Speedway" loading="lazy">
-        <span class="fn-title">Irwindale Speedway</span>
-        <span class="fn-meta">Final laps · 2024</span>
-        <span class="fn-arrow">&rarr;</span>
-      </a>
-      <a class="fn-row reveal-up" href="/fn-fire-dancers-v3.html">
-        <span class="fn-num">04</span>
-        <img class="fn-thumb" src="assets/images/field-notes/fire-dancers/24-12-10+Bombay+Beach+-+Kayla+Kirti-3.jpg" alt="Fire!!!" loading="lazy">
-        <span class="fn-title">Fire!!!</span>
-        <span class="fn-meta">Bombay Beach · 2024</span>
-        <span class="fn-arrow">&rarr;</span>
-      </a>
-      <a class="fn-row reveal-up" href="/fn-mega-v3.html">
-        <span class="fn-num">05</span>
-        <img class="fn-thumb" src="assets/images/field-notes/mega/2024-10-05+MEGA+Huntington+Beach-26.jpg" alt="MAGA" loading="lazy">
-        <span class="fn-title">MAGA</span>
-        <span class="fn-meta">Huntington Beach · 2024</span>
-        <span class="fn-arrow">&rarr;</span>
-      </a>
-      <a class="fn-row reveal-up" href="/fn-comet-v3.html">
-        <span class="fn-num">06</span>
-        <img class="fn-thumb" src="assets/images/field-notes/comet-tsunchinshan/2020-Neowise+Comet+-+Anza+Borego.jpg" alt="Comet Tsuchinshan" loading="lazy">
-        <span class="fn-title">Comet Tsuchinshan</span>
-        <span class="fn-meta">Anza-Borrego · 2024</span>
-        <span class="fn-arrow">&rarr;</span>
-      </a>
-      <a class="fn-row reveal-up" href="/fn-george-floyd-v3.html">
-        <span class="fn-num">07</span>
-        <img class="fn-thumb" src="assets/images/george-floyd/Black+Lives+Matter+Crowd+(1+of+1).jpg" alt="George Floyd Protests" loading="lazy">
-        <span class="fn-title">George Floyd Protests</span>
-        <span class="fn-meta">Los Angeles · 2020</span>
-        <span class="fn-arrow">&rarr;</span>
-      </a>
+  <div class="fulltake-head"><h2>The Full Take</h2><span>19 frames · click to view</span></div>
+  <div class="arch-grid">
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-26.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-28.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-30.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-34.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-4.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-43.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-49.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-50.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-53.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-56.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2353 / 3529"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-61.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-64.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-66.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-7.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-73.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
+      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-83.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3125"></figure>
   </div>
 
-<!-- NEXT -->
-  <a class="next-band" href="/index-v3.html#v3Form" data-cursor="view">
-    <div class="next-img"><img src="assets/images/field-notes/mega/2024-10-05+MEGA+Huntington+Beach-26.jpg" alt="Contact Ric Berryman"></div>
+  <a class="next-band" href="/fn-comet-v3.html" data-cursor="view">
+    <div class="next-img"><img src="assets/images/field-notes/comet-tsunchinshan/2020-Neowise+Comet+-+Anza+Borego.jpg" alt="Comet over Anza-Borrego"></div>
     <div class="next-content">
-      <div class="next-kicker">Have a Story</div>
-      <div class="next-title">Let's Talk</div>
+      <div class="next-kicker">Next Field Note</div>
+      <div class="next-title">Comet Tsuchinshan</div>
       <div class="next-arrow">&rarr;</div>
     </div>
   </a>
+
+
+  <div class="lbx" id="lbx" hidden>
+    <button class="lbx-close" id="lbxClose">Close</button>
+    <button class="lbx-btn lbx-prev" id="lbxPrev">&larr;</button>
+    <img id="lbxImg" alt="">
+    <button class="lbx-btn lbx-next" id="lbxNext">&rarr;</button>
+    <div class="lbx-count" id="lbxCount"></div>
+  </div>
 
   <div class="footer-v3">
     <span>© 2026 Ric Berryman</span>
@@ -605,5 +582,24 @@
     });
   })();
   </script>
+
+  <script>
+  (function () {
+    var items = Array.prototype.slice.call(document.querySelectorAll('.arch-item img'));
+    if (!items.length) return;
+    var srcs = items.map(function (i){ return i.getAttribute('src'); });
+    var lbx=document.getElementById('lbx'), lbxImg=document.getElementById('lbxImg'), lbxCount=document.getElementById('lbxCount'), cur=0;
+    function show(i){ cur=(i+srcs.length)%srcs.length; lbxImg.src=srcs[cur]; lbxCount.textContent=String(cur+1).padStart(2,'0')+' / '+srcs.length; }
+    function open(i){ show(i); lbx.hidden=false; if(window.__lenis)window.__lenis.stop(); document.documentElement.style.overflow='hidden'; }
+    function close(){ lbx.hidden=true; if(window.__lenis)window.__lenis.start(); document.documentElement.style.overflow=''; }
+    items.forEach(function(img,i){ img.closest('.arch-item').addEventListener('click',function(){open(i);}); });
+    document.getElementById('lbxClose').addEventListener('click',close);
+    document.getElementById('lbxPrev').addEventListener('click',function(e){e.stopPropagation();show(cur-1);});
+    document.getElementById('lbxNext').addEventListener('click',function(e){e.stopPropagation();show(cur+1);});
+    lbx.addEventListener('click',function(e){ if(e.target===lbx||e.target===lbxImg)close(); });
+    addEventListener('keydown',function(e){ if(lbx.hidden)return; if(e.key==='Escape')close(); if(e.key==='ArrowLeft')show(cur-1); if(e.key==='ArrowRight')show(cur+1); });
+  })();
+  </script>
+
 </body>
 </html>
