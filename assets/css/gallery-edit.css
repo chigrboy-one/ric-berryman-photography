@@ -30,6 +30,9 @@
 .ge-editing .arch-item { position: relative; cursor: grab; outline: 1px solid transparent; transition: outline-color 0.2s ease; }
 .ge-editing .arch-item:hover { outline-color: rgba(232,228,221,0.4); }
 .ge-editing .arch-item.ge-dragging { opacity: 0.4; cursor: grabbing; }
+/* the image must not capture the drag or pointer — the tile owns both */
+.ge-editing .arch-item img { pointer-events: none; -webkit-user-drag: none; user-select: none; }
+.ge-editing .arch-item .ge-remove { pointer-events: auto; }
 .ge-editing .arch-item.ge-new { outline: 2px solid #d9013c; }
 .ge-remove {
   position: absolute; top: 6px; right: 6px; z-index: 5;

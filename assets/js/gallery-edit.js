@@ -97,6 +97,9 @@
       if (fig.__geDone) return;
       fig.__geDone = true;
       fig.setAttribute('draggable', 'true');
+      // stop the inner <img> from hijacking the drag (native image drag)
+      var im = fig.querySelector('img');
+      if (im) im.setAttribute('draggable', 'false');
       var rm = document.createElement('button');
       rm.className = 'ge-remove'; rm.type = 'button'; rm.title = 'Remove'; rm.textContent = '×';
       rm.addEventListener('click', function (e) {
@@ -104,7 +107,13 @@
         fig.remove(); markDirty();
       });
       fig.appendChild(rm);
-      fig.addEventListener('dragstart', function () { dragEl = fig; fig.classList.add('ge-dragging'); });
+      fig.addEventListener('dragstart', function (e) {
+        dragEl = fig; fig.classList.add('ge-dragging');
+        if (e.dataTransfer) {
+          e.dataTransfer.effectAllowed = 'move';
+          try { e.dataTransfer.setData('text/plain', 'tile'); } catch (_) {}
+        }
+      });
       fig.addEventListener('dragend', function () { fig.classList.remove('ge-dragging'); dragEl = null; markDirty(); });
     }
 
