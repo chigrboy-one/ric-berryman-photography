@@ -1,0 +1,635 @@
+{
+ "dir": "assets/images/abandoned",
+ "items": [
+  {
+   "src": "assets/images/abandoned/abandoned-2.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-3.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-4.jpg",
+   "w": 2500,
+   "h": 1406
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-5.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-6.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-7.jpg",
+   "w": 2500,
+   "h": 3750
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-8.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-9.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-10.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-11.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-12.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-13.jpg",
+   "w": 2500,
+   "h": 1406
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-14.jpg",
+   "w": 2500,
+   "h": 1747
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-15.jpg",
+   "w": 2500,
+   "h": 3750
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-16.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-17.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-18.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-19.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-20.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-21.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-22.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-23.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-24.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-25.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-26.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-27.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-28.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-29.jpg",
+   "w": 2500,
+   "h": 1656
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-30.jpg",
+   "w": 2500,
+   "h": 1657
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-31.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-32.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-33.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-34.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-35.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-36.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-37.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-38.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-39.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-40.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-41.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-42.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-43.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-44.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-45.jpg",
+   "w": 2500,
+   "h": 1666
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-46.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-47.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-48.jpg",
+   "w": 2500,
+   "h": 1875
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-49.jpg",
+   "w": 2500,
+   "h": 1875
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-50.jpg",
+   "w": 2500,
+   "h": 1875
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-51.jpg",
+   "w": 2500,
+   "h": 1875
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-52.jpg",
+   "w": 2500,
+   "h": 1406
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-53.jpg",
+   "w": 2500,
+   "h": 1406
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-54.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-55.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-56.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-57.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-58.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-59.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-60.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-61.jpg",
+   "w": 2500,
+   "h": 1666
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-62.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-63.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-64.jpg",
+   "w": 2500,
+   "h": 1875
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-65.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-66.jpg",
+   "w": 2500,
+   "h": 3750
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-67.jpg",
+   "w": 2500,
+   "h": 3750
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-68.jpg",
+   "w": 1916,
+   "h": 1277
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-69.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-70.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-71.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-72.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-73.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-74.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-75.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-76.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-77.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-78.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-79.jpg",
+   "w": 2500,
+   "h": 3750
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-80.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-81.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-82.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-83.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-84.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-85.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-86.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-87.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-88.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-89.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-90.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-91.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-92.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-93.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-94.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-95.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-96.jpg",
+   "w": 2500,
+   "h": 3750
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-97.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-98.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-99.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-100.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-101.jpg",
+   "w": 2500,
+   "h": 1875
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-102.jpg",
+   "w": 2500,
+   "h": 3750
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-103.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-104.jpg",
+   "w": 2500,
+   "h": 3750
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-105.jpg",
+   "w": 2500,
+   "h": 3750
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-106.jpg",
+   "w": 2500,
+   "h": 3750
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-107.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-108.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-109.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-110.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-111.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-112.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-113.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-114.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-115.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-116.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-117.jpg",
+   "w": 2500,
+   "h": 1666
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-118.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-119.jpg",
+   "w": 2500,
+   "h": 1875
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-120.jpg",
+   "w": 2500,
+   "h": 1875
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-121.jpg",
+   "w": 2500,
+   "h": 1875
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-122.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-123.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-124.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-125.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-126.jpg",
+   "w": 2500,
+   "h": 1667
+  },
+  {
+   "src": "assets/images/abandoned/abandoned-127.jpg",
+   "w": 2500,
+   "h": 1667
+  }
+ ]
+}

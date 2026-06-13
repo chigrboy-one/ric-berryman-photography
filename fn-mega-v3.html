@@ -429,7 +429,7 @@
     <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-22.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
 
   <div class="fulltake-head"><h2>The Full Take</h2><span>19 frames · click to view</span></div>
-  <div class="arch-grid">
+  <div class="arch-grid" data-gallery="fn-mega" data-gallery-dir="assets/images/field-notes/mega">
       <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-26.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
       <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-28.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
       <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-30.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
@@ -612,21 +612,48 @@
   })();
   </script>
 
+  <script src="/assets/js/gallery-render.js"></script>
+  <script src="/assets/js/gallery-edit.js"></script>
   <script>
   (function () {
-    var items = Array.prototype.slice.call(document.querySelectorAll('.arch-item img'));
-    if (!items.length) return;
-    var srcs = items.map(function (i){ return i.getAttribute('src'); });
-    var lbx=document.getElementById('lbx'), lbxImg=document.getElementById('lbxImg'), lbxCount=document.getElementById('lbxCount'), cur=0;
-    function show(i){ cur=(i+srcs.length)%srcs.length; lbxImg.src=srcs[cur]; lbxCount.textContent=String(cur+1).padStart(2,'0')+' / '+srcs.length; }
-    function open(i){ show(i); lbx.hidden=false; if(window.__lenis)window.__lenis.stop(); document.documentElement.style.overflow='hidden'; }
-    function close(){ lbx.hidden=true; if(window.__lenis)window.__lenis.start(); document.documentElement.style.overflow=''; }
-    items.forEach(function(img,i){ img.closest('.arch-item').addEventListener('click',function(){open(i);}); });
-    document.getElementById('lbxClose').addEventListener('click',close);
-    document.getElementById('lbxPrev').addEventListener('click',function(e){e.stopPropagation();show(cur-1);});
-    document.getElementById('lbxNext').addEventListener('click',function(e){e.stopPropagation();show(cur+1);});
-    lbx.addEventListener('click',function(e){ if(e.target===lbx||e.target===lbxImg)close(); });
-    addEventListener('keydown',function(e){ if(lbx.hidden)return; if(e.key==='Escape')close(); if(e.key==='ArrowLeft')show(cur-1); if(e.key==='ArrowRight')show(cur+1); });
+    function imgs() { return Array.prototype.slice.call(document.querySelectorAll('.arch-item img')); }
+    function srcAt(i) { var a = imgs(); return a[(i + a.length) % a.length].getAttribute('src'); }
+    var lbx = document.getElementById('lbx');
+    var lbxImg = document.getElementById('lbxImg');
+    var lbxCount = document.getElementById('lbxCount');
+    var cur = 0;
+    function show(i) {
+      var n = imgs().length; if (!n) return;
+      cur = (i + n) % n;
+      lbxImg.src = srcAt(cur);
+      lbxCount.textContent = String(cur + 1).padStart(2, '0') + ' / ' + n;
+    }
+    function open(i) {
+      show(i); lbx.hidden = false;
+      if (window.__lenis) window.__lenis.stop();
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function close() {
+      lbx.hidden = true;
+      if (window.__lenis) window.__lenis.start();
+      document.documentElement.style.overflow = '';
+    }
+    document.addEventListener('click', function (e) {
+      if (document.body.classList.contains('ge-editing')) return;
+      var fig = e.target.closest && e.target.closest('.arch-item');
+      if (!fig || e.target.closest('.lbx')) return;
+      open(imgs().indexOf(fig.querySelector('img')));
+    });
+    document.getElementById('lbxClose').addEventListener('click', close);
+    document.getElementById('lbxPrev').addEventListener('click', function (e) { e.stopPropagation(); show(cur - 1); });
+    document.getElementById('lbxNext').addEventListener('click', function (e) { e.stopPropagation(); show(cur + 1); });
+    lbx.addEventListener('click', function (e) { if (e.target === lbx || e.target === lbxImg) close(); });
+    addEventListener('keydown', function (e) {
+      if (lbx.hidden) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(cur - 1);
+      if (e.key === 'ArrowRight') show(cur + 1);
+    });
   })();
   </script>
 

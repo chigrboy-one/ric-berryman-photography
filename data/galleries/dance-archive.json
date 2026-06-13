@@ -2,6 +2,11 @@
  "dir": "assets/images/dance",
  "items": [
   {
+   "src": "assets/images/dance/2024-02-25 Briana - Fresno - Draft-26.jpg",
+   "w": 7008,
+   "h": 4672
+  },
+  {
    "src": "assets/images/dance/2023-08-20 Dancers at City Hall-13.jpg",
    "w": 4672,
    "h": 3115
@@ -295,11 +300,6 @@
    "src": "assets/images/dance/2023-11-05 Madeline Houk - Hollywood-39.jpg",
    "w": 5763,
    "h": 3842
-  },
-  {
-   "src": "assets/images/dance/2024-02-25 Briana - Fresno - Draft-26.jpg",
-   "w": 7008,
-   "h": 4672
   },
   {
    "src": "assets/images/dance/2023-05-12 Dance Studio Shoot-118.jpg",

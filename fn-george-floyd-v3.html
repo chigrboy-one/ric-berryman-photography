@@ -430,7 +430,7 @@
     <div class="fn-essay"><p>I kept shooting. Through the tear gas and the chants, through the standoffs and the solidarity. Some moments were defiant, some were tender, and some were just surreal — a pig&#x27;s head on a stick held up in front of a line of cops, a woman screaming into the void between police and protesters, two kids on bikes with matching signs. All of it real. All of it necessary.</p></div>
 
   <div class="fulltake-head"><h2>The Full Take</h2><span>51 frames · click to view</span></div>
-  <div class="arch-grid">
+  <div class="arch-grid" data-gallery="fn-george-floyd" data-gallery-dir="assets/images/george-floyd">
       <figure class="arch-item" data-cursor="view"><img src="assets/images/george-floyd/2020-05-28%2BGeorge%2BFloyd%2BProtest%2B-%2BDTLA%2B%2842%2Bof%2B116%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy" style="aspect-ratio: 1513 / 1008"></figure>
       <figure class="arch-item" data-cursor="view"><img src="assets/images/george-floyd/2020-05-28%2BGeorge%2BFloyd%2BProtest%2B-%2BDTLA%2B%2857%2Bof%2B116%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy" style="aspect-ratio: 1113 / 742"></figure>
       <figure class="arch-item" data-cursor="view"><img src="assets/images/george-floyd/2020-05-28%2BGeorge%2BFloyd%2BProtest%2B-%2BDTLA%2B%2872%2Bof%2B116%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy" style="aspect-ratio: 2310 / 1540"></figure>
@@ -645,21 +645,48 @@
   })();
   </script>
 
+  <script src="/assets/js/gallery-render.js"></script>
+  <script src="/assets/js/gallery-edit.js"></script>
   <script>
   (function () {
-    var items = Array.prototype.slice.call(document.querySelectorAll('.arch-item img'));
-    if (!items.length) return;
-    var srcs = items.map(function (i){ return i.getAttribute('src'); });
-    var lbx=document.getElementById('lbx'), lbxImg=document.getElementById('lbxImg'), lbxCount=document.getElementById('lbxCount'), cur=0;
-    function show(i){ cur=(i+srcs.length)%srcs.length; lbxImg.src=srcs[cur]; lbxCount.textContent=String(cur+1).padStart(2,'0')+' / '+srcs.length; }
-    function open(i){ show(i); lbx.hidden=false; if(window.__lenis)window.__lenis.stop(); document.documentElement.style.overflow='hidden'; }
-    function close(){ lbx.hidden=true; if(window.__lenis)window.__lenis.start(); document.documentElement.style.overflow=''; }
-    items.forEach(function(img,i){ img.closest('.arch-item').addEventListener('click',function(){open(i);}); });
-    document.getElementById('lbxClose').addEventListener('click',close);
-    document.getElementById('lbxPrev').addEventListener('click',function(e){e.stopPropagation();show(cur-1);});
-    document.getElementById('lbxNext').addEventListener('click',function(e){e.stopPropagation();show(cur+1);});
-    lbx.addEventListener('click',function(e){ if(e.target===lbx||e.target===lbxImg)close(); });
-    addEventListener('keydown',function(e){ if(lbx.hidden)return; if(e.key==='Escape')close(); if(e.key==='ArrowLeft')show(cur-1); if(e.key==='ArrowRight')show(cur+1); });
+    function imgs() { return Array.prototype.slice.call(document.querySelectorAll('.arch-item img')); }
+    function srcAt(i) { var a = imgs(); return a[(i + a.length) % a.length].getAttribute('src'); }
+    var lbx = document.getElementById('lbx');
+    var lbxImg = document.getElementById('lbxImg');
+    var lbxCount = document.getElementById('lbxCount');
+    var cur = 0;
+    function show(i) {
+      var n = imgs().length; if (!n) return;
+      cur = (i + n) % n;
+      lbxImg.src = srcAt(cur);
+      lbxCount.textContent = String(cur + 1).padStart(2, '0') + ' / ' + n;
+    }
+    function open(i) {
+      show(i); lbx.hidden = false;
+      if (window.__lenis) window.__lenis.stop();
+      document.documentElement.style.overflow = 'hidden';
+    }
+    function close() {
+      lbx.hidden = true;
+      if (window.__lenis) window.__lenis.start();
+      document.documentElement.style.overflow = '';
+    }
+    document.addEventListener('click', function (e) {
+      if (document.body.classList.contains('ge-editing')) return;
+      var fig = e.target.closest && e.target.closest('.arch-item');
+      if (!fig || e.target.closest('.lbx')) return;
+      open(imgs().indexOf(fig.querySelector('img')));
+    });
+    document.getElementById('lbxClose').addEventListener('click', close);
+    document.getElementById('lbxPrev').addEventListener('click', function (e) { e.stopPropagation(); show(cur - 1); });
+    document.getElementById('lbxNext').addEventListener('click', function (e) { e.stopPropagation(); show(cur + 1); });
+    lbx.addEventListener('click', function (e) { if (e.target === lbx || e.target === lbxImg) close(); });
+    addEventListener('keydown', function (e) {
+      if (lbx.hidden) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(cur - 1);
+      if (e.key === 'ArrowRight') show(cur + 1);
+    });
   })();
   </script>
 
