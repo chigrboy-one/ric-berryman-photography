@@ -900,13 +900,16 @@
     }
 
     /* ---------- Study bands: parallax + sliding words ---------- */
-    document.querySelectorAll('.band').forEach(function (band) {
+    document.querySelectorAll('.band').forEach(function (band, i) {
       gsap.fromTo(band.querySelector('.band-img'), { yPercent: -6 }, {
         yPercent: 6, ease: 'none',
         scrollTrigger: { trigger: band, start: 'top bottom', end: 'bottom top', scrub: true }
       });
-      gsap.fromTo(band.querySelector('.band-word'), { xPercent: 4 }, {
-        xPercent: -30, ease: 'none',
+      // alternate bands counter-drift: even bands slide left, odd (Dance) slides right
+      var from = i % 2 ? -34 : 4;
+      var to = i % 2 ? 0 : -30;
+      gsap.fromTo(band.querySelector('.band-word'), { xPercent: from }, {
+        xPercent: to, ease: 'none',
         scrollTrigger: { trigger: band, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
