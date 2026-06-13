@@ -68,7 +68,20 @@
       if ((await rootHandle.queryPermission({ mode: 'readwrite' })) === 'granted') return rootHandle;
       if ((await rootHandle.requestPermission({ mode: 'readwrite' })) === 'granted') return rootHandle;
     }
-    rootHandle = await window.showDirectoryPicker({ id: 'rb-root', mode: 'readwrite' });
+    var ok = window.confirm(
+      'ONE-TIME SETUP\n\n' +
+      'Next you\'ll pick your website PROJECT folder — the one that contains the "assets" and "data" folders.\n\n' +
+      '• You are NOT choosing a file or overwriting anything by hand.\n' +
+      '• The editor writes the right files inside it for you.\n' +
+      '• Chrome remembers it, so you only do this once.\n\n' +
+      'Tip: in the picker press ⌘⇧G and paste the project path if it\'s hard to find.'
+    );
+    if (!ok) throw new Error('Setup cancelled');
+    var picked = await window.showDirectoryPicker({ id: 'rb-root', mode: 'readwrite', startIn: 'desktop' });
+    // sanity-check it's really the site root
+    try { await picked.getDirectoryHandle('assets'); }
+    catch (e) { throw new Error('That folder has no "assets" inside — pick the project root folder and try Save again.'); }
+    rootHandle = picked;
     await idbSet('root', rootHandle);
     return rootHandle;
   }
