@@ -1,0 +1,45 @@
+/* gallery-edit.css — UI for in-page Edit Mode (loaded only with ?edit) */
+.ge-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 400;
+  display: flex; align-items: center; gap: 1.2rem;
+  padding: 0.7rem 1.5rem;
+  background: #111; border-top: 1px solid rgba(232,228,221,0.18);
+  font-family: 'Oswald', sans-serif; color: #e8e4dd;
+}
+.ge-tag {
+  font-size: 0.62rem; letter-spacing: 0.35em; font-weight: 600;
+  color: #d9013c; text-transform: uppercase;
+}
+.ge-hint { font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: #8a8a8a; }
+.ge-status { margin-left: auto; font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: #8a8a8a; }
+.ge-status.ge-ok { color: #6bd47f; }
+.ge-status.ge-warn { color: #e6c34a; }
+.ge-status.ge-err { color: #d9013c; }
+.ge-bar button {
+  font-family: 'Oswald', sans-serif; font-size: 0.66rem; letter-spacing: 0.3em; text-indent: 0.3em;
+  text-transform: uppercase; cursor: pointer; color: #0a0a0a; background: #e8e4dd;
+  border: 0; border-radius: 999px; padding: 0.6rem 1.6rem;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.ge-bar button:hover { background: #d9013c; color: #e8e4dd; }
+
+/* keep clear of the bar */
+.ge-editing { padding-bottom: 3.5rem; }
+
+/* tiles become editable */
+.ge-editing .arch-item { position: relative; cursor: grab; outline: 1px solid transparent; transition: outline-color 0.2s ease; }
+.ge-editing .arch-item:hover { outline-color: rgba(232,228,221,0.4); }
+.ge-editing .arch-item.ge-dragging { opacity: 0.4; cursor: grabbing; }
+.ge-editing .arch-item.ge-new { outline: 2px solid #d9013c; }
+.ge-remove {
+  position: absolute; top: 6px; right: 6px; z-index: 5;
+  width: 26px; height: 26px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(10,10,10,0.7); color: #e8e4dd; font-size: 1rem; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.2s ease, background 0.2s ease;
+}
+.ge-editing .arch-item:hover .ge-remove { opacity: 1; }
+.ge-remove:hover { background: #d9013c; }
+
+/* whole-grid drop target highlight while dragging files in */
+.ge-editing [data-gallery].ge-filedrop { outline: 2px dashed #d9013c; outline-offset: 8px; }
