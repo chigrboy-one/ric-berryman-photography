@@ -1,0 +1,23 @@
+# Old v2 URLs → new clean v3 URLs (301 permanent)
+/Dance.html                            /dance.html         301
+/Beauty.html                           /portraits.html     301
+/editorials/weeses.html                /weeses.html        301
+/editorials/RachelPizzolato.html       /rachel.html        301
+/editorials/Dani.html                  /dani.html          301
+/editorials/dasha-1.html               /dasha.html         301
+/editorials/bella.html                 /bella.html         301
+/editorials/BellaMonroe-ModWest.html   /bella.html         301
+/editorials/madeline-houk.html         /madeline.html      301
+/editorials/camp-glam.html             /campglam.html      301
+/editorials/lainey-floeck.html         /lainey.html        301
+/field-notes/index.html                /field-notes.html   301
+/field-notes/ice.html                  /ice.html           301
+/field-notes/eaton-fire.html           /eaton-fire.html    301
+/field-notes/irwindale.html            /irwindale.html     301
+/field-notes/fire-dancers.html         /fire-dancers.html  301
+/field-notes/mega.html                 /mega.html          301
+/field-notes/comet-tsunchinshan.html   /comet.html         301
+/field-notes/george-floyd.html         /george-floyd.html  301
+# catch-alls for any old URL not listed above
+/editorials/*    /portfolio.html     301
+/field-notes/*   /field-notes.html   301
