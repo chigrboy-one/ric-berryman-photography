@@ -3,8 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, noai, noimageai">
-  <title>Mod West Ranch — Ric Berryman (V3 Editorial Concept)</title>
+  <meta name="robots" content="noai, noimageai">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5T5J0FYS6B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5T5J0FYS6B');
+  </script>
+
+  <title>Dance — Ric Berryman (V3 Concept)</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -98,11 +107,34 @@
       transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
     }
     .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
-    @media (max-width: 700px) {
-      .nav { padding: 1.1rem 1.25rem; }
-      .nav-mark { font-size: 1.05rem; white-space: nowrap; }
-      .nav-links { gap: 0.9rem; }
-      .nav-links a { font-size: 0.55rem; letter-spacing: 0.16em; white-space: nowrap; }
+    .nav-links a.is-active::after { transform: scaleX(1); }
+    /* hamburger (mobile only) */
+    .nav-burger { display: none; background: none; border: 0; cursor: pointer; width: 30px; height: 16px; position: relative; z-index: 110; padding: 0; }
+    .nav-burger span { position: absolute; left: 0; width: 100%; height: 2px; background: #fff; transition: transform 0.45s cubic-bezier(0.76,0,0.24,1), opacity 0.3s ease; }
+    .nav-burger span:nth-child(1) { top: 2px; }
+    .nav-burger span:nth-child(2) { bottom: 2px; }
+    .nav.open .nav-burger span:nth-child(1) { top: 7px; transform: rotate(45deg); }
+    .nav.open .nav-burger span:nth-child(2) { bottom: 7px; transform: rotate(-45deg); }
+    @media (max-width: 760px) {
+      .nav { padding: 1.1rem 1.25rem; mix-blend-mode: difference; }
+      .nav-mark { font-size: 1.05rem; white-space: nowrap; position: relative; z-index: 110; }
+      .nav-burger { display: block; }
+      .nav.open { mix-blend-mode: normal; transform: none !important; }
+      .nav-links {
+        position: fixed; inset: 0; z-index: 105;
+        flex-direction: column; align-items: flex-start; justify-content: center;
+        gap: 0.15rem; padding: 2rem 1.5rem; margin: 0;
+        background: var(--black);
+        transform: translateY(-100%); opacity: 0; pointer-events: none;
+        transition: transform 0.6s cubic-bezier(0.76,0,0.24,1), opacity 0.4s ease;
+      }
+      .nav.open .nav-links { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .nav-links a {
+        font-family: var(--bebas); font-size: clamp(2.2rem, 11vw, 3rem); letter-spacing: 0.03em;
+        color: var(--bone); padding-bottom: 0; white-space: nowrap;
+      }
+      .nav-links a::after { display: none; }
+      .nav-links a.is-active { color: var(--accent); }
     }
 
     /* ============ HERO ============ */
@@ -126,7 +158,7 @@
     }
     .e-hero-title {
       font-family: var(--bebas); text-transform: uppercase;
-      font-size: clamp(4rem, 13vw, 14rem); line-height: 0.85;
+      font-size: clamp(3.6rem, 12vw, 13rem); line-height: 0.85;
       color: var(--bone);
     }
     .e-hero-title .line { display: block; overflow: hidden; }
@@ -184,31 +216,16 @@
       letter-spacing: 0.35em; text-transform: uppercase; color: var(--grey);
     }
     .figure--narrow .figure-inner { max-width: 1100px; }
-    /* edge-to-edge variant to break the contained rhythm */
     .figure--bleed { padding-left: 0; padding-right: 0; }
     .figure--bleed .figure-inner { max-width: none; }
     .figure--bleed .figure-label { padding: 0 2.5rem; }
-    @media (max-width: 820px) { .figure--bleed .figure-label { padding: 0 1.25rem; } }
-    .figure--offset .figure-inner { max-width: 1500px; display: grid; grid-template-columns: 7fr 5fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: end; }
-    .figure--offset .fig-side {
-      font-family: var(--mont); font-weight: 300;
-      font-size: clamp(1rem, 1.4vw, 1.25rem); line-height: 1.6;
-      color: rgba(232,228,221,0.8);
-      padding-bottom: 2.2rem; max-width: 34ch;
-    }
-    .diptych-inner {
-      max-width: 1500px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 3rem);
-      align-items: start;
-    }
     @media (max-width: 820px) {
       .figure { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .figure--offset .figure-inner { grid-template-columns: 1fr; }
-      .figure--offset .fig-side { padding-bottom: 0; padding-top: 1rem; }
-      .diptych-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .figure--bleed { padding-left: 0; padding-right: 0; }
+      .figure--bleed .figure-label { padding: 0 1.25rem; }
     }
 
-    /* ============ PARALLAX BREAKS ============ */
+    /* ============ CHAPTER BREAKS ============ */
     .break {
       position: relative; height: 92vh; overflow: hidden;
       display: flex; align-items: flex-end;
@@ -228,18 +245,21 @@
     .break-caption {
       position: relative; z-index: 3;
       padding: 0 2.5rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+      width: 100%;
       font-family: var(--oswald); font-weight: 300;
       font-size: clamp(0.72rem, 1vw, 0.85rem);
       letter-spacing: 0.35em; text-transform: uppercase;
       color: rgba(232,228,221,0.9);
       text-shadow: 0 1px 14px rgba(10,10,10,0.7);
     }
+    .break-caption .ch { color: var(--accent); }
     @media (max-width: 700px) {
       .break { height: 64vh; }
-      .break-caption { padding: 0 1.25rem 1.5rem; }
+      .break-caption { padding: 0 1.25rem 1.5rem; flex-direction: column; gap: 0.4rem; }
     }
 
-    /* ============ NEXT ============ */
+    /* ============ ARCHIVE BAND ============ */
     .next-band {
       position: relative; display: block;
       height: 76vh; overflow: hidden;
@@ -291,14 +311,14 @@
     }
   </style>
 </head>
-<body class="no-cursor" data-slots="editorial-dani" data-slots-dir="assets/images/editorials/dani">
+<body class="no-cursor">
 
   <!-- PRELOADER -->
   <div class="loader" id="loader">
     <div class="loader-panel top"></div>
     <div class="loader-panel bottom"></div>
     <div class="loader-center">
-      <div class="loader-name">Mod West Ranch — Editorial</div>
+      <div class="loader-name">Dance — An Ongoing Study</div>
     </div>
   </div>
 
@@ -308,29 +328,33 @@
 
   <!-- NAV -->
   <nav class="nav">
-    <a class="nav-mark" href="/index-v3.html">RIC BERRYMAN</a>
+    <a class="nav-mark" href="/index.html">RIC BERRYMAN</a>
     <ul class="nav-links">
-      <li><a href="/portfolio-v3.html">Portfolio</a></li>
-      <li><a href="/dance-v3.html">Dance</a></li>
-      <li><a href="/fieldnotes-v3.html">Field Notes</a></li>
-      <li><a href="/index-v3.html#v3Form">Contact</a></li>
+      <li><a href="/portfolio.html">Editorials</a></li>
+      <li><a href="/dance.html" class="is-active">Dance</a></li>
+      <li><a href="/portraits.html">Portraits</a></li>
+      <li><a href="/abandoned.html">Abandoned</a></li>
+      <li><a href="/field-notes.html">Field Notes</a></li>
+      <li><a href="/index.html#v3Form">Contact</a></li>
     </ul>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="Menu"><span></span><span></span></button>
   </nav>
+  <script>(function(){var n=document.querySelector('.nav'),b=document.getElementById('navBurger');if(!n||!b)return;b.addEventListener('click',function(){n.classList.toggle('open');});n.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');});});})();</script>
 
   <!-- HERO -->
   <header class="e-hero">
-    <div class="e-hero-img" id="eHeroImg"><img data-slot="hero" src="assets/images/editorials/dani/Dani_hero.jpg" alt="Dani Oliveira at Mod West Ranch, Joshua Tree"></div>
+    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/movement-rain.jpg" alt="Dancer mid-pose under studio rain"></div>
     <div class="e-hero-scrim"></div>
     <div class="e-hero-ui">
-      <div class="e-hero-kicker">Editorial — Technicolor Film Stills</div>
+      <div class="e-hero-kicker">Dance — An Ongoing Study</div>
       <h1 class="e-hero-title" id="eHeroTitle">
-        <span class="line"><span>MOD WEST</span></span>
-        <span class="line"><span class="outline">RANCH</span></span>
+        <span class="line"><span>BODIES VS</span></span>
+        <span class="line"><span class="outline">GRAVITY</span></span>
       </h1>
       <div class="e-hero-meta">
-        <span class="scramble" data-text="Dani Oliveira">Dani Oliveira</span>
-        <span class="scramble" data-text="Mod West Ranch, Joshua Tree">Mod West Ranch, Joshua Tree</span>
-        <span class="scramble" data-text="Photography — Ric Berryman">Photography — Ric Berryman</span>
+        <span class="scramble" data-text="90+ Frames">90+ Frames</span>
+        <span class="scramble" data-text="Ballet / Contemporary / Street">Ballet / Contemporary / Street</span>
+        <span class="scramble" data-text="Los Angeles &amp; Beyond">Los Angeles &amp; Beyond</span>
       </div>
     </div>
   </header>
@@ -339,85 +363,121 @@
   <section class="lede">
     <div class="lede-copy reveal-up">
       <p>
-        <em>Dani Oliveira</em> is one of those people who doesn't just walk into a scene — she shifts the atmosphere. A mix of softness and edge, grounded but electric, playful until she suddenly isn't. Her presence has gravity, the kind that makes a camera pay attention.
+        Bodies in motion against architecture, desert, rain, and open sky.
+        Ballet, contemporary, and everything in between — captured in the
+        spaces where <em>movement meets the world</em>.
       </p>
       <p>
-        We shot at Mod West Ranch in Joshua Tree — a modern desert outpost surrounded by boulders, silence, and miles of hot still air. Dani thrived in it. She didn't pose; she partnered with the landscape.
+        No stages, no seamless. Every frame is a negotiation between a
+        dancer and a place that wasn't built for dancing.
       </p>
     </div>
     <aside class="credits reveal-up">
-      <div class="credits-group"><div class="k">Model</div><div class="v">Dani Oliveira</div></div>
-      <div class="credits-group"><div class="k">Location</div><div class="v">Mod West Ranch, Joshua Tree</div></div>
-      <div class="credits-group"><div class="k">Hair &amp; Makeup</div><div class="v">Beauty by Michelle</div></div>
+      <div class="credits-group"><div class="k">Discipline</div><div class="v">Ballet / Contemporary</div></div>
+      <div class="credits-group"><div class="k">Locations</div><div class="v">Architecture to Open Water</div></div>
+      <div class="credits-group"><div class="k">Status</div><div class="v">Ongoing — 2023 to Now</div></div>
       <div class="credits-group"><div class="k">Photography</div><div class="v">Ric Berryman</div></div>
     </aside>
   </section>
 
-  <section class="figure">
-    <div class="diptych-inner">
-      <div>
-        <div class="figure-frame" data-reveal><img data-slot="fig-1" src="assets/images/editorials/dani/Dani_Oliveira_01.jpg" alt="Portrait of Dani Oliveira at Mod West Ranch" loading="lazy"></div>
-        <div class="figure-label"><span>01 / 07</span><span>The storm</span></div>
-      </div>
-      <div>
-        <div class="figure-frame" data-reveal><img data-slot="fig-2" src="assets/images/editorials/dani/Dani_Oliveira_02.jpg" alt="Dani Oliveira against the desert architecture" loading="lazy"></div>
-        <div class="figure-label"><span>02 / 07</span><span>Structure</span></div>
-      </div>
-    </div>
-  </section>
-
+  <!-- CH 1: CONCRETE -->
   <section class="break">
-    <div class="break-img" data-parallax><img src="assets/images/editorials/dani/dani_Parallax1.jpg" alt="Dani Oliveira in the open desert"></div>
-    <div class="break-word" data-drift>THE STORM&nbsp;&nbsp;THE STORM&nbsp;&nbsp;THE STORM</div>
-    <div class="break-caption">Soft when she wants to be, sharp when she chooses.</div>
+    <div class="break-img" data-parallax><img src="assets/images/portfolio-v3/band-dance.jpg" alt="Dancers at Pasadena City Hall"></div>
+    <div class="break-word" data-drift>TENSION&nbsp;&nbsp;TENSION&nbsp;&nbsp;TENSION&nbsp;&nbsp;TENSION&nbsp;&nbsp;TENSION&nbsp;&nbsp;TENSION</div>
+    <div class="break-caption"><span class="ch">Chapter 01</span><span>Architecture as a dance partner.</span></div>
   </section>
 
   <section class="figure">
-    <div class="diptych-inner">
-      <div>
-        <div class="figure-frame" data-reveal><img data-slot="fig-3" src="assets/images/editorials/dani/Dani_Oliveira_04.jpg" alt="Dani Oliveira in saturated color" loading="lazy"></div>
-        <div class="figure-label"><span>03 / 07</span><span>Technicolor</span></div>
-      </div>
-      <div>
-        <div class="figure-frame" data-reveal><img data-slot="fig-4" src="assets/images/editorials/dani/Dani_Oliveira_05.jpg" alt="Dani Oliveira framed by the ranch" loading="lazy"></div>
-        <div class="figure-label"><span>04 / 07</span><span>Film still</span></div>
-      </div>
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/concrete-subway.jpg" alt="Hannah Barr in the subway" loading="lazy"></div>
+      <div class="figure-label"><span>01 / 09</span><span>Underground</span></div>
     </div>
   </section>
 
   <section class="figure figure--narrow">
     <div class="figure-inner">
-      <div class="figure-frame" data-reveal><img data-slot="fig-5" src="assets/images/editorials/dani/Dani_Oliveira_06.jpg" alt="Full-body view of Dani Oliveira in the Joshua Tree landscape" loading="lazy"></div>
-      <div class="figure-label"><span>05 / 07</span><span>Horizon</span></div>
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/concrete-rooftop.jpg" alt="Rooftop dance at dusk" loading="lazy"></div>
+      <div class="figure-label"><span>02 / 09</span><span>Rooftop</span></div>
     </div>
   </section>
 
+  <section class="figure figure--bleed">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/concrete-cityhall.jpg" alt="Dancer at City Hall colonnade" loading="lazy"></div>
+      <div class="figure-label"><span>03 / 09</span><span>Colonnade</span></div>
+    </div>
+  </section>
+
+  <!-- CH 2: DESERT -->
   <section class="break">
-    <div class="break-img" data-parallax><img src="assets/images/editorials/dani/dani_Parallax2.jpg" alt="Dani Oliveira in conversation with the desert"></div>
-    <div class="break-word" data-drift>WILD WEST&nbsp;&nbsp;WILD WEST&nbsp;&nbsp;WILD WEST</div>
-    <div class="break-caption">In conversation with the desert.</div>
+    <div class="break-img" data-parallax><img src="assets/images/dance-v3/desert-break.jpg" alt="Arabesque at Vasquez Rocks in golden light"></div>
+    <div class="break-word" data-drift>FLIGHT&nbsp;&nbsp;FLIGHT&nbsp;&nbsp;FLIGHT&nbsp;&nbsp;FLIGHT&nbsp;&nbsp;FLIGHT&nbsp;&nbsp;FLIGHT</div>
+    <div class="break-caption"><span class="ch">Chapter 02</span><span>Rock, dust, and last light.</span></div>
   </section>
 
   <section class="figure">
-    <div class="diptych-inner">
-      <div>
-        <div class="figure-frame" data-reveal><img data-slot="fig-6" src="assets/images/editorials/dani/Dani_Oliveira_07.jpg" alt="Dani Oliveira at dusk" loading="lazy"></div>
-        <div class="figure-label"><span>06 / 07</span><span>Late light</span></div>
-      </div>
-      <div>
-        <div class="figure-frame" data-reveal><img data-slot="fig-7" src="assets/images/editorials/dani/Dani_Oliveira_08.jpg" alt="Closing frame of Dani Oliveira" loading="lazy"></div>
-        <div class="figure-label"><span>07 / 07</span><span>Fin</span></div>
-      </div>
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/desert-rocks.jpg" alt="Dancer on the Vasquez Rocks formations" loading="lazy"></div>
+      <div class="figure-label"><span>04 / 09</span><span>Vasquez</span></div>
     </div>
   </section>
 
-<!-- NEXT -->
-  <a class="next-band" href="/editorial-v3-dasha.html" data-cursor="view">
-    <div class="next-img"><img src="assets/images/portfolio-v3/key-dasha.jpg" alt="Dasha Alexandria at Villa Blanco"></div>
+  <section class="figure figure--narrow">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/desert-fresno.jpg" alt="Briana mid-leap, Fresno" loading="lazy"></div>
+      <div class="figure-label"><span>05 / 09</span><span>Flight</span></div>
+    </div>
+  </section>
+
+  <!-- CH 3: WATER -->
+  <section class="break">
+    <div class="break-img" data-parallax><img src="assets/images/dance-v3/water-break.jpg" alt="Underwater ballet"></div>
+    <div class="break-word" data-drift>SUSPENSION&nbsp;&nbsp;SUSPENSION&nbsp;&nbsp;SUSPENSION&nbsp;&nbsp;SUSPENSION&nbsp;&nbsp;SUSPENSION&nbsp;&nbsp;SUSPENSION</div>
+    <div class="break-caption"><span class="ch">Chapter 03</span><span>Choreography against buoyancy.</span></div>
+  </section>
+
+  <section class="figure">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/water-ballet.jpg" alt="Underwater ballet, suspended" loading="lazy"></div>
+      <div class="figure-label"><span>06 / 09</span><span>Suspension</span></div>
+    </div>
+  </section>
+
+  <section class="figure figure--bleed">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/water-beach.jpg" alt="Britt on the beach" loading="lazy"></div>
+      <div class="figure-label"><span>07 / 09</span><span>Shoreline</span></div>
+    </div>
+  </section>
+
+  <!-- CH 4: GOLD -->
+  <section class="break">
+    <div class="break-img" data-parallax><img src="assets/images/dance-v3/gold-break.jpg" alt="Ballet duet at Union Station"></div>
+    <div class="break-word" data-drift>GRACE&nbsp;&nbsp;GRACE&nbsp;&nbsp;GRACE&nbsp;&nbsp;GRACE&nbsp;&nbsp;GRACE&nbsp;&nbsp;GRACE</div>
+    <div class="break-caption"><span class="ch">Chapter 04</span><span>Marble, brass, and pointe shoes.</span></div>
+  </section>
+
+  <section class="figure figure--narrow">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/gold-holley.jpg" alt="Holley Johnson at Union Station" loading="lazy"></div>
+      <div class="figure-label"><span>08 / 09</span><span>Union Station</span></div>
+    </div>
+  </section>
+
+  <section class="figure">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/dance-v3/gold-museum.jpg" alt="Madeline Houk at the Petersen Museum" loading="lazy"></div>
+      <div class="figure-label"><span>09 / 09</span><span>Museum</span></div>
+    </div>
+  </section>
+
+  <!-- FULL ARCHIVE -->
+  <a class="next-band" href="/dance-archive.html" data-cursor="view">
+    <div class="next-img"><img src="assets/images/movement-cityhall.jpg" alt="Dance archive — City Hall dancer"></div>
     <div class="next-content">
-      <div class="next-kicker">Next Editorial</div>
-      <div class="next-title">Villa Blanco</div>
-      <div class="next-arrow">&rarr;</div>
+      <div class="next-kicker">Keep Going</div>
+      <div class="next-title">Full Archive</div>
+      <div class="next-arrow">90+ frames →</div>
     </div>
   </a>
 
@@ -522,7 +582,6 @@
 
     /* ---------- Image reveals (stranding-proof IO) ---------- */
     if (!reduced && 'IntersectionObserver' in window) {
-      // photos: clip up from the bottom + settle the scale
       gsap.set('[data-reveal]', { clipPath: 'inset(14% 4% 14% 4%)' });
       var figIO = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
@@ -534,7 +593,6 @@
       }, { threshold: 0.22 });
       document.querySelectorAll('[data-reveal]').forEach(function (f) { figIO.observe(f); });
 
-      // text blocks: simple rise
       gsap.set('.reveal-up', { opacity: 0, y: 36 });
       var upIO = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
@@ -555,15 +613,16 @@
         scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
-    document.querySelectorAll('[data-drift]').forEach(function (el) {
-      gsap.fromTo(el, { xPercent: 3 }, {
-        xPercent: -28, ease: 'none',
+    document.querySelectorAll('[data-drift]').forEach(function (el, i) {
+      // alternate direction so consecutive break marquees counter-drift
+      var from = i % 2 ? -30 : 0;
+      var to = i % 2 ? 0 : -30;
+      gsap.fromTo(el, { xPercent: from }, {
+        xPercent: to, ease: 'none',
         scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true }
       });
     });
   })();
   </script>
-  <script src="/assets/js/gallery-render.js"></script>
-  <script src="/assets/js/gallery-edit.js"></script>
 </body>
 </html>

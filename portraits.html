@@ -13,7 +13,7 @@
     gtag('config', 'G-5T5J0FYS6B');
   </script>
 
-  <title>Comet Tsuchinshan — Field Notes by Ric Berryman (V3)</title>
+  <title>Editorial Portraits — Ric Berryman (V3 Concept)</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -329,7 +329,7 @@
     <div class="loader-panel top"></div>
     <div class="loader-panel bottom"></div>
     <div class="loader-center">
-      <div class="loader-name">Comet — Field Notes</div>
+      <div class="loader-name">Editorial Portraits — Study</div>
     </div>
   </div>
 
@@ -339,144 +339,136 @@
 
   <!-- NAV -->
   <nav class="nav">
-    <a class="nav-mark" href="/index-v3.html">RIC BERRYMAN</a>
+    <a class="nav-mark" href="/index.html">RIC BERRYMAN</a>
     <ul class="nav-links">
-      <li><a href="/portfolio-v3.html">Editorials</a></li>
-      <li><a href="/dance-v3.html">Dance</a></li>
-      <li><a href="/beauty-v3.html">Portraits</a></li>
-      <li><a href="/abandoned-v3.html">Abandoned</a></li>
-      <li><a href="/fieldnotes-v3.html" class="is-active">Field Notes</a></li>
-      <li><a href="/index-v3.html#v3Form">Contact</a></li>
+      <li><a href="/portfolio.html">Editorials</a></li>
+      <li><a href="/dance.html">Dance</a></li>
+      <li><a href="/portraits.html" class="is-active">Portraits</a></li>
+      <li><a href="/abandoned.html">Abandoned</a></li>
+      <li><a href="/field-notes.html">Field Notes</a></li>
+      <li><a href="/index.html#v3Form">Contact</a></li>
     </ul>
     <button class="nav-burger" id="navBurger" type="button" aria-label="Menu"><span></span><span></span></button>
   </nav>
   <script>(function(){var n=document.querySelector('.nav'),b=document.getElementById('navBurger');if(!n||!b)return;b.addEventListener('click',function(){n.classList.toggle('open');});n.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');});});})();</script>
 
   <!-- HERO -->
-
-  <style>
-    .fn-essay {
-      max-width: 720px; margin: 0 auto;
-      padding: clamp(4rem, 10vh, 7rem) 2.5rem clamp(2rem, 5vh, 3rem);
-    }
-    .fn-essay p {
-      font-family: var(--mont); font-weight: 300;
-      font-size: clamp(1.05rem, 1.5vw, 1.32rem); line-height: 1.7;
-      color: rgba(232,228,221,0.9);
-    }
-    .fn-essay p + p { margin-top: 1.5rem; }
-    .fn-essay p.lead {
-      font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.4;
-      color: var(--bone); font-weight: 300;
-    }
-    .fn-essay p.lead em, .fn-essay p em { font-style: italic; color: var(--accent); }
-    .fn-plate { padding: clamp(2rem, 5vh, 3.5rem) 2.5rem; }
-    .fn-plate-inner { max-width: 1400px; margin: 0 auto; overflow: hidden; }
-    .fn-plate img { width: 100%; height: auto; display: block; transform: scale(1.04); }
-    .fn-plate--bleed { padding-left: 0; padding-right: 0; }
-    .fn-plate--bleed .fn-plate-inner { max-width: none; }
-    .fulltake-head {
-      max-width: 1700px; margin: clamp(3rem,8vh,5rem) auto 0; padding: 0 2.5rem 1.5rem;
-      display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
-      border-top: 1px solid rgba(232,228,221,0.14); padding-top: 2rem;
-    }
-    .fulltake-head h2 {
-      font-family: var(--bebas); text-transform: uppercase;
-      font-size: clamp(1.8rem,4vw,3rem); color: var(--bone); line-height: 1;
-    }
-    .fulltake-head span {
-      font-family: var(--oswald); font-weight: 300; font-size: 0.66rem;
-      letter-spacing: 0.3em; text-transform: uppercase; color: var(--grey);
-    }
-    .arch-grid {
-      columns: 3 360px; column-gap: clamp(0.8rem,1.5vw,1.4rem);
-      padding: clamp(1rem,3vh,2rem) 2.5rem clamp(3rem,8vh,5rem);
-      max-width: 1700px; margin: 0 auto;
-    }
-    .arch-item { break-inside: avoid; margin-bottom: clamp(0.8rem,1.5vw,1.4rem); overflow: hidden; display: block; }
-    .arch-item img { width: 100%; height: auto; display: block; transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); }
-    .arch-item:hover img { transform: scale(1.03); }
-    @media (max-width: 820px) {
-      .fn-essay, .fn-plate { padding-left: 1.25rem; padding-right: 1.25rem; }
-      .fn-plate--bleed { padding-left: 0; padding-right: 0; }
-      .arch-grid { columns: 2 150px; padding-left: 1.25rem; padding-right: 1.25rem; }
-      .fulltake-head { padding-left: 1.25rem; padding-right: 1.25rem; }
-    }
-    .lbx { position: fixed; inset: 0; z-index: 300; background: rgba(10,10,10,0.97); display: flex; align-items: center; justify-content: center; }
-    .lbx[hidden] { display: none; }
-    .lbx img { max-width: 92vw; max-height: 86vh; width: auto; height: auto; }
-    .lbx-count { position: absolute; bottom: 1.6rem; left: 50%; transform: translateX(-50%); font-family: var(--oswald); font-weight: 300; font-size: 0.7rem; letter-spacing: 0.35em; color: var(--grey); font-variant-numeric: tabular-nums; }
-    .lbx-btn { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: 0; cursor: pointer; padding: 1.4rem; font-family: var(--oswald); font-size: 1.6rem; color: var(--bone); opacity: 0.7; transition: opacity 0.3s, color 0.3s; }
-    .lbx-btn:hover { opacity: 1; color: var(--accent); }
-    .lbx-prev { left: 0.8rem; } .lbx-next { right: 0.8rem; }
-    .lbx-close { position: absolute; top: 1.2rem; right: 1.6rem; background: none; border: 0; cursor: pointer; font-family: var(--oswald); font-weight: 300; font-size: 0.72rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--bone); opacity: 0.7; transition: opacity 0.3s, color 0.3s; padding: 0.6rem; }
-    .lbx-close:hover { opacity: 1; color: var(--accent); }
-  </style>
-
   <header class="e-hero">
-    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/field-notes/comet-tsunchinshan/2020-Neowise%2BComet%2B-%2BAnza%2BBorego.jpg" alt="Comet Tsuchinshan over Anza-Borrego"></div>
+    <div class="e-hero-img" id="eHeroImg"><img src="assets/images/portfolio-v3/band-beauty.jpg" alt="Horses and models on the beach — editorial portrait study"></div>
     <div class="e-hero-scrim"></div>
     <div class="e-hero-ui">
-      <div class="e-hero-kicker">Field Note — Anza-Borrego · 2024</div>
+      <div class="e-hero-kicker">An Ongoing Study — Editorial Portraits</div>
       <h1 class="e-hero-title" id="eHeroTitle">
-        <span class="line"><span>COMET</span></span>
-        <span class="line"><span class="outline">TSUCHINSHAN</span></span>
+        <span class="line"><span>CLOSE &amp;</span></span>
+        <span class="line"><span class="outline">UNFLINCHING</span></span>
       </h1>
       <div class="e-hero-meta">
-        <span class="scramble" data-text="Anza-Borrego · 2024">Anza-Borrego · 2024</span>
-        <span class="scramble" data-text="Night Sky">Night Sky</span>
+        <span class="scramble" data-text="Styled Shoots">Styled Shoots</span>
+        <span class="scramble" data-text="Studio to Open Water">Studio to Open Water</span>
         <span class="scramble" data-text="Photography — Ric Berryman">Photography — Ric Berryman</span>
       </div>
     </div>
   </header>
 
-    <div class="fn-essay"><p class="lead">The comet&#x27;s tail spills over the night, and the Earth opens its eye and we see. — Mark Strand</p></div>
-    <div class="fn-essay"><p>So there&#x27;s a comet currently in our night sky called &quot;Tsunchinshan.&quot; It is a catchy name. I&#x27;ve shot the comet Neowise when it was gracing us earthlings with its presence in 2020, though that wasn&#x27;t my intention when I went out that night, it just happened to be hanging out.</p></div>
-    <figure class="fn-plate"><div class="fn-plate-inner"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-1-3.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy"></div></figure>
-    <div class="fn-essay"><p>When I heard about Tsunchinshan being visible to the naked eye, I thought, &quot;That&#x27;s cool,&quot; but wasn&#x27;t terribly excited about photographing it. Then I found out it would fade fast after this week due to the relative position of the sun, and suddenly, I had a serious case of FOMO. After seeing some amazing shots on Instagram, I figured, why not? So off to Anza Borrego I went with fellow photographer, Gabe Beltran.</p></div>
-    <div class="fn-essay"><p>Lately, I haven&#x27;t been that amped to go out shooting. I&#x27;m not sure why, and this trip didn&#x27;t exactly light a fire under me either. And honestly, I don&#x27;t think I captured the comet in an interesting way. It was high in the sky, making it tough to frame with something compelling in the foreground. Then the moon came up and washed away all the stars, the Milky Way, and, sadly, the comet. But in the end, it didn&#x27;t really matter.</p></div>
-    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-1-5.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy"></div></figure>
-    <div class="fn-essay"><p>The evening out there in Borrego Springs was perfect—not too hot, not too cold. As the sun slipped away, the comet appeared, and blue hour lingered like a whispered secret, refusing to fade until the moon forced it&#x27;s hand. In the end, it wasn&#x27;t about the photos—it was about the quiet magic of simply being there, beneath that endless sky.</p></div>
+  <!-- LEDE -->
+  <section class="lede">
+    <div class="lede-copy reveal-up">
+      <p>
+        Styled shoots, studio light, and intentional frames. This is the portrait side of the work — close, deliberate, and <em>unflinching</em>: faces and bodies given the same attention an architect gives a wall.
+      </p>
+      <p>
+        Some of it happens under strobes and gels. Some of it happens in open water, on rooftops, or beside a gas pump in the desert. The constant is the gaze — direct, unhurried, daring you to blink first.
+      </p>
+    </div>
+    <aside class="credits reveal-up">
+      <div class="credits-group"><div class="k">Discipline</div><div class="v">Editorial Portraiture</div></div>
+      <div class="credits-group"><div class="k">Range</div><div class="v">Studio to Open Water</div></div>
+      <div class="credits-group"><div class="k">Status</div><div class="v">Ongoing</div></div>
+      <div class="credits-group"><div class="k">Photography</div><div class="v">Ric Berryman</div></div>
+    </aside>
+  </section>
 
-  <div class="fulltake-head"><h2>The Full Take</h2><span>21 frames · click to view</span></div>
-  <div class="arch-grid" data-gallery="fn-comet" data-gallery-dir="assets/images/field-notes/comet-tsunchinshan">
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-1-7.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-10.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-13.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-18.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-22.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-27.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-29.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 827"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-30.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-4.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-42.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-45.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-52.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-57.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-6.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-69.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-7.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/2024-10-20%2BComet%2BTsunchinshan%2Band%2BAnza%2BBorrego%2BSculptures-8.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/comet-tsunchinshan/Comet%2BTsunchinshan-%2BAnza%2BBorrego.jpg" alt="Comet Tsuchinshan over Anza-Borrego" loading="lazy" style="aspect-ratio: 1591 / 2387"></figure>
-  </div>
+  <section class="figure">
+    <div class="diptych-inner">
+      <div>
+        <div class="figure-frame" data-reveal><img src="assets/images/beauty-images/Hannah+Barr-16.jpg" alt="Hannah Barr portrait" loading="lazy"></div>
+        <div class="figure-label"><span>01 / 09</span><span>Direct</span></div>
+      </div>
+      <div>
+        <div class="figure-frame" data-reveal><img src="assets/images/beauty-images/2024-01-05+Vegas+-+Clare+Landis-18.jpg" alt="Clare Landis in Vegas" loading="lazy"></div>
+        <div class="figure-label"><span>02 / 09</span><span>Vegas</span></div>
+      </div>
+    </div>
+  </section>
 
-  <a class="next-band" href="/fn-george-floyd-v3.html" data-cursor="view">
-    <div class="next-img"><img src="assets/images/george-floyd/Black%2BLives%2BMatter%2BCrowd%2B%281%2Bof%2B1%29.jpg" alt="George Floyd protests, Los Angeles"></div>
+  <section class="break">
+    <div class="break-img" data-parallax><img src="assets/images/beauty-images/2023-10-21+Dasha+Alexandria+-+Issue+Studio-6.jpg" alt="Dasha Alexandria under studio gels"></div>
+    <div class="break-word" data-drift>STUDIO LIGHT&nbsp;&nbsp;STUDIO LIGHT&nbsp;&nbsp;STUDIO LIGHT&nbsp;&nbsp;STUDIO LIGHT&nbsp;&nbsp;STUDIO LIGHT&nbsp;&nbsp;STUDIO LIGHT</div>
+    <div class="break-caption">Intentional frames, controlled chaos.</div>
+  </section>
+
+  <section class="figure">
+    <div class="diptych-inner">
+      <div>
+        <div class="figure-frame" data-reveal><img src="assets/images/beauty-images/2023-04-20+Steph+Pink+Bunny+Shoot-4.jpg" alt="Steph — pink bunny shoot" loading="lazy"></div>
+        <div class="figure-label"><span>03 / 09</span><span>Pink</span></div>
+      </div>
+      <div>
+        <div class="figure-frame" data-reveal><img src="assets/images/beauty-images/2022-08-07+Chaos+Underwater+Shoot-45.jpg" alt="Underwater beauty portrait" loading="lazy"></div>
+        <div class="figure-label"><span>04 / 09</span><span>Underwater</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="figure figure--narrow">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/beauty-images/2023-10-21+Izabela+Izycka+-+Issue+Studio-3-2.jpg" alt="Izabela Izycka in studio" loading="lazy"></div>
+      <div class="figure-label"><span>05 / 09</span><span>Issue studio</span></div>
+    </div>
+  </section>
+
+  <section class="break">
+    <div class="break-img" data-parallax><img src="assets/images/beauty-images/2023-10-22+Lainey+Floeck+-++Sheets-Goldstein+House-7.jpg" alt="Lainey Floeck at the Sheats-Goldstein House"></div>
+    <div class="break-word" data-drift>INTO THE WILD&nbsp;&nbsp;INTO THE WILD&nbsp;&nbsp;INTO THE WILD&nbsp;&nbsp;INTO THE WILD&nbsp;&nbsp;INTO THE WILD&nbsp;&nbsp;INTO THE WILD</div>
+    <div class="break-caption">Daylight, salt, and skin — out of the studio.</div>
+  </section>
+
+  <section class="figure">
+    <div class="diptych-inner">
+      <div>
+        <div class="figure-frame" data-reveal><img src="assets/images/beauty-images/2023-10-23+Day+3+JRW+-+Gas+Pump+Set+-+DRAFT-4.jpg" alt="Gas pump set, Joshua Tree" loading="lazy"></div>
+        <div class="figure-label"><span>06 / 09</span><span>Last gas</span></div>
+      </div>
+      <div>
+        <div class="figure-frame" data-reveal><img src="assets/images/beauty-images/BRITTANY+YEVOLI+-+Beach-2.jpg" alt="Brittany Yevoli at the beach" loading="lazy"></div>
+        <div class="figure-label"><span>07 / 09</span><span>Shoreline</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="figure figure--narrow">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/beauty-images/2024-06-09+Annet+Kamenskaya+-+Boat+Shoot-11.jpg" alt="Annet Kamenskaya on the boat" loading="lazy"></div>
+      <div class="figure-label"><span>08 / 09</span><span>Open water</span></div>
+    </div>
+  </section>
+
+  <section class="figure figure--bleed">
+    <div class="figure-inner">
+      <div class="figure-frame" data-reveal><img src="assets/images/beauty-images/2023-08-20+Dancers+at+City+Hall-120.jpg" alt="Dancer portrait at City Hall" loading="lazy"></div>
+      <div class="figure-label"><span>09 / 09</span><span>Unflinching</span></div>
+    </div>
+  </section>
+
+<!-- NEXT -->
+  <a class="next-band" href="/portraits-archive.html" data-cursor="view">
+    <div class="next-img"><img src="assets/images/beauty-images/2023-03-20+Gels+and+Color-33.jpg" alt="Editorial portraits archive"></div>
     <div class="next-content">
-      <div class="next-kicker">Next Field Note</div>
-      <div class="next-title">George Floyd Protests</div>
-      <div class="next-arrow">&rarr;</div>
+      <div class="next-kicker">Keep Going</div>
+      <div class="next-title">Full Gallery</div>
+      <div class="next-arrow">All frames &rarr;</div>
     </div>
   </a>
-
-
-  <div class="lbx" id="lbx" hidden>
-    <button class="lbx-close" id="lbxClose">Close</button>
-    <button class="lbx-btn lbx-prev" id="lbxPrev">&larr;</button>
-    <img id="lbxImg" alt="">
-    <button class="lbx-btn lbx-next" id="lbxNext">&rarr;</button>
-    <div class="lbx-count" id="lbxCount"></div>
-  </div>
 
   <div class="footer-v3">
     <span>© 2026 Ric Berryman</span>
@@ -623,51 +615,5 @@
     });
   })();
   </script>
-
-  <script src="/assets/js/gallery-render.js"></script>
-  <script src="/assets/js/gallery-edit.js"></script>
-  <script>
-  (function () {
-    function imgs() { return Array.prototype.slice.call(document.querySelectorAll('.arch-item img')); }
-    function srcAt(i) { var a = imgs(); var im = a[(i + a.length) % a.length]; return im.dataset.full || im.getAttribute('src'); }
-    var lbx = document.getElementById('lbx');
-    var lbxImg = document.getElementById('lbxImg');
-    var lbxCount = document.getElementById('lbxCount');
-    var cur = 0;
-    function show(i) {
-      var n = imgs().length; if (!n) return;
-      cur = (i + n) % n;
-      lbxImg.src = srcAt(cur);
-      lbxCount.textContent = String(cur + 1).padStart(2, '0') + ' / ' + n;
-    }
-    function open(i) {
-      show(i); lbx.hidden = false;
-      if (window.__lenis) window.__lenis.stop();
-      document.documentElement.style.overflow = 'hidden';
-    }
-    function close() {
-      lbx.hidden = true;
-      if (window.__lenis) window.__lenis.start();
-      document.documentElement.style.overflow = '';
-    }
-    document.addEventListener('click', function (e) {
-      if (document.body.classList.contains('ge-editing')) return;
-      var fig = e.target.closest && e.target.closest('.arch-item');
-      if (!fig || e.target.closest('.lbx')) return;
-      open(imgs().indexOf(fig.querySelector('img')));
-    });
-    document.getElementById('lbxClose').addEventListener('click', close);
-    document.getElementById('lbxPrev').addEventListener('click', function (e) { e.stopPropagation(); show(cur - 1); });
-    document.getElementById('lbxNext').addEventListener('click', function (e) { e.stopPropagation(); show(cur + 1); });
-    lbx.addEventListener('click', function (e) { if (e.target === lbx || e.target === lbxImg) close(); });
-    addEventListener('keydown', function (e) {
-      if (lbx.hidden) return;
-      if (e.key === 'Escape') close();
-      if (e.key === 'ArrowLeft') show(cur - 1);
-      if (e.key === 'ArrowRight') show(cur + 1);
-    });
-  })();
-  </script>
-
 </body>
 </html>
