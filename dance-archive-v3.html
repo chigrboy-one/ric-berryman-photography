@@ -698,7 +698,7 @@
   (function () {
     // live src list so the lightbox survives manifest re-render + edit add/remove
     function imgs() { return Array.prototype.slice.call(document.querySelectorAll('.arch-item img')); }
-    function srcAt(i) { var a = imgs(); return a[(i + a.length) % a.length].getAttribute('src'); }
+    function srcAt(i) { var a = imgs(); var im = a[(i + a.length) % a.length]; return im.dataset.full || im.getAttribute('src'); }
     var lbx = document.getElementById('lbx');
     var lbxImg = document.getElementById('lbxImg');
     var lbxCount = document.getElementById('lbxCount');

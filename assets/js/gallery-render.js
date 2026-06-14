@@ -5,12 +5,20 @@
 (function () {
   'use strict';
 
+  function thumbOf(src) {
+    var i = src.lastIndexOf('/');
+    return i < 0 ? src : src.slice(0, i) + '/thumbs/' + src.slice(i + 1);
+  }
+
   function buildItem(it) {
     var fig = document.createElement('figure');
     fig.className = 'arch-item';
     fig.setAttribute('data-cursor', 'view');
     var img = document.createElement('img');
-    img.src = it.src;
+    // grid shows the light thumbnail; full-res kept on data-full for the lightbox
+    img.dataset.full = it.src;
+    img.src = thumbOf(it.src);
+    img.onerror = function () { if (img.src.indexOf('/thumbs/') !== -1) { img.onerror = null; img.src = it.src; } };
     img.alt = it.alt || '';
     img.loading = 'lazy';
     if (it.w && it.h) img.style.aspectRatio = it.w + ' / ' + it.h;

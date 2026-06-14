@@ -187,7 +187,8 @@
       var items = [];
       container.querySelectorAll('.arch-item').forEach(function (fig) {
         var img = fig.querySelector('img');
-        var src = fig.dataset.src || img.getAttribute('src');
+        // prefer the full-res path (thumbs are only for display)
+        var src = fig.dataset.src || img.dataset.full || img.getAttribute('src');
         var w = fig.dataset.w, h = fig.dataset.h;
         if (!w && img.naturalWidth) { w = img.naturalWidth; h = img.naturalHeight; }
         var o = { src: src };
