@@ -1,6 +1,8 @@
 # Ric Berryman Photography — robots.txt
 # Allow search engines, block AI training crawlers
 
+Sitemap: https://ricberryman.com/sitemap.xml
+
 # Search engines — welcome
 User-agent: Googlebot
 Allow: /
