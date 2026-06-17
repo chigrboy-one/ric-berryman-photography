@@ -21,3 +21,5 @@
 # catch-alls for any old URL not listed above
 /editorials/*    /portfolio.html     301
 /field-notes/*   /field-notes.html   301
+# retire old mockup/archive pages (were ranking for the stale "Richard Berryman" title)
+/Archive/*       /                   301
