@@ -644,18 +644,13 @@
     <div>
       <div class="about-v3-label">The Photographer</div>
       <p class="about-v3-copy">
-        I photograph people, places, and the tension between polish and grit — editorial fashion,
-        portraiture, and the American landscape when it stops posing.
+        I'm a photographer based in Los Angeles, working in fashion and editorial. I like
+        bold, high-contrast images built on a strong idea and hard light.
       </p>
       <p class="about-v3-copy">
-        I'm drawn to strong concepts, strong light, and a little unease in the frame —
-        the kind that makes a photo linger.
+        When I'm not in the studio I'm out shooting what's real — fires, protests, the parts
+        of the country most people drive past without looking. The picture comes first.
       </p>
-      <div class="stats-v3">
-        <div class="stat-v3"><div class="n" data-count="15">0</div><div class="l">Years</div></div>
-        <div class="stat-v3"><div class="n" data-count="500">0</div><div class="l">Projects</div></div>
-        <div class="stat-v3"><div class="n" data-count="50">0</div><div class="l">Awards</div></div>
-      </div>
     </div>
   </section>
 
@@ -1140,20 +1135,6 @@
       filter: 'grayscale(0)', scale: 1, duration: 1.4, ease: 'power2.out',
       scrollTrigger: { trigger: '#about', start: 'top 60%' }
     });
-    document.querySelectorAll('.stat-v3 .n').forEach(function (el) {
-      var target = +el.dataset.count;
-      var obj = { v: 0 };
-      ScrollTrigger.create({
-        trigger: el, start: 'top 85%', once: true,
-        onEnter: function () {
-          gsap.to(obj, {
-            v: target, duration: 1.6, ease: 'power2.out',
-            onUpdate: function () { el.textContent = Math.round(obj.v) + '+'; }
-          });
-        }
-      });
-    });
-
     /* ---------- Magnetic elements ---------- */
     if (fine && !reduced) {
       document.querySelectorAll('[data-magnetic]').forEach(function (el) {
