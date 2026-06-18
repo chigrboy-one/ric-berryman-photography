@@ -287,7 +287,19 @@
       font-family: var(--oswald); font-weight: 300; font-size: 0.68rem;
       letter-spacing: 0.35em; text-transform: uppercase; color: var(--grey);
     }
-    .work-pin { overflow: hidden; }
+    /* default: the strip is always horizontally scrollable, so every card stays
+       reachable even if the JS pin never runs (reduced-motion, mouse-only,
+       a script/CDN failure). .is-pinned hands control to the GSAP transform. */
+    .work-pin {
+      overflow-x: auto; overflow-y: hidden;
+      scrollbar-width: thin; scrollbar-color: rgba(232,228,221,0.28) transparent;
+    }
+    .work-pin::-webkit-scrollbar { height: 6px; }
+    .work-pin::-webkit-scrollbar-track { background: transparent; }
+    .work-pin::-webkit-scrollbar-thumb { background: rgba(232,228,221,0.22); border-radius: 3px; }
+    .work-pin.is-pinned { overflow: hidden; }
+    .work-pin.is-drag { cursor: grab; }
+    .work-pin.is-drag.is-grabbing { cursor: grabbing; }
     .work-track {
       display: flex; gap: clamp(1.5rem, 4vw, 4rem);
       padding: 0 2.5rem 4rem;
@@ -1043,22 +1055,60 @@
       scrollTrigger: { trigger: '#manifesto', start: 'top 78%' }
     });
 
-    /* ---------- Horizontal work scroll (desktop) ---------- */
-    if (!isMobile && !reduced) {
-      var track = document.getElementById('workTrack');
-      var getDist = function () { return track.scrollWidth - innerWidth; };
-      // pin budget is shorter than the horizontal travel (0.6x): all cards
-      // still scroll past, but the section traps far less vertical scroll —
-      // so getting back up past it isn't a slog
-      gsap.to(track, {
-        x: function () { return -getDist(); },
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#work', start: 'top top',
-          end: function () { return '+=' + (getDist() * 0.6); },
-          pin: true, scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1
-        }
+    /* ---------- Horizontal work scroll ---------- */
+    // The strip is natively horizontal-scrollable by default (see .work-pin CSS),
+    // so every card is always reachable — Windows mouse-wheel, reduced-motion,
+    // or a failed CDN included. When motion is allowed we upgrade to the pinned
+    // scrub effect and hand scroll control to GSAP.
+    var workPin = document.getElementById('workPin');
+    var workTrack = document.getElementById('workTrack');
+    if (workPin && workTrack) {
+      if (!isMobile && !reduced) {
+        workPin.classList.add('is-pinned');
+        var getDist = function () { return workTrack.scrollWidth - innerWidth; };
+        // pin budget is shorter than the horizontal travel (0.6x): all cards
+        // still scroll past, but the section traps far less vertical scroll.
+        gsap.to(workTrack, {
+          x: function () { return -getDist(); },
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#work', start: 'top top',
+            end: function () { return '+=' + (getDist() * 0.6); },
+            pin: true, scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1
+          }
+        });
+      } else if (fine) {
+        // no pin (reduced-motion / fallback): make the native strip usable with
+        // a mouse — vertical wheel scrolls it sideways, and you can drag to pan.
+        enableStripDrag(workPin);
+      }
+    }
+
+    function enableStripDrag(pin) {
+      pin.classList.add('is-drag');
+      pin.addEventListener('wheel', function (e) {
+        if (!e.deltaY || pin.scrollWidth <= pin.clientWidth) return;
+        pin.scrollLeft += e.deltaY;
+        e.preventDefault();
+      }, { passive: false });
+      var down = false, startX = 0, startLeft = 0, moved = 0;
+      pin.addEventListener('pointerdown', function (e) {
+        if (e.pointerType === 'touch') return;
+        down = true; moved = 0; startX = e.clientX; startLeft = pin.scrollLeft;
+        pin.classList.add('is-grabbing'); pin.setPointerCapture(e.pointerId);
       });
+      pin.addEventListener('pointermove', function (e) {
+        if (!down) return;
+        var dx = e.clientX - startX; moved += Math.abs(dx);
+        pin.scrollLeft = startLeft - dx;
+      });
+      var end = function () { down = false; pin.classList.remove('is-grabbing'); };
+      pin.addEventListener('pointerup', end);
+      pin.addEventListener('pointercancel', end);
+      // swallow the card-link click if the user was actually dragging
+      pin.addEventListener('click', function (e) {
+        if (moved > 6) { e.preventDefault(); e.stopPropagation(); }
+      }, true);
     }
     gsap.from('.work-card', {
       opacity: 0, y: 60, duration: 0.9, ease: 'power3.out', stagger: 0.08,
@@ -1071,14 +1121,18 @@
     });
 
     /* ---------- Movement parallax ---------- */
-    gsap.fromTo('#movementImg', { yPercent: -8 }, {
-      yPercent: 8, ease: 'none',
-      scrollTrigger: { trigger: '#movement', start: 'top bottom', end: 'bottom top', scrub: true }
-    });
-    gsap.fromTo('#movementWord', { xPercent: 6 }, {
-      xPercent: -36, ease: 'none',
-      scrollTrigger: { trigger: '#movement', start: 'top bottom', end: 'bottom top', scrub: true }
-    });
+    // scrub effects only when motion is allowed — otherwise a mouse wheel makes
+    // them step rather than glide, so reduced-motion gets clean static text.
+    if (!reduced) {
+      gsap.fromTo('#movementImg', { yPercent: -8 }, {
+        yPercent: 8, ease: 'none',
+        scrollTrigger: { trigger: '#movement', start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+      gsap.fromTo('#movementWord', { xPercent: 6 }, {
+        xPercent: -36, ease: 'none',
+        scrollTrigger: { trigger: '#movement', start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    }
 
 
     /* ---------- About ---------- */
