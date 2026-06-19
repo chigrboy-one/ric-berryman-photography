@@ -275,6 +275,16 @@
 
     /* ============ WORK (horizontal) ============ */
     .work { position: relative; }
+    /* when pinned at the top of the viewport, fill it and center the content
+       vertically — keeps "Selected Work" clear of the fixed nav and removes
+       the dead space the cards used to leave under them on tall monitors. */
+    @media (min-width: 821px) {
+      .work {
+        min-height: 100vh; box-sizing: border-box;
+        display: flex; flex-direction: column; justify-content: center;
+        padding-top: 5rem;
+      }
+    }
     .work-head {
       display: flex; align-items: baseline; justify-content: space-between;
       padding: 0 2.5rem 2.5rem;
