@@ -78,25 +78,39 @@
     /* ============ CURSOR ============ */
     .cursor-dot, .cursor-ring {
       position: fixed; top: 0; left: 0; z-index: 150;
-      pointer-events: none; border-radius: 50%;
+      pointer-events: none;
       transform: translate(-50%, -50%);
     }
-    .cursor-dot { width: 6px; height: 6px; background: var(--bone); }
+    .cursor-dot { width: 6px; height: 6px; background: var(--bone); border-radius: 50%; }
+    /* viewfinder ring: four corner brackets painted with corner-anchored gradients */
     .cursor-ring {
-      width: 36px; height: 36px;
-      border: 1px solid rgba(232,228,221,0.5);
+      width: 40px; height: 40px;
       display: flex; align-items: center; justify-content: center;
-      transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      --vf: rgba(232,228,221,0.8); --vft: 1.5px; --vfl: 10px;
+      background-image:
+        linear-gradient(var(--vf),var(--vf)), linear-gradient(var(--vf),var(--vf)),
+        linear-gradient(var(--vf),var(--vf)), linear-gradient(var(--vf),var(--vf)),
+        linear-gradient(var(--vf),var(--vf)), linear-gradient(var(--vf),var(--vf)),
+        linear-gradient(var(--vf),var(--vf)), linear-gradient(var(--vf),var(--vf));
+      background-repeat: no-repeat;
+      background-position: 0 0, 0 0, 100% 0, 100% 0, 0 100%, 0 100%, 100% 100%, 100% 100%;
+      background-size:
+        var(--vfl) var(--vft), var(--vft) var(--vfl),
+        var(--vfl) var(--vft), var(--vft) var(--vfl),
+        var(--vfl) var(--vft), var(--vft) var(--vfl),
+        var(--vfl) var(--vft), var(--vft) var(--vfl);
+      transition: width 0.3s ease, height 0.3s ease, background-size 0.3s ease;
     }
     .cursor-ring span {
-      font-family: var(--oswald); font-size: 0.6rem;
+      font-family: var(--oswald); font-size: 0.58rem;
       letter-spacing: 0.25em; text-indent: 0.25em;
-      color: var(--black); opacity: 0;
+      color: var(--bone); opacity: 0;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.85);
       transition: opacity 0.2s ease;
     }
-    .cursor-ring.is-view { width: 88px; height: 88px; background: var(--bone); border-color: var(--bone); }
+    .cursor-ring.is-view { width: 92px; height: 92px; --vf: var(--accent); --vfl: 18px; --vft: 2px; }
     .cursor-ring.is-view span { opacity: 1; }
-    .cursor-ring.is-link { width: 56px; height: 56px; border-color: var(--bone); }
+    .cursor-ring.is-link { width: 30px; height: 30px; --vfl: 8px; }
     @media (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
 
     /* ============ NAV ============ */
