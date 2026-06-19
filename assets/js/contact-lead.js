@@ -12,7 +12,7 @@
   form.addEventListener('submit', function () {
     var sel = form.querySelector('[name="project-type"]');
     gtag('event', 'generate_lead', {
-      form_name: 'contact_v3',
+      form_name: 'contact',
       project_type: sel ? sel.value : '',
       transport_type: 'beacon'
     });
