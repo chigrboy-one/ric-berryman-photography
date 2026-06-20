@@ -413,6 +413,7 @@
     .fn-plate img { width: 100%; height: auto; display: block; transform: scale(1.04); }
     .fn-plate--bleed { padding-left: 0; padding-right: 0; }
     .fn-plate--bleed .fn-plate-inner { max-width: none; }
+    .fn-plate--inset .fn-plate-inner { max-width: 920px; }
     .fulltake-head {
       max-width: 1700px; margin: clamp(3rem,8vh,5rem) auto 0; padding: 0 2.5rem 1.5rem;
       display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
@@ -468,6 +469,8 @@
     </div>
   </header>
 
+  <div data-layout-page="george-floyd" data-layout-alt="George Floyd protests, downtown Los Angeles">
+<!-- LAYOUT:START -->
     <div class="fn-essay"><p class="lead">&quot;A riot is the language of the unheard.&quot;<br><span style="font-size:0.5em; letter-spacing:0.12em; color:var(--grey);">— Martin Luther King Jr.</span></p></div>
 
     <div class="fn-essay"><p>Los Angeles • May – June 2020</p></div>
@@ -630,6 +633,9 @@
     <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner"><img src="assets/images/george-floyd/2020-06-06%2BLA%2BPROTESTS%2BBLM%2B%2844%2Bof%2B150%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div></figure>
 
     <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner"><img src="assets/images/george-floyd/The%2Btime%2Bis%2Balways%2Bright%2B%281%2Bof%2B1%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div></figure>
+
+<!-- LAYOUT:END -->
+  </div>
 
   <a class="next-band" href="/ice.html" data-cursor="view">
     <div class="next-img"><img src="assets/images/field-notes/ice/ice_20.jpg" alt="ICE protest, downtown LA"></div>
@@ -840,6 +846,7 @@
   })();
   </script>
   <script src="/assets/js/img-protect.js" defer></script>
+  <script src="/assets/js/layout-edit.js" defer></script>
 
 
 </body>
