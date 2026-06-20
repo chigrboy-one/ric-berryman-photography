@@ -11,10 +11,10 @@
 (function () {
   'use strict';
   var isLocal = ['localhost', '127.0.0.1', '0.0.0.0'].indexOf(location.hostname) !== -1;
-  try { if (/[?&]edit\b/.test(location.search) || /edit/.test(location.hash)) localStorage.setItem('rbEdit', '1'); } catch (e) {}
-  var wantsEdit = false;
-  try { wantsEdit = localStorage.getItem('rbEdit') === '1'; } catch (e) {}
-  wantsEdit = wantsEdit || /[?&]edit\b/.test(location.search) || /edit/.test(location.hash);
+  // strictly URL-driven: edit mode only while ?edit (or #edit) is in the address.
+  // Remove it and you get the normal page — no sticky state to clear.
+  var wantsEdit = /[?&]edit\b/.test(location.search) || /\bedit\b/.test(location.hash);
+  try { localStorage.removeItem('rbEdit'); } catch (e) {}   // clear any old sticky flag
   var region = document.querySelector('[data-layout-page]');
   if (!isLocal || !wantsEdit || !region) return;
 
