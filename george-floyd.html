@@ -266,7 +266,8 @@
       padding-bottom: 2.2rem; max-width: 34ch;
     }
     .diptych-inner {
-      max-width: 1500px; margin: 0 auto;
+      /* paired images grow with the viewport on large screens (never full-bleed) */
+      max-width: clamp(1400px, 94vw, 2100px); margin: 0 auto;
       display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 3rem);
       align-items: start;
     }
@@ -480,21 +481,21 @@
     <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/george-floyd/2020-05-28%2BGeorge%2BFloyd%2BProtest%2B-%2BDTLA%2B%2880%2Bof%2B116%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div></figure>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-06-06%2BLA%2BPROTESTS%2BBLM%2B%2817%2Bof%2B150%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-06-06%2BLA%2BPROTESTS%2BBLM%2B%2845%2Bof%2B150%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
     </section>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-06-06%2BLA%2BPROTESTS%2BBLM%2B%28135%2Bof%2B150%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-29%2BGeorge%2BFloyd%2BProtests%2B%2820%2Bof%2B34%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
     </section>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%28108%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-06-06%2BLA%2BPROTESTS%2BBLM%2B%28130%2Bof%2B150%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
@@ -505,7 +506,7 @@
     <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/george-floyd/2020-05-28%2BGeorge%2BFloyd%2BProtest%2B-%2BDTLA%2B%2857%2Bof%2B116%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div></figure>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-28%2BGeorge%2BFloyd%2BProtest%2B-%2BDTLA%2B%2842%2Bof%2B116%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-29%2BGeorge%2BFloyd%2BProtests%2B%2826%2Bof%2B34%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
@@ -516,14 +517,14 @@
     <div class="fn-essay"><p>What struck me most wasn't the anger — it was the clarity. People knew exactly why they were there. The signs said it all: "Can U Hear Us Now?" "No Justice No Peace." "The Time Is Always Right to Do What's Right." This wasn't chaos. This was a city finally saying what it had been holding in for years.</p></div>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-29%2BGeorge%2BFloyd%2BProtests%2B%2834%2Bof%2B34%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-29%2BGeorge%2BFloyd%2BProtests%2B%288%2Bof%2B34%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
     </section>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-29%2BGeorge%2BFloyd%2BProtests%2B%289%2Bof%2B34%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%28101%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
@@ -536,7 +537,7 @@
     <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/george-floyd/2020-06-06%2BLA%2BPROTESTS%2BBLM%2B%28136%2Bof%2B150%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div></figure>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%28202%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%2853%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
@@ -545,7 +546,7 @@
     <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%28116%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div></figure>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%28222%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%28184%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
@@ -554,7 +555,7 @@
     <div class="fn-essay"><p>I kept shooting. Through the tear gas and the chants, through the standoffs and the solidarity. Some moments were defiant, some were tender, and some were just surreal — a pig's head on a stick held up in front of a line of cops, a woman screaming into the void between police and protesters, two kids on bikes with matching signs. All of it real. All of it necessary.</p></div>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-06-06%2BLA%2BPROTESTS%2BBLM%2B%2814%2Bof%2B150%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/The%2BFinger%2B%281%2Bof%2B1%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
@@ -569,14 +570,14 @@
     <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%28198%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div></figure>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%2874%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-06-06%2BLA%2BPROTESTS%2BBLM%2B%2870%2Bof%2B150%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
     </section>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-06-06%2BLA%2BPROTESTS%2BBLM%2B%28148%2Bof%2B150%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%28247%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
@@ -591,28 +592,28 @@
     <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/george-floyd/Can%2Byou%2Bhear%2Bus%2Bnow%2B%281%2Bof%2B1%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div></figure>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/Fuck%2B12%2B%281%2Bof%2B1%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/Hands%2Bup%2Bdon%27t%2Bshoot%2B%281%2Bof%2B1%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
     </section>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/Hope%2B%281%2Bof%2B1%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/Tell%2Byour%2Bstory%2B%281%2Bof%2B1%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
     </section>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%28260%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%28266%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>
     </section>
 
     <section class="figure">
-      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">
+      <div class="diptych-inner">
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/2020-05-31%2BLA%2BProtest%2B-%2BGeorge%2BFloyd%2B%2841%2Bof%2B269%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
         <div class="figure-frame" data-reveal><img src="assets/images/george-floyd/Without%2Ba%2Bbadge%2B%281%2Bof%2B1%29.jpg" alt="George Floyd protests, downtown Los Angeles" loading="lazy"></div>
       </div>

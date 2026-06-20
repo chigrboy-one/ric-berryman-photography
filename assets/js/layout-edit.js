@@ -106,7 +106,7 @@
   /* ---------- serialize editor surface back to article HTML ---------- */
   function imgFig(cls,src,alt){return '    <figure class="fn-plate '+cls+'"><div class="fn-plate-inner" data-reveal><img src="'+src+'" alt="'+(alt||'')+'" loading="lazy"></div></figure>';}
   function diptych(a,b){
-    return '    <section class="figure">\n      <div class="diptych-inner" style="max-width:1400px;margin:0 auto;">\n'+
+    return '    <section class="figure">\n      <div class="diptych-inner">\n'+
       '        <div class="figure-frame" data-reveal><img src="'+a.src+'" alt="'+(a.alt||'')+'" loading="lazy"></div>\n'+
       '        <div class="figure-frame" data-reveal><img src="'+b.src+'" alt="'+(b.alt||'')+'" loading="lazy"></div>\n'+
       '      </div>\n    </section>';
