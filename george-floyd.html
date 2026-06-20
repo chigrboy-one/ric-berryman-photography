@@ -414,7 +414,7 @@
     .fn-plate img { width: 100%; height: auto; display: block; transform: scale(1.04); }
     .fn-plate--bleed { padding-left: 0; padding-right: 0; }
     .fn-plate--bleed .fn-plate-inner { max-width: none; }
-    .fn-plate--inset .fn-plate-inner { max-width: 920px; }
+    .fn-plate--inset .fn-plate-inner { max-width: clamp(920px, 76vw, 1700px); margin: 0 auto; }
     .fulltake-head {
       max-width: 1700px; margin: clamp(3rem,8vh,5rem) auto 0; padding: 0 2.5rem 1.5rem;
       display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
