@@ -1,0 +1,52 @@
+/* layout-edit.css — photo-essay layout editor UI (loaded only with ?edit) */
+.le-editing { padding-bottom: 4rem; }
+.le-surface {
+  display: flex; flex-wrap: wrap; align-items: flex-start;
+  gap: 10px; padding: 5rem 1.25rem 2rem; max-width: 1500px; margin: 0 auto;
+}
+.le-card {
+  position: relative; box-sizing: border-box; cursor: grab;
+  border: 1px solid rgba(232,228,221,0.14); background: #111; overflow: hidden;
+  transition: outline-color 0.2s ease;
+}
+.le-card:hover { outline: 2px solid rgba(232,228,221,0.45); }
+.le-card.le-dragging { opacity: 0.35; cursor: grabbing; }
+.le-card img { width: 100%; height: 220px; object-fit: cover; display: block; pointer-events: none; }
+/* widths encode the size mode */
+.le-card.le-full  { width: 100%; }
+.le-card.le-full img { height: 320px; }
+.le-card.le-inset { width: 66%; margin: 0 auto; }
+.le-card.le-half  { width: calc(50% - 5px); }
+.le-card.le-text  { width: 100%; cursor: grab; padding: 1rem 1.5rem; background: #0c0c0c; }
+.le-textprev { color: #cfcabf; font-family: 'Montserrat', sans-serif; font-size: 0.8rem; line-height: 1.5; pointer-events: none; }
+.le-textprev .lead { color: #e8e4dd; }
+.le-tag, .le-card .le-size {
+  position: absolute; top: 8px; font-family: 'Oswald', sans-serif; font-weight: 600;
+  font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+}
+.le-tag { right: 10px; color: #8a8a8a; }
+.le-card .le-size {
+  left: 8px; cursor: pointer; color: #0a0a0a; background: #e8e4dd;
+  border: 0; border-radius: 999px; padding: 0.4rem 0.9rem;
+  opacity: 0; transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+.le-card:hover .le-size { opacity: 1; }
+.le-card .le-size:hover { background: #d9013c; color: #e8e4dd; }
+
+.le-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 500;
+  display: flex; align-items: center; gap: 1.2rem; padding: 0.7rem 1.5rem;
+  background: #111; border-top: 1px solid rgba(232,228,221,0.18);
+  font-family: 'Oswald', sans-serif; color: #e8e4dd;
+}
+.le-badge { font-size: 0.62rem; letter-spacing: 0.35em; font-weight: 600; color: #d9013c; text-transform: uppercase; }
+.le-hint { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: #8a8a8a; }
+.le-status { margin-left: auto; font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: #8a8a8a; }
+.le-status.le-ok { color: #6bd47f; } .le-status.le-warn { color: #e6c34a; } .le-status.le-err { color: #d9013c; }
+.le-bar button {
+  font-family: 'Oswald', sans-serif; font-size: 0.66rem; letter-spacing: 0.3em; text-indent: 0.3em;
+  text-transform: uppercase; cursor: pointer; color: #0a0a0a; background: #e8e4dd;
+  border: 0; border-radius: 999px; padding: 0.6rem 1.6rem; transition: background 0.3s ease, color 0.3s ease;
+}
+.le-bar button:hover { background: #d9013c; color: #e8e4dd; }
+@media (max-width: 700px) { .le-card.le-inset { width: 100%; } }
