@@ -242,7 +242,7 @@
     }
 
     /* ============ FIGURES ============ */
-    .figure { padding: clamp(2.5rem, 7vh, 5.5rem) 2.5rem; }
+    .figure { padding: clamp(1.5rem, 4vh, 3rem) 2.5rem; }
     .figure-inner { max-width: 1500px; margin: 0 auto; position: relative; }
     .figure-frame { overflow: hidden; }
     .figure-frame img { width: 100%; height: auto; transform: scale(1.06); }
@@ -266,8 +266,9 @@
       padding-bottom: 2.2rem; max-width: 34ch;
     }
     .diptych-inner {
-      max-width: 1500px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 3rem);
+      /* paired images grow with the viewport on large screens (never full-bleed) */
+      max-width: clamp(1400px, 94vw, 2100px); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.55rem, 1.4vw, 1.2rem);
       align-items: start;
     }
     @media (max-width: 820px) {
@@ -413,6 +414,7 @@
     .fn-plate img { width: 100%; height: auto; display: block; transform: scale(1.04); }
     .fn-plate--bleed { padding-left: 0; padding-right: 0; }
     .fn-plate--bleed .fn-plate-inner { max-width: none; }
+    .fn-plate--inset .fn-plate-inner { max-width: clamp(920px, 76vw, 1700px); margin: 0 auto; }
     .fulltake-head {
       max-width: 1700px; margin: clamp(3rem,8vh,5rem) auto 0; padding: 0 2.5rem 1.5rem;
       display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
@@ -468,107 +470,289 @@
     </div>
   </header>
 
+  <div data-layout-page="eaton-fire" data-layout-alt="Eaton Fire aftermath, Altadena">
+<!-- LAYOUT:START -->
     <div class="fn-essay"><p class="lead">Witnessing resilience amid destruction — documenting the aftermath.</p></div>
     <div class="fn-essay"><p>The devastation left in the wake of the Eaton Fire in Altadena is difficult to put into words. As a photographer, I’ve always believed in the power of images to tell stories that words alone cannot convey. I ventured into the heart of a community forever changed, seeking to document not just the destruction but also the resilience, compassion, and humanity that rose from the ashes.</p></div>
-    <figure class="fn-plate"><div class="fn-plate-inner"><img src="assets/images/field-notes/eaton-fire/eaton-fire-02.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-02.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
     <div class="fn-essay"><p>When I first arrived in Altadena with my camera, my intention was to capture a few images of familiar places, like Fox’s Restaurant, which now stands as little more than a doorway and its sign—and I did. But as I parked on a nearby side street and began to walk, I was struck by an overwhelming sense of disbelief. The scenes before me felt like something out of a movie—surreal, unimaginable, and heartbreaking.</p></div>
     <div class="fn-essay"><p>This was still early days and they just started letting residents back in. Save for law enforcement, there were very few people and the stillness and calm was surreal with the backdrop of the devastation. But as I walked, I found a woman standing motionless, staring at what was once her home, now reduced to ash and rubble. Across the street, a man sifted through debris, his hands combing through the remnants of his life without so much as a mask for protection. I could feel the weight of their loss, and in that moment, lifting my camera felt intrusive, as though I were trespassing on a profoundly intimate and painful experience so I didn’t. Overwhelmed, I returned to my car and drove away.</p></div>
-    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner"><img src="assets/images/field-notes/eaton-fire/eaton-fire-03.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-03.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
     <div class="fn-essay"><p>I returned about a week later, with much of the area reopened to traffic. The National Guard was stationed there, alongside utility workers, law enforcement, and so many people in their cars, trying to get a glimpse of the destruction. My intent wasn’t just to see it but to document as much as I could. Still, the sense of intrusion lingered and as soon as I stepped out of my car and raised my camera, a local man called out to me. I braced for him to chase me off—something I would have understood completely—but instead, he was just curious about what I was doing.</p></div>
     <div class="fn-essay"><p>We struck up a conversation, and I learned that he and his wife had lost everything. She couldn’t yet bring herself to visit the site, so he was there alone, waiting for an insurance adjuster. What struck me most was his resilience. While he was clearly moved by the enormity of his family’s loss, he remained composed and pragmatic. Optimistic might not be the right word, but I marveled at how he maintained a sense of calm, even without knowing what the next chapter of his life would hold for him and his family. Would they rebuild? Sell the land? Where would they go if they chose to leave?</p></div>
-    <figure class="fn-plate"><div class="fn-plate-inner"><img src="assets/images/field-notes/eaton-fire/eaton-fire-04.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-04.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
     <div class="fn-essay"><p>By now, the world knows that the Eaton Fire consumed thousands of acres, destroyed homes, businesses, and landmarks, and left behind a landscape of charred ruins and shattered lives. Walking through the remains of what was once a vibrant neighborhood, I couldn’t help but reflect on the broader significance of this tragedy. This isn’t just a local disaster; it’s a stark reminder of how climate change is reshaping our world. Extreme weather, prolonged droughts, and relentless heat waves have made fires like this increasingly common.</p></div>
     <div class="fn-essay"><p>Climate change is not a distant or abstract issue—it’s here, it’s now. It’s staring us right in the face and it’s profoundly impacting the everyday lives of everyday people, regardless of political affiliation, race, color, or creed. The irony wasn’t lost on me as I recalled a summer barbecue at a friend’s house in this very neighborhood several years ago. We’d debated climate change over cocktails, with my friend dismissing “global warming” as nothing more than a liberal money-making machine and a hoax. Well, that “hoax” just erased that charming little house from existence. I’ve since lost touch with those friends and don’t know if they were still living there, but wherever they are, I hope they’re safe.</p></div>
-    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner"><img src="assets/images/field-notes/eaton-fire/eaton-fire-05.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-05.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
 
-  <div class="fulltake-head"><h2>The Full Take</h2><span>91 frames · click to view</span></div>
-  <div class="arch-grid" data-gallery="fn-eaton-fire" data-gallery-dir="assets/images/field-notes/eaton-fire">
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-06.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-07.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 750 / 1125"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-08.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-09.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-10.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-11.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-12.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-13.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-14.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-15.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-16.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-17.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-18.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-19.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-20.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-21.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-22.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-23.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-24.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-25.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-26.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-27.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-28.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-29.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-30.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-31.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-32.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-33.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-34.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-35.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-36.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-37.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-38.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-39.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 750 / 1125"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-40.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-41.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-42.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-43.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-44.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-45.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-46.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-47.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-48.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-49.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 750 / 1125"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-50.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-51.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-52.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-53.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-54.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-55.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-56.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-57.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-58.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-59.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-60.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 750 / 1125"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-61.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-62.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-63.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-64.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-65.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-66.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-67.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-68.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-69.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 750 / 1125"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-70.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-71.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-72.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-73.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-74.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-75.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-76.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-77.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-78.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-79.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 750 / 1125"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-80.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-81.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-82.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-83.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-84.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-85.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-86.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-87.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-88.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-89.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-90.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/eaton-fire/eaton-fire-91.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-06.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-07.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-08.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-09.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-10.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-11.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-12.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-13.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-14.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-15.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-16.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-17.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-18.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-19.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-20.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-21.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-22.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-23.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-24.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-25.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-26.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-27.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-28.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-29.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-30.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-31.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-32.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-33.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-34.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-35.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-36.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-37.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-38.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-39.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-40.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-41.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-42.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-43.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-44.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-45.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-46.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-47.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-48.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-49.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-50.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-51.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-52.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-53.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-54.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-55.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-56.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-57.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-58.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-59.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-60.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-61.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-62.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-63.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-64.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-65.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-66.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-67.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-68.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-69.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-70.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-71.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-72.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-73.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-74.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-75.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-76.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-77.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-78.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-79.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-80.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-81.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-82.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-83.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-84.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-85.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-86.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-87.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-88.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-89.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-90.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/eaton-fire/eaton-fire-91.jpg" alt="Eaton Fire aftermath, Altadena" loading="lazy"></div>
+      </div>
+    </section>
+  <!-- LAYOUT:END -->
   </div>
 
   <a class="next-band" href="/irwindale.html" data-cursor="view">
@@ -780,6 +964,7 @@
   })();
   </script>
   <script src="/assets/js/img-protect.js" defer></script>
+  <script src="/assets/js/layout-edit.js" defer></script>
 
 
 </body>

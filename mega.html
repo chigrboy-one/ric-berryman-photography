@@ -242,7 +242,7 @@
     }
 
     /* ============ FIGURES ============ */
-    .figure { padding: clamp(2.5rem, 7vh, 5.5rem) 2.5rem; }
+    .figure { padding: clamp(1.5rem, 4vh, 3rem) 2.5rem; }
     .figure-inner { max-width: 1500px; margin: 0 auto; position: relative; }
     .figure-frame { overflow: hidden; }
     .figure-frame img { width: 100%; height: auto; transform: scale(1.06); }
@@ -266,8 +266,9 @@
       padding-bottom: 2.2rem; max-width: 34ch;
     }
     .diptych-inner {
-      max-width: 1500px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 3rem);
+      /* paired images grow with the viewport on large screens (never full-bleed) */
+      max-width: clamp(1400px, 94vw, 2100px); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.55rem, 1.4vw, 1.2rem);
       align-items: start;
     }
     @media (max-width: 820px) {
@@ -413,6 +414,7 @@
     .fn-plate img { width: 100%; height: auto; display: block; transform: scale(1.04); }
     .fn-plate--bleed { padding-left: 0; padding-right: 0; }
     .fn-plate--bleed .fn-plate-inner { max-width: none; }
+    .fn-plate--inset .fn-plate-inner { max-width: clamp(920px, 76vw, 1700px); margin: 0 auto; }
     .fulltake-head {
       max-width: 1700px; margin: clamp(3rem,8vh,5rem) auto 0; padding: 0 2.5rem 1.5rem;
       display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
@@ -468,31 +470,62 @@
     </div>
   </header>
 
+  <div data-layout-page="mega" data-layout-alt="MAGA rally, Huntington Beach">
+<!-- LAYOUT:START -->
     <div class="fn-essay"><p class="lead">You can&#x27;t always get what you want. But if you try sometimes, you get what you need.</p></div>
     <div class="fn-essay"><p>I went out recently to shoot planes at the Pacific Air Show in Huntington Beach, CA. It&#x27;s been an annual tradition for several years despite the show not changing much from year-to-year. Heck, I even bought tickets this year so I could be closer to a bathroom and food. Maybe in that order, maybe not. But it was a gloriously warm and sunny day when I left home in the Pasadena area, but by the time I got to the beach, the coast was foggier than a preacher&#x27;s glasses in a whorehouse. Visibility? Gone. Planes? Nada.</p></div>
-    <figure class="fn-plate"><div class="fn-plate-inner"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-18.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-18.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
     <div class="fn-essay"><p>Now, this isn&#x27;t a political website, and I won&#x27;t air my politics here (well, maybe a little), but people are a little nuts in Huntington Beach. Nuts for Trump, that is. I think it was actually an &quot;Asians for Trump&quot; rally—most of whom seemed to be of Vietnamese descent as far as I could tell, with a sprinkling of some crazy white folk. One white guy was yelling, &quot;No voodoo in America! Look it up! They&#x27;re eating our dogs and cats! No voodoo in America!&quot;—all while choking down what appeared to be a hot dog. Now I&#x27;d say that&#x27;s as goddamned American in the year 2024 as any F-22 Raptor!</p></div>
     <div class="fn-essay"><p>As I stood there, trying to make sense of the scene, I realized: sometimes you go out looking for American military muscle but end up with a front-row seat to the circus instead. Not exactly what I came for, but hey, sometimes, you get what you need.</p></div>
-    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-22.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-22.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
 
-  <div class="fulltake-head"><h2>The Full Take</h2><span>19 frames · click to view</span></div>
-  <div class="arch-grid" data-gallery="fn-mega" data-gallery-dir="assets/images/field-notes/mega">
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-26.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-28.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-30.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-34.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-4.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-43.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-49.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-50.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-53.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-56.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2353 / 3529"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-61.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-64.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-66.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-7.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3750"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-73.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 1667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-83.jpg" alt="MAGA rally, Huntington Beach" loading="lazy" style="aspect-ratio: 2500 / 3125"></figure>
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-26.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-28.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-30.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-34.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-4.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-43.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-49.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-50.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-53.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-56.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-61.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-64.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-66.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-7.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-73.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/mega/2024-10-05%2BMEGA%2BHuntington%2BBeach-83.jpg" alt="MAGA rally, Huntington Beach" loading="lazy"></div></figure>
+  <!-- LAYOUT:END -->
   </div>
 
   <a class="next-band" href="/comet.html" data-cursor="view">
@@ -704,6 +737,7 @@
   })();
   </script>
   <script src="/assets/js/img-protect.js" defer></script>
+  <script src="/assets/js/layout-edit.js" defer></script>
 
 
 </body>

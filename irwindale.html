@@ -242,7 +242,7 @@
     }
 
     /* ============ FIGURES ============ */
-    .figure { padding: clamp(2.5rem, 7vh, 5.5rem) 2.5rem; }
+    .figure { padding: clamp(1.5rem, 4vh, 3rem) 2.5rem; }
     .figure-inner { max-width: 1500px; margin: 0 auto; position: relative; }
     .figure-frame { overflow: hidden; }
     .figure-frame img { width: 100%; height: auto; transform: scale(1.06); }
@@ -266,8 +266,9 @@
       padding-bottom: 2.2rem; max-width: 34ch;
     }
     .diptych-inner {
-      max-width: 1500px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 3rem);
+      /* paired images grow with the viewport on large screens (never full-bleed) */
+      max-width: clamp(1400px, 94vw, 2100px); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.55rem, 1.4vw, 1.2rem);
       align-items: start;
     }
     @media (max-width: 820px) {
@@ -413,6 +414,7 @@
     .fn-plate img { width: 100%; height: auto; display: block; transform: scale(1.04); }
     .fn-plate--bleed { padding-left: 0; padding-right: 0; }
     .fn-plate--bleed .fn-plate-inner { max-width: none; }
+    .fn-plate--inset .fn-plate-inner { max-width: clamp(920px, 76vw, 1700px); margin: 0 auto; }
     .fulltake-head {
       max-width: 1700px; margin: clamp(3rem,8vh,5rem) auto 0; padding: 0 2.5rem 1.5rem;
       display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
@@ -468,80 +470,210 @@
     </div>
   </header>
 
+  <div data-layout-page="irwindale" data-layout-alt="Irwindale Speedway, final days">
+<!-- LAYOUT:START -->
     <div class="fn-essay"><p class="lead">Chrome, steel, and the last days of a speedway — shot entirely on film.</p></div>
     <div class="fn-essay"><p>The Irwindale Speedway had always been a low-key myth in my life—a rumbling ghost whose sounds drifted through open windows on warm summer evenings, whispering tales of burnt rubber and spent octane. For years, I didn&#x27;t even know where the damn thing was, only that it existed out there somewhere, not in my small corner of LA, but close enough to hear—a modern-day coliseum, not close enough to touch, but close enough to haunt.</p></div>
-    <figure class="fn-plate"><div class="fn-plate-inner"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-1-3.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-1-3.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
     <div class="fn-essay"><p>Sadly, the city of Irwindale has decided to demolish the Speedway and make way for a bleak expanse of beige warehouses built to store other, smaller beige things. As if this part of Irwindale isn&#x27;t beautiful enough!</p></div>
     <div class="fn-essay"><p>A buddy of mine invited me to one of the Speedway&#x27;s final events—a classic car show called the &quot;Mooneyes Christmas Party&quot;, which apparently is, or…now was, an annual event.</p></div>
-    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-12.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-12.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
     <div class="fn-essay"><p>I decided to leave my digital camera at home and go full analog, bringing only a film camera. Three rolls of film. No safety net. Just me, a sea of vintage wheels, and the hum of impending doom. Shooting on film felt right—like a nod to the Speedway&#x27;s spirit, a way to bottle its magic without overdosing on pixels. I developed the film myself later that evening, each image a small act of rebellion against the oncoming tide of warehouses and forklifts.</p></div>
     <div class="fn-essay"><p>The event itself was glorious—a kaleidoscope of chrome and steel, roaring engines, and stories baked into rust. I got lost in the details: the curve of a fender, the glint of sunlight on a hood ornament, the smell of fuel mingling with nostalgia, rockabilly, and plenty of Brylcreem (though, not on my head).</p></div>
-    <figure class="fn-plate"><div class="fn-plate-inner"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-14.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-14.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
     <div class="fn-essay"><p>Very soon, the roar will fade, the track will crumble, and the Speedway will vanish—another cool, weird, imperfect thing sacrificed on the altar of &quot;progress&quot;. But I have those three rolls of film, and somewhere in the grain of those negatives, the Speedway lives on—defiant, roaring, and just a little bit wild.</p></div>
 
-  <div class="fulltake-head"><h2>The Full Take</h2><span>65 frames · click to view</span></div>
-  <div class="arch-grid" data-gallery="fn-irwindale" data-gallery-dir="assets/images/field-notes/irwindale">
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-15.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-16.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-17.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-18.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-19.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-2.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-20.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-21.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 750 / 1125"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-23.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-24.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-26.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-27.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-28.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-29.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 666"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-3.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-30.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-31.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-32.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-34.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 750 / 1125"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-35.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-36.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-37.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-38.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 666"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-40.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-41.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 750 / 1125"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-43.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-44.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-47.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-48.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-49.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-5.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-50.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-51.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-52.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-53.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-55.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-56.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-59.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-6.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-60.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-61.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-62.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-63.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-64.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-67.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-7.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-70.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-71.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-72.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-73.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-75.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-76.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-79.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-80.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-83.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-85.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-86.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-87.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-88.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-89.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-9.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy" style="aspect-ratio: 1000 / 667"></figure>
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-15.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-16.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-17.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-18.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-19.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-2.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-20.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-21.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-23.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-24.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-26.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-27.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-28.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-29.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-3.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-30.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-31.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-32.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-34.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-35.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-36.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-37.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-38.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-40.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-41.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-43.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-44.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-47.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-48.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-49.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-5.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-50.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-51.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-52.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-53.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-55.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-56.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-59.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-6.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-60.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-61.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-62.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-63.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-64.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-67.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-7.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-70.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-71.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-72.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-73.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-75.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-76.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-79.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-80.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-83.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-85.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-86.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-87.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-88.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-89.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/irwindale/2024-12-07%2BIrwindale%2BSpeedway%2BMoonEyes%2BClassix-9.jpg" alt="Irwindale Speedway, MoonEyes Classic" loading="lazy"></div>
+      </div>
+    </section>
+  <!-- LAYOUT:END -->
   </div>
 
   <a class="next-band" href="/fire-dancers.html" data-cursor="view">
@@ -753,6 +885,7 @@
   })();
   </script>
   <script src="/assets/js/img-protect.js" defer></script>
+  <script src="/assets/js/layout-edit.js" defer></script>
 
 
 </body>
