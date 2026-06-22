@@ -17,12 +17,15 @@ Allow: /
 # AI training crawlers — not welcome
 # -----------------------------------
 
-# OpenAI
+# OpenAI — block model-training (GPTBot); allow live answer/citation fetches
 User-agent: GPTBot
 Disallow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 
 # Anthropic
 User-agent: ClaudeBot
@@ -58,9 +61,12 @@ Disallow: /
 User-agent: Amazonbot
 Disallow: /
 
-# Perplexity
+# Perplexity — answer engine, cites and links back
 User-agent: PerplexityBot
-Disallow: /
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
 
 # Cohere
 User-agent: cohere-ai
