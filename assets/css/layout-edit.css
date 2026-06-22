@@ -24,7 +24,17 @@
   position: absolute; top: 8px; font-family: 'Oswald', sans-serif; font-weight: 600;
   font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
 }
-.le-tag { right: 10px; color: #8a8a8a; }
+.le-tag { left: 10px; color: #8a8a8a; }
+.le-card .le-del {
+  position: absolute; top: 7px; right: 7px; z-index: 3;
+  width: 26px; height: 26px; padding: 0; line-height: 22px; text-align: center;
+  font-size: 1.05rem; cursor: pointer;
+  color: #e8e4dd; background: rgba(10,10,10,0.55);
+  border: 1px solid rgba(232,228,221,0.25); border-radius: 999px;
+  opacity: 0; transition: opacity 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.le-card:hover .le-del { opacity: 1; }
+.le-card .le-del:hover { background: #d9013c; color: #fff; border-color: #d9013c; }
 .le-card .le-size {
   left: 8px; cursor: pointer; color: #0a0a0a; background: #e8e4dd;
   border: 0; border-radius: 999px; padding: 0.4rem 0.9rem;

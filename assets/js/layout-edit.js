@@ -85,6 +85,14 @@
       });
       card.appendChild(btn);
     }
+    // remove button — photos drop instantly; text/locked blocks confirm first
+    var del=document.createElement('button'); del.type='button'; del.className='le-del'; del.title='Remove'; del.textContent='×';
+    del.addEventListener('click', function(e){ e.stopPropagation();
+      if(b.kind==='img' || window.confirm('Remove this '+(b.kind==='raw'?'locked block':'text block')+'?\n\n(Reload before saving to undo.)')){
+        card.remove(); markDirty();
+      }
+    });
+    card.appendChild(del);
     card.addEventListener('dragstart', function(e){ card.classList.add('le-dragging'); if(e.dataTransfer){e.dataTransfer.effectAllowed='move'; try{e.dataTransfer.setData('text/plain','card');}catch(_){}} });
     card.addEventListener('dragend', function(){ card.classList.remove('le-dragging'); markDirty(); });
     return card;
@@ -155,7 +163,7 @@
   function toolbar(){
     var bar=document.createElement('div'); bar.className='le-bar';
     bar.innerHTML='<span class="le-badge">LAYOUT</span>'+
-      '<span class="le-hint">drag to reorder · click a photo to cycle FULL / INSET / HALF · two HALFs pair up</span>'+
+      '<span class="le-hint">drag to reorder · click a photo to cycle FULL / INSET / HALF · two HALFs pair up · hover &amp; × to remove</span>'+
       '<span id="le-status" class="le-status">Ready</span>'+
       '<button id="le-save" type="button">Save</button>';
     document.body.appendChild(bar);
