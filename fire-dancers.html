@@ -242,7 +242,7 @@
     }
 
     /* ============ FIGURES ============ */
-    .figure { padding: clamp(2.5rem, 7vh, 5.5rem) 2.5rem; }
+    .figure { padding: clamp(1.5rem, 4vh, 3rem) 2.5rem; }
     .figure-inner { max-width: 1500px; margin: 0 auto; position: relative; }
     .figure-frame { overflow: hidden; }
     .figure-frame img { width: 100%; height: auto; transform: scale(1.06); }
@@ -266,8 +266,9 @@
       padding-bottom: 2.2rem; max-width: 34ch;
     }
     .diptych-inner {
-      max-width: 1500px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 3rem);
+      /* paired images grow with the viewport on large screens (never full-bleed) */
+      max-width: clamp(1400px, 94vw, 2100px); margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: clamp(0.55rem, 1.4vw, 1.2rem);
       align-items: start;
     }
     @media (max-width: 820px) {
@@ -413,6 +414,7 @@
     .fn-plate img { width: 100%; height: auto; display: block; transform: scale(1.04); }
     .fn-plate--bleed { padding-left: 0; padding-right: 0; }
     .fn-plate--bleed .fn-plate-inner { max-width: none; }
+    .fn-plate--inset .fn-plate-inner { max-width: clamp(920px, 76vw, 1700px); margin: 0 auto; }
     .fulltake-head {
       max-width: 1700px; margin: clamp(3rem,8vh,5rem) auto 0; padding: 0 2.5rem 1.5rem;
       display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
@@ -468,52 +470,121 @@
     </div>
   </header>
 
+  <div data-layout-page="fire-dancers" data-layout-alt="Fire performers at the Salton Sea">
+<!-- LAYOUT:START -->
     <div class="fn-essay"><p class="lead">Fire performers, post-apocalyptic landscapes, and the Salton Sea&#x27;s strangest night.</p></div>
     <div class="fn-essay"><p>Recently, I found myself in a group shoot at Bombay Beach on the infamous Salton Sea. For the unacquainted, the Salton Sea is California&#x27;s largest accidental lake. In its prime, it was as swanky as a flamingo in a tuxedo—a place where you could go water skiing with Frank Sinatra and catch a fish with your teeth, all while keeping your cocktail dry. Or so I&#x27;ve heard. But fast forward to today, and it&#x27;s devolved into a charming post-apocalyptic paradise, where the beaches aren&#x27;t made of sand but the delicate crunch of bleached fish bones and shattered dreams. True story.</p></div>
-    <figure class="fn-plate"><div class="fn-plate-inner"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BJose%2BFuentes%2BjjfPro-13.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BJose%2BFuentes%2BjjfPro-13.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
     <div class="fn-essay"><p>The mastermind behind this photographic circus was none other than a man known only by his initials: PJ. PJ&#x27;s real name is shrouded in mystery—perhaps it&#x27;s Philbert Johnson, or maybe Paradox Jones. Nobody knows, I certainly don&#x27;t. What I do know is that his two-letter alias only adds to his James-Bond-meets-Banksy aura. PJ isn&#x27;t just a fine photographer; he&#x27;s got the uncanny ability to herd creatives with the efficiency of a Swiss watch and the patience of a yoga instructor who&#x27;s too Zen to care.</p></div>
     <div class="fn-essay"><p>Lately, PJ&#x27;s been entranced by fire performers, who are essentially the love children of flamethrowers and interpretive dancers. Naturally, he managed to corral a troupe of these fiery daredevils, along with a gaggle of photographers (myself included), for a rendezvous at Bombay Beach. The combination of creative types, burning things, and a crumbling wasteland? It was either going to be an artistic epiphany or a spectacular insurance claim waiting to happen. Not that anyone would notice if you burned the place to the ground, as it would only add to the apocalyptic ambiance and might even raise property values of Bombay Beach.</p></div>
-    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BJose%2BFuentes%2BjjfPro-18.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BJose%2BFuentes%2BjjfPro-18.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
     <div class="fn-essay"><p>Performers: Kayla Kirti, Madie Coryell, Natalie, Bottled.Fire, Jorge Fuentes, Malibu Mermaid, sp3ktral_Phyre</p></div>
     <div class="fn-essay"><p>Photographers: PJ, Alex, Gerard, Steve</p></div>
-    <figure class="fn-plate"><div class="fn-plate-inner"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BJose%2BFuentes%2BjjfPro-7.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BJose%2BFuentes%2BjjfPro-7.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
     <div class="fn-essay"><p>All photos shown are mine. Copyright 2024 All Rights Reserved.</p></div>
 
-  <div class="fulltake-head"><h2>The Full Take</h2><span>37 frames · click to view</span></div>
-  <div class="arch-grid" data-gallery="fn-fire-dancers" data-gallery-dir="assets/images/field-notes/fire-dancers">
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BKayla%2BKirti-26.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BKayla%2BKirti-3.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMadie%2BCoryell%2Bmadiefirefly-18.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1250"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMadie%2BCoryell%2Bmadiefirefly-2.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1250"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMadie%2BCoryell%2Bmadiefirefly-5.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1250"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMadie%2BCoryell%2Bmadiefirefly-7.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1250"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMadie%2BCoryell%2Bmadiefirefly-8.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1250"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-11.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-16.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-2.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-22.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-23.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-34.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-38.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-9.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BNatalie-%2Bnata_dont_liemadiefirefly-11.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BNatalie-%2Bnata_dont_liemadiefirefly-13.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BNatalie-%2Bnata_dont_liemadiefirefly-16.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BNatalie-%2Bnata_dont_liemadiefirefly-4.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-18.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-19.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-20.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-22.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-25.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-28.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-32.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-37.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-43.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1250"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bsp3ktral_phyre-10.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bsp3ktral_phyre-12.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bsp3ktral_phyre-15.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bsp3ktral_phyre-17.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1000 / 1500"></figure>
-      <figure class="arch-item" data-cursor="view"><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bsp3ktral_phyre-21.jpg" alt="Fire performers at the Salton Sea" loading="lazy" style="aspect-ratio: 1500 / 1000"></figure>
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BKayla%2BKirti-26.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BKayla%2BKirti-3.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMadie%2BCoryell%2Bmadiefirefly-18.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMadie%2BCoryell%2Bmadiefirefly-2.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMadie%2BCoryell%2Bmadiefirefly-5.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMadie%2BCoryell%2Bmadiefirefly-7.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMadie%2BCoryell%2Bmadiefirefly-8.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-11.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-16.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-2.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-22.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-23.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-34.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-38.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BMalibu%2BMermaid-9.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BNatalie-%2Bnata_dont_liemadiefirefly-11.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BNatalie-%2Bnata_dont_liemadiefirefly-13.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BNatalie-%2Bnata_dont_liemadiefirefly-16.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2BNatalie-%2Bnata_dont_liemadiefirefly-4.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-18.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-19.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-20.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-22.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-25.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-28.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-32.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-37.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bbottled.fire-43.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bsp3ktral_phyre-10.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="figure">
+      <div class="diptych-inner">
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bsp3ktral_phyre-12.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+        <div class="figure-frame" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bsp3ktral_phyre-15.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div>
+      </div>
+    </section>
+
+    <figure class="fn-plate fn-plate--inset"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bsp3ktral_phyre-17.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+
+    <figure class="fn-plate fn-plate--bleed"><div class="fn-plate-inner" data-reveal><img src="assets/images/field-notes/fire-dancers/24-12-10%2BBombay%2BBeach%2B-%2Bsp3ktral_phyre-21.jpg" alt="Fire performers at the Salton Sea" loading="lazy"></div></figure>
+  <!-- LAYOUT:END -->
   </div>
 
   <a class="next-band" href="/mega.html" data-cursor="view">
@@ -725,6 +796,7 @@
   })();
   </script>
   <script src="/assets/js/img-protect.js" defer></script>
+  <script src="/assets/js/layout-edit.js" defer></script>
 
 
 </body>

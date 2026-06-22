@@ -45,15 +45,23 @@
   function parse(){
     var blocks=[];
     [].forEach.call(region.children, function(el){
-      if(el.classList && el.classList.contains('fn-essay')){
+      if(el.nodeType!==1) return;
+      // anything explicitly locked, OR anything we don't recognize, is preserved
+      // verbatim (draggable, not resizable) so save() never drops custom markup —
+      // e.g. the comet "Anza Borrego" overlay or a hand-tuned diptych width.
+      if(el.hasAttribute('data-le-raw')){
+        blocks.push({kind:'raw', html: el.outerHTML});
+      } else if(el.classList.contains('fn-essay')){
         blocks.push({kind:'text', html: el.outerHTML});
-      } else if(el.classList && el.classList.contains('fn-plate')){
+      } else if(el.classList.contains('fn-plate')){
         var im=el.querySelector('img');
         blocks.push({kind:'img', size: el.classList.contains('fn-plate--bleed')?'full':'inset', src: im.getAttribute('src'), alt: im.alt||ALT});
-      } else if(el.matches && el.matches('section.figure')){
+      } else if(el.matches('section.figure')){
         el.querySelectorAll('.figure-frame img, .fn-plate-inner img').forEach(function(im){
           blocks.push({kind:'img', size:'half', src: im.getAttribute('src'), alt: im.alt||ALT});
         });
+      } else {
+        blocks.push({kind:'raw', html: el.outerHTML});
       }
     });
     return blocks;
@@ -63,10 +71,10 @@
   var SIZES=['full','inset','half'];
   function makeCard(b){
     var card=document.createElement('div');
-    card.className='le-card le-'+(b.kind==='text'?'text':b.size);
+    card.className='le-card le-'+(b.kind==='text'||b.kind==='raw'?'text':b.size);
     card.setAttribute('draggable','true');
     card.dataset.kind=b.kind;
-    if(b.kind==='text'){ card.__html=b.html; var tp=document.createElement('div'); tp.className='le-textprev'; tp.innerHTML=b.html; card.appendChild(tp); var tag=document.createElement('span'); tag.className='le-tag'; tag.textContent='TEXT'; card.appendChild(tag); }
+    if(b.kind==='text'||b.kind==='raw'){ card.__html=b.html; var tp=document.createElement('div'); tp.className='le-textprev'; tp.innerHTML=b.html; card.appendChild(tp); var tag=document.createElement('span'); tag.className='le-tag'; tag.textContent=(b.kind==='raw'?'LOCKED':'TEXT'); card.appendChild(tag); }
     else {
       card.dataset.src=b.src; card.dataset.alt=b.alt||''; card.dataset.size=b.size;
       var img=document.createElement('img'); img.src=b.src; img.setAttribute('draggable','false'); card.appendChild(img);
@@ -116,7 +124,7 @@
     var out=[]; var i=0;
     while(i<cards.length){
       var c=cards[i];
-      if(c.dataset.kind==='text'){ out.push('    '+c.__html); i++; }
+      if(c.dataset.kind==='text'||c.dataset.kind==='raw'){ out.push('    '+c.__html); i++; }
       else if(c.dataset.size==='full'){ out.push(imgFig('fn-plate--bleed',c.dataset.src,c.dataset.alt)); i++; }
       else if(c.dataset.size==='inset'){ out.push(imgFig('fn-plate--inset',c.dataset.src,c.dataset.alt)); i++; }
       else { // half run
