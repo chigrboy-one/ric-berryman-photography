@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noimageai">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-5T5J0FYS6B"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-5T5J0FYS6B');
+  </script>
+
+  <title>Privacy Policy — Ric Berryman</title>
+  <meta name="description" content="Privacy policy for ricberryman.com — what data is collected, how cookies and analytics are used, and your choices.">
+  <link rel="canonical" href="https://ricberryman.com/privacy.html">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #0a0a0a;
+      --ink: #111111;
+      --bone: #e8e4dd;
+      --grey: #8a8a8a;
+      --accent: #d9013c;
+      --bebas: 'Bebas Neue', sans-serif;
+      --oswald: 'Oswald', sans-serif;
+      --mont: 'Montserrat', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { background: var(--black); }
+    body {
+      background: var(--black);
+      color: var(--bone);
+      font-family: var(--mont);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    ::selection { background: var(--accent); color: var(--bone); }
+    a { color: inherit; text-decoration: none; }
+
+    /* ============ NAV ============ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 2.5rem;
+      mix-blend-mode: difference;
+    }
+    .nav-mark { font-family: var(--bebas); font-size: 1.4rem; letter-spacing: 0.12em; color: #fff; }
+    .nav-links { display: flex; gap: 2.25rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--oswald); font-weight: 400; font-size: 0.72rem;
+      letter-spacing: 0.3em; text-transform: uppercase; color: #fff;
+      position: relative; padding-bottom: 4px;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; bottom: 0;
+      width: 100%; height: 1px; background: #fff;
+      transform: scaleX(0); transform-origin: right;
+      transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+    }
+    .nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+    .nav-burger { display: none; background: none; border: 0; cursor: pointer; width: 30px; height: 16px; position: relative; z-index: 110; padding: 0; }
+    .nav-burger span { position: absolute; left: 0; width: 100%; height: 2px; background: #fff; transition: transform 0.45s cubic-bezier(0.76,0,0.24,1), opacity 0.3s ease; }
+    .nav-burger span:nth-child(1) { top: 2px; }
+    .nav-burger span:nth-child(2) { bottom: 2px; }
+    .nav.open .nav-burger span:nth-child(1) { top: 7px; transform: rotate(45deg); }
+    .nav.open .nav-burger span:nth-child(2) { bottom: 7px; transform: rotate(-45deg); }
+    @media (max-width: 760px) {
+      .nav { padding: 1.1rem 1.25rem; }
+      .nav-mark { font-size: 1.05rem; white-space: nowrap; position: relative; z-index: 110; }
+      .nav-burger { display: block; }
+      .nav.open { mix-blend-mode: normal; transform: none !important; }
+      .nav-links {
+        position: fixed; inset: 0; z-index: 105;
+        flex-direction: column; align-items: flex-start; justify-content: center;
+        gap: 0.15rem; padding: 2rem 1.5rem; margin: 0;
+        background: var(--black);
+        transform: translateY(-100%); opacity: 0; pointer-events: none;
+        transition: transform 0.6s cubic-bezier(0.76,0,0.24,1), opacity 0.4s ease;
+      }
+      .nav.open .nav-links { transform: translateY(0); opacity: 1; pointer-events: auto; }
+      .nav-links a {
+        font-family: var(--bebas); font-size: clamp(2.2rem, 11vw, 3rem); letter-spacing: 0.03em;
+        color: var(--bone); padding-bottom: 0; white-space: nowrap;
+      }
+      .nav-links a::after { display: none; }
+    }
+
+    /* ============ LEGAL CONTENT ============ */
+    .legal {
+      max-width: 760px; margin: 0 auto;
+      padding: clamp(8rem, 18vh, 12rem) 1.5rem clamp(4rem, 10vh, 7rem);
+    }
+    .legal-kicker {
+      font-family: var(--oswald); font-weight: 300; font-size: 0.7rem;
+      letter-spacing: 0.5em; text-indent: 0.5em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1.1rem;
+    }
+    .legal h1 {
+      font-family: var(--bebas); text-transform: uppercase;
+      font-size: clamp(3rem, 9vw, 5.5rem); line-height: 0.9; color: var(--bone);
+      margin-bottom: 0.8rem;
+    }
+    .legal .updated {
+      font-family: var(--oswald); font-weight: 300; font-size: 0.66rem;
+      letter-spacing: 0.28em; text-transform: uppercase; color: var(--grey);
+      margin-bottom: 3rem;
+    }
+    .legal h2 {
+      font-family: var(--oswald); font-weight: 500;
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem); letter-spacing: 0.04em;
+      color: var(--bone); margin: 2.6rem 0 0.9rem;
+    }
+    .legal p, .legal li {
+      font-family: var(--mont); font-weight: 300;
+      font-size: 1rem; line-height: 1.85; color: rgba(232,228,221,0.82);
+    }
+    .legal p + p { margin-top: 1rem; }
+    .legal ul { margin: 0.6rem 0 0; padding-left: 1.2rem; }
+    .legal li { margin-bottom: 0.55rem; }
+    .legal a { color: var(--bone); border-bottom: 1px solid rgba(217,1,60,0.7); transition: color 0.25s ease; }
+    .legal a:hover { color: var(--accent); }
+    .legal strong { color: var(--bone); font-weight: 500; }
+
+    /* ============ FOOTER ============ */
+    .footer-v3 {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem; flex-wrap: wrap;
+      padding: 2.2rem 2.5rem;
+      border-top: 1px solid rgba(232,228,221,0.1);
+      font-family: var(--oswald); font-weight: 300; font-size: 0.62rem;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--grey);
+    }
+    .footer-v3 a:hover { color: var(--bone); }
+    @media (max-width: 700px) { .footer-v3 { justify-content: center; text-align: center; padding: 1.6rem 1.25rem; } }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="nav-mark" href="/index.html">RIC BERRYMAN</a>
+    <ul class="nav-links">
+      <li><a href="/portfolio.html">Editorials</a></li>
+      <li><a href="/portraits.html">Portraits</a></li>
+      <li><a href="/dance.html">Dance</a></li>
+      <li><a href="/abandoned.html">Abandoned</a></li>
+      <li><a href="/field-notes.html">Field Notes</a></li>
+      <li><a href="/index.html#v3Form">Contact</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="Menu"><span></span><span></span></button>
+  </nav>
+
+  <main class="legal">
+    <div class="legal-kicker">Privacy</div>
+    <h1>Privacy Policy</h1>
+    <div class="updated">Last updated — June 22, 2026</div>
+
+    <p>This site, <strong>ricberryman.com</strong>, is the portfolio of photographer Ric Berryman. This policy explains what information is collected when you visit, how it's used, and the choices you have. Keeping it short and plain: I collect very little, I don't sell anything, and I only use what I collect to run the site and respond to you.</p>
+
+    <h2>Information collected automatically</h2>
+    <p>Like most websites, this site uses <strong>Google Analytics</strong> to understand how visitors use it. This is gathered through cookies and similar technologies, and may include:</p>
+    <ul>
+      <li>Pages you view and how long you spend on them</li>
+      <li>Approximate location (city and country, derived from your IP address — Google Analytics does not store your full IP address)</li>
+      <li>Device, browser, and operating system type</li>
+      <li>How you arrived at the site (for example, a search engine or a link)</li>
+    </ul>
+    <p>This data is aggregated and used to see which work resonates and to improve the site. It isn't used to personally identify you.</p>
+
+    <h2>Information you provide</h2>
+    <p>If you reach out through the contact form, I collect the details you choose to submit — typically your <strong>name, email address, and your message</strong> (including the project type, if selected). This is used solely to respond to your inquiry. Form submissions are processed and stored by Netlify, the host of this site, and delivered to me by email.</p>
+
+    <h2>Cookies</h2>
+    <p>Cookies are small files stored by your browser. This site uses Google Analytics cookies (such as <em>_ga</em>) for the analytics described above. These are not strictly necessary for the site to work. You can decline them using the cookie notice shown on your first visit, clear or block cookies in your browser settings, or install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+    <h2>Who the data is shared with</h2>
+    <p>I don't sell your personal information or share it for advertising. The site relies on a small number of service providers that process data on its behalf:</p>
+    <ul>
+      <li><strong>Google Analytics</strong> — website analytics (<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>)</li>
+      <li><strong>Netlify</strong> — website hosting and contact-form handling (<a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener">Netlify Privacy Policy</a>)</li>
+    </ul>
+
+    <h2>Data retention</h2>
+    <p>Analytics data is retained according to Google Analytics' standard retention settings. Contact-form messages are kept for as long as needed to respond to you and to maintain a record of our correspondence.</p>
+
+    <h2>Your choices</h2>
+    <p>You can decline analytics cookies at any time using the methods under "Cookies" above. If you've contacted me and would like to know what information I hold, or to have it deleted, just ask through the contact form and I'll take care of it.</p>
+
+    <h2>Children</h2>
+    <p>This site is not directed to children under 13 and does not knowingly collect their personal information.</p>
+
+    <h2>International visitors</h2>
+    <p>The site is operated from the United States. If you visit from elsewhere, your information will be processed in the U.S., where data-protection laws may differ from those in your country.</p>
+
+    <h2>Changes to this policy</h2>
+    <p>This policy may be updated from time to time. When it changes, the "Last updated" date above will be revised.</p>
+
+    <h2>Contact</h2>
+    <p>Questions about this policy or your data? Reach out any time through the <a href="/index.html#v3Form">contact form</a>.</p>
+  </main>
+
+  <div class="footer-v3">
+    <span>© 2026 Ric Berryman</span>
+    <span>Los Angeles, CA — 34.05°N / 118.24°W</span>
+    <span><a href="/privacy.html">Privacy</a></span>
+  </div>
+
+  <script>(function(){var n=document.querySelector('.nav'),b=document.getElementById('navBurger');if(!n||!b)return;b.addEventListener('click',function(){n.classList.toggle('open');});n.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){n.classList.remove('open');});});})();</script>
+  <script src="/assets/js/cookie-notice.js" defer></script>
+</body>
+</html>
