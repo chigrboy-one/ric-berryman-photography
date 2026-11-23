@@ -28,14 +28,39 @@
   function idbGet(k){return new Promise(function(res){idb(function(db){if(!db)return res(null);var t=db.transaction('handles','readonly').objectStore('handles').get(k);t.onsuccess=function(){res(t.result||null);};t.onerror=function(){res(null);};});});}
   function idbSet(k,v){return new Promise(function(res){idb(function(db){if(!db)return res();var t=db.transaction('handles','readwrite').objectStore('handles').put(v,k);t.onsuccess=function(){res();};t.onerror=function(){res();};});});}
   var rootHandle = null;
+  /* A handle can still report 'granted' after its folder is deleted or moved
+     (e.g. a worktree that got cleaned up, or a Desktop alias repointed).
+     Probe it before trusting it, otherwise every save fails with no way back. */
+  async function alive(h){
+    /* The page file itself is the only proof this is the right folder.
+       Checking for 'assets' is not enough: the main checkout has assets/ but
+       an older set of pages, so the save failed deep inside getFileHandle. */
+    try{ await h.getFileHandle(FILE); return true; }catch(e){ return false; }
+  }
+  async function ok(h){
+    if((await h.queryPermission({mode:'readwrite'}))!=='granted'
+       && (await h.requestPermission({mode:'readwrite'}))!=='granted') return false;
+    return await alive(h);
+  }
+  /* showDirectoryPicker() needs a live user gesture. alert()/confirm() burn it,
+     so NOTHING may block between the Save click and the picker call. A bad
+     stored handle is detected at load instead, and reported in the status bar. */
   async function ensureRoot(){
-    if(rootHandle){ if((await rootHandle.queryPermission({mode:'readwrite'}))==='granted')return rootHandle; if((await rootHandle.requestPermission({mode:'readwrite'}))==='granted')return rootHandle; }
-    var saved=await idbGet('root');
-    if(saved){ rootHandle=saved; if((await rootHandle.queryPermission({mode:'readwrite'}))==='granted')return rootHandle; if((await rootHandle.requestPermission({mode:'readwrite'}))==='granted')return rootHandle; }
-    if(!window.confirm('ONE-TIME SETUP\n\nPick your website PROJECT folder (the one containing "assets" and "data"). Chrome remembers it, so you only do this once.'))throw new Error('Setup cancelled');
+    if(rootHandle && await ok(rootHandle)) return rootHandle;
+    rootHandle=null;
     var picked=await window.showDirectoryPicker({id:'rb-root',mode:'readwrite',startIn:'desktop'});
-    try{await picked.getDirectoryHandle('assets');}catch(e){throw new Error('That folder has no "assets" inside — pick the project root and try Save again.');}
+    try{ await picked.getFileHandle(FILE); }
+    catch(e){ throw new Error('That folder has no '+FILE+' in it — pick RB-Site-Edit on your Desktop, not "Ric Berryman Photography".'); }
     rootHandle=picked; await idbSet('root',rootHandle); return rootHandle;
+  }
+
+  /* Runs at load, needs no gesture: drop a stale handle before Save is clicked. */
+  async function primeRoot(){
+    var saved=await idbGet('root');
+    if(!saved) return;
+    if(await alive(saved)){ rootHandle=saved; return; }
+    await idbSet('root',null);
+    setStatus('Folder is wrong — click Save to choose RB-Site-Edit','warn');
   }
 
   function setStatus(m,k){var el=document.getElementById('le-status');if(el){el.textContent=m;el.className='le-status'+(k?' le-'+k:'');}}
@@ -85,20 +110,76 @@
       });
       card.appendChild(btn);
     }
+    // two-click move: click MOVE here, then click where it should land.
+    // Dragging only reorders what you physically drag past, which is unusable
+    // on a 70-card page — this moves any distance in two clicks.
+    var mv=document.createElement('button'); mv.type='button'; mv.className='le-move'; mv.title='Move this block';
+    mv.textContent='MOVE';
+    mv.addEventListener('click', function(e){ e.stopPropagation(); pickUp(card); });
+    card.appendChild(mv);
+    var num=document.createElement('span'); num.className='le-num'; card.appendChild(num);
+
     // remove button — photos drop instantly; text/locked blocks confirm first
     var del=document.createElement('button'); del.type='button'; del.className='le-del'; del.title='Remove'; del.textContent='×';
     del.addEventListener('click', function(e){ e.stopPropagation();
       if(b.kind==='img' || window.confirm('Remove this '+(b.kind==='raw'?'locked block':'text block')+'?\n\n(Reload before saving to undo.)')){
-        card.remove(); markDirty();
+        card.remove(); markDirty(); renumber();
       }
     });
     card.appendChild(del);
     card.addEventListener('dragstart', function(e){ card.classList.add('le-dragging'); if(e.dataTransfer){e.dataTransfer.effectAllowed='move'; try{e.dataTransfer.setData('text/plain','card');}catch(_){}} });
-    card.addEventListener('dragend', function(){ card.classList.remove('le-dragging'); markDirty(); });
+    card.addEventListener('dragend', function(){ card.classList.remove('le-dragging'); markDirty(); renumber(); });
     return card;
   }
 
   var surface=document.createElement('div'); surface.className='le-surface';
+
+  /* ---------- two-click move ---------- */
+  var picked=null;
+  function renumber(){
+    [].forEach.call(surface.querySelectorAll('.le-card'), function(c,i){
+      var n=c.querySelector('.le-num'); if(n) n.textContent=i+1;
+    });
+  }
+  function clearPick(){
+    if(picked) picked.classList.remove('le-picked');
+    picked=null; surface.classList.remove('le-moving');
+    var z=document.getElementById('le-endzone'); if(z) z.remove();
+    setStatus(dirty?'Unsaved changes':'Ready', dirty?'warn':null);
+  }
+  function pickUp(card){
+    if(picked===card){ clearPick(); return; }
+    if(picked) picked.classList.remove('le-picked');
+    picked=card; card.classList.add('le-picked'); surface.classList.add('le-moving');
+    if(!document.getElementById('le-endzone')){
+      var z=document.createElement('div'); z.id='le-endzone'; z.className='le-endzone';
+      z.textContent='DROP AT THE END';
+      z.addEventListener('click', function(){ surface.appendChild(picked); done(); });
+      surface.appendChild(z);
+    }
+    setStatus('Moving — click a block to drop it BEFORE, or Esc to cancel','warn');
+  }
+  function done(){ markDirty(); clearPick(); renumber(); }
+  // capture phase: while moving, a click places the card instead of doing its usual job
+  surface.addEventListener('click', function(e){
+    if(!picked) return;
+    var t=e.target.closest ? e.target.closest('.le-card') : null;
+    if(!t || t===picked) return;
+    if(e.target.id==='le-endzone') return;
+    e.preventDefault(); e.stopPropagation();
+    surface.insertBefore(picked, t);
+    done();
+  }, true);
+  document.addEventListener('keydown', function(e){
+    if(!picked) return;
+    if(e.key==='Escape'){ e.preventDefault(); clearPick(); }
+    else if(e.key==='ArrowLeft'){ e.preventDefault();
+      var pv=picked.previousElementSibling; if(pv&&pv.classList.contains('le-card')){ surface.insertBefore(picked,pv); markDirty(); renumber(); picked.scrollIntoView({block:'nearest'}); } }
+    else if(e.key==='ArrowRight'){ e.preventDefault();
+      var nx=picked.nextElementSibling; if(nx&&nx.classList.contains('le-card')){ surface.insertBefore(nx,picked); markDirty(); renumber(); picked.scrollIntoView({block:'nearest'}); } }
+    else if(e.key==='Enter'){ e.preventDefault(); clearPick(); }
+  });
+
   function afterElement(x,y){
     var els=[].slice.call(surface.querySelectorAll('.le-card:not(.le-dragging)'));
     var closest={d:Infinity,el:null};
@@ -117,6 +198,7 @@
     region.innerHTML='';
     blocks.forEach(function(b){ surface.appendChild(makeCard(b)); });
     region.appendChild(surface);
+    renumber();
   }
 
   /* ---------- serialize editor surface back to article HTML ---------- */
@@ -163,7 +245,7 @@
   function toolbar(){
     var bar=document.createElement('div'); bar.className='le-bar';
     bar.innerHTML='<span class="le-badge">LAYOUT</span>'+
-      '<span class="le-hint">drag to reorder · click a photo to cycle FULL / INSET / HALF · two HALFs pair up · hover &amp; × to remove</span>'+
+      '<span class="le-hint">MOVE then click a destination · \u2190 \u2192 nudge · Esc cancels · click a photo to cycle FULL / INSET / HALF · × removes</span>'+
       '<span id="le-status" class="le-status">Ready</span>'+
       '<button id="le-save" type="button">Save</button>';
     document.body.appendChild(bar);
@@ -176,6 +258,7 @@
     document.body.classList.add('le-editing');
     build(); toolbar();
     if(!FS_OK) setStatus('Saving needs Chrome or Edge.','warn');
+    else primeRoot();
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();

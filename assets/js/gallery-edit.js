@@ -57,16 +57,25 @@
     if (el) { el.textContent = msg; el.className = 'ge-status' + (kind ? ' ge-' + kind : ''); }
   }
 
+  /* A handle can still report 'granted' after its folder is deleted or moved
+     (e.g. a worktree that got cleaned up, or a Desktop alias repointed).
+     Probe it before trusting it, otherwise every save fails with no way back. */
+  async function handleOk(h) {
+    if ((await h.queryPermission({ mode: 'readwrite' })) !== 'granted'
+        && (await h.requestPermission({ mode: 'readwrite' })) !== 'granted') return false;
+    try { await h.getDirectoryHandle('assets'); return true; } catch (e) { return false; }
+  }
+
   async function ensureRoot() {
     if (rootHandle) {
-      if ((await rootHandle.queryPermission({ mode: 'readwrite' })) === 'granted') return rootHandle;
-      if ((await rootHandle.requestPermission({ mode: 'readwrite' })) === 'granted') return rootHandle;
+      if (await handleOk(rootHandle)) return rootHandle;
+      rootHandle = null;
     }
     var saved = await idbGet('root');
     if (saved) {
-      rootHandle = saved;
-      if ((await rootHandle.queryPermission({ mode: 'readwrite' })) === 'granted') return rootHandle;
-      if ((await rootHandle.requestPermission({ mode: 'readwrite' })) === 'granted') return rootHandle;
+      if (await handleOk(saved)) { rootHandle = saved; return rootHandle; }
+      await idbSet('root', null);
+      window.alert('The folder this editor was saving to is gone or moved.\n\nPick it again on the next screen \u2014 use the RB-Site-Edit shortcut on your Desktop.');
     }
     var ok = window.confirm(
       'ONE-TIME SETUP\n\n' +

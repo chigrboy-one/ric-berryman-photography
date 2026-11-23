@@ -60,3 +60,42 @@
 }
 .le-bar button:hover { background: #d9013c; color: #e8e4dd; }
 @media (max-width: 700px) { .le-card.le-inset { width: 100%; } }
+
+/* ---- two-click move ---- */
+.le-card .le-move {
+  position: absolute; top: 8px; left: 96px; z-index: 3; cursor: pointer;
+  font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 0.55rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: #0a0a0a; background: #e8e4dd; border: 0; border-radius: 999px;
+  padding: 0.36rem 0.8rem; opacity: 0; transition: opacity .2s, background .2s, color .2s;
+}
+.le-card:hover .le-move { opacity: 1; }
+.le-card .le-move:hover { background: #d9013c; color: #e8e4dd; }
+.le-card.le-text .le-move { left: 8px; }
+/* running position, always visible so you can see where things are */
+.le-num {
+  position: absolute; bottom: 7px; left: 7px; z-index: 3;
+  min-width: 22px; height: 22px; line-height: 22px; text-align: center;
+  border-radius: 999px; padding: 0 .35rem;
+  font-family: 'Oswald', sans-serif; font-size: 0.58rem; font-variant-numeric: tabular-nums;
+  color: #e8e4dd; background: rgba(10,10,10,0.72);
+  border: 1px solid rgba(232,228,221,0.25);
+}
+/* the card being moved */
+.le-card.le-picked { outline: 2px solid #d9013c; outline-offset: -2px; }
+.le-card.le-picked .le-move { opacity: 1; background: #d9013c; color: #e8e4dd; }
+/* while moving, every other card is a target */
+.le-moving .le-card { cursor: copy; }
+.le-moving .le-card:not(.le-picked):hover { outline: 2px dashed #d9013c; outline-offset: -2px; }
+.le-moving .le-card:not(.le-picked):hover::before {
+  content: 'DROP HERE'; position: absolute; inset: 0; z-index: 4;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Oswald', sans-serif; font-size: 0.6rem; letter-spacing: 0.26em;
+  color: #e8e4dd; background: rgba(10,10,10,0.55); pointer-events: none;
+}
+.le-endzone {
+  width: 100%; padding: 1.4rem; text-align: center; cursor: copy;
+  font-family: 'Oswald', sans-serif; font-size: 0.6rem; letter-spacing: 0.3em;
+  color: #8a8a8a; border: 1px dashed rgba(232,228,221,0.3); border-radius: 4px;
+}
+.le-endzone:hover { color: #e8e4dd; border-color: #d9013c; }
